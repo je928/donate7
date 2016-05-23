@@ -25,7 +25,6 @@
 	</resultMap>
 	
 	<insert id="reqInsert" parameterType="volReq">
-		INSERT INTO VT_REQUEST VALUES (NEW_VT_NO,#{vt_Name},#{vt_Reg_O_No},SYSDATE,#{vt_Subject},#{vt_Total},#{vt_Field},#{vt_Cycle},#{vt_Start_Date},#{vt_End_Date},#{vt_Desc},#{vt_Mgr},#{vt_Mgr_Tel},#{vt_Mgr_Email},#{vt_Age},#{vt_Gender},#{vt_Qualify},#{vt_Prior_Edu})
-		
+		INSERT INTO VT_REQUEST VALUES (NEW_VT_NO,#{vt_Name},#{vt_Reg_O_No},SYSDATE,#{vt_Subject},#{vt_Total},#{vt_Field},#{vt_Cycle},to_date(#{vt_Start_Date},'yyyymmdd'),to_date(#{vt_End_Date},'yyyymmdd'),#{vt_Desc},#{vt_Mgr},#{vt_Mgr_Tel},#{vt_Mgr_Email},#{vt_Age},#{vt_Gender},#{vt_Qualify},#{vt_Prior_Edu})
 	</insert>
 </mapper>
