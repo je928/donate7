@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form action="mWrite.do">
-		<input type="hidden" name="num" value="${board.num}">
+		<input type="hidden" name="no" value="${product.no}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<table>
 			<caption><h2>판매요청</h2></caption>

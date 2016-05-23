@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@include file="../module/header.jsp"%>
- --%><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../module/header.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form action="mWrite.do">
-		<input type="hidden" name="num" value="${board.num}">
+		<input type="hidden" name="no" value="${product.no}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<table>
 			<caption><h2>판매요청</h2></caption>
