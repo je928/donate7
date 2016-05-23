@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="second.do" method="post">
+	<form action="msecond.do" method="post">
 		<table border="1">
 			<tr><th>제목</th><td><input type="text" name="sh_title" required="required"autofocus="autofocus"></td></tr>
 			<tr><th>글쓴이</th><td></td></tr>
