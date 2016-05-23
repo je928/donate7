@@ -18,7 +18,7 @@ create table organ (
 	o_no number primary key,
 	o_email varchar2(30) not null unique,
 	o_passwd varchar2(30) not null,
-	o_license varchar2(50) not null unique,
+	o_license varchar2(50) not null,
 	o_oname varchar2(50) not null,
 	o_name varchar2(30) not null,
 	o_tel varchar2(30) not null,

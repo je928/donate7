@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="volReq">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="VolReqResult"		type="volReq">
+		<result property="vt_No" 			column="VT_NO" />
+		<result property="vt_Name" 			column="VT_NAME"/>
+		<result property="vt_Reg_O_No" 		column="VT_REQ_O_NO" />
+		<result property="vt_Reg_Date" 		column="VT_REQ_DATE" />
+		<result property="vt_Subject" 		column="VT_SUBJECT" />
+		<result property="vt_Total" 		column="VT_TOTAL" />
+		<result property="vt_Field" 		column="VT_FIELD" />
+		<result property="vt_Cycle" 		column="VT_CYCLE" />
+		<result property="vt_Start_Date" 	column="VT_START_DATE" />
+		<result property="vt_End_Date" 		column="VT_END_DATE" />
+		<result property="vt_Desc" 			column="VT_DESC" />
+		<result property="vt_Mgr" 			column="VT_MGR" />
+		<result property="vt_Mgr_Tel" 		column="VT_MGR_TEL" />
+		<result property="vt_Mgr_Email" 	column="VT_MGR_EMAIL" />
+		<result property="vt_Age" 			column="VT_AGE" />
+		<result property="vt_Gender" 		column="VT_GENDER" />
+		<result property="vt_Qualify" 		column="VT_QUALIFY" />
+		<result property="vt_Prior_Edu" 	column="VT_PRIOR_EDU" />
+	</resultMap>
+	
+	<insert id="reqInsert" parameterType="volReq">
+		INSERT INTO VT_REQUEST VALUES (NEW_VT_NO,#{vt_Name},#{vt_Reg_O_No},SYSDATE,#{vt_Subject},#{vt_Total},#{vt_Field},#{vt_Cycle},to_date(#{vt_Start_Date},'yyyymmdd'),to_date(#{vt_End_Date},'yyyymmdd'),#{vt_Desc},#{vt_Mgr},#{vt_Mgr_Tel},#{vt_Mgr_Email},#{vt_Age},#{vt_Gender},#{vt_Qualify},#{vt_Prior_Edu})
+	</insert>
+</mapper>
