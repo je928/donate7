@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.Second;
+
 @Controller
 public class m_mypageController {
 	
@@ -45,24 +47,20 @@ public class m_mypageController {
 		return "view";
 	}*/
 /*	@RequestMapping("list")
-	public String list(Board board,String pageNum,Model model) {
+	public String list(Second second,String pageNum,Model model) {
 		final int rowPerPage = 10;		
 		if (pageNum==null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1)*rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		board.setStartRow(startRow);
+		second.setStartRow(startRow);
 		board.setEndRow(endRow);
 		int total = bs.getTotal(board);
 		PagingBean pb = new PagingBean(currentPage,total);
 		List<Board> list = bs.list(board);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-		if(board.getKeyword()!=null) {
-			model.addAttribute("keyword", board.getKeyword());
-			model.addAttribute("search", board.getSearch());
-		}
 		return "list";
-	}*/
-	
+	}
+	*/
 }
