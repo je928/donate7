@@ -26,7 +26,7 @@
 				</c:forEach>
 			</table>
 		<div align="center">
-			<button>글쓰기</button>
+			<button onclick="location.href='oWrite.do'">요청하기</button>
 		</div>
 		
 		

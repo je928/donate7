@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../module/header.jsp"%>
+<%-- <%@include file="../module/header.jsp"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
+
 		<table border="1" width="100%">
 				<tr>
 					<th width="40">번호</th>
@@ -26,10 +26,8 @@
 				</c:forEach>
 			</table>
 		<div align="center">
-			<button>글쓰기</button>
+			<button onclick="location.href='mWrite.do'">요청하기</button>
 		</div>
-		
-		
-		</div>
+	
 </body>
 </html>
