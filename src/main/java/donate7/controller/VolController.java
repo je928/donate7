@@ -1,5 +1,7 @@
 package donate7.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,10 @@ public class VolController {
 	@RequestMapping(value="reqResist",method=RequestMethod.POST)
 	public String reqResist(VolReq volReq, Model model){
 		int result = vs.volReqInsert(volReq);
+		List<VolReq> list = vs.volListByVt_Reg_O_No(volReq.getVt_Reg_O_No());
 		if(result > 0){
-			model.addAttribute("pgm", "manageVol.do");
+			model.addAttribute("list", list);
+			model.addAttribute("pgm", "../vt/manageVol.jsp");
 		}else{
 			model.addAttribute("pgm", "../vt/req.jsp");
 			model.addAttribute("volReq", volReq);
@@ -37,7 +41,26 @@ public class VolController {
 	
 	@RequestMapping("manageVol")
 	public String manageVol(HttpSession session, Model model){
+		
+		List<VolReq> list = vs.volListByVt_Reg_O_No(Integer.parseInt(session.getAttribute("no").toString()));
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../vt/manageVol.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping("volReqView")
+	public String volReqView(int vt_No,Model model){
+		VolReq volReq = vs.SelectByVt_No(vt_No);
+		model.addAttribute("volReq", volReq);
+		model.addAttribute("pgm", "../vt/volReqView.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="reqUpdate", method=RequestMethod.GET)
+	public String reqUpdateForm(int vt_No,Model model){
+		VolReq volReq = vs.SelectByVt_No(vt_No);
+		model.addAttribute("volReq", volReq);
+		model.addAttribute("pgm", "../vt/reqUpdate.jsp");
 		return "module/main";
 	}
 }
