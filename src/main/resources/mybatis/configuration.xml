@@ -8,6 +8,7 @@
 		<typeAlias alias="organ" type="donate7.model.Organ" />
 		<typeAlias alias="gift" type="donate7.model.Gift" />
 		<typeAlias alias="cpoint_info" type="donate7.model.Cpoint_info" />
+		<typeAlias alias="gift_buy" type="donate7.model.Gift_Buy" />
 		<typeAlias alias="volReq" type="donate7.model.VolReq"/>
 	</typeAliases>
 	<mappers>
@@ -15,6 +16,7 @@
 		<mapper resource="mybatis/Organ.xml" />
 		<mapper resource="mybatis/Gift.xml" />
 		<mapper resource="mybatis/Cpoint_info.xml" />
+		<mapper resource="mybatis/Gift_Buy.xml" />
 		<mapper resource="mybatis/VolReq.xml" />
 	</mappers>
 </configuration>

@@ -15,4 +15,26 @@ public class o_mypageController {
 		return "module/main";
 	}
 	
+	@RequestMapping(value = "osecondList", method = RequestMethod.GET)
+	public String msecondList(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/osecondList.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value = "osecondForm", method = RequestMethod.GET)
+	public String secondForm(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/osecondForm.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value = "osecond", method = RequestMethod.POST)
+	public String second(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/osecondForm.jsp");
+		return "module/main";
+	}
+	
+	
 }
