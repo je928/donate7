@@ -14,7 +14,7 @@
 		<a href="about.html" class="list-group-item">About</a>
 		<a href="services.html" class="list-group-item">Services</a>
 		<a href="contact.html" class="list-group-item">Contact</a>
-		<a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>
+		<a href="secondForm.do" class="list-group-item">중고기부 요청</a>
 		<a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
 		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
