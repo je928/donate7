@@ -25,7 +25,13 @@ public class VolController {
 	
 	@RequestMapping(value="reqResist",method=RequestMethod.POST)
 	public String reqResist(VolReq volReq, Model model){
-		model.addAttribute("pgm", "manageVol.do");
+		int result = vs.volReqInsert(volReq);
+		if(result > 0){
+			model.addAttribute("pgm", "manageVol.do");
+		}else{
+			model.addAttribute("pgm", "../vt/req.jsp");
+			model.addAttribute("volReq", volReq);
+		}
 		return "module/main";
 	}
 	
