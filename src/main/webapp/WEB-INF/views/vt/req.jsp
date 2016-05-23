@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
+<%@ include file="../session/orgChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,67 +72,120 @@
 						});
 			});
 </script>
+<style type="text/css">
+.req-container{
+	width : 900px;
+}
+.req-form-area{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.req-form-name{
+	margin-bottom: 25px; 
+	text-align: left; 
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 	<div class="container">
-		<div class="col-md-offset-14 col-md-5">
-			<div class="form-area">
+		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
+			<div class="form-area req-container">
 				<form role="form" action="reqResist.do" method="post">
+				<input type="hidden" name="vt_Reg_O_No" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
-					<div class="form-group">
-						<b>봉사명:</b> <input type="text" class="form-control" id="vt_name"
-							name="vt_name" required>
+					<div class="form-area req-form-area">
+						<p class="req-form-name">봉사 상세</p>
+						<div class="form-group">
+							<b>봉사명:</b> <input type="text" class="form-control" id="vt_Name"
+								name="vt_Name" required>
+						</div>
+						<div class="form-group">
+							<b>봉사지역:</b>
+						</div>
+						<div class="form-group">
+							<b>봉사장소:</b>
+						</div>
+						<div class="form-group">
+							<b>봉사대상자:</b> <input type="text" class="form-control"
+								id="vt_Subject" name="vt_Subject" required>
+						</div>
+						<div class="form-group">
+							<b style="display: block;">봉사 기간 :</b> 시작일 : <input
+								class="form-control-20" readonly="readonly" type="text"
+								name="vt_Start_Date" id="sdate" size="10" maxlength="10" /> 종료일
+							: <input class="form-control-20" readonly="readonly" type="text"
+								name="vt_End_Date" id="edate" size="10" maxlength="10" />
+						</div>
+						<div class="form-group">
+							<b>요청 인원:</b> <select class="form-control-40" name="vt_Total" id="vt_Total">
+								<c:forEach var="i" begin="0" end="50">
+									<option value="${i }">${i }</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-group">
+							<b>활동분야:</b> <select class="form-control-40" name="vt_Field" id=vt_Field>
+								<option value="C">시설봉사</option>
+								<option value="H">재가봉사</option>
+								<option value="M">전문봉사</option>
+								<option value="S">지역사회봉사</option>
+								<option value="G">해외봉사</option>
+								<option value="E" selected="selected">기타봉사</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<b>활동주기:</b> <select class="form-control-40" name="vt_Cycle" id="vt_Cycle">
+								<option value="C">정기</option>
+								<option value="N" selected="selected">비정기</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<b style="display: block;">상세 내용:</b>
+							<textarea rows="5" cols="80" name="vt_Desc" id="vt_Desc"></textarea>
+						</div>
 					</div>
-					<div class="form-group">
-						<b>봉사지역:</b>
+					<div class="form-area req-form-area">
+					<p class="req-form-name">담당자 정보</p>
+						<div class="form-group">
+							<b>담당자:</b> <input type="text" class="form-control" id="vt_Mgr"
+								name="vt_Mgr" required>
+						</div>
+
+						<div class="form-group">
+							<b>담당자 연락처:</b> <input type="tel" class="form-control"
+								id="vt_Mgr_Tel" name="vt_Mgr_Tel" required>
+						</div>
+
+						<div class="form-group">
+							<b>담당자 이메일:</b> <input type="email" class="form-control"
+								id="vt_Mgr_Email" name="vt_Mgr_Email" required>
+						</div>
 					</div>
-					<div class="form-group">
-						<b>봉사장소:</b>
+					<div class="form-area req-form-area">
+					<p class="req-form-name">봉사자 자격조건</p>
+						<div class="form-group">
+							<b>봉사자 연령:</b> <input type="text" class="form-control" id="vt_Age"
+								name="vt_Age">
+						</div>
+
+						<div class="form-group">
+							<b>봉사자 성별:</b> <input type="text" class="form-control"
+								id="vt_Gender" name="vt_Gender">
+						</div>
+
+						<div class="form-group">
+							<b>자격요건:</b> <input type="text" class="form-control"
+								id="vt_Qualify" name="vt_Qualify">
+						</div>
+						<div class="form-group">
+							<b>사전교육:</b> <input type="text" class="form-control"
+								id="vt_Prior_Edu" name="vt_Prior_Edu">
+						</div>
 					</div>
-					<div class="form-group">
-						<b>봉사대상자:</b> <input type="text" class="form-control"
-							id="vt_subject" name="vt_subject" required>
-					</div>
-					<div class="form-group">
-						<b style="display: block;">봉사 기간 :</b> 시작일 : <input
-							class="form-control-20" readonly="readonly" type="text"
-							name="vt_start_date" id="sdate" size="10" maxlength="10" /> 종료일
-						: <input class="form-control-20" readonly="readonly" type="text"
-							name="vt_end_date" id="edate" size="10" maxlength="10" />
-					</div>
-					<div class="form-group" >
-						<b>요청 인원:</b>
-						<select class="form-control-40" name="vt_total">
-							<c:forEach var="i" begin="0" end="50">
-								<option value="${i }">${i }</option>
-							</c:forEach>							
-						</select>
-					</div>
-					<div class="form-group">
-						<b>활동분야:</b>
-						<select class="form-control-40" name="vt_field">
-							<option value="C">시설봉사</option>
-							<option value="H">재가봉사</option>
-							<option value="M">전문봉사</option>
-							<option value="S">지역사회봉사</option>
-							<option value="G">해외봉사</option>
-							<option value="E" selected="selected">기타봉사</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<b>활동주기:</b>
-						<select class="form-control-40" name="vt_cycle">
-							<option value="C">정기</option>
-							<option value="N" selected="selected">비정기</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<b>활동주기:</b>
-						<textarea rows="" cols="" name="vt_desc"></textarea>
-					</div>
+
 					<div style="margin-top: 40px; text-align: center;">
-						<button type="submit" id="submit" name="submit"
-							class="btn btn-primary">요청</button>
+						<input type="submit" class="btn btn-primary btn-md" value="요청">
 					</div>
 				</form>
 			</div>
