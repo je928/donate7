@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cpoint_info">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
-	<resultMap id="CpointResult"		type="cpoint_info">
+	<resultMap id="Cpoint_infoResult"		type="cpoint_info">
 		<result property="cp_no" 	column="cp_no" />
 		<result property="m_no" 	column="m_no" />
 		<result property="cp_sort" 	column="cp_sort" />
@@ -14,16 +14,16 @@
 	<select id="selectNum" resultType="int">
 		select nvl(max(cp_no),0)+1 from cpoint_info
 	</select>
-	<insert id="insertCPoint" parameterType="cpoint_info">
-		insert into gift values(#{cp_no},#{m_no},#{cp_sort},sysdate,#{cp_point},#{cp_point_re})		
+	<insert id="insert" parameterType="cpoint_info">
+		insert into cpoint_info values(#{cp_no},#{m_no},#{cp_sort},sysdate,#{cp_point},#{cp_point_re})		
 	</insert>
-	<select id="list" resultMap="CpointResult">
+	<select id="list" resultMap="Cpoint_infoResult">
 		select * from cpoint_info
 	</select>
 	<select id="selectOne" resultType="cpoint_info" parameterType="int">
 		select * from cpoint_info where m_no=#{m_no}
 	</select>
 	<select id="sumPoint" resultType="int" parameterType="int">
-		select sum(cp_point) from cpoint_info where m_no=#{m_no} and cp_sort='p'
+		select nvl(sum(cp_point),0) from cpoint_info where m_no=#{m_no} and cp_sort='p'
 	</select>
 </mapper>
