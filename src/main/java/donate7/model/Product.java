@@ -1,5 +1,7 @@
 package donate7.model;
 
+import java.sql.Date;
+
 public class Product {
 	private int pr_no;				
 	private int pr_mno;			
@@ -8,10 +10,68 @@ public class Product {
 	private String pr_content;	
 	private int pr_qty;			
 	private String pr_price;				
-	private String pr_picture;
+	private String pr_img;
 	private String pr_donation;		
 	private char pr_approve;
 	private String pr_callm;
+	private Date pr_date;
+	private Date pr_update;
+	private int m_no;
+	private String m_email;
+	private String m_nick;
+	private int o_no;
+	private String o_email;
+	private String o_oname;
+	
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	public String getM_email() {
+		return m_email;
+	}
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+	public int getO_no() {
+		return o_no;
+	}
+	public void setO_no(int o_no) {
+		this.o_no = o_no;
+	}
+	public String getO_email() {
+		return o_email;
+	}
+	public void setO_email(String o_email) {
+		this.o_email = o_email;
+	}
+	public String getO_oname() {
+		return o_oname;
+	}
+	public void setO_oname(String o_oname) {
+		this.o_oname = o_oname;
+	}
+	public Date getPr_update() {
+		return pr_update;
+	}
+	public void setPr_update(Date pr_update) {
+		this.pr_update = pr_update;
+	}
+	public Date getPr_date() {
+		return pr_date;
+	}
+	public void setPr_date(Date pr_date) {
+		this.pr_date = pr_date;
+	}
 	public int getPr_no() {
 		return pr_no;
 	}
@@ -54,11 +114,12 @@ public class Product {
 	public void setPr_price(String pr_price) {
 		this.pr_price = pr_price;
 	}
-	public String getPr_picture() {
-		return pr_picture;
+
+	public String getPr_img() {
+		return pr_img;
 	}
-	public void setPr_picture(String pr_picture) {
-		this.pr_picture = pr_picture;
+	public void setPr_img(String pr_img) {
+		this.pr_img = pr_img;
 	}
 	public String getPr_donation() {
 		return pr_donation;
