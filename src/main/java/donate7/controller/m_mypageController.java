@@ -37,6 +37,12 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../second/msecondForm.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value = "mproList", method = RequestMethod.GET)
+	public String mproList(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/mproList.jsp");
+		return "module/main";
+	}
 	
 /*	@RequestMapping("view")
 	public String view(int num,String pageNum,Model model) {
