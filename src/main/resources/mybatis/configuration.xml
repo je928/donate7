@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="jdbc.properties"></properties>
+	<typeAliases>
+		<typeAlias alias="member" type="donate7.model.Member" />
+		<typeAlias alias="organ" type="donate7.model.Organ" />
+		<typeAlias alias="gift" type="donate7.model.Gift" />
+		<typeAlias alias="cpoint_info" type="donate7.model.Cpoint_info" />			
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/Member.xml" />
+		<mapper resource="mybatis/Organ.xml" />
+		<mapper resource="mybatis/Gift.xml" />
+		<mapper resource="mybatis/Cpoint_info.xml" />
+	</mappers>
+</configuration>

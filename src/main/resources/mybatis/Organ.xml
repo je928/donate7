@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="organ">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="OrganResult" type="organ">
+		<result property="o_no" column="o_no"/>
+		<result property="o_email" column="o_email"/>
+		<result property="o_passwd" column="o_passwd"/>
+		<result property="o_license" column="o_license"/>
+		<result property="o_oname" column="o_oname"/>
+		<result property="o_name" column="o_name"/>
+		<result property="o_tel" column="o_tel"/>
+		<result property="o_addr" column="o_addr"/>
+		<result property="o_category" column="o_category"/>
+		<result property="o_reg_date" column="o_reg_date"/>
+		<result property="o_out_date" column="o_out_date"/>
+		<result property="o_del_yn" column="o_del_yn"/>
+		<result property="o_ok_yn" column="o_ok_yn"/>
+	</resultMap>
+	
+	<select id="selectNum" resultType="Integer">
+		select nvl(max(o_no),0)-1 from organ
+	</select>
+	
+	<insert id="insertOrgan" parameterType="organ">
+		insert into organ values(#{o_no},#{o_email},#{o_passwd},#{o_license},#{o_oname},#{o_name},#{o_tel},#{o_addr},#{o_category},sysdate,null,'n','n')
+	</insert>
+	
+	<select id="selectOno" parameterType="String" resultType="Integer">
+		select nvl(max(o_no),0) as o_no from organ where o_email=#{o_email} and o_del_yn='y'
+	</select>
+	
+	<update id="insertReOrgan" parameterType="organ">
+		update organ set o_passwd=#{o_passwd},o_license=#{o_license},o_oname=#{o_oname},o_name=#{o_name},o_tel=#{o_tel},o_addr=#{o_addr},o_category=#{o_category},o_reg_date=sysdate,o_del_yn='n' where o_no=#{o_no}
+	</update>
+
+	<select id="selectOrgan" parameterType="Integer" resultMap="OrganResult">
+		select * from organ where o_no=#{o_no} and o_del_yn='n'
+	</select>
+	
+	<update id="updateOrgan" parameterType="organ">
+		update organ set m_passwd=#{m_passwd}, m_nick=#{m_nick}, m_birth=#{m_birth}, m_tel=#{m_tel}, m_job=#{m_job}, m_del_yn='n' where m_no=#{m_no}
+	</update>
+	
+	<update id="deleteOrgan" parameterType="Integer">
+		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
+	</update>
+		
+	<select id="emailChk" parameterType="String" resultType="Integer">
+		select count(*) from organ where o_email=#{o_email} and o_del_yn='n'
+	</select>
+	
+	<select id="selectEmail" parameterType="String" resultType="Integer">
+		select o_no from organ where o_email=#{o_email} and o_del_yn='n'
+	</select>
+	
+	<select id="passwdChk" parameterType="hashMap" resultType="String">
+		select o_passwd from organ o_no=#{o_no} and o_passwd=#{o_passwd}
+	</select>
+
+</mapper>
