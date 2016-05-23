@@ -6,19 +6,25 @@ create table pr_product (
 	pr_content 	varchar2(4000)	not null,			-- 설명
 	pr_qty number not null,							-- 수량
 	pr_price varchar2(50) not null,					-- 가격
-	pr_picture varchar2(50)	default 'nothing.jpg',	-- 사진
+	pr_img varchar2(50)	default 'nothing.jpg',	-- 사진
 	pr_donation varchar2(20) not null,				--기부처
 	pr_approve CHAR(1) default 'n' check (pr_APPROVE in ('y','n')), --승인여부
-	pr_callm varchar2(1000)	not null				-- 요청메세지
+	pr_callm varchar2(1000)	not null,				-- 요청메세지
+	pr_date date default sysdate,
+	pr_update date
 );                
 
 
 create table pr_buy (	
 	pb_no number primary key,				-- 구매상태번호
 	pb_prno number not null,				-- 판매정보(판매자 닉네임, 제품 가격)
+	pb_date date default sysdate,
 	pb_mno number not null,					-- 구매자
 	pb_buyqty number not null,				-- 구매수량
 	pb_addr	varchar2(100) not null,			-- 주소
 	pb_delivery	varchar2(100) not null		-- 배송상태
 		
 );
+
+drop table pr_product;
+drop table pr_buy;
