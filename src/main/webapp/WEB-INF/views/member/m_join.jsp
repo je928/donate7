@@ -5,6 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function() {
+		$('#m_email').blur(function() {
+			$.ajax({
+				type : "POST",
+				url : "m_emailChk.do",
+				data : {
+					"m_email" : $('#m_email').val()
+				},
+				success : function(data) {
+					if($.trim(data) == "FALSE") {
+						$('#check').html("<font>사용 가능한 email입니다.</font>");						
+					}else {
+						$('#check').html("<font>이미 사용 중인 email입니다.</font>");
+					}
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -14,9 +34,10 @@
 	       		<form role="form" action="m_join.do" method="post">
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
-						<b>이메일:</b>
 					<div class="form-group">
+						<b>이메일:</b>
 						<input type="email" class="form-control" id="m_email" name="m_email" required>
+						<span id="check"></span>
 					</div>
 					<div class="form-group">
 						<b>비밀번호:</b>

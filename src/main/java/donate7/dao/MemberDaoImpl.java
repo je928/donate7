@@ -66,5 +66,15 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return result;
 	}
+
+	public int m_emailChk(String m_email) {
+		int result = 0;
+		try {
+			result = session.selectOne("m_emailChk", m_email);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 	
 }
