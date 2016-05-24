@@ -8,11 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>목록</h3>
-<c:forEach var="list" items="${list }">
-<c:set var="gift" value="${gs.selectOne(list.g_no) }"/>
-<a href="ownGiftDetail.do?gb_no=${list.gb_no }"><img src="/donate7/${gift.g_img}" width="150px"></a>
-기프티콘 이름 : ${gift.g_name }
-</c:forEach>
+<div align="center">
+<img src="/donate7/${gift.g_img}" width="300px"><br>
+일련번호 : ${gb.gb_no}4186545335<br>
+기프티콘 이름 : ${gift.g_name }<br>
+<input type="button" value="보유 기프티콘" onclick="location.href='ownGift.do'">
+</div>
 </body>
 </html>
