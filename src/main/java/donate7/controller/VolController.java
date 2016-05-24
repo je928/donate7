@@ -1,7 +1,5 @@
 package donate7.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,13 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.SidoGugun;
 import donate7.model.VolReq;
+import donate7.service.SidoService;
 import donate7.service.VolService;
+/*import net.sf.json.JSONArray;*/
 
 @Controller
 public class VolController {
 	@Autowired
 	private VolService vs;
+	@Autowired
+	private SidoService ss;
 	
 	@RequestMapping(value="reqResist",method=RequestMethod.GET)
 	public String reqResistForm(VolReq volReq, Model model){
@@ -61,13 +64,6 @@ public class VolController {
 	@RequestMapping(value="reqUpdate", method=RequestMethod.GET)
 	public String reqUpdateForm(int vt_No,Model model){
 		VolReq volReq = vs.SelectByVt_No(vt_No);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		try {
-			volReq.setVt_Start_Date(sdf.format(sdf.parse(volReq.getVt_Start_Date())));
-			volReq.setVt_End_Date(sdf.format(sdf.parse(volReq.getVt_End_Date())));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 		model.addAttribute("volReq", volReq);
 		model.addAttribute("pgm", "../vt/reqUpdate.jsp");
 		return "module/main";
@@ -83,6 +79,21 @@ public class VolController {
 			return "module/main";
 		}
 		
+	}
+
+	@RequestMapping("reqList")
+	public String reqList(Model model){
+		List<SidoGugun> sList = ss.selectSido();
+		model.addAttribute("sList", sList);
+		model.addAttribute("pgm", "../vt/reqList.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="gugunList", method=RequestMethod.POST)
+	public String gugunList(int sido_no, Model model){
+		List<SidoGugun> list = ss.selectGugunBySido_No(sido_no);
+		model.addAttribute("list", list);
+		return "vt/gugunList";
 	}
 	
 }

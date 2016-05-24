@@ -10,6 +10,7 @@
 		<typeAlias alias="cpoint_info" type="donate7.model.Cpoint_info" />
 		<typeAlias alias="gift_buy" type="donate7.model.Gift_Buy" />
 		<typeAlias alias="volReq" type="donate7.model.VolReq"/>
+		<typeAlias alias="sido" type="donate7.model.SidoGugun"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -18,5 +19,6 @@
 		<mapper resource="mybatis/Cpoint_info.xml" />
 		<mapper resource="mybatis/Gift_Buy.xml" />
 		<mapper resource="mybatis/VolReq.xml" />
+		<mapper resource="mybatis/Sido.xml" />
 	</mappers>
 </configuration>
