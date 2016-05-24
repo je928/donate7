@@ -17,5 +17,8 @@ public class Gift_BuyServiceImpl implements Gift_BuyService{
 	public List<Gift_Buy> ownList(int m_no) {
 		return gd.ownList(m_no);
 	}
+	public Gift_Buy selectOne(int gb_no) {
+		return gd.selectOne(gb_no);
+	}
 
 }

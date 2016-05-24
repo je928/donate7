@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp" %>
+<%@ include file="../session/sessionChk.jsp" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-	<form action="d_request.do" method="post" enctype="multipart/form-data">
+	<form action="doReq.do" method="post" enctype="multipart/form-data">
 		<div>
 			<b>제목</b>
 			<div>
@@ -18,9 +19,17 @@
 		</div>
 		<div>
 			<b>사진첨부</b>
-				<div>
-					<input type="file" name="d_img" multiple="multiple" required="required">
-				</div>
+				<c:if test="${not empty msg }">
+					<font color="red">
+						${msg }
+					</font>
+				</c:if>
+				<c:if test="${not empty fileName }">
+					<img src="/donate7/${fileName }">
+				</c:if>
+			<div>
+				<input type="file" name="d_img" multiple="multiple" required="required">
+			</div>
 		</div>
 		<div>
 			<b>내용</b>
