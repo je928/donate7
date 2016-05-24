@@ -21,8 +21,7 @@
 					prevText : '이전달',
 					nextText : '다음달',
 					currentText : '오늘',
-					minDate : $('#sdate').val(),
-					maxDate : $('#edate').val(),
+					minDate : 0,
 					monthNames : [ '1월(JAN)', '2월(FEB)', '3월(MAR)', '4월(APR)',
 							'5월(MAY)', '6월(JUN)', '7월(JUL)', '8월(AUG)',
 							'9월(SEP)', '10월(OCT)', '11월(NOV)', '12월(DEC)' ],
@@ -47,6 +46,7 @@
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 
 				$('#sdate').datepicker();
+				//$('#sdate').datepicker("option", "minDate", '${volReq.vt_Start_Date}');
 				$('#sdate').datepicker("option", "maxDate", $("#edate").val());
 				$('#sdate').datepicker(
 						"option",
@@ -64,6 +64,7 @@
 
 				$('#edate').datepicker();
 				$('#edate').datepicker("option", "minDate", $("#sdate").val());
+				//$('#edate').datepicker("option", "maxDate",'${volReq.vt_End_Date}');
 				$('#edate').datepicker(
 						"option",
 						"onClose",
@@ -93,6 +94,7 @@
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area req-container">
 				<form role="form" action="reqUpdate.do" method="post">
+				<input type="hidden" name="vt_No" value="${volReq.vt_No}">
 				<input type="hidden" name="vt_Reg_O_No" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
 					<div class="form-area req-form-area">
@@ -169,9 +171,6 @@
 								<c:if test="${field ne 'E'}">
 									<option value="E">기타봉사</option>
 								</c:if>
-								
-								
-								
 							</select>
 						</div>
 						<div class="form-group">
