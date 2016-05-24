@@ -25,7 +25,7 @@
 		</div>
 	
 		<div align="center">
-						<input type="button" onclick="location.href='m_tamp.do'" value="기프티콘 확인">
+						<input type="button" onclick="location.href='ownGift.do'" value="기프티콘 확인">
 			<input type="button" onclick="location.href='giftList.do'" value="기프티콘 샵">
 		</div>
 	</div>

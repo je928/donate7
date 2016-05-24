@@ -15,7 +15,10 @@
 	<insert id="insert" parameterType="gift_buy">
 		insert into gift_buy values(#{gb_no},#{g_no},#{m_no},'n')		
 	</insert>
-	<select id="selectOwn" resultMap="Gift_buyResult" parameterType="int">
-		select * from gift_buy where m_no=#{m_no}
+	<select id="ownList" resultMap="Gift_buyResult" parameterType="int">
+		select * from gift_buy where m_no=#{m_no} and gb_chk='n'
+	</select>
+	<select id="selectOne" resultType="gift_buy" parameterType="int">
+		select * from gift_buy where gb_no=#{gb_no} and gb_chk='n'
 	</select>
 </mapper>

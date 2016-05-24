@@ -10,8 +10,8 @@ create table donate (
 	d_account varchar2(50) not null,
 	d_img varchar2(2000) not null,
 	d_approve char(1) default 'n',
-	d_start_date date,
-	d_end_date date
+	d_start_date date not null,
+	d_end_date date not null
 );
 	
 
