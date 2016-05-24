@@ -37,12 +37,26 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../second/msecondForm.jsp");
 		return "module/main";
 	}
-	@RequestMapping(value = "mproList", method = RequestMethod.GET)
+	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/mproList.jsp");
+		model.addAttribute("mypgm", "../../product/m_prList.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value = "m_prWrite", method = RequestMethod.GET)
+	public String m_prWriteForm(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/m_prWrite.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value = "m_prWrite", method = RequestMethod.POST)
+	public String m_prWrite(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/m_prWrite.jsp");
+		return "module/main";
+	}
+	
 	
 /*	@RequestMapping("view")
 	public String view(int num,String pageNum,Model model) {

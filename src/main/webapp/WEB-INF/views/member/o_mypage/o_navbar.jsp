@@ -12,7 +12,7 @@
 		<a href="o_myinfo.do" class="list-group-item">기관정보</a>
 		<a href="o_update.do" class="list-group-item">기관정보수정</a>
 		<a href="odoList.do" class="list-group-item">기부금 요청/내역</a>
-		<a href="oproList.do" class="list-group-item">완제품 기부 요청/내역</a>
+		<a href="o_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
 		<a href="osecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
 		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
