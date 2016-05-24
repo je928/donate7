@@ -55,6 +55,11 @@ public class o_mypageController {
 		model.addAttribute("mypgm", "../../product/o_prWrite.jsp");
 		return "module/main";
 	}
-	
+	@RequestMapping(value = "odoList", method = RequestMethod.GET)
+	public String odoList(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/odoList.jsp");
+		return "module/main";
+	}
 
 }
