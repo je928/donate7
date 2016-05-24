@@ -71,6 +71,7 @@ public class MemberDaoImpl implements MemberDao {
 		int result = 0;
 		try {
 			result = session.selectOne("m_emailChk", m_email);
+			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
