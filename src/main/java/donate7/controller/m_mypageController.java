@@ -1,7 +1,10 @@
 package donate7.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import donate7.model.Donate;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
+import donate7.service.DonateService;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
 
@@ -21,6 +28,10 @@ public class m_mypageController {
 	private Gift_BuyService gbs;
 	@Autowired
 	private GiftService gs;
+	
+	@Autowired
+	private DonateService ds;
+	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
@@ -90,6 +101,40 @@ public class m_mypageController {
 		model.addAttribute("gift", gift);
 		return "module/main";
 	}
+	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
+	public String mdoList(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value = "mdoReq", method = RequestMethod.GET)
+	public String mdoReqForm(Donate donate,Model model) {
+		model.addAttribute("donate", donate);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoReq.jsp");
+		return "module/main";
+	}
+
+	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
+	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
+			HttpServletRequest request) throws IllegalStateException, IOException {
+		String fileName = mf.getOriginalFilename();
+		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+		mf.transferTo(new File(request.getRealPath("/")+uploadName));
+		donate.setD_img(uploadName);
+		ds.mdoReqInsert(donate);
+		model.addAttribute("msg", "사진 업로드 : "+fileName);
+		List<Donate> list = ds.list();
+		model.addAttribute("list", list);
+		model.addAttribute("fileName", uploadName);
+		int result = ds.mdoReqInsert(donate);
+		if(result > 0){
+			return "redirect:adList.do";
+		}else{
+			model.addAttribute("donate", donate);
+			return "redirect:mdoReq.do";
+		}
+		 
 /*	@RequestMapping("view")
 	public String view(int num,String pageNum,Model model) {
 		bs.updateReadCount(num); 
@@ -115,4 +160,5 @@ public class m_mypageController {
 		return "list";
 	}
 	*/
+	}
 }

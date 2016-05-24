@@ -6,5 +6,8 @@ import donate7.model.Donate;
 
 public interface DonateService {
 
+	int mdoReqInsert(Donate donate);
+
+	List<Donate> list();
 
 }

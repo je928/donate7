@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="donate">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="DonateResult" type="donate">
+		<result property="d_no" column="d_no" />
+		<result property="d_title" column="d_title" />
+		<result property="d_member" column="d_member" />
+		<result property="d_reg_date" column="d_reg_date" />
+		<result property="d_content" column="d_content" />
+		<result property="d_plan" column="d_plan" />
+		<result property="d_amount" column="d_amount" />
+		<result property="d_bank" column="d_bank" />
+		<result property="d_account" column="d_account" />
+		<result property="d_img" column="d_img" />
+		<result property="d_approve" column="d_approve" />
+		<result property="d_start_date" column="d_start_date" />
+		<result property="d_end_date" column="d_end_date" />
+	</resultMap>
+
+	<insert id="mdoReqInsert" parameterType="donate">
+		insert into donate
+		values
+		(#{d_no},#{d_title},#{d_member},#{d_reg_date},#{d_content},#{d_plan},#{d_amount},#{d_bank},
+			#{d_account},#{d_img},#{d_approve},#{d_start_date},#{d_end_date})
+	</insert>
+	<select id="list" resultMap="DonateResult">
+		select * from donate
+	</select>
+</mapper>
