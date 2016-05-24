@@ -35,25 +35,5 @@ public class o_mypageController {
 		model.addAttribute("mypgm", "../../second/osecondForm.jsp");
 		return "module/main";
 	}
-	@RequestMapping(value = "o_prList", method = RequestMethod.GET)
-	public String o_prList(Model model) {
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/o_prList.jsp");
-		return "module/main";
-	}
-	
-	@RequestMapping(value = "o_prWrite", method = RequestMethod.GET)
-	public String o_prWriteForm(Model model) {
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/o_prWrite.jsp");
-		return "module/main";
-	}
 
-	@RequestMapping(value ="o_prWrite", method = RequestMethod.POST)
-	public String o_prWrite(Model model) {
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/o_prWrite.jsp");
-		return "module/main";
-	}
-	
 }
