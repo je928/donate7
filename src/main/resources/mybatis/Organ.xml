@@ -34,7 +34,11 @@
 	<update id="insertReOrgan" parameterType="organ">
 		update organ set o_passwd=#{o_passwd},o_license=#{o_license},o_oname=#{o_oname},o_name=#{o_name},o_tel=#{o_tel},o_addr=#{o_addr},o_category=#{o_category},o_reg_date=sysdate,o_del_yn='n' where o_no=#{o_no}
 	</update>
-
+	
+	<select id="o_emailChk" parameterType="String" resultType="Integer">
+		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{o_email}
+	</select>
+	
 	<select id="selectOrgan" parameterType="Integer" resultMap="OrganResult">
 		select * from organ where o_no=#{o_no} and o_del_yn='n'
 	</select>
@@ -46,14 +50,6 @@
 	<update id="deleteOrgan" parameterType="Integer">
 		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
 	</update>
-		
-	<select id="emailChk" parameterType="String" resultType="Integer">
-		select count(*) from organ where o_email=#{o_email} and o_del_yn='n'
-	</select>
-	
-	<select id="selectEmail" parameterType="String" resultType="Integer">
-		select o_no from organ where o_email=#{o_email} and o_del_yn='n'
-	</select>
 	
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
 		select o_passwd from organ o_no=#{o_no} and o_passwd=#{o_passwd}

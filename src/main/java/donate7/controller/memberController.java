@@ -71,6 +71,20 @@ public class memberController {
 		}
 	}
 	
+	@RequestMapping(value = "m_emailChk", method = RequestMethod.POST)
+	public String m_emailChk(String m_email, Model model) {
+		int result = ms.m_emailChk(m_email);
+		/*String msg = "";
+		if(result == 1) {
+			msg = "이미 사용 중인 email입니다.";
+		}else {
+			msg = "사용 가능한 email입니다.";
+		}*/
+		model.addAttribute("result", result);
+		return "m_emailChk";
+	}
+	
+	
 	@RequestMapping(value = "o_join", method = RequestMethod.GET)
 	public String o_joinForm(Model model) {
 		model.addAttribute("pgm", "../member/o_join.jsp");

@@ -37,8 +37,16 @@
 		update member set m_passwd=#{m_passwd},m_name=#{m_name},m_nick=#{m_nick},m_birth=#{m_birth},m_gender=#{m_gender},m_tel=#{m_tel},m_job=#{m_job},m_reg_date=sysdate,m_del_yn='n' where m_no=#{m_no}
 	</update>
 	
+	<select id="loginChk" parameterType="String" resultType="String">
+		select passwd from (select m_no as no, m_email as email, m_passwd as passwd, m_del_yn as del_yn from member union select o_no, o_email, o_passwd, o_del_yn from organ) a where a.email=#{email} and a.del_yn='n'
+	</select>
+	
 	<select id="selectMno2" parameterType="String" resultType="String">
 		select nvl(no,0) as no from (select m_no as no, m_email as email, m_passwd as passwd, m_del_yn as del_yn from member union select o_no, o_email, o_passwd, o_del_yn from organ) a where a.email=#{email} and a.del_yn='n'
+	</select>
+	
+	<select id="m_emailChk" parameterType="String" resultType="Integer">
+		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{m_email}
 	</select>
 	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
@@ -52,14 +60,6 @@
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
 	</update>
-		
-	<select id="emailChk" parameterType="String" resultType="Integer">
-		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{m_email}
-	</select>
-	
-	<select id="selectEmail" parameterType="String" resultType="Integer">
-		select m_no from member where m_email=#{m_email} and m_del_yn='n'
-	</select>
 	
 	<select id="nickChk" parameterType="member" resultType="String">
 		select m_nick from member where m_nick=#{m_nick} and m_del_yn='n' and m_no != #{m_no} union select m_nick from member where m_no=#{m_no} and m_nick=#{m_nick}
@@ -71,10 +71,6 @@
 	
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
 		select m_passwd from member m_no=#{m_no} and m_passwd=#{m_passwd}
-	</select>
-	
-	<select id="loginChk" parameterType="String" resultType="String">
-		select passwd from (select m_no as no, m_email as email, m_passwd as passwd, m_del_yn as del_yn from member union select o_no, o_email, o_passwd, o_del_yn from organ) a where a.email=#{email} and a.del_yn='n'
 	</select>
 
 </mapper>
