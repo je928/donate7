@@ -25,4 +25,8 @@ public class VolDaoImpl implements VolDao{
 	public VolReq selectByVt_No(int vt_No) {
 		return session.selectOne("volReq.selectByVt_No",vt_No);
 	}
+	@Override
+	public int updateVolReq(VolReq volReq) {
+		return session.update("volReq.updateVolReq",volReq);
+	}
 }
