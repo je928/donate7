@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%
-	int no = (Integer)session.getAttribute("no");
-	if(no == 0) {
+	String no = session.getAttribute("no").toString();
+	if(no == null || no.equals("") || no.equals("null")) {
 %>
 		<script type="text/javascript">
 			alert("로그인을 하셔야 이용할 수 있는 페이지입니다.");

@@ -33,7 +33,7 @@
 			기프티콘 : <img src="/donate7/${gift.g_img }"><p>
 			기프티콘 이름 : ${gift.g_name }<p>
 			기프티콘 가격 : ${gift.g_price }<p>
-			<c:if test="${no>0 }">
+			<c:if test="${no>1 }">
 				<input type="button" onclick="location.href='gift_buy.do?g_no=${gift.g_no}'" value="기프티콘 구매">
 			</c:if>				
 			<input type="button" onclick="location.href='giftList.do'" value="기프티콘 샵">

@@ -5,18 +5,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function() {
+		$('#m_email').blur(function() {
+			var sendData = 'm_email='+$('#m_email').val();
+			$.post('m_emailChk.do',sendData,function(msg){
+ 	 			$('#m_check').html(msg);
+ 			});
+			return false;
+ 		});
+	});
+	
+	function chk() {
+		if(frm.m_passwd.value != frm.m_passwd2.value) {
+			alert("비밀번호를 확인하세요.");
+			frm.m_passwd.value = "";
+			frm.m_passwd2.value= "";
+			frm.m_passwd.focus();
+			return false;
+		}
+		return true;
+	}
+	
+</script>
 </head>
 <body>
 
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5">
    			<div class="form-area">
-	       		<form role="form" action="m_join.do" method="post">
+	       		<form action="m_join.do" role="form" name="frm" method="post" onsubmit="return chk()">
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
-						<b>이메일:</b>
 					<div class="form-group">
+						<b>이메일:</b>
 						<input type="email" class="form-control" id="m_email" name="m_email" required>
+						<span id="m_check"> </span>
 					</div>
 					<div class="form-group">
 						<b>비밀번호:</b>

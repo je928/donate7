@@ -10,7 +10,7 @@
 </head>
 <body>
 	<form action="msecond.do" method="post">
-		<table border="1">
+		<table class="table table-striped table-hover"><caption>중고기부 요청</caption>
 			<tr><th>제목</th><td><input type="text" name="sh_title" required="required"autofocus="autofocus"></td></tr>
 			<tr><th>글쓴이</th><td></td></tr>
 			<tr><th>이미지</th><td><input type="file" name="sh_image"></td></tr>

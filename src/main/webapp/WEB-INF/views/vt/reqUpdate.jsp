@@ -46,6 +46,7 @@
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 
 				$('#sdate').datepicker();
+				//$('#sdate').datepicker("option", "minDate", '${volReq.vt_Start_Date}');
 				$('#sdate').datepicker("option", "maxDate", $("#edate").val());
 				$('#sdate').datepicker(
 						"option",
@@ -63,6 +64,7 @@
 
 				$('#edate').datepicker();
 				$('#edate').datepicker("option", "minDate", $("#sdate").val());
+				//$('#edate').datepicker("option", "maxDate",'${volReq.vt_End_Date}');
 				$('#edate').datepicker(
 						"option",
 						"onClose",
@@ -91,14 +93,15 @@
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area req-container">
-				<form role="form" action="reqResist.do" method="post">
+				<form role="form" action="reqUpdate.do" method="post">
+				<input type="hidden" name="vt_No" value="${volReq.vt_No}">
 				<input type="hidden" name="vt_Reg_O_No" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
 					<div class="form-area req-form-area">
 						<p class="req-form-name">봉사 상세</p>
 						<div class="form-group">
 							<b>봉사명:</b> <input type="text" class="form-control" id="vt_Name"
-								name="vt_Name" required>
+								name="vt_Name" value="${volReq.vt_Name }" required>
 						</div>
 						<div class="form-group">
 							<b>봉사지역:</b>
@@ -108,84 +111,132 @@
 						</div>
 						<div class="form-group">
 							<b>봉사대상자:</b> <input type="text" class="form-control"
-								id="vt_Subject" name="vt_Subject" required>
+								id="vt_Subject" name="vt_Subject" value="${volReq.vt_Subject }" required>
 						</div>
 						<div class="form-group">
 							<b style="display: block;">봉사 기간 :</b> 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_Start_Date" id="sdate" size="10" maxlength="10" /> 종료일
+								name="vt_Start_Date" id="sdate" size="10" maxlength="10" value="${volReq.vt_Start_Date }"/> 종료일
 							: <input class="form-control-20" readonly="readonly" type="text"
-								name="vt_End_Date" id="edate" size="10" maxlength="10" />
+								name="vt_End_Date" id="edate" size="10" maxlength="10" value="${volReq.vt_End_Date }" />
 						</div>
 						<div class="form-group">
 							<b>요청 인원:</b> <select class="form-control-40" name="vt_Total" id="vt_Total">
 								<c:forEach var="i" begin="0" end="50">
-									<option value="${i }">${i }</option>
+									<c:if test="${volReq.vt_Total == i }">
+										<option value="${i }" selected="selected">${i }</option>
+									</c:if>
+									<c:if test="${volReq.vt_Total != i }">
+										<option value="${i }">${i }</option>
+									</c:if>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
 							<b>활동분야:</b> <select class="form-control-40" name="vt_Field" id="vt_Field">
-								<option value="C">시설봉사</option>
-								<option value="H">재가봉사</option>
-								<option value="M">전문봉사</option>
-								<option value="S">지역사회봉사</option>
-								<option value="G">해외봉사</option>
-								<option value="E" selected="selected">기타봉사</option>
+								<c:set  var="field" value="${field}"></c:set>
+								<c:if test="${field == 'C' }">
+									<option value="C" selected="selected">시설봉사</option>
+								</c:if>
+								<c:if test="${field != 'C'}">
+									<option value="C">시설봉사</option>
+								</c:if>
+								<c:if test="${field eq 'H'}">
+									<option value="H" selected="selected">재가봉사</option>
+								</c:if>
+								<c:if test="${field ne 'H'}">
+									<option value="H">재가봉사</option>
+								</c:if>
+								<c:if test="${field eq 'M'}">
+									<option value="M" selected="selected">전문봉사</option>
+								</c:if>
+								<c:if test="${field ne 'M'}">
+									<option value="M">전문봉사</option>
+								</c:if>
+								<c:if test="${field eq 'S'}">
+									<option value="S" selected="selected">지역사회봉사</option>
+								</c:if>
+								<c:if test="${field ne 'S'}">
+									<option value="S">지역사회봉사</option>
+								</c:if>
+								<c:if test="${field eq 'G'}">
+									<option value="G" selected="selected">해외봉사</option>
+								</c:if>
+								<c:if test="${field ne 'G'}">
+									<option value="G">해외봉사</option>
+								</c:if>
+								<c:if test="${field eq 'E'}">
+									<option value="E" selected="selected">기타봉사</option>
+								</c:if>
+								<c:if test="${field ne 'E'}">
+									<option value="E">기타봉사</option>
+								</c:if>
 							</select>
 						</div>
 						<div class="form-group">
-							<b>활동주기:</b> <select class="form-control-40" name="vt_Cycle" id="vt_Cycle">
-								<option value="C">정기</option>
-								<option value="N" selected="selected">비정기</option>
+							<b>활동주기:</b> 
+							<c:set var="cycle" value="${cycle}"></c:set>
+							<select class="form-control-40" name="vt_Cycle" id="vt_Cycle">
+								<c:if test="${cycle eq 'C'}">
+									<option value="C" selected="selected">정기</option>
+								</c:if>
+								<c:if test="${cycle ne 'C'}">
+									<option value="C">정기</option>
+								</c:if>
+								<c:if test="${cycle eq 'N'}">
+									<option value="N" selected="selected">비정기</option>
+								</c:if>
+								<c:if test="${cycle ne 'N'}">
+									<option value="N">비정기</option>
+								</c:if>
 							</select>
 						</div>
 						<div class="form-group">
 							<b style="display: block;">상세 내용:</b>
-							<textarea rows="5" cols="80" name="vt_Desc" id="vt_Desc"></textarea>
+							<textarea rows="5" cols="80" name="vt_Desc" id="vt_Desc">${volReq.vt_Desc }</textarea>
 						</div>
 					</div>
 					<div class="form-area req-form-area">
 					<p class="req-form-name">담당자 정보</p>
 						<div class="form-group">
 							<b>담당자:</b> <input type="text" class="form-control" id="vt_Mgr"
-								name="vt_Mgr" required>
+								name="vt_Mgr" value="${volReq.vt_Mgr }" required>
 						</div>
 
 						<div class="form-group">
 							<b>담당자 연락처:</b> <input type="tel" class="form-control"
-								id="vt_Mgr_Tel" name="vt_Mgr_Tel" required>
+								id="vt_Mgr_Tel" name="vt_Mgr_Tel" value="${volReq.vt_Mgr_Tel }" required>
 						</div>
 
 						<div class="form-group">
 							<b>담당자 이메일:</b> <input type="email" class="form-control"
-								id="vt_Mgr_Email" name="vt_Mgr_Email" required>
+								id="vt_Mgr_Email" name="vt_Mgr_Email" value="${volReq.vt_Mgr_Email }" required>
 						</div>
 					</div>
 					<div class="form-area req-form-area">
 					<p class="req-form-name">봉사자 자격조건</p>
 						<div class="form-group">
 							<b>봉사자 연령:</b> <input type="text" class="form-control" id="vt_Age"
-								name="vt_Age">
+								name="vt_Age" value="${volReq.vt_Age }">
 						</div>
 
 						<div class="form-group">
 							<b>봉사자 성별:</b> <input type="text" class="form-control"
-								id="vt_Gender" name="vt_Gender">
+								id="vt_Gender" name="vt_Gender" value="${volReq.vt_Gender }">
 						</div>
 
 						<div class="form-group">
 							<b>자격요건:</b> <input type="text" class="form-control"
-								id="vt_Qualify" name="vt_Qualify">
+								id="vt_Qualify" name="vt_Qualify" value="${volReq.vt_Qualify }">
 						</div>
 						<div class="form-group">
 							<b>사전교육:</b> <input type="text" class="form-control"
-								id="vt_Prior_Edu" name="vt_Prior_Edu">
+								id="vt_Prior_Edu" name="vt_Prior_Edu" value="${volReq.vt_Prior_Edu}">
 						</div>
 					</div>
 
 					<div style="margin-top: 40px; text-align: center;">
-						<input type="submit" class="btn btn-primary btn-md" value="요청">
+						<input type="submit" class="btn btn-primary btn-md" value="수정">
 					</div>
 				</form>
 			</div>
