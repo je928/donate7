@@ -27,4 +27,9 @@ public class VolServiceImpl implements VolService {
 		return vd.selectByVt_No(vt_No);
 	}
 
+	@Override
+	public int updateVolReq(VolReq volReq) {
+		return vd.updateVolReq(volReq);
+	}
+
 }

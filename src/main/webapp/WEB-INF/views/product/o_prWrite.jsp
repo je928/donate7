@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="mWrite.do">
+	<form action="o_prWrite.do" method="post">
 		<input type="hidden" name="no" value="${product.no}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
-		<table>
-			<caption><h2>판매요청</h2></caption>
+		<table class="table table-striped table-hover">
+
+			<caption>판매요청</caption>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="pr_proname" required="required"
@@ -34,22 +35,26 @@
 				</td>
 			</tr>
 			<tr>
+				<th>기부처</th>
+				<td><input type="text" name="pr_donation" required="required" value="${product.pr_donation}" ></td>
+			</tr>
+			<tr>
 				<th>사진</th>
 				<td><input type="file" name="pr_img" required="required" value="${product.pr_img}" ></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="20" cols="40" name="content" required="required" value="${board.content}"></textarea></td>
+				<td><textarea rows="10" cols="100" name="content" required="required" value="${board.content}"></textarea></td>
 			</tr>
 			<tr>
 				<th>요청메세지</th>
-				<td><textarea rows="5" cols="40" name="content" required="required" value="${board.callm}"></textarea></td>
+				<td><textarea rows="5" cols="100" name="content" required="required" value="${board.callm}"></textarea></td>
 			</tr>
 			
 		</table>
 		<div align="center">
-			<input type = "submit" value="요청하기">
-			<button>요청내역 보기</button>
+			<button onclick="location.href='ad_prList.do'">요청하기</button>
+			<button onclick="location.href='o_prList.do'">요청내역 보기</button>
 		</div>
 	</form>
 </body>

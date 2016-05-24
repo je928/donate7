@@ -8,8 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<table border="1" width="100%">
+	
+		<table class="table table-striped table-hover">
+		<caption>제품 판매 요청</caption>
 				<tr>
 					<th width="40">번호</th>
 					<th width="60">제목</th>
@@ -26,10 +27,8 @@
 				</c:forEach>
 			</table>
 		<div align="center">
-			<button onclick="location.href='oWrite.do'">요청하기</button>
+			<button onclick="location.href='o_prWrite.do'">요청하기</button>
 		</div>
-		
-		
-		</div>
+
 </body>
 </html>

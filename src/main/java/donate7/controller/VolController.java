@@ -1,5 +1,7 @@
 package donate7.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -59,8 +61,28 @@ public class VolController {
 	@RequestMapping(value="reqUpdate", method=RequestMethod.GET)
 	public String reqUpdateForm(int vt_No,Model model){
 		VolReq volReq = vs.SelectByVt_No(vt_No);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		try {
+			volReq.setVt_Start_Date(sdf.format(sdf.parse(volReq.getVt_Start_Date())));
+			volReq.setVt_End_Date(sdf.format(sdf.parse(volReq.getVt_End_Date())));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("volReq", volReq);
 		model.addAttribute("pgm", "../vt/reqUpdate.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value="reqUpdate", method=RequestMethod.POST)
+	public String reqUpdate(VolReq volReq,Model model){
+		int result = vs.updateVolReq(volReq);
+		if(result > 0){
+			return "redirect:volReqView.do?vt_No="+volReq.getVt_No();
+		}else{
+			model.addAttribute("volReq", volReq);
+			model.addAttribute("pgm", "../vt/reqUpdate.jsp");
+			return "module/main";
+		}
+		
+	}
+	
 }

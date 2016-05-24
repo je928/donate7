@@ -9,7 +9,7 @@
 			if(confirm("일반 회원 전용 페이지입니다. 로그인 하시겠습니까?")){
 				location.href="login.do";	
 			}else{
-				
+				history.back();
 			}
 		</script>
 <%
