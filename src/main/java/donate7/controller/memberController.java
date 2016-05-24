@@ -76,13 +76,13 @@ public class memberController {
 		int result = ms.m_emailChk(m_email);
 		String msg = "";
 		if(result == 1) {
-			msg = "이미 사용 중인 email입니다.";
+			msg = "이미 사용 중이거나 탈퇴한 이메일입니다.";
 		}else if(result == 0) {
-			msg = "사용 가능한 email입니다.";
+			msg = "사용 가능한 이메일입니다.";
 		}
 		model.addAttribute("msg", msg);
 		System.out.println(msg);
-		return "m_emailChk";
+		return "member/m_emailChk";
 	}
 	
 	@RequestMapping(value = "o_join", method = RequestMethod.GET)

@@ -1,6 +1,6 @@
 create table member (
 	m_no number primary key,
-	m_email varchar2(30) not null unique,
+	m_email varchar2(50) not null unique,
 	m_passwd varchar2(30) not null,
 	m_name varchar2(30) not null,
 	m_nick varchar2(30) not null unique,
@@ -16,7 +16,7 @@ create table member (
 
 create table organ (
 	o_no number primary key,
-	o_email varchar2(30) not null unique,
+	o_email varchar2(50) not null unique,
 	o_passwd varchar2(30) not null,
 	o_license varchar2(50) not null,
 	o_oname varchar2(50) not null,
