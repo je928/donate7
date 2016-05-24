@@ -8,4 +8,6 @@ public interface Gift_BuyDao {
 	int getGift(Gift_Buy gb);
 
 	List<Gift_Buy> ownList(int m_no);
+
+	Gift_Buy selectOne(int gb_no);
 }

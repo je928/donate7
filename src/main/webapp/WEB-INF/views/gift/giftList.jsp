@@ -29,7 +29,7 @@
 		<div align="center">
 			<c:forEach var="gift" items="${list }">
 				<div style="display: inline;">
-				<img src="/donate7/${gift.g_img }"><br>
+				<img src="/donate7/${gift.g_img }" width="150px"><br>
 				<a href="giftDetail.do?g_no=${gift.g_no }"> 기프티콘 이름 :${gift.g_name }</a><br>
 				기프티콘 가격 : ${gift.g_price }<br>
 				</div>
