@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import donate7.model.Donate;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
+import donate7.model.Second;
 import donate7.service.DonateService;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
@@ -28,7 +29,6 @@ public class m_mypageController {
 	private Gift_BuyService gbs;
 	@Autowired
 	private GiftService gs;
-	
 	@Autowired
 	private DonateService ds;
 	
@@ -59,6 +59,7 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../second/msecondForm.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
@@ -134,31 +135,6 @@ public class m_mypageController {
 			model.addAttribute("donate", donate);
 			return "redirect:mdoReq.do";
 		}
-		 
-/*	@RequestMapping("view")
-	public String view(int num,String pageNum,Model model) {
-		bs.updateReadCount(num); 
-		Board board = bs.select(num);
-		model.addAttribute("board", board);
-		model.addAttribute("pageNum", pageNum);
-		return "view";
-	}*/
-/*	@RequestMapping("list")
-	public String list(Second second,String pageNum,Model model) {
-		final int rowPerPage = 10;		
-		if (pageNum==null || pageNum.equals("")) pageNum = "1";
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1)*rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
-		second.setStartRow(startRow);
-		board.setEndRow(endRow);
-		int total = bs.getTotal(board);
-		PagingBean pb = new PagingBean(currentPage,total);
-		List<Board> list = bs.list(board);
-		model.addAttribute("list", list);
-		model.addAttribute("pb", pb);
-		return "list";
-	}
-	*/
+
 	}
 }
