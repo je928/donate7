@@ -19,13 +19,19 @@
 		<result property="d_end_date" column="d_end_date" />
 	</resultMap>
 
+	<select id="selectNum" resultType="int">
+		select nvl(max(d_no),0)+1 from donate
+	</select>
 	<insert id="mdoReqInsert" parameterType="donate">
 		insert into donate
 		values
-		(#{d_no},#{d_title},#{d_member},#{d_reg_date},#{d_content},#{d_plan},#{d_amount},#{d_bank},
-			#{d_account},#{d_img},#{d_approve},#{d_start_date},#{d_end_date})
+		(#{d_no},#{d_title},#{d_member},sysdate,#{d_content},#{d_plan},#{d_amount},#{d_bank},
+			#{d_account},#{d_img},'n',SYSDATE,SYSDATE)
 	</insert>
-	<select id="list" resultMap="DonateResult">
+	<select id="mdoList" resultMap="DonateResult">
 		select * from donate
+	</select>
+	<select id="selectOne" resultType="donate" parameterType="int">
+		select * from donate where d_no=#{d_no}
 	</select>
 </mapper>

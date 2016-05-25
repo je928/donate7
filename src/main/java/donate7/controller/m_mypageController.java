@@ -104,6 +104,8 @@ public class m_mypageController {
 	}
 	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
 	public String mdoList(Model model) {
+		List<Donate> list = ds.list();
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
 		return "module/main";
@@ -123,14 +125,13 @@ public class m_mypageController {
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 		mf.transferTo(new File(request.getRealPath("/")+uploadName));
 		donate.setD_img(uploadName);
-		ds.mdoReqInsert(donate);
+		int result = ds.mdoReqInsert(donate);
 		model.addAttribute("msg", "사진 업로드 : "+fileName);
 		List<Donate> list = ds.list();
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
-		int result = ds.mdoReqInsert(donate);
 		if(result > 0){
-			return "redirect:adList.do";
+			return "redirect:mdoList.do";
 		}else{
 			model.addAttribute("donate", donate);
 			return "redirect:mdoReq.do";
