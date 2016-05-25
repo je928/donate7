@@ -81,10 +81,12 @@ public class VolController {
 		
 	}
 
-	@RequestMapping("reqList")
+	@RequestMapping("reqSearch")
 	public String reqList(Model model){
 		List<SidoGugun> sList = ss.selectSido();
+		List<VolReq> list = vs.volReqList();
 		model.addAttribute("sList", sList);
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../vt/reqList.jsp");
 		return "module/main";
 	}
@@ -94,6 +96,13 @@ public class VolController {
 		List<SidoGugun> list = ss.selectGugunBySido_No(sido_no);
 		model.addAttribute("list", list);
 		return "vt/gugunList";
+	}
+	
+	@RequestMapping("reqDetail")
+	public String reqDetail(int vt_No, Model model){
+		VolReq volReq = vs.SelectByVt_No(vt_No);
+		model.addAttribute("volReq", volReq);
+		return "vt/reqDetail";
 	}
 	
 }
