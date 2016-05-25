@@ -77,5 +77,31 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return result;
 	}
+
+	public int m_nickChk(String m_nick, Member member) {
+		int result = 0;
+		String selectNick = "";
+		String db_Nick = "";
+		try {
+			selectNick = session.selectOne("selectNick", member.getM_no());
+			db_Nick = session.selectOne("nickChk", member);
+			if(selectNick != null) {
+				if(db_Nick.equals(selectNick)) {
+					result = 0;
+				}else {
+					result = 1;
+				}
+			}else {
+				if(db_Nick != null) {
+					result = 0;
+				}else {
+					result = -1;
+				}
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 	
 }

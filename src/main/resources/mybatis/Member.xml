@@ -49,6 +49,15 @@
 		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{m_email}
 	</select>
 	
+	<select id="selectNick" parameterType="Integer" resultType="String">
+		select m_nick from member where m_no=#{no}
+	</select>
+	
+	<select id="nickChk" parameterType="member" resultType="String">
+		select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union
+		select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n';
+	</select>
+	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
 		select * from member where m_no=#{m_no} and m_del_yn='n'
 	</select>
