@@ -72,7 +72,7 @@
 			if (regex.test(frm.m_nick.value) === false) {
 				$('#nick_chk').html("<font class='red'>닉네임에는 한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
 			} else {
-			var sendData = 'm_nick='+$('#m_nick').val();
+			var sendData = 'm_nick='+$('#m_nick').val()+'&no=0';
 			$.post('m_nickChk.do',sendData,function(msg){
  	 			if(msg == "이미 사용 중인 닉네임입니다.") {
  	 				$('#nick_chk').html("<font class='red'>"+msg+"</font>");

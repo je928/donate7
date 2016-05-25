@@ -54,8 +54,7 @@
 	</select>
 	
 	<select id="nickChk" parameterType="member" resultType="String">
-		select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union
-		select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n';
+		select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n'
 	</select>
 	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
@@ -69,15 +68,7 @@
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
 	</update>
-	
-	<select id="nickChk" parameterType="member" resultType="String">
-		select m_nick from member where m_nick=#{m_nick} and m_del_yn='n' and m_no != #{m_no} union select m_nick from member where m_no=#{m_no} and m_nick=#{m_nick}
-	</select>
-
-	<select id="nickChk2" parameterType="Integer" resultType="String">
-		select m_nick from member where m_no=#{m_no}
-	</select>
-	
+		
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
 		select m_passwd from member m_no=#{m_no} and m_passwd=#{m_passwd}
 	</select>
