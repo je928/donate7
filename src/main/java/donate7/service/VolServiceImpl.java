@@ -32,4 +32,9 @@ public class VolServiceImpl implements VolService {
 		return vd.updateVolReq(volReq);
 	}
 
+	@Override
+	public List<VolReq> volReqList() {
+		return vd.volReqList();
+	}
+
 }

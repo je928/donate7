@@ -26,7 +26,6 @@ td {
 					prevText : '이전달',
 					nextText : '다음달',
 					currentText : '오늘',
-					minDate : 0,
 					monthNames : [ '1월(JAN)', '2월(FEB)', '3월(MAR)', '4월(APR)',
 							'5월(MAY)', '6월(JUN)', '7월(JUL)', '8월(AUG)',
 							'9월(SEP)', '10월(OCT)', '11월(NOV)', '12월(DEC)' ],
@@ -92,7 +91,7 @@ td {
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area">
-				<form method="post" action="reqList.do" >
+				<form action="reqList.do" method="post">
 					<table>
 						<tr>
 							<th>지역선택</th>
@@ -106,12 +105,13 @@ td {
 						<tr>
 							<th>분야선택</th>
 							<td><select name="vt_Field">
+									<option value="0">----</option>
 									<option value="C">시설봉사</option>
 									<option value="H">재가봉사</option>
 									<option value="M">전문봉사</option>
 									<option value="S">지역사회봉사</option>
 									<option value="G">해외봉사</option>
-									<option value="E" selected="selected">기타봉사</option>
+									<option value="E">기타봉사</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -123,6 +123,7 @@ td {
 						<tr>
 							<th>봉사주기</th>
 							<td><select name="vt_Cycle">
+									<option value="0">----</option>
 									<option value="C">정기</option>
 									<option value="N">비정기</option>
 							</select></td>
@@ -130,6 +131,7 @@ td {
 						<tr>
 							<th>모집상태</th>
 							<td><select name="vt_Cycle">
+									<option value="0">----</option>
 									<option value="Y">모집 중</option>
 									<option value="N">모집 완료</option>
 							</select></td>
@@ -139,26 +141,35 @@ td {
 							<td><input type="text" name="vt_Name"></td>
 						</tr>
 					</table>
+					<input type="submit" class="btn btn-primary btn-md" value="조회">
 				</form>
 				<table border="1">
 					<tr>
 						<th>번호</th>
 						<th>지역</th>
 						<th>분야</th>
+						<th>제목</th>
 						<th>기간</th>
 						<th>주기</th>
-						<th>제목</th>
+					
 						<th>모집상태</th>
 					</tr>
 					<c:forEach var="volReq" items="${list}">
 						<tr>
-							<th>번호</th>
-							<th>지역</th>
-							<th>분야</th>
-							<th>기간</th>
-							<th>주기</th>
-							<th>제목</th>
-							<th>모집상태</th>
+							<td>${volReq.vt_No }</td>
+							<td>지역</td>
+							<td>${volReq.vt_Field }</td>
+							<td><a href="reqDetail.do?vt_No=${volReq.vt_No}">${volReq.vt_Name }</a></td>
+							<td>${volReq.vt_Start_Date} - ${volReq.vt_End_Date }</td>
+							<td>${volReq.vt_Cycle }</td>
+							<td>
+								<c:if test="${volReq.vt_Recruit_Yn == 'Y'}">
+									모집 중
+								</c:if>
+								<c:if test="${volReq.vt_Recruit_Yn == 'N'}">
+									모집 완료
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

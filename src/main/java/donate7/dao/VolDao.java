@@ -9,4 +9,5 @@ public interface VolDao {
 	List<VolReq> volListByVt_Reg_O_No(int vt_Reg_O_No);
 	VolReq selectByVt_No(int vt_No);
 	int updateVolReq(VolReq volReq);
+	List<VolReq> volReqList();
 }
