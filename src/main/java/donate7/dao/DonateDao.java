@@ -11,4 +11,6 @@ public interface DonateDao {
 
 	List<Donate> list();
 
+	Donate selectOne(int d_no);
+
 }

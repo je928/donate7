@@ -12,6 +12,7 @@
 	<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 		<div class="form-area">
 			<form action="mdoReq.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="d_member" value="${sessionScope.no }">
 				<div class="form-group">
 					<b>제목</b>
 					<div class="form-group">
@@ -20,16 +21,16 @@
 				</div>
 				<div class="form-group">
 					<b>사진첨부</b>
-<%-- 					<c:if test="${not empty msg }">
+					<c:if test="${not empty msg }">
 							<font color="red">
 								${msg }
 							</font>
 						</c:if>
 						<c:if test="${not empty fileName }">
 							<img src="/donate7/${fileName }">
-						</c:if> --%>
+						</c:if> 
 					<div class="form-group">
-						<input type="file" name="d_img" multiple="multiple" required="required">
+						<input type="file" name="img" required="required">
 					</div>
 				</div>
 				<div class="form-group">

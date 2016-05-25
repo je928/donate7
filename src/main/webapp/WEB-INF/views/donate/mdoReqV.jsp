@@ -9,64 +9,37 @@
 </head>
 <body>
 <div class="container">
-	<form action="mdoReq.do" method="post" enctype="multipart/form-data">
-		<div>
-			<b>제목</b>
+	<form action="" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<th>제목</th>
+				<td>${donate.d_title }</td>
+			</tr>
+			<tr>	
+				<th>사진첨부</th>
+				<td>${donate.d_img }</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>${donate.d_content}</td>
+			</tr>
+			<tr>
+				<th>기부금 사용계획
+				<td>${donate.d_plan}</td>
+			<tr>
+				<th>희망금액</th>
+				<td>${donate.d_amount }</td>
+			</tr>
+			<tr>
+				<th>계좌번호</th>
+				<td>${donate.d_bank } ${donate.d_account }</td>
+			</tr>
 			<div>
-				<input type="text" name="d_title" id="d_title" required="required"
-					value="${donate.d_title }">
-			</div>
-		</div>
-		<div>
-			<b>사진첨부</b>
-<%-- 				<c:if test="${not empty msg }">
-					<font color="red">
-						${msg }
-					</font>
-				</c:if>
-				<c:if test="${not empty fileName }">
-					<img src="/donate7/${fileName }">
-				</c:if> --%>
-			<div>
-				<input type="file" name="d_img" multiple="multiple" required="required"
-					value="${donate.d_img }">
-			</div>
-		</div>
-		<div>
-			<b>내용</b>
-			<div>
-				<textarea rows="10" cols="30" name="d_content" required="required"
-					value="${d_content}"></textarea>
-			</div>
-		</div>
-		<div>
-			<b>기부금 사용계획</b>
-			<div>
-				<textarea rows="10" cols="30" name="d_plan" required="required"
-					value="${d_plan}"></textarea>
-			</div>
-		</div>
-		<div>
-			<b>희망금액</b>
-			<div>
-				<input type="text" name="d_amount" required="required"
-					value="${donate.d_amount }">원
-			</div>
-		</div>
-		<div>
-			<b>계좌번호</b>
-			<div>
-				<input type="text" name="d_bank" id="d_bank" value="은행" required="required"
-					value="${donate.d_bank }">
-				<input type="text" name="d_account" id="d_account" value="계좌번호" required="required"
-					value="${donate.d_account }">
-			</div>
-		</div>
-		<div>
-			<button onclick="location.href='mdoList.do'">목록</button>
-			<button onclick="">수정</button>
-			<button onclick="">삭제</button>
-		</div>
+				<button onclick="location.href='mdoList.do'">목록</button>
+				<button onclick="">수정</button>
+				<button onclick="">삭제</button>
+			</div>	
+		</table>
 	</form>
 </div>
 </body>

@@ -17,18 +17,19 @@
 			<th>작성일</th>
 			<th>승인여부</th>
 		</tr>
-<%-- 	<c:if test="${not empty list }">
-	<c:forEach var="" items="%{ }">
+	${size}
+ 	<c:if test="${not empty list }">
+	<c:forEach var="donate" items="${list }">
 		<tr><td>${donate.d_no }</td>
 			<td>${donate.d_title }</td>
 			<td>${donate.d_reg_date }</td>
 			<td>${donate.d_approve }</td></tr>
 	</c:forEach></c:if>
-	<c:if test="${empty list }"> --%>
+	<c:if test="${empty list }"> 
 		<tr>
 			<td colspan="4">요청하신 글이 없습니다</td>
 		</tr>
-<%-- 	</c:if>	 --%>
+ 	</c:if>	 
 	</table>
 	<div align="center">
 		<button onclick="location.href='mdoReq.do'">요청글쓰기</button>
