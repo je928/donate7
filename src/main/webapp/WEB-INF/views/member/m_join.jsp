@@ -51,7 +51,7 @@
 	});
 	
 	$(function() {
-		$('#m_name').keydown(function() {
+		$('#m_name').keyup(function() {
 			var regex = /^[가-힣A-Za-z]{2,40}$/;
 			var str_space = /\s/;
 			if($("#m_name").val().length < 2) {
@@ -59,7 +59,7 @@
 			} else if(str_space.test($("#m_name").val())) {
 				$('#name_chk').html("<font class='red'>공백 없이 입력해 주세요.</font>");
 			} else if(regex.test(frm.m_name.value) === false) {
-				$('#name_chk').html("<font class='red'>이름에는 한글, 영문 대소문자를 이용해 주세요.</font>");
+				$('#name_chk').html("<font class='red'>한글, 영문 대소문자를 이용해 주세요.</font>");
 			} else {
 				$('#name_chk').html("<font class='green'>사용 가능합니다.</font>");
 			}
@@ -67,22 +67,24 @@
 	});
 	
 	$(function() {
-		$('#m_nick').blur(function() {
+		$('#m_nick').keyup(function() {
 			var regex = /^[가-힣A-Za-z0-9]{2,10}$/;
-			if (regex.test(frm.m_nick.value) === false) {
-				$('#nick_chk').html("<font class='red'>닉네임에는 한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
-			} else {
-			var sendData = 'm_nick='+$('#m_nick').val()+'&no=0';
-			$.post('m_nickChk.do',sendData,function(msg){
- 	 			if(msg == "이미 사용 중인 닉네임입니다.") {
- 	 				$('#nick_chk').html("<font class='red'>"+msg+"</font>");
- 	 				frm.nickChk.value = "false";
- 	 			}else {
- 	 				$('#nick_chk').html("<font class='green'>"+msg+"</font>");			
- 	 				frm.nickChk.value = "true";
- 	 			}
- 			});
-			return false;
+			if($("#m_nick").val().length < 2) {
+				$('#nick_chk').html("<font class='red'>2~10자만 사용가능합니다.</font>");
+			} else if (regex.test(frm.m_nick.value) === false) {
+				$('#nick_chk').html("<font class='red'>한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
+			}else {
+				var sendData = 'm_nick='+$('#m_nick').val()+'&no=0';
+				$.post('m_nickChk.do',sendData,function(msg){
+	 	 			if(msg == "이미 사용 중인 닉네임입니다.") {
+	 	 				$('#nick_chk').html("<font class='red'>"+msg+"</font>");
+	 	 				frm.nickChk.value = "false";
+	 	 			}else {
+	 	 				$('#nick_chk').html("<font class='green'>"+msg+"</font>");			
+	 	 				frm.nickChk.value = "true";
+	 	 			}
+ 				});
+				return false;
 			}
  		});
 	});
@@ -100,7 +102,7 @@
 		});
 	});
 	
-	function chk() {		
+	function chk() {
 		if(frm.mailChk.value == "false") {
 			$('#email_chk').html("<font class='red'>이메일을 다시 확인해주세요.</font>");
 			frm.m_email.focus();
@@ -153,6 +155,12 @@
 			$('#name_chk').html("<font class='red'>이름에는 한글, 영문 대소문자를 이용해 주세요.</font>");
 			frm.m_name.value = "";
 			frm.m_name.focus();
+			return false;
+		}
+
+		if(frm.nickChk.value == "false") {
+			$('#nick_chk').html("<font class='red'>닉네임을 다시 확인해주세요.</font>");
+			frm.m_nick.focus();
 			return false;
 		}
 		
