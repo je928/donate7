@@ -67,6 +67,27 @@
 	});
 	
 	$(function() {
+		$('#m_nick').blur(function() {
+			var regex = /^[가-힣A-Za-z0-9]{2,10}$/;
+			if (regex.test(frm.m_nick.value) === false) {
+				$('#nick_chk').html("<font class='red'>닉네임에는 한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
+			} else {
+			var sendData = 'm_nick='+$('#m_nick').val();
+			$.post('m_nickChk.do',sendData,function(msg){
+ 	 			if(msg == "이미 사용 중인 닉네임입니다.") {
+ 	 				$('#nick_chk').html("<font class='red'>"+msg+"</font>");
+ 	 				frm.nickChk.value = "false";
+ 	 			}else {
+ 	 				$('#nick_chk').html("<font class='green'>"+msg+"</font>");			
+ 	 				frm.nickChk.value = "true";
+ 	 			}
+ 			});
+			return false;
+			}
+ 		});
+	});
+	
+	$(function() {
 		$('#m_tel3').blur(function() {
 			var tel1 = /^\d{2,3}$/;
 			var tel2 = /^\d{3,4}$/;
@@ -180,7 +201,8 @@
 		<div class="col-md-offset-14 col-md-5">
    			<div class="form-area">
 	       		<form action="m_join.do" role="form" name="frm" method="post" onsubmit="return chk()">
-		        	<input type="hidden" name="mailChk" value="false">
+	       			<input type="hidden" name="mailChk" value="false">
+		        	<input type="hidden" name="nickChk" value="false">
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
 					<div class="form-group">
