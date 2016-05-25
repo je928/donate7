@@ -17,6 +17,7 @@ public class VolDaoImpl implements VolDao{
 		System.out.println(req);
 		return session.insert("volReq.reqInsert",req);
 	}
+	
 	@Override
 	public List<VolReq> volListByVt_Reg_O_No(int vt_Reg_O_No) {
 		return session.selectList("volReq.reqListByO_no",vt_Reg_O_No);
@@ -28,5 +29,10 @@ public class VolDaoImpl implements VolDao{
 	@Override
 	public int updateVolReq(VolReq volReq) {
 		return session.update("volReq.updateVolReq",volReq);
+	}
+
+	@Override
+	public List<VolReq> volReqList() {
+		return session.selectList("volReq.selectListVolReq");
 	}
 }

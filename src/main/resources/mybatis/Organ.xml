@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<select id="selectNum" resultType="Integer">
-		select nvl(max(o_no),0)-1 from organ
+		select nvl(min(o_no),0)-1 from organ
 	</select>
 	
 	<insert id="insertOrgan" parameterType="organ">

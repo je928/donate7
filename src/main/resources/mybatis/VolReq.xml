@@ -42,4 +42,8 @@
 	<update id="updateVolReq" parameterType="volReq">
 		UPDATE VT_REQUEST SET VT_NAME = #{vt_Name},VT_SUBJECT = #{vt_Subject}, VT_FIELD = #{vt_Field}, VT_CYCLE = #{vt_Cycle}, VT_START_DATE = #{vt_Start_Date}, VT_END_DATE = #{vt_End_Date}, VT_DESC = #{vt_Desc}, VT_MGR = #{vt_Mgr}, VT_MGR_TEL = #{vt_Mgr_Tel}, VT_MGR_EMAIL = #{vt_Mgr_Email}, VT_AGE = #{vt_Age}, VT_GENDER = #{vt_Gender},VT_QUALIFY = #{vt_Qualify}, VT_PRIOR_EDU = #{vt_Prior_Edu} WHERE VT_NO = #{vt_No}
 	</update>
+	
+	<select id="selectListVolReq" resultMap="VolReqResult">
+		SELECT * FROM VT_REQUEST ORDER BY VT_NO DESC
+	</select>
 </mapper>
