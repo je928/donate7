@@ -22,6 +22,7 @@ import donate7.model.Second;
 import donate7.service.DonateService;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
+import donate7.service.SecondService;
 
 @Controller
 public class m_mypageController {
@@ -31,6 +32,8 @@ public class m_mypageController {
 	private GiftService gs;
 	@Autowired
 	private DonateService ds;
+	@Autowired
+	private SecondService ss;
 	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model) {
@@ -38,9 +41,18 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");
 		return "module/main";
 	}
-	
+	@RequestMapping(value="msecondView", method=RequestMethod.GET)
+	public String msecondView(int sh_no, Model model){
+		Second second = ss.selectOne(sh_no);
+		model.addAttribute("second", second);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/msecondView.jsp");
+		return "module/main";
+	}
 	@RequestMapping(value = "msecondList", method = RequestMethod.GET)
 	public String msecondList(Model model) {
+		List<Second> list = ss.list();
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecondList.jsp");
 		return "module/main";
@@ -54,11 +66,21 @@ public class m_mypageController {
 	}
 	
 	@RequestMapping(value = "msecond", method = RequestMethod.POST)
-	public String second(Model model) {
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../second/msecondForm.jsp");
-		return "module/main";
-	}
+		public String second(@RequestParam("image") MultipartFile mf,
+				HttpServletRequest request,Model model,Second second) throws IllegalStateException, IOException{
+			String fileName = mf.getOriginalFilename();
+			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+			mf.transferTo(new File(request.getRealPath("/")+uploadName));
+			second.setSh_image(uploadName);
+			ss.insert(second);
+			model.addAttribute("msg", "파일이름 : "+fileName);
+			List<Second> list = ss.list();
+			model.addAttribute("list", list);
+			model.addAttribute("fileName", uploadName);
+			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+			model.addAttribute("mypgm", "../../second/msecondList.jsp");
+			return "module/main";
+		}
 	
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model) {
