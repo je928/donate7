@@ -12,14 +12,13 @@
 	<form action="msecond.do" method="post">
 		<table class="table table-striped table-hover"><caption>중고기부 요청</caption>
 			<tr><th>제목</th><td><input type="text" name="sh_title" required="required"autofocus="autofocus"></td></tr>
-			<tr><th>글쓴이</th><td></td></tr>
 			<tr><th>이미지</th><td><input type="file" name="sh_image"></td></tr>
 			<tr><th>상품종류</th><td><input type="text" name="sh_category" required="required"></td></tr>
 			<tr><th>설명</th><td><textarea rows="10" cols="100" name="sh_explanation" required></textarea></td></tr>
 		</table>
 		<div align="center">
 		<input type="submit" value="요청하기">
-			<button	onclick="location.href='secondView.do?num=${second.sh_no}&pageNum=${pageNum}'">요청내역보기</button>
+			<button	onclick="location.href='msecondList.do?num=${second.sh_no}&pageNum=${pageNum}'">요청내역보기</button>
 		</div>
 	</form>
 </body>

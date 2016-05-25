@@ -19,5 +19,8 @@ public class DonateServiceImpl implements DonateService {
 	public List<Donate> list() {
 		return dd.list();
 	}
+	public Donate selectOne(int d_no) {
+		return dd.selectOne(d_no);
+	}
 
 }

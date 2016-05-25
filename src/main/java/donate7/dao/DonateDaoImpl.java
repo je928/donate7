@@ -15,11 +15,15 @@ public class DonateDaoImpl implements DonateDao {
 	
 	@Override
 	public int mdoReqInsert(Donate donate) {
+		int d_no = session.selectOne("donate.selectNum");
+		donate.setD_no(d_no);
 		return session.insert("donate.mdoReqInsert",donate);
 	}
 	@Override
 	public List<Donate> list() {
 		return session.selectList("donate.mdoList");
 	}
-
+	public Donate selectOne(int d_no) {
+		return session.selectOne("donate.selectOne",d_no);
+	}
 }
