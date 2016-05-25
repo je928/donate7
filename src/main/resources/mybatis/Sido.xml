@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sido">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="SidoResult" type="sido">
+		<result property="sido_no" column="SIDO_NO"/>
+		<result property="gugun_no" column="GUGUN_NO"/>
+		<result property="sido_name" column="SIDO_NAME"/>
+		<result property="gugun_name" column="GUGUN_NAME"/>
+	</resultMap>
+
+	<select id="selectSidoList" resultMap="SidoResult">
+		SELECT * FROM SIDO
+	</select> 
+	
+	<select id="selectGugunListBySido_No" parameterType="int" resultMap="SidoResult">
+		SELECT * FROM GUGUN WHERE SIDO_NO = #{sido_no}
+	</select>
+
+</mapper>

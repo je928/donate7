@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
 <%@ include file="../session/orgChk.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,7 @@
 					changeMonth : true,
 					changeYear : true,
 					showButtonPanel : true,
-					yearRange : 'c-99:c+99',
+					yearRange : 'c-5:c+5',
 				};
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 
@@ -59,9 +60,8 @@
 								$("#edate").datepicker("option", "minDate",
 										'today');
 							}
-
 						});
-
+				
 				$('#edate').datepicker();
 				$('#edate').datepicker("option", "minDate", $("#sdate").val());
 				//$('#edate').datepicker("option", "maxDate",'${volReq.vt_End_Date}');
@@ -90,13 +90,16 @@
 </style>
 </head>
 <body>
+
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area req-container">
+			${volReq.vt_Start_Date }
+			${volReq.vt_End_Date }
 				<form role="form" action="reqUpdate.do" method="post">
 				<input type="hidden" name="vt_No" value="${volReq.vt_No}">
 				<input type="hidden" name="vt_Reg_O_No" value="${sessionScope.no}">
-					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
+					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 수정</h4>
 					<div class="form-area req-form-area">
 						<p class="req-form-name">봉사 상세</p>
 						<div class="form-group">
@@ -229,6 +232,7 @@
 							<b>자격요건:</b> <input type="text" class="form-control"
 								id="vt_Qualify" name="vt_Qualify" value="${volReq.vt_Qualify }">
 						</div>
+						
 						<div class="form-group">
 							<b>사전교육:</b> <input type="text" class="form-control"
 								id="vt_Prior_Edu" name="vt_Prior_Edu" value="${volReq.vt_Prior_Edu}">

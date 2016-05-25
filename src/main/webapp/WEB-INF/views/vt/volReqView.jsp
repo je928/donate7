@@ -79,7 +79,7 @@
 				</table>
 				<button onclick="location.href='manageVol.do'">목록으로</button>
 				<button onclick="location.href='reqUpdate.do?vt_No=${volReq.vt_No}'">수정</button>
-				<button onclick="location.href='reqCencel.do?vt_No=${volReq.vt_No}'">삭제</button>
+				<button onclick="location.href='reqCancel.do?vt_No=${volReq.vt_No}'">삭제</button>
 			</div>
 		</div>
 	</div>
