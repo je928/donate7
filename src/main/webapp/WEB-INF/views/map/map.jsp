@@ -21,27 +21,22 @@ html, body {
 	<script type="text/javascript">
 var map;
 var marker;
+var lat;
+var lng;
 var latlng = {lat: 36.2326301, lng: 127.91031629999997};
 
 
 $(function() {
-	$.get('https://apis.daum.net/local/geo/addr2coord?apikey=4433ad220df9e47a4bec346b73b442e4&q=${addr}&output=xml',function(data,status){
-		$('#treeData').append('<tr><th>사번</th><th>이름</th>'+
-		'<th>업무</th><th>급여</th></tr>');
-		$(data).find('emp').each(function() {
-			$('#treeData').append("<tr><td>"+$(this).find('empno').text()
-				+"</td><td>"+$(this).find('ename').text() +
-				"</td><td align='right'>"+
-				$(this).find('job').text()+"</td><td align=right>"+
-				$(this).find('sal').text() +
-				"</td></tr>");
-		});
+	$.get('https://apis.daum.net/local/geo/addr2coord?apikey=4433ad220df9e47a4bec346b73b442e4&q=${addr.addr}&output=xml',function(data,status){
+		lng = $(data).find('lng');
+		lat = $(data).find('lat');
+		
 	});
 });
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-	   zoom: 15,
+	   zoom: 18,
 	   center:latlng,
 	   mapTypeId: google.maps.MapTypeId.ROADMAP   
 	  });

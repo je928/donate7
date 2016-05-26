@@ -1,5 +1,7 @@
 package donate7.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,11 @@ public class MemberServiceImpl implements MemberService {
 
 	public String selectO_addrByO_no(int o_no) {
 		return md.selectO_addrByO_no(o_no);
+	}
+
+	@Override
+	public List<Organ> selectAll() {
+		return md.selectAll();
 	}
 	
 }
