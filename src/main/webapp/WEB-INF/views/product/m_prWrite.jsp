@@ -8,9 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<form action="m_prWrite.do" method="post">
 		<input type="hidden" name="no" value="${product.no}">
-		<input type="hidden" name="pageNum" value="${pageNum}">
+		
 		<table class="table table-striped table-hover">
 			<caption>판매요청</caption>
 			<tr>
