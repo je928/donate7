@@ -33,7 +33,6 @@ public class SecondDaoImpl implements SecondDao{
 		return st.selectList("second.osecondList");
 	}
 
-	@Override
 	public List<Second> adlist() {
 		return st.selectList("second.adsecondList");
 	}
