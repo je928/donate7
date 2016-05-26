@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.SidoGugun;
 import donate7.model.VolReq;
+import donate7.model.VolReqSearch;
 import donate7.service.SidoService;
 import donate7.service.VolService;
 /*import net.sf.json.JSONArray;*/
@@ -84,7 +85,7 @@ public class VolController {
 	@RequestMapping("reqSearch")
 	public String reqList(Model model){
 		List<SidoGugun> sList = ss.selectSido();
-		List<VolReq> list = vs.volReqList();
+		List<VolReqSearch> list = vs.searchList();
 		model.addAttribute("sList", sList);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../vt/reqList.jsp");

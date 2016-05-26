@@ -77,5 +77,10 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return result;
 	}
+
+	@Override
+	public String selectO_addrByO_no(int o_no) {
+		return session.selectOne("member.selectO_addrByO_no",o_no);
+	}
 	
 }

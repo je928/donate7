@@ -28,5 +28,10 @@ public class MemberServiceImpl implements MemberService {
 	public int m_emailChk(String m_email) {
 		return md.m_emailChk(m_email);
 	}
+
+	@Override
+	public String selectO_addrByO_no(int o_no) {
+		return md.selectO_addrByO_no(o_no);
+	}
 	
 }

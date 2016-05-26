@@ -72,5 +72,9 @@
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
 		select m_passwd from member m_no=#{m_no} and m_passwd=#{m_passwd}
 	</select>
+	
+	<select id="selectO_addrByO_no" resultType="String" parameterType="int">
+		SELECT regexp_substr(O_ADDR, '[^ ]+', 1, 2)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 3)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 4)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 5) o_addr FROM ORGAN WHERE O_NO = #{o_no};
+	</select>
 
 </mapper>

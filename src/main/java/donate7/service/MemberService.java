@@ -9,5 +9,5 @@ public interface MemberService {
 	int insertOrgan(Organ organ);
 	String loginChk(String m_email, String m_passwd);
 	int m_emailChk(String m_email);
-
+	String selectO_addrByO_no(int o_no);
 }

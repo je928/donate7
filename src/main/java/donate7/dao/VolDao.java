@@ -3,6 +3,7 @@ package donate7.dao;
 import java.util.List;
 
 import donate7.model.VolReq;
+import donate7.model.VolReqSearch;
 
 public interface VolDao {
 	int volReqInsert(VolReq req);
@@ -10,4 +11,5 @@ public interface VolDao {
 	VolReq selectByVt_No(int vt_No);
 	int updateVolReq(VolReq volReq);
 	List<VolReq> volReqList();
+	List<VolReqSearch> searchList();
 }
