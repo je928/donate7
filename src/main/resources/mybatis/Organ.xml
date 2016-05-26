@@ -55,4 +55,8 @@
 		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
 	</update>	
 
+	<select id="selectO_addrByO_no" resultType="String" parameterType="int">
+		SELECT regexp_substr(O_ADDR, '[^ ]+', 1, 2)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 3)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 4)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 5) o_addr FROM ORGAN WHERE O_NO = #{o_no};
+	</select>
+
 </mapper>

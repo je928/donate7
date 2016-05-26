@@ -70,13 +70,8 @@
 		select m_passwd from member where m_no=#{m_no} and m_passwd=#{m_passwd}
 	</select>
 	
-	<select id="selectO_addrByO_no" resultType="String" parameterType="int">
-		SELECT regexp_substr(O_ADDR, '[^ ]+', 1, 2)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 3)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 4)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 5) o_addr FROM ORGAN WHERE O_NO = #{o_no};
-	</select>
-
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
-	</update>		
-
-
+	</update>
+		
 </mapper>

@@ -29,12 +29,12 @@ public class MemberServiceImpl implements MemberService {
 		return md.m_emailChk(m_email);
 	}
 
-	@Override
-	public String selectO_addrByO_no(int o_no) {
-		return md.selectO_addrByO_no(o_no);
-	}
 	public int m_nickChk(String m_nick, Member member) {
 		return md.m_nickChk(m_nick, member);
+	}
+
+	public String selectO_addrByO_no(int o_no) {
+		return md.selectO_addrByO_no(o_no);
 	}
 	
 }

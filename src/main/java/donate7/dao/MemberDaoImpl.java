@@ -78,11 +78,6 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
-	@Override
-	public String selectO_addrByO_no(int o_no) {
-		return session.selectOne("member.selectO_addrByO_no",o_no);
-	}
-	
 	public int m_nickChk(String m_nick, Member member) {
 		int result = 0;
 		String selectNick = "";
@@ -108,6 +103,10 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+	
+	public String selectO_addrByO_no(int o_no) {
+		return session.selectOne("organ.selectO_addrByO_no",o_no);
 	}
 	
 }
