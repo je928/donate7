@@ -39,8 +39,9 @@ public class o_mypageController {
 		return "module/main";
 	}
 	@RequestMapping(value = "osecondList", method = RequestMethod.GET)
-	public String osecondList(Model model) {
-		List<Second> list = ss.list();
+	public String osecondList(Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		List<Second> list = ss.olist();
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/osecond/osecondList.jsp");
@@ -63,7 +64,7 @@ public class o_mypageController {
 			second.setSh_image(uploadName);
 			ss.insert(second);
 			model.addAttribute("msg", "파일이름 : "+fileName);
-			List<Second> list = ss.list();
+			List<Second> list = ss.olist();
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");

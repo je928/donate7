@@ -56,7 +56,7 @@ public class m_mypageController {
 	@RequestMapping(value = "msecondList", method = RequestMethod.GET)
 	public String msecondList(Model model, HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
-		List<Second> list = ss.list();
+		List<Second> list = ss.mlist();
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
@@ -79,7 +79,7 @@ public class m_mypageController {
 			second.setSh_image(uploadName);
 			ss.insert(second);
 			model.addAttribute("msg", "파일이름 : "+fileName);
-			List<Second> list = ss.list();
+			List<Second> list = ss.mlist();
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");

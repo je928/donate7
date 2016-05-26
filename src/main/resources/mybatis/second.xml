@@ -5,6 +5,7 @@
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="SecondResult" type="second">
 		<result property="sh_no" column="sh_no" />
+		<result property="sh_mno" column="sh_mno" />
 		<result property="sh_title" column="sh_title" />
 		<result property="sh_category" column="sh_category" />
 		<result property="sh_explanation" column="sh_explanation" />
@@ -16,14 +17,20 @@
 	<select id="selectNum" resultType="int">
 		select nvl(max(sh_no),0)+1 from second
 	</select>
+	<select id="adlist" resultMap="SecondResult">
+		select * from second where sh_mno>0
+	</select>
+	<select id="osecondList" resultMap="SecondResult">
+		select * from second where sh_mno<![CDATA[<]]>0
+	</select>
+	<select id="msecondList" resultMap="SecondResult">
+		select * from second where sh_mno > 0
+	</select>
 	<insert id="msecondListinsert" parameterType="second">
 		insert into second values
-		(#{sh_no},#{sh_title},#{sh_category},
+		(#{sh_no},#{sh_mno}, #{sh_title},#{sh_category},
 		#{sh_explanation}, sysdate, #{sh_image},'n','n')
 	</insert>
-	<select id="secondList" resultMap="SecondResult">
-		select * from second where sh_no > 0
-	</select>
 	<select id="selectOne" resultType="second" parameterType="int">
 		select * from second where sh_no=#{sh_no}
 	</select>

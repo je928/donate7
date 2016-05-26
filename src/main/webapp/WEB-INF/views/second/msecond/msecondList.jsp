@@ -11,7 +11,7 @@
 <body>
 
 	<div align="center">
-		<form action="secondList.do">
+		<form action="msecondList.do">
 			<table class="table table-striped table-hover">
 				<caption>중고기부 내역</caption>
 				<tr>
