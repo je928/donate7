@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%--  <%@ include file="bootstrap.css"%> --%>
-
+<%@ include file="../../session/sessionChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,7 @@
 </head>
 <body>
 	<form action="msecond.do" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="sh_mno" value="${no }">
 		<table class="table table-striped table-hover"><caption>중고기부 요청</caption>
 			<tr><th>제목</th><td><input type="text" name="sh_title" required="required"autofocus="autofocus"></td></tr>
 			<tr><th>이미지</th><td><input type="file" name="image"></td></tr>

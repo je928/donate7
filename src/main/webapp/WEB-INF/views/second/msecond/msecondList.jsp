@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../module/header.jsp"%>
+<%@ include file="../../module/header.jsp"%>
 <%-- <%@ include file="/css/bootstrap.jsp" %> --%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <body>
 
 	<div align="center">
-		<form action="secondList.do">
+		<form action="msecondList.do">
 			<table class="table table-striped table-hover">
 				<caption>중고기부 내역</caption>
 				<tr>

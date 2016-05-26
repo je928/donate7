@@ -14,6 +14,7 @@
 		<typeAlias alias="sido" type="donate7.model.SidoGugun"/>
 		<typeAlias alias="donate" type="donate7.model.Donate"/>
 		<typeAlias alias="volReqSearch" type="donate7.model.VolReqSearch"/>
+		<typeAlias alias="product" type="donate7.model.Product"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -26,5 +27,6 @@
 		<mapper resource="mybatis/Donate.xml" />
 		<mapper resource="mybatis/second.xml" />
 		<mapper resource="mybatis/VolReqSearch.xml" />
+		<mapper resource="mybatis/Product.xml" />
 	</mappers>
 </configuration>

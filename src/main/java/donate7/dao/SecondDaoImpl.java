@@ -23,5 +23,19 @@ public class SecondDaoImpl implements SecondDao{
 		second.setSh_no(sh_no);
 		return st.insert("second.msecondListinsert", second);
 	}
+	
+	public List<Second> mlist() {
+		return st.selectList("second.msecondList");
+	}
+
+
+	public List<Second> olist() {
+		return st.selectList("second.osecondList");
+	}
+
+	@Override
+	public List<Second> adlist() {
+		return st.selectList("second.adsecondList");
+	}
 
 }

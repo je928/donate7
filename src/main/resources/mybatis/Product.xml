@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="ProductResult"		type="product">
+		<result property="pr_no" 			column="pr_no" />
+		<result property="pr_mno" 			column="pr_mno" />
+		<result property="pr_proname" 		column="pr_proname" />
+		<result property="pr_item" 			column="pr_item" />
+		<result property="pr_content" 		column="pr_content" />
+		<result property="pr_qty" 			column="pr_qty" />
+		<result property="pr_price" 		column="pr_price" />
+		<result property="pr_img" 			column="pr_img" />
+		<result property="pr_donation" 		column="pr_donation" />
+		<result property="pr_approve" 		column="pr_approve" />
+		<result property="pr_callm" 		column="pr_callm" />
+		<result property="pr_date" 			column="pr_date" />
+		<result property="pr_update" 		column="pr_update" />
+		<!-- <result property="m_no" 			column="m_no" />
+		<result property="m_email" 			column="m_email" />
+		<result property="m_nick" 			column="m_nick" />
+		<result property="o_no" 			column="o_no" />
+		<result property="o_email" 			column="o_email" />
+		<result property="o_oname" 			column="o_oname" /> -->
+	</resultMap>
+	<select id="selectNum" resultType="int">
+		select nvl(max(pr_no),0)+1 from pr_product
+	</select>
+	<select id="prlist" resultMap="ProductResult">
+		select * from pr_product where pr_mno>0
+	</select>
+	<select id="mlist" resultMap="ProductResult">
+		select * from pr_product where pr_mno>0
+	</select>
+	<select id="olist" resultMap="ProductResult">
+		select * from pr_product where pr_mno<![CDATA[<]]>0
+	</select>
+	<insert id="prinsert" parameterType="product">
+		insert into pr_product values
+		(#{pr_no},#{pr_mno},#{pr_proname},#{pr_item},#{pr_content},#{pr_qty},#{pr_price},#{pr_img},#{pr_donation},'n',#{pr_callm},sysdate,null)		
+	</insert>
+	<select id="selectOne" resultType="product" parameterType="int">
+		select * from pr_product where pr_no=#{pr_no}
+	</select>
+	
+</mapper>

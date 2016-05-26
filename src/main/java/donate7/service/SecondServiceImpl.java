@@ -11,9 +11,7 @@ import donate7.model.Second;
 public class SecondServiceImpl implements SecondService{
 	@Autowired
 	private SecondDao sd;
-	public List<Second> list() {
-		return sd.list();
-	}
+	
 	
 	public Second selectOne(int sh_no) {
 
@@ -23,6 +21,18 @@ public class SecondServiceImpl implements SecondService{
 	public int insert(Second second) {
 
 		return sd.insert(second);
+	}
+
+	public List<Second> mlist() {
+		return sd.mlist();
+	}
+
+	public List<Second> olist() {
+		return sd.olist();
+	}
+
+	public List<Second> adlist() {
+		return sd.adlist();
 	}
 
 }

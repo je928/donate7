@@ -70,7 +70,7 @@ public class MemberDaoImpl implements MemberDao {
 	public int m_emailChk(String m_email) {
 		int result = 0;
 		try {
-			result = session.selectOne("m_emailChk", m_email);
+			result = session.selectOne("member.m_emailChk", m_email);
 			System.out.println(result);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -81,6 +81,33 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public String selectO_addrByO_no(int o_no) {
 		return session.selectOne("member.selectO_addrByO_no",o_no);
+	}
+	
+	public int m_nickChk(String m_nick, Member member) {
+		int result = 0;
+		String selectNick = "";
+		String db_Nick = "";
+		try {
+			selectNick = session.selectOne("member.selectNick", member.getM_no());
+			db_Nick = session.selectOne("member.nickChk", member);
+			if(selectNick != null) {
+				if(db_Nick.equals(selectNick)) {
+					result = 0;
+				}else {
+					result = 1;
+				}
+			}else {
+				if(db_Nick != null) {
+					result = 2;
+				}else {
+					result = -1;
+				}
+			}
+			System.out.println("result : " + result);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 	
 }

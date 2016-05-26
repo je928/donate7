@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Second {
 	private int sh_no;
+	private int sh_mno;
 	private String sh_title;
 	private String sh_category;
 	private String sh_explanation;
@@ -11,6 +12,12 @@ public class Second {
 	private String sh_image;
 	private String sh_approve;
 	private String sh_arrive;
+	public int getSh_mno() {
+		return sh_mno;
+	}
+	public void setSh_mno(int sh_mno) {
+		this.sh_mno = sh_mno;
+	}
 	public int getSh_no() {
 		return sh_no;
 	}

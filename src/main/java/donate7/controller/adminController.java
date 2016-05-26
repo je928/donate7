@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import donate7.service.GiftService;
 
 @Controller
-public class adminController {@Autowired
+public class adminController {
+	@Autowired
 	private GiftService gs;
 	
 	@RequestMapping(value = "a_memberAll", method = RequestMethod.GET)

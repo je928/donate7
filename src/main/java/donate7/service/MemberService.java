@@ -10,4 +10,6 @@ public interface MemberService {
 	String loginChk(String m_email, String m_passwd);
 	int m_emailChk(String m_email);
 	String selectO_addrByO_no(int o_no);
+	int m_nickChk(String m_nick, Member member);
+
 }
