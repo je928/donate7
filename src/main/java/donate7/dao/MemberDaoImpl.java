@@ -115,5 +115,10 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Organ> selectAll() {
 		return session.selectList("organ.selectAll");
 	}
+
+	@Override
+	public Organ selectByO_no(int o_no) {
+		return session.selectOne("organ.selectOrgan",o_no);
+	}
 	
 }

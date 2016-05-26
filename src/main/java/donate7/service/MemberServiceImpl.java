@@ -42,5 +42,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<Organ> selectAll() {
 		return md.selectAll();
 	}
+
+	public Organ selectByO_no(int o_no) {
+		return md.selectByO_no(o_no);
+	}
+	
 	
 }
