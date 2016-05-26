@@ -70,12 +70,6 @@ public class o_mypageController {
 			model.addAttribute("mypgm", "../../second/osecond/osecondList.jsp");
 			return "module/main";
 		}
-	@RequestMapping(value = "o_prList", method = RequestMethod.GET)
-	public String o_prList(Model model) {
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/o_prList.jsp");
-		return "module/main";		
-	}
 	
 	@RequestMapping(value = "second", method = RequestMethod.GET)
 	public String second(Model model) {
