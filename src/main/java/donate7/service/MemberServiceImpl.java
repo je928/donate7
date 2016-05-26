@@ -39,7 +39,6 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectO_addrByO_no(o_no);
 	}
 
-	@Override
 	public List<Organ> selectAll() {
 		return md.selectAll();
 	}

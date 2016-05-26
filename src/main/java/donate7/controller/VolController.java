@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.Organ;
 import donate7.model.SidoGugun;
 import donate7.model.VolReq;
 import donate7.model.VolReqSearch;
+import donate7.service.MemberService;
 import donate7.service.SidoService;
 import donate7.service.VolService;
 /*import net.sf.json.JSONArray;*/
@@ -23,6 +25,8 @@ public class VolController {
 	private VolService vs;
 	@Autowired
 	private SidoService ss;
+	@Autowired
+	private MemberService ms;
 	
 	@RequestMapping(value="reqResist",method=RequestMethod.GET)
 	public String reqResistForm(VolReq volReq, Model model){
@@ -104,6 +108,22 @@ public class VolController {
 		VolReq volReq = vs.SelectByVt_No(vt_No);
 		model.addAttribute("volReq", volReq);
 		return "vt/reqDetail";
+	}
+	
+	@RequestMapping("centerList")
+	public String centerList(Model model){
+		List<Organ> list = ms.selectAll();
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../vt/centerList.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping()
+	public String centerView(int o_no, Model model){
+		String addr = ms.selectO_addrByO_no(o_no);
+		model.addAttribute("addr", addr);
+		model.addAttribute("pgm", "../vt/centerList.jsp");
+		return "module/main"; 
 	}
 	
 }
