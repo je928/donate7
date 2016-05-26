@@ -28,7 +28,7 @@
 	});
 	
 	$(function() {
-		$('#m_passwd').keydown(function() {
+		$('#m_passwd').keyup(function() {
 			var str_space = /\s/;
 			if($("#m_passwd").val().length < 6) {
 				$('#pwd_chk').html("<font class='red'>6~20자만 사용가능합니다.</font>");
@@ -152,7 +152,7 @@
 		
 		var name = /^[가-힣A-Za-z]{2,40}$/;
 		if(name.test(frm.m_name.value) === false) {
-			$('#name_chk').html("<font class='red'>이름에는 한글, 영문 대소문자를 이용해 주세요.</font>");
+			$('#name_chk').html("<font class='red'>한글, 영문 대소문자를 이용해 주세요.</font>");
 			frm.m_name.value = "";
 			frm.m_name.focus();
 			return false;
@@ -180,7 +180,7 @@
 		
 		var nick = /^[가-힣A-Za-z0-9]{2,10}$/;
 		if(nick.test(frm.m_nick.value) === false) {
-			$('#nick_chk').html("<font class='red'>닉네임에는 한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
+			$('#nick_chk').html("<font class='red'>한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
 			frm.m_nick.value = "";
 			frm.m_nick.focus();
 			return false;

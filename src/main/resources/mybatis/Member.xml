@@ -54,7 +54,8 @@
 	</select>
 	
 	<select id="nickChk" parameterType="member" resultType="String">
-		select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n'
+<!-- 	select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n' -->
+		(select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select o_oname from organ where o_oname=#{m_nick} and o_del_yn='n') union (select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n' union select o_oname from organ where o_oname=#{m_nick} and o_del_yn='n')
 	</select>
 	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
@@ -65,12 +66,12 @@
 		update member set m_passwd=#{m_passwd}, m_nick=#{m_nick}, m_birth=#{m_birth}, m_tel=#{m_tel}, m_job=#{m_job}, m_del_yn='n' where m_no=#{m_no}
 	</update>
 	
+	<select id="passwdChk" parameterType="hashMap" resultType="String">
+		select m_passwd from member where m_no=#{m_no} and m_passwd=#{m_passwd}
+	</select>
+	
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
-	</update>
-		
-	<select id="passwdChk" parameterType="hashMap" resultType="String">
-		select m_passwd from member m_no=#{m_no} and m_passwd=#{m_passwd}
-	</select>
+	</update>		
 
 </mapper>
