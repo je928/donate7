@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../module/header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../../module/header.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-	<form action="m_prWrite.do" method="post">
+	<form action="ad_prView.do">
 		<input type="hidden" name="no" value="${product.no}">
-		
+		<input type="hidden" name="pageNum" value="${pageNum}">
 		<table class="table table-striped table-hover">
-			<caption>판매요청</caption>
+			<caption>승인요청</caption>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="pr_proname" required="required"
@@ -53,8 +52,8 @@
 			
 		</table>
 		<div align="center">
-			<button onclick="location.href='ad_prList.do'">요청하기</button>
-			<button onclick="location.href='m_prList.do'">요청내역 보기</button>
+			<button onclick="location.href='pr_List.do'">승인</button>
+			<button onclick="location.href='ad_prList.do'">보류</button>
 		</div>
 	</form>
 </body>
