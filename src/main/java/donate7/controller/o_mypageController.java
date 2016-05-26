@@ -3,12 +3,8 @@ package donate7.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import javax.servlet.http.HttpSession;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-
 import donate7.model.Second;
 import donate7.service.SecondService;
-
 import donate7.model.Product;
 import donate7.service.ProductService;
-
 
 @Controller
 public class o_mypageController {
@@ -82,7 +74,10 @@ public class o_mypageController {
 	public String o_prList(Model model) {
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/o_prList.jsp");
+		return "module/main";		
 	}
+	
+	@RequestMapping(value = "second", method = RequestMethod.GET)
 	public String second(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/osecondForm.jsp");
@@ -95,7 +90,6 @@ public class o_mypageController {
 		model.addAttribute("list", list);
 		model.addAttribute("pgm","../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
->>>>>>> 05ea2aeea4d7cb91ac955481a468215d641dbc18
 		return "module/main";
 	}
 	@RequestMapping(value="o_prWrite", method=RequestMethod.GET)
