@@ -17,5 +17,9 @@
 			<tr><th>승인여부</th><td>${second.sh_approve }</td></tr>
 			<tr><th>도착여부</th><td>${second.sh_arrive }</td></tr>
 		</table>
+		<div align="center">
+			<button onclick="location.href='adsecondForm.do'">수락</button>
+			<button onclick="location.href='adsecondForm.do'">거부</button>
+		</div>
 </body>
 </html>

@@ -17,8 +17,8 @@
 	<select id="selectNum" resultType="int">
 		select nvl(max(sh_no),0)+1 from second
 	</select>
-	<select id="adlist" resultMap="SecondResult">
-		select * from second where sh_mno>0
+	<select id="adsecondList" resultMap="SecondResult">
+		select * from second
 	</select>
 	<select id="osecondList" resultMap="SecondResult">
 		select * from second where sh_mno<![CDATA[<]]>0

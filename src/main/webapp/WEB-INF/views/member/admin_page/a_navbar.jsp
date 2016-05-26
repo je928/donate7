@@ -14,7 +14,7 @@
 		<a href="services.html" class="list-group-item">Services</a>
 		<a href="contact.html" class="list-group-item">Contact</a>
 		<a href="ad_prList" class="list-group-item">1 Column Portfolio</a>
-		<a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
+		<a href="adsecondList.do" class="list-group-item">중고기부 관리</a>
 		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
 		<a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
