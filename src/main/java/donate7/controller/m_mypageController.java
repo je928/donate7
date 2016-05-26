@@ -18,10 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import donate7.model.Donate;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
+import donate7.model.Product;
 import donate7.model.Second;
 import donate7.service.DonateService;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
+import donate7.service.ProductService;
 import donate7.service.SecondService;
 
 @Controller
@@ -34,6 +36,8 @@ public class m_mypageController {
 	private DonateService ds;
 	@Autowired
 	private SecondService ss;
+	@Autowired
+	private ProductService ps;
 	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model) {
@@ -84,22 +88,46 @@ public class m_mypageController {
 		}
 	
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
-	public String mproList(Model model) {
+	public String mproList(Model model, HttpSession session) {
+		int no=(Integer)session.getAttribute("no");
+		List<Product> list = ps.mlist();
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/m_prList.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
+		
 		return "module/main";
 	}
-	@RequestMapping(value = "m_prWrite", method = RequestMethod.GET)
+	@RequestMapping(value ="m_prWrite", method = RequestMethod.GET)
 	public String m_prWriteForm(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/m_prWrite.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prWrite.jsp");
 		return "module/main";
 	}
 	
-	@RequestMapping(value = "m_prWrite", method = RequestMethod.POST)
-	public String m_prWrite(Model model) {
+	@RequestMapping(value="m_prWrite", method=RequestMethod.POST)
+	public String m_prWrite(@RequestParam("mimg") MultipartFile mf,
+			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+		int no=(Integer)session.getAttribute("no");
+		String fileName = mf.getOriginalFilename();
+		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+		mf.transferTo(new File(request.getRealPath("/")+uploadName));
+		product.setPr_img(uploadName);
+		product.setPr_mno(no);
+		ps.insert(product);
+		model.addAttribute("msg", "파일이름 : "+fileName);
+		List<Product> list = ps.prlist();
+		model.addAttribute("list", list);
+		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/m_prWrite.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="m_prView", method=RequestMethod.GET)
+	public String m_prView(int pr_no, Model model){
+		Product product = ps.selectOne(pr_no);
+		model.addAttribute("product", product);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/m_prView.jsp");
 		return "module/main";
 	}
 	

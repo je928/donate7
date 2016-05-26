@@ -49,6 +49,15 @@
 		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{m_email}
 	</select>
 	
+	<select id="selectNick" parameterType="Integer" resultType="String">
+		select m_nick from member where m_no=#{no}
+	</select>
+	
+	<select id="nickChk" parameterType="member" resultType="String">
+<!-- 	select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n' -->
+		(select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n' union select o_oname from organ where o_oname=#{m_nick} and o_del_yn='n') union (select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n' union select o_oname from organ where o_oname=#{m_nick} and o_del_yn='n')
+	</select>
+	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
 		select * from member where m_no=#{m_no} and m_del_yn='n'
 	</select>
@@ -57,20 +66,12 @@
 		update member set m_passwd=#{m_passwd}, m_nick=#{m_nick}, m_birth=#{m_birth}, m_tel=#{m_tel}, m_job=#{m_job}, m_del_yn='n' where m_no=#{m_no}
 	</update>
 	
+	<select id="passwdChk" parameterType="hashMap" resultType="String">
+		select m_passwd from member where m_no=#{m_no} and m_passwd=#{m_passwd}
+	</select>
+	
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
-	</update>
-	
-	<select id="nickChk" parameterType="member" resultType="String">
-		select m_nick from member where m_nick=#{m_nick} and m_del_yn='n' and m_no != #{m_no} union select m_nick from member where m_no=#{m_no} and m_nick=#{m_nick}
-	</select>
-
-	<select id="nickChk2" parameterType="Integer" resultType="String">
-		select m_nick from member where m_no=#{m_no}
-	</select>
-	
-	<select id="passwdChk" parameterType="hashMap" resultType="String">
-		select m_passwd from member m_no=#{m_no} and m_passwd=#{m_passwd}
-	</select>
+	</update>		
 
 </mapper>

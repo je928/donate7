@@ -85,6 +85,24 @@ public class memberController {
 		return "member/m_emailChk";
 	}
 	
+	@RequestMapping(value = "m_nickChk", method = RequestMethod.POST)
+	public String m_nickChk(String m_nick, String no, Member member, Model model) {
+		member.setM_no(Integer.parseInt(no));
+		member.setM_nick(m_nick);
+		int result = ms.m_nickChk(m_nick, member);
+		String msg = "";
+		if(result > 0) {
+			msg = "이미 사용 중인 닉네임입니다.";
+		}else if(result == 0) {
+			msg = "";
+		}else {
+			msg = "사용 가능한 닉네임입니다.";
+		}
+		model.addAttribute("msg", msg);
+		System.out.println(msg);
+		return "member/m_nickChk";
+	}
+	
 	@RequestMapping(value = "o_join", method = RequestMethod.GET)
 	public String o_joinForm(Model model) {
 		model.addAttribute("pgm", "../member/o_join.jsp");

@@ -28,5 +28,9 @@ public class MemberServiceImpl implements MemberService {
 	public int m_emailChk(String m_email) {
 		return md.m_emailChk(m_email);
 	}
+
+	public int m_nickChk(String m_nick, Member member) {
+		return md.m_nickChk(m_nick, member);
+	}
 	
 }

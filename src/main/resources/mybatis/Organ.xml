@@ -44,15 +44,15 @@
 	</select>
 	
 	<update id="updateOrgan" parameterType="organ">
-		update organ set m_passwd=#{m_passwd}, m_nick=#{m_nick}, m_birth=#{m_birth}, m_tel=#{m_tel}, m_job=#{m_job}, m_del_yn='n' where m_no=#{m_no}
-	</update>
-	
-	<update id="deleteOrgan" parameterType="Integer">
-		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
+		update organ set o_passwd=#{o_passwd}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, m_del_yn='n' where o_no=#{o_no}
 	</update>
 	
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
-		select o_passwd from organ o_no=#{o_no} and o_passwd=#{o_passwd}
+		select o_passwd from organ where o_no=#{o_no} and o_passwd=#{o_passwd}
 	</select>
+	
+	<update id="deleteOrgan" parameterType="Integer">
+		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
+	</update>	
 
 </mapper>

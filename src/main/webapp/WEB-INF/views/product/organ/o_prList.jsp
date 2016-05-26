@@ -1,34 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../module/header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="../../module/header.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<form action="o_prList.do">
 		<table class="table table-striped table-hover">
 		<caption>제품 판매 요청</caption>
 				<tr>
-					<th width="40">번호</th>
-					<th width="60">제목</th>
-					<th width="30">작성자</th>
-					<th width="90">작성일</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성일</th>
+					<th>승인여부</th>
 				</tr>
 				<c:forEach var="pr" items="${list}">
 					<tr>
-						<td>${pr_no}</td>
-						<td>${pr.pr_proname }</td>
-						<td>${pr.pr_mno}</td>
+						<td>${pr.pr_no}</td>
+						<td><a href="m_prView.do?pr_no=${pr.pr_no}">
+							${pr.pr_proname }</a></td>
 						<td>${pr.pr_date}</td>
+						<td>${pr.pr_approve}</td>
+					
 					</tr>
 				</c:forEach>
 			</table>
+		</form>
 		<div align="center">
-			<button onclick="location.href='o_prWrite.do'">요청하기</button>
+			<button onclick="location.href='m_prWrite.do'">요청하기</button>
 		</div>
-
+	
 </body>
 </html>
