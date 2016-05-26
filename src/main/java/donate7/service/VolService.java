@@ -3,6 +3,7 @@ package donate7.service;
 import java.util.List;
 
 import donate7.model.VolReq;
+import donate7.model.VolReqSearch;
 
 public interface VolService {
 	int volReqInsert(VolReq req);
@@ -10,4 +11,5 @@ public interface VolService {
 	VolReq SelectByVt_No(int vt_No);
 	int updateVolReq(VolReq volReq);
 	List<VolReq> volReqList();
+	List<VolReqSearch> searchList();
 }

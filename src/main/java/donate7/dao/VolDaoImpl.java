@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import donate7.model.VolReq;
+import donate7.model.VolReqSearch;
 
 @Repository
 public class VolDaoImpl implements VolDao{
@@ -34,5 +35,10 @@ public class VolDaoImpl implements VolDao{
 	@Override
 	public List<VolReq> volReqList() {
 		return session.selectList("volReq.selectListVolReq");
+	}
+
+	@Override
+	public List<VolReqSearch> searchList() {
+		return session.selectList("volReqSearch.searchVolReq");
 	}
 }

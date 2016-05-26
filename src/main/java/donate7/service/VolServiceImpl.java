@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import donate7.dao.VolDao;
 import donate7.model.VolReq;
+import donate7.model.VolReqSearch;
 @Service
 public class VolServiceImpl implements VolService {
 	@Autowired
@@ -35,6 +36,11 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public List<VolReq> volReqList() {
 		return vd.volReqList();
+	}
+
+	@Override
+	public List<VolReqSearch> searchList() {
+		return vd.searchList();
 	}
 
 }

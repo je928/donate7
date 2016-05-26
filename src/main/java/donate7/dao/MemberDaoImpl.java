@@ -1,5 +1,7 @@
 package donate7.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -103,6 +105,20 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+	
+	public String selectO_addrByO_no(int o_no) {
+		return session.selectOne("organ.selectO_addrByO_no",o_no);
+	}
+
+	@Override
+	public List<Organ> selectAll() {
+		return session.selectList("organ.selectAll");
+	}
+
+	@Override
+	public Organ selectByO_no(int o_no) {
+		return session.selectOne("organ.selectOrgan",o_no);
 	}
 	
 }

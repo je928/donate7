@@ -150,17 +150,20 @@ td {
 						<th>분야</th>
 						<th>제목</th>
 						<th>기간</th>
+						<th>모집</th>
+						<th>신청</th>
 						<th>주기</th>
-					
 						<th>모집상태</th>
 					</tr>
 					<c:forEach var="volReq" items="${list}">
 						<tr>
 							<td>${volReq.vt_No }</td>
-							<td>지역</td>
+							<td>${volReq.addr }</td>
 							<td>${volReq.vt_Field }</td>
 							<td><a href="reqDetail.do?vt_No=${volReq.vt_No}">${volReq.vt_Name }</a></td>
 							<td>${volReq.vt_Start_Date} - ${volReq.vt_End_Date }</td>
+							<td>${volReq.vt_Total }</td>
+							<td>${volReq.reqcount }</td>
 							<td>${volReq.vt_Cycle }</td>
 							<td>
 								<c:if test="${volReq.vt_Recruit_Yn == 'Y'}">
