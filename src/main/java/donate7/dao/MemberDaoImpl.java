@@ -107,18 +107,54 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
+	public int o_emailChk(String o_email) {
+		int result = 0;
+		try {
+			result = session.selectOne("organ.o_emailChk", o_email);
+			System.out.println(result);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public int o_onameChk(String o_oname, Organ organ) {
+		int result = 0;
+		String selectOname = "";
+		String db_Oname = "";
+		try {
+			selectOname = session.selectOne("organ.selectOname", organ.getO_no());
+			db_Oname = session.selectOne("organ.onameChk", organ);
+			if(selectOname != null) {
+				if(db_Oname.equals(selectOname)) {
+					result = 0;
+				}else {
+					result = 1;
+				}
+			}else {
+				if(db_Oname != null) {
+					result = 2;
+				}else {
+					result = -1;
+				}
+			}
+			System.out.println("result : " + result);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
 	public String selectO_addrByO_no(int o_no) {
 		return session.selectOne("organ.selectO_addrByO_no",o_no);
 	}
 
-	@Override
 	public List<Organ> selectAll() {
 		return session.selectList("organ.selectAll");
 	}
 
-	@Override
 	public Organ selectByO_no(int o_no) {
 		return session.selectOne("organ.selectOrgan",o_no);
 	}
-	
+
 }

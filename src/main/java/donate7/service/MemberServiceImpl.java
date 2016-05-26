@@ -34,7 +34,15 @@ public class MemberServiceImpl implements MemberService {
 	public int m_nickChk(String m_nick, Member member) {
 		return md.m_nickChk(m_nick, member);
 	}
-
+	
+	public int o_emailChk(String o_email) {
+		return md.o_emailChk(o_email);
+	}
+	
+	public int o_onameChk(String o_oname, Organ organ) {
+		return md.o_onameChk(o_oname, organ);
+	}
+	
 	public String selectO_addrByO_no(int o_no) {
 		return md.selectO_addrByO_no(o_no);
 	}
@@ -46,6 +54,5 @@ public class MemberServiceImpl implements MemberService {
 	public Organ selectByO_no(int o_no) {
 		return md.selectByO_no(o_no);
 	}
-	
 	
 }
