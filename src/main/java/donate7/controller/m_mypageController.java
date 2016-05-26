@@ -46,22 +46,23 @@ public class m_mypageController {
 		Second second = ss.selectOne(sh_no);
 		model.addAttribute("second", second);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../second/msecondView.jsp");
+		model.addAttribute("mypgm", "../../second/msecond/msecondView.jsp");
 		return "module/main";
 	}
 	@RequestMapping(value = "msecondList", method = RequestMethod.GET)
-	public String msecondList(Model model) {
+	public String msecondList(Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
 		List<Second> list = ss.list();
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../second/msecondList.jsp");
+		model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
 		return "module/main";
 	}
 	
 	@RequestMapping(value = "msecondForm", method = RequestMethod.GET)
 	public String secondForm(Model model) {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../second/msecondForm.jsp");
+		model.addAttribute("mypgm", "../../second/msecond/msecondForm.jsp");
 		return "module/main";
 	}
 	
@@ -78,7 +79,7 @@ public class m_mypageController {
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-			model.addAttribute("mypgm", "../../second/msecondList.jsp");
+			model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
 			return "module/main";
 		}
 	

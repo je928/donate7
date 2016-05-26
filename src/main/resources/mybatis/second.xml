@@ -22,7 +22,7 @@
 		#{sh_explanation}, sysdate, #{sh_image},'n','n')
 	</insert>
 	<select id="secondList" resultMap="SecondResult">
-		select * from second
+		select * from second where sh_no > 0
 	</select>
 	<select id="selectOne" resultType="second" parameterType="int">
 		select * from second where sh_no=#{sh_no}
