@@ -27,8 +27,8 @@ public class SecondServiceImpl implements SecondService{
 		return sd.mlist(no);
 	}
 
-	public List<Second> olist() {
-		return sd.olist();
+	public List<Second> olist(int no) {
+		return sd.olist(no);
 	}
 
 	public List<Second> adlist() {
@@ -36,6 +36,10 @@ public class SecondServiceImpl implements SecondService{
 	}
 	public int msecondUpdate(Second second) {
 		return sd.secondUpdate(second);
+	}
+
+	public int count(Second second) {
+		return sd.count(second);
 	}
 
 }
