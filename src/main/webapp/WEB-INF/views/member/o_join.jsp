@@ -112,6 +112,7 @@
 				document.getElementById('post2').value = data.postcode2;
 				document.getElementById('o_addr1').value = data.address1;
 				document.getElementById('o_addr2').focus();
+				frm.addrChk.value = "true";
 			}
 		}).open();
 	}
@@ -212,6 +213,12 @@
 			return false;
 		}
 		
+		if(frm.addrChk.value == "false") {
+			$('#addr_chk').html("<font class='red'>우편번호찾기로 주소를 입력해주세요.</font>");
+			frm.o_addr2.value = "";
+			return false;
+		}
+		
 		return true;
 	}
 	
@@ -225,11 +232,12 @@
 				<form action="o_join.do" role="form" name="frm" method="post" onsubmit="return chk()">
 					<input type="hidden" name="mailChk" value="false">
 					<input type="hidden" name="onameChk" value="false">
+					<input type="hidden" name="addrChk" value="false">					
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">기관 회원가입</h4>
 					<div class="form-group">
 						<strong>이메일:</strong>
-						<input type="email" class="form-control" id="o_email" name="o_email" maxlength="30" required>
+						<input type="email" class="form-control" id="o_email" name="o_email" maxlength="30" required autofocus="autofocus">
 						<span id="email_chk"> </span>
 					</div>
 					<div class="form-group">
@@ -269,14 +277,15 @@
 					<div class="form-group">
 						<strong>주소:</strong>
 						<div>
-							<input type="text" class="form-control-30" name="post1" id="post1" required>
-							- <input type="text" class="form-control-30" name="post2" id="post2" required>
+							<input type="text" class="form-control-30" name="post1" id="post1" required readonly="readonly">
+							- <input type="text" class="form-control-30" name="post2" id="post2" required readonly="readonly">
 							<input type="button" onclick="openDaumPostcode()" value="우편번호 찾기"	style="width: 100px; height: 30px; font-size: 11px; background-color: #ECECEC">
 						</div>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control-20" name="o_addr1" id="o_addr1" value="" title="행정기본주소" style="width: 99%" required>
+						<input type="text" class="form-control-20" name="o_addr1" id="o_addr1" value="" title="행정기본주소" style="width: 99%" required readonly="readonly">
 						<input type="text" class="form-control-20" name="o_addr2" id="o_addr2" value="" title="상세주소" style="width: 99%" placeholder="상세주소">
+						<span id="addr_chk"> </span>
 					</div>
 					<div class="form-group">
 						<strong>카테고리:</strong>

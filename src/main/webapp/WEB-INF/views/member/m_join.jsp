@@ -215,7 +215,7 @@
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
 					<div class="form-group">
 						<b>이메일:</b>
-						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required>
+						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required autofocus="autofocus">
 						<span id="email_chk"> </span>
 					</div>
 					<div class="form-group">
