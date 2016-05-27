@@ -6,28 +6,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	var sendData = 'o_no=${organ.o_no}'
+		$.post('map.do', sendData, function(data) {
+			$('#omap').html(data);
+		});
+
+});
+
+</script>
 </head>
 <body>
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area">
+
 				<table border="1">
 					<tr>
-						<th>번호</th>
-						<th>기관명</th>
-						<th>(우편번호)주소</th>
+						<td colspan="2">
+							<div id="omap" style="width: 300; height: 300"></div>
+						</td>
 					</tr>
-					<c:forEach var="organ" items="${list }">
-						<tr>
-							<td>${organ.o_no }</td>
-							<td><a href="centerView.do?o_no=${organ.o_no}">${organ.o_oname }</a></td>
-							<td>${organ.o_addr }</td>
-						</tr>
-					</c:forEach>
+					<tr>
+						<th>기관명</th>
+						<td>${organ.o_oname }</td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td>${organ.o_addr }</td>
+					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
