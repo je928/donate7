@@ -24,17 +24,29 @@ public class SecondDaoImpl implements SecondDao{
 		return st.insert("second.msecondListinsert", second);
 	}
 	
-	public List<Second> mlist() {
-		return st.selectList("second.msecondList");
+	public List<Second> mlist(int no) {
+		return st.selectList("second.msecondList", no);
 	}
 
 
-	public List<Second> olist() {
-		return st.selectList("second.osecondList");
+	public List<Second> olist(int no) {
+		return st.selectList("second.osecondList", no);
 	}
 
 	public List<Second> adlist() {
 		return st.selectList("second.adsecondList");
 	}
+	public int secondUpdate(Second second) {
+		int result=0;
+		try{
+			result= st.update("second.msecondUpdate",second);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	public int count(Second second) {
+		return st.selectOne("second.count", second);
+	}	
 
 }

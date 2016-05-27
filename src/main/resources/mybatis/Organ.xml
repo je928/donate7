@@ -68,6 +68,7 @@
 	</select>
 	
 	<select id="selectAll" resultMap="OrganResult">
-		SELECT * FROM ORGAN
+		select * from organ where o_del_yn='n'
 	</select>
+	
 </mapper>

@@ -55,8 +55,12 @@ public class m_mypageController {
 	}
 	@RequestMapping(value = "msecondList", method = RequestMethod.GET)
 	public String msecondList(Model model, HttpSession session) {
-		int m_no = (Integer)session.getAttribute("no");
-		List<Second> list = ss.mlist();
+		int no = (Integer)session.getAttribute("no");
+		List<Second> list = ss.mlist(no);
+		Second second = new Second();
+		second.setSh_mno(no);
+		int count = ss.count(second);
+		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
@@ -72,21 +76,51 @@ public class m_mypageController {
 	
 	@RequestMapping(value = "msecond", method = RequestMethod.POST)
 		public String second(@RequestParam("image") MultipartFile mf,
-				HttpServletRequest request,Model model,Second second) throws IllegalStateException, IOException{
+				HttpServletRequest request,Model model,Second second, HttpSession session) throws IllegalStateException, IOException{
+			int no = (Integer)session.getAttribute("no");
 			String fileName = mf.getOriginalFilename();
 			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 			mf.transferTo(new File(request.getRealPath("/")+uploadName));
 			second.setSh_image(uploadName);
 			ss.insert(second);
 			model.addAttribute("msg", "파일이름 : "+fileName);
-			List<Second> list = ss.mlist();
+			List<Second> list = ss.mlist(no);
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 			model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
 			return "module/main";
 		}
-	
+	@RequestMapping(value ="msecondUpdate", method = RequestMethod.GET)
+	public String msecondupdateForm(int sh_no, Model model) {
+		Second second = ss.selectOne(sh_no);
+		model.addAttribute("second", second);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/msecond/msecondUpdate.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="msecondUpdate", method=RequestMethod.POST)
+	public String msecondupdate(@RequestParam("image") MultipartFile mf,
+			HttpServletRequest request,Model model,Second second,HttpSession session) throws IllegalStateException, IOException{
+		int no=(Integer)session.getAttribute("no");
+		
+		if(mf.getOriginalFilename().equals("")){
+			Second sc = ss.selectOne(second.getSh_no());
+			second.setSh_image(second.getSh_image());
+		}else{
+			String fileName = mf.getOriginalFilename();
+			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+			mf.transferTo(new File(request.getRealPath("/")+uploadName));
+			second.setSh_image(uploadName);
+		}
+		second.setSh_mno(no);
+		ss.msecondUpdate(second);
+		List<Second> list = ss.mlist(no);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/msecond/msecondView.jsp");
+		return "module/main";
+	}
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");

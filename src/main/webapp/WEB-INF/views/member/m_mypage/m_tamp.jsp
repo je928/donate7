@@ -29,7 +29,7 @@
             <div class="col-md-3-2">
                 <jsp:include page="m_navbar.jsp" />
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9-2">
             	<c:if test="${empty mypgm}">
 					<jsp:include page="m_myinfo.jsp"/>
 				</c:if> 

@@ -13,7 +13,6 @@
 			<tr><th>글쓴이</th><td></td></tr>
 			<tr><th>이미지</th><td><img src="/donate7/${second.sh_image }" width="300px"></td></tr>
 			<tr><th>상품종류</th><td>${second.sh_category }</td></tr>
-			<tr><th>등록일</th><td>${second.sh_reg_date }</td></tr>
 			<tr><th>설명</th><td>${second.sh_explanation }</td></tr>
 			<tr><th>승인여부</th><td>${second.sh_approve }</td></tr>
 			<tr><th>도착여부</th><td>${second.sh_arrive }</td></tr>
