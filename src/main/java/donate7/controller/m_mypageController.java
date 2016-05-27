@@ -57,6 +57,10 @@ public class m_mypageController {
 	public String msecondList(Model model, HttpSession session) {
 		int no = (Integer)session.getAttribute("no");
 		List<Second> list = ss.mlist(no);
+		Second second = new Second();
+		second.setSh_mno(no);
+		int count = ss.count(second);
+		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");

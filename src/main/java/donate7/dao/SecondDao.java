@@ -11,9 +11,10 @@ public interface SecondDao {
 	List<Second> mlist(int no);
 
 
-	List<Second> olist();
+	List<Second> olist(int no);
 
 
 	List<Second> adlist();
 	int secondUpdate(Second second);
+	int count(Second second);
 }

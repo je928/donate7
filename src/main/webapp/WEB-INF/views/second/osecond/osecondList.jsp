@@ -22,9 +22,10 @@
 					<th width="60">승인여부</th>
 					<th width="60">도착여부</th>
 				</tr>
+					<c:set var="cnt" value="${count}"/>
 				<c:forEach var="second" items="${list }">
 					<tr>
-						<th>${second.sh_no }</th>
+						<th>${cnt}</th>
 						<th><a href="osecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 						<th>${second.sh_category }</th>
 						<th>${second.sh_reg_date }</th>
@@ -32,6 +33,7 @@
 						<th>${second.sh_approve }</th>
 						<th>${second.sh_arrive }</th>
 					</tr>
+					<c:set var="cnt" value="${cnt-1}"/>
 				</c:forEach>
 
 			</table>

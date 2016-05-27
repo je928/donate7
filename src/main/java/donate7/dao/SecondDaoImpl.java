@@ -29,8 +29,8 @@ public class SecondDaoImpl implements SecondDao{
 	}
 
 
-	public List<Second> olist() {
-		return st.selectList("second.osecondList");
+	public List<Second> olist(int no) {
+		return st.selectList("second.osecondList", no);
 	}
 
 	public List<Second> adlist() {
@@ -44,6 +44,9 @@ public class SecondDaoImpl implements SecondDao{
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+	public int count(Second second) {
+		return st.selectOne("second.count", second);
 	}	
 
 }
