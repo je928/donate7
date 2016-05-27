@@ -203,7 +203,6 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../donate/mdoReq.jsp");
 		return "module/main";
 	}
-
 	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
 	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
 			HttpServletRequest request) throws IllegalStateException, IOException {
@@ -222,6 +221,41 @@ public class m_mypageController {
 			model.addAttribute("donate", donate);
 			return "redirect:mdoReq.do";
 		}
-
+	}
+	@RequestMapping(value="mdoReqV", method=RequestMethod.GET)
+	public String mdoReqV(int d_no,Model model) {
+		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
+		model.addAttribute("donate",donate);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoReqV.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="mdoReqUp", method=RequestMethod.GET)
+	public String mdoReqUpForm(int d_no, Model model){
+		Donate donate = ds.selectOne(d_no);
+		model.addAttribute("donate",donate);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="mdoReqUp", method=RequestMethod.POST)
+	public String mdoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model) {
+		donate.setD_img("test.jpg");
+		int result = ds.mdoUpdate(donate);
+		
+		if(result >0) {
+			return "redirect:mdoReqV.do?d_no="+donate.getD_no();	
+		} else {
+			model.addAttribute("donate",donate);
+			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+			model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
+			return "module/main";
+		}
 	}
 }

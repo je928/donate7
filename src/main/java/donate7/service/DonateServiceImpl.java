@@ -11,16 +11,18 @@ import donate7.model.Donate;
 public class DonateServiceImpl implements DonateService {
 	@Autowired
 	private DonateDao dd;
-	@Override
+	
 	public int mdoReqInsert(Donate donate) {
 		return dd.mdoReqInsert(donate);
 	}
-	@Override
 	public List<Donate> list() {
 		return dd.list();
 	}
 	public Donate selectOne(int d_no) {
 		return dd.selectOne(d_no);
+	}
+	public int mdoUpdate(Donate donate) {
+		return dd.mdoUpdate(donate);
 	}
 
 }

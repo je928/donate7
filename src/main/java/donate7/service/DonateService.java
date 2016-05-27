@@ -11,4 +11,6 @@ public interface DonateService {
 	List<Donate> list();
 
 	Donate selectOne(int d_no);
+
+	int mdoUpdate(Donate donate);
 }
