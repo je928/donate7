@@ -8,11 +8,12 @@ public interface SecondDao {
 	Second selectOne(int sh_no);
 	int insert(Second second);
 
-	List<Second> mlist();
+	List<Second> mlist(int no);
 
 
 	List<Second> olist();
 
 
 	List<Second> adlist();
+	int secondUpdate(Second second);
 }

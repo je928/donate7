@@ -1,14 +1,21 @@
 package donate7.controller;
 
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import donate7.model.Organ;
 import donate7.model.SidoGugun;
@@ -118,12 +125,41 @@ public class VolController {
 		return "module/main";
 	}
 	
-	@RequestMapping()
+	@RequestMapping("centerView")
 	public String centerView(int o_no, Model model){
-		String addr = ms.selectO_addrByO_no(o_no);
-		model.addAttribute("addr", addr);
-		model.addAttribute("pgm", "../vt/centerList.jsp");
+		Organ organ = ms.selectByO_no(o_no);
+		model.addAttribute("organ",organ);
+		model.addAttribute("pgm", "../vt/centerView.jsp");
 		return "module/main"; 
 	}
 	
+	@RequestMapping("map")
+	public String map(int o_no, Model model){
+		
+		String addr = ms.selectO_addrByO_no(o_no);
+		addr = addr.replace(" ", "%20");
+		try {
+			URL url = new URL("https://apis.daum.net/local/geo/addr2coord?apikey=4433ad220df9e47a4bec346b73b442e4&q=" + addr +"&output=xml");
+			URLConnection conn = url.openConnection();
+			
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse(conn.getInputStream());
+			
+			NodeList nList = doc.getElementsByTagName("item");
+			for(int i = 0 ; i < nList.getLength(); i++){
+				for(Node node = nList.item(i).getFirstChild(); node != null; node = node.getNextSibling()){
+					if(node.getNodeName().equals("lat")){
+						model.addAttribute("lat", node.getTextContent());
+					}
+					if(node.getNodeName().equals("lng")){
+						model.addAttribute("lng", node.getTextContent());
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "vt/map";
+	}
 }

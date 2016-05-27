@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../module/header.jsp" %>
+<%@ include file="../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,29 +19,23 @@ html, body {
 <body>
 	<div id="map"></div>
 	<script type="text/javascript">
+
 var map;
 var marker;
-var lat;
-var lng;
-var latlng = {lat: 36.2326301, lng: 127.91031629999997};
-
-
-$(function() {
-	$.get('https://apis.daum.net/local/geo/addr2coord?apikey=4433ad220df9e47a4bec346b73b442e4&q=${addr.addr}&output=xml',function(data,status){
-		lng = $(data).find('lng');
-		lat = $(data).find('lat');
-		
-	});
-});
+var latlng = {lat: ${lat} , lng: ${lng}};
 
 function initMap() {
+	
   map = new google.maps.Map(document.getElementById('map'), {
 	   zoom: 18,
 	   center:latlng,
 	   mapTypeId: google.maps.MapTypeId.ROADMAP   
 	  });
   SetMarker();
+  alert(latlng.lat);
+	alert(latlng.lng);
 }
+
 
 function SetMarker(){
 	marker = new google.maps.Marker({
