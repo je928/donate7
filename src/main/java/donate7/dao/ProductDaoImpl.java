@@ -30,9 +30,9 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectOne("product.selectOne",pr_no);
 	}
 
-	public List<Product> mlist() {
+	public List<Product> mlist(int no) {
 	
-		return st.selectList("product.mlist");
+		return st.selectList("product.mlist",no);
 	}
 
 	public List<Product> olist() {
@@ -45,6 +45,20 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.prlist");
 	}
 
-	
+	public int prUpdate(Product product) {
+		int result=0;
+		try{
+			result= st.update("product.prUpdate",product);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public void prdelete(int pr_no) {
+		st.selectOne("product.prDelete", pr_no);
+		
+	}
+
 
 }

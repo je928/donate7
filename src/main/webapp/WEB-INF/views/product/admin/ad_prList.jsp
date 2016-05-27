@@ -31,10 +31,7 @@
 				</c:forEach>
 			</table>
 		</form>
-		<div align="center">
-			<button onclick="location.href='prList.do'">승인</button>
-			<button onclick="location.href=''">거부</button>
-		</div>
+		
 	
 </body>
 </html>

@@ -90,7 +90,7 @@ public class m_mypageController {
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
-		List<Product> list = ps.mlist();
+		List<Product> list = ps.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -129,6 +129,41 @@ public class m_mypageController {
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/m_prView.jsp");
 		return "module/main";
+	}
+	@RequestMapping(value ="m_prUpdate", method = RequestMethod.GET)
+	public String mprupdateForm(int pr_no, Model model) {
+		Product product = ps.selectOne(pr_no);
+		model.addAttribute("product", product);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prUpdate.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="m_prUpdate", method=RequestMethod.POST)
+	public String mprupdate(@RequestParam("mimg") MultipartFile mf,
+			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+		int no=(Integer)session.getAttribute("no");
+		
+		if(mf.getOriginalFilename().equals("")){
+			Product pr = ps.selectOne(product.getPr_no());
+			product.setPr_img(pr.getPr_img());
+		}else{
+			String fileName = mf.getOriginalFilename();
+			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+			mf.transferTo(new File(request.getRealPath("/")+uploadName));
+			product.setPr_img(uploadName);
+		}
+		product.setPr_mno(no);
+		ps.prUpdate(product);
+		List<Product> list = ps.mlist(no);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
+		return "module/main";
+	}
+	@RequestMapping("m_prDelete")
+	public String delete(int pr_no, Model model){
+		ps.prdelete(pr_no);
+		return "redirect:m_prList.do?pr_no="+pr_no;
 	}
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
