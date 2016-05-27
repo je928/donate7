@@ -14,14 +14,12 @@ $(function(){
 		});
 
 });
-
 </script>
 </head>
 <body>
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
 			<div class="form-area">
-
 				<table border="1">
 					<tr>
 						<td colspan="2">

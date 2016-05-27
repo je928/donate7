@@ -10,6 +10,7 @@
 <body>
 	<select name="gugun">
 	<c:if test="${not empty list }">
+		<option value="0">전체</option>
 		<c:forEach var="gg" items="${list}">
 			<option value="${gg.gugun_no}">${gg.gugun_name}</option>
 		</c:forEach>
