@@ -18,13 +18,13 @@
 		select nvl(max(sh_no),0)+1 from second
 	</select>
 	<select id="adsecondList" resultMap="SecondResult">
-		select * from second
+		select * from second 
 	</select>
 	<select id="osecondList" resultMap="SecondResult">
-		select * from second where sh_mno<![CDATA[<]]>0
+		select * from second where sh_mno <![CDATA[<]]> 0 and sh_mno=#{sh_mno} order by sh_reg_date desc
 	</select>
 	<select id="msecondList" resultMap="SecondResult">
-		select * from second where sh_mno > 0
+		select * from second where sh_mno > 0 and sh_mno=#{sh_mno} order by sh_reg_date desc
 	</select>
 	<insert id="msecondListinsert" parameterType="second">
 		insert into second values
@@ -33,5 +33,13 @@
 	</insert>
 	<select id="selectOne" resultType="second" parameterType="int">
 		select * from second where sh_no=#{sh_no}
+	</select>
+	<update id ="msecondUpdate" parameterType="second">
+		update second set
+			sh_mno=#{sh_mno}, sh_title=#{sh_title}, sh_category=#{sh_category},
+			sh_explanation=#{sh_explanation}, sh_image=#{sh_image} where sh_no=#{sh_no} 
+	</update>
+	<select id="count" resultType="int" parameterType="second">
+		select count(*) from second where sh_mno=#{sh_mno}
 	</select>
 </mapper>

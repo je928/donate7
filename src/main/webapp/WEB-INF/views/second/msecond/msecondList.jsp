@@ -19,20 +19,24 @@
 					<th width="60">제목</th>
 					<th width="60">상품종류</th>
 					<th width="60">등록일</th>
+					<th width="60">수정</th>
 					<th width="60">승인여부</th>
 					<th width="60">도착여부</th>
 				</tr>
+				<c:set var = "cnt" value="${count}"/>
 				<c:forEach var="second" items="${list }">
 					<tr>
-						<th>${second.sh_no }</th>
+						<th>${cnt }</th>
 						<th><a href="msecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 						<th>${second.sh_category }</th>
 						<th>${second.sh_reg_date }</th>
+						<th><a href="msecondUpdate.do?sh_no=${second.sh_no }">수정</a></th>
 						<th>${second.sh_approve }</th>
 						<th>${second.sh_arrive }</th>
 					</tr>
+					<c:set var ="cnt" value="${cnt-1}"/>	
 				</c:forEach>
-
+		
 			</table>
 		</form>
 		<div align="center">

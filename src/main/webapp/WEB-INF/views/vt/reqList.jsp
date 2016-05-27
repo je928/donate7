@@ -96,7 +96,7 @@ td {
 						<tr>
 							<th>지역선택</th>
 							<td><select name="sido" id="sido">
-									<option value="0">----</option>
+									<option value="0">전체</option>
 									<c:forEach var="sido" items="${sList }">
 										<option value="${sido.sido_no}">${sido.sido_name}</option>
 									</c:forEach>
@@ -105,7 +105,7 @@ td {
 						<tr>
 							<th>분야선택</th>
 							<td><select name="vt_Field">
-									<option value="0">----</option>
+									<option value="0">전체</option>
 									<option value="C">시설봉사</option>
 									<option value="H">재가봉사</option>
 									<option value="M">전문봉사</option>
@@ -123,7 +123,7 @@ td {
 						<tr>
 							<th>봉사주기</th>
 							<td><select name="vt_Cycle">
-									<option value="0">----</option>
+									<option value="0">전체</option>
 									<option value="C">정기</option>
 									<option value="N">비정기</option>
 							</select></td>
@@ -131,7 +131,7 @@ td {
 						<tr>
 							<th>모집상태</th>
 							<td><select name="vt_Cycle">
-									<option value="0">----</option>
+									<option value="0">전체</option>
 									<option value="Y">모집 중</option>
 									<option value="N">모집 완료</option>
 							</select></td>

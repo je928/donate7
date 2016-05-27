@@ -73,5 +73,9 @@
 	<update id="deleteMember" parameterType="Integer">
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
 	</update>
+	
+	<select id="selectAll" resultMap="MemberResult">
+		select * from member where m_del_yn='n'
+	</select>
 		
 </mapper>

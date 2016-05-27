@@ -182,7 +182,7 @@
 			</select>			
 			<input type="text" id="searchTxt" class="form-control" placeholder="Search" value="${searchTxt}">
 			</div>
-			<button type="submit" class="btn btn-primary" onclick="locate(1)">검색</button>
+			<button type="submit" class="btn btn-default" onclick="locate(1)"><i class="glyphicon fa-1x glyphicon-search"></i></button>
 		</form>
 	</div>
       
