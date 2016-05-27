@@ -34,4 +34,9 @@
 	<select id="selectOne" resultType="second" parameterType="int">
 		select * from second where sh_no=#{sh_no}
 	</select>
+	<update id ="msecondUpdate" parameterType="second">
+		update second set
+			sh_mno=#{sh_mno}, sh_title=#{sh_title}, sh_category=#{sh_category},
+			sh_explanation=#{sh_explanation}, sh_image=#{sh_image} where sh_no=#{sh_no} 
+	</update>
 </mapper>

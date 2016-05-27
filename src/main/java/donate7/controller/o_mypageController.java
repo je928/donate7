@@ -78,6 +78,36 @@ public class o_mypageController {
 		model.addAttribute("mypgm", "../../second/osecondForm.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value ="osecondUpdate", method = RequestMethod.GET)
+	public String msecondupdateForm(int sh_no, Model model) {
+		Second second = ss.selectOne(sh_no);
+		model.addAttribute("second", second);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/osecond/osecondUpdate.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="osecondUpdate", method=RequestMethod.POST)
+	public String msecondupdate(@RequestParam("image") MultipartFile mf,
+			HttpServletRequest request,Model model,Second second,HttpSession session) throws IllegalStateException, IOException{
+		int no=(Integer)session.getAttribute("no");
+		
+		if(mf.getOriginalFilename().equals("")){
+			Second sc = ss.selectOne(second.getSh_no());
+			second.setSh_image(second.getSh_image());
+		}else{
+			String fileName = mf.getOriginalFilename();
+			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+			mf.transferTo(new File(request.getRealPath("/")+uploadName));
+			second.setSh_image(uploadName);
+		}
+		second.setSh_mno(no);
+		ss.msecondUpdate(second);
+		List<Second> list = ss.mlist(no);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/osecond/osecondView.jsp");
+		return "module/main";
+	}
 	@RequestMapping(value="o_prList", method=RequestMethod.GET)
 	public String oprList(Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");

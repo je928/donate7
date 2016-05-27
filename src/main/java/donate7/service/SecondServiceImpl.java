@@ -23,8 +23,8 @@ public class SecondServiceImpl implements SecondService{
 		return sd.insert(second);
 	}
 
-	public List<Second> mlist() {
-		return sd.mlist();
+	public List<Second> mlist(int no) {
+		return sd.mlist(no);
 	}
 
 	public List<Second> olist() {
@@ -33,6 +33,9 @@ public class SecondServiceImpl implements SecondService{
 
 	public List<Second> adlist() {
 		return sd.adlist();
+	}
+	public int msecondUpdate(Second second) {
+		return sd.secondUpdate(second);
 	}
 
 }
