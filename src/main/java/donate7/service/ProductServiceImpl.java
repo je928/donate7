@@ -23,9 +23,9 @@ public class ProductServiceImpl implements ProductService {
 		return pd.selectOne(pr_no);
 	}
 
-	public List<Product> mlist() {
+	public List<Product> mlist(int no) {
 		
-		return pd.mlist();
+		return pd.mlist(no);
 	}
 
 	public List<Product> olist() {
@@ -36,6 +36,16 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> prlist() {
 	
 		return pd.prlist();
+	}
+
+	public int prUpdate(Product product) {
+	
+		return pd.prUpdate(product);
+	}
+
+	public void prdelete(int pr_no) {
+		pd.prdelete(pr_no);
+		
 	}
 
 }

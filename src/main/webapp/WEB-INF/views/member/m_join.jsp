@@ -215,7 +215,7 @@
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
 					<div class="form-group">
 						<b>이메일:</b>
-						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required>
+						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required autofocus="autofocus">
 						<span id="email_chk"> </span>
 					</div>
 					<div class="form-group">
@@ -257,9 +257,9 @@
 					<div class="form-group">
 						<b>전화번호:</b>
 						<div>
-							<input type="text" class="form-control-20" name="m_tel1" id="m_tel1" maxlength="3">
-							- <input type="text" class="form-control-20" name="m_tel2" id="m_tel2" maxlength="4">
-							- <input type="text" class="form-control-20" name="m_tel3" id="m_tel3" maxlength="4">
+							<input type="text" class="form-control-20" name="m_tel1" id="m_tel1" maxlength="3" required>
+							- <input type="text" class="form-control-20" name="m_tel2" id="m_tel2" maxlength="4" required>
+							- <input type="text" class="form-control-20" name="m_tel3" id="m_tel3" maxlength="4" required>
 						</div>
 						<span id="tel_chk"> </span>
 					</div>

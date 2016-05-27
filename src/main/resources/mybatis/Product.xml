@@ -28,13 +28,13 @@
 		select nvl(max(pr_no),0)+1 from pr_product
 	</select>
 	<select id="prlist" resultMap="ProductResult">
-		select * from pr_product where pr_mno>0
+		select * from pr_product
 	</select>
 	<select id="mlist" resultMap="ProductResult">
-		select * from pr_product where pr_mno>0
+		select * from pr_product where pr_mno>0 and pr_mno=#{pr_mno}
 	</select>
 	<select id="olist" resultMap="ProductResult">
-		select * from pr_product where pr_mno<![CDATA[<]]>0
+		select * from pr_product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno}
 	</select>
 	<insert id="prinsert" parameterType="product">
 		insert into pr_product values
@@ -43,5 +43,14 @@
 	<select id="selectOne" resultType="product" parameterType="int">
 		select * from pr_product where pr_no=#{pr_no}
 	</select>
+	<update id ="prUpdate" parameterType="product">
+		update pr_product set 
+			pr_proname=#{pr_proname},pr_item=#{pr_item},pr_content=#{pr_content},
+			pr_qty=#{pr_qty},pr_price=#{pr_price},pr_img=#{pr_img},pr_donation=#{pr_donation},
+			pr_callm=#{pr_callm},pr_update=sysdate where pr_no=#{pr_no}
+	</update>
+	<delete id ="prDelete" parameterType="int" >
+		delete from pr_product where pr_no=#{pr_no}
+	</delete>
 	
 </mapper>

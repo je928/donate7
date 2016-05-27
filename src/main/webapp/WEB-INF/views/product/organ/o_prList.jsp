@@ -30,7 +30,7 @@
 			</table>
 		</form>
 		<div align="center">
-			<button onclick="location.href='o_prWrite.do'">요청하기</button>
+			<button onclick="location.href='m_prWrite.do'">요청하기</button>
 		</div>
 	
 </body>

@@ -17,11 +17,11 @@
 			<th>작성일</th>
 			<th>승인여부</th>
 		</tr>
-	${size}
+
  	<c:if test="${not empty list }">
 	<c:forEach var="donate" items="${list }">
 		<tr><td>${donate.d_no }</td>
-			<td>${donate.d_title }</td>
+			<td><a href="mdoReqV.do?d_no=${donate.d_no }">${donate.d_title }</a></td>
 			<td>${donate.d_reg_date }</td>
 			<td>${donate.d_approve }</td></tr>
 	</c:forEach></c:if>

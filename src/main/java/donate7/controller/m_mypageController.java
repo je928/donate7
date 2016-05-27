@@ -90,7 +90,7 @@ public class m_mypageController {
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
-		List<Product> list = ps.mlist();
+		List<Product> list = ps.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -130,6 +130,41 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../product/m_prView.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value ="m_prUpdate", method = RequestMethod.GET)
+	public String mprupdateForm(int pr_no, Model model) {
+		Product product = ps.selectOne(pr_no);
+		model.addAttribute("product", product);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prUpdate.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="m_prUpdate", method=RequestMethod.POST)
+	public String mprupdate(@RequestParam("mimg") MultipartFile mf,
+			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+		int no=(Integer)session.getAttribute("no");
+		
+		if(mf.getOriginalFilename().equals("")){
+			Product pr = ps.selectOne(product.getPr_no());
+			product.setPr_img(pr.getPr_img());
+		}else{
+			String fileName = mf.getOriginalFilename();
+			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+			mf.transferTo(new File(request.getRealPath("/")+uploadName));
+			product.setPr_img(uploadName);
+		}
+		product.setPr_mno(no);
+		ps.prUpdate(product);
+		List<Product> list = ps.mlist(no);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
+		return "module/main";
+	}
+	@RequestMapping("m_prDelete")
+	public String delete(int pr_no, Model model){
+		ps.prdelete(pr_no);
+		return "redirect:m_prList.do?pr_no="+pr_no;
+	}
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model,HttpSession session) {
@@ -168,7 +203,6 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../donate/mdoReq.jsp");
 		return "module/main";
 	}
-
 	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
 	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
 			HttpServletRequest request) throws IllegalStateException, IOException {
@@ -187,6 +221,41 @@ public class m_mypageController {
 			model.addAttribute("donate", donate);
 			return "redirect:mdoReq.do";
 		}
-
+	}
+	@RequestMapping(value="mdoReqV", method=RequestMethod.GET)
+	public String mdoReqV(int d_no,Model model) {
+		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
+		model.addAttribute("donate",donate);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoReqV.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="mdoReqUp", method=RequestMethod.GET)
+	public String mdoReqUpForm(int d_no, Model model){
+		Donate donate = ds.selectOne(d_no);
+		model.addAttribute("donate",donate);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="mdoReqUp", method=RequestMethod.POST)
+	public String mdoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model) {
+		donate.setD_img("test.jpg");
+		int result = ds.mdoUpdate(donate);
+		
+		if(result >0) {
+			return "redirect:mdoReqV.do?d_no="+donate.getD_no();	
+		} else {
+			model.addAttribute("donate",donate);
+			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+			model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
+			return "module/main";
+		}
 	}
 }

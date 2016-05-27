@@ -13,4 +13,6 @@ public interface DonateDao {
 
 	Donate selectOne(int d_no);
 
+	int mdoUpdate(Donate donate);
+
 }

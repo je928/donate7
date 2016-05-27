@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td>{product.pr_item}</td>
+				<td>${product.pr_item}</td>
 			</tr>
 			<tr>
 				<th>기부처</th>
@@ -45,11 +45,10 @@
 				<th>요청메세지</th>
 				<td>${product.pr_callm}</td>
 			</tr>
-			
 		</table>
 		<div align="center">
-			<button onclick="location.href='m_prUpdate.do'">수정</button>
-			<button onclick="location.href='m_prDelete.do'">삭제</button>
+			<button onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
+			<button onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
 			<button onclick="location.href='m_prList.do'">확인</button>
 		</div>
 

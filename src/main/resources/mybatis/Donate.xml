@@ -26,7 +26,7 @@
 		insert into donate
 		values
 		(#{d_no},#{d_title},#{d_member},sysdate,#{d_content},#{d_plan},#{d_amount},#{d_bank},
-			#{d_account},#{d_img},'n',SYSDATE,SYSDATE)
+			#{d_account},#{d_img},'n',#{d_start_date},#{d_end_date})
 	</insert>
 	<select id="mdoList" resultMap="DonateResult">
 		select * from donate
@@ -34,4 +34,10 @@
 	<select id="selectOne" resultType="donate" parameterType="int">
 		select * from donate where d_no=#{d_no}
 	</select>
+	<update id="mdoUpdate" parameterType="donate">
+			update donate set d_title=#{d_title},d_content=#{d_content},d_plan=#{d_plan},
+			d_amount=#{d_amount},d_bank=#{d_bank},d_account=#{d_account},d_img=#{d_img},
+     d_start_date = to_date(#{d_start_date},'yy/MM/dd'),d_end_date=to_date(#{d_end_date},'yy/MM/dd') where d_no=#{d_no}
+
+	</update>
 </mapper>

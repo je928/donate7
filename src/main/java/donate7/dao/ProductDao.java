@@ -11,12 +11,17 @@ public interface ProductDao {
 	Product selectOne(int pr_no);
 
 
-	List<Product> mlist();
+	List<Product> mlist(int no);
 
 
 	List<Product> olist();
 
 
 	List<Product> prlist();
+
+	int prUpdate(Product product);
+
+	void prdelete(int pr_no);
+
 
 }

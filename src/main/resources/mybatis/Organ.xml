@@ -36,7 +36,15 @@
 	</update>
 	
 	<select id="o_emailChk" parameterType="String" resultType="Integer">
-		select count(*) from (select m_email as email from member where m_del_yn='n' union select o_email from organ where o_del_yn='n') a where a.email=#{o_email}
+		select count(*) from (select o_email as email from organ where o_del_yn='n' union select m_email from member where m_del_yn='n') a where a.email=#{o_email}
+	</select>
+	
+	<select id="selectOname" parameterType="Integer" resultType="String">
+		select o_oname from organ where o_no=#{no}
+	</select>
+	
+	<select id="onameChk" parameterType="organ" resultType="String">
+		(select o_oname from organ where o_oname=#{o_oname} and o_no!=#{no} and o_del_yn='n' union select m_nick from member where m_nick=#{o_oname} and m_del_yn='n') union (select o_oname from organ where o_oname=#{o_oname} and o_no=#{no} and o_del_yn='n' union select m_nick from member where m_nick=#{o_oname} and m_del_yn='n')
 	</select>
 	
 	<select id="selectOrgan" parameterType="Integer" resultMap="OrganResult">

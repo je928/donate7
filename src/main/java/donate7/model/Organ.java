@@ -17,6 +17,15 @@ public class Organ {
 	private Date o_out_date;
 	private String o_del_yn;
 	private String o_ok_yn;
+	private int no;
+	
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
 
 	public int getO_no() {
 		return o_no;

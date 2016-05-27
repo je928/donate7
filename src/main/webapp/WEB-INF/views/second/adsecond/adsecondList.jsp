@@ -10,7 +10,7 @@
 <body>
 
 	<div align="center">
-		<form action="osecondList.do">
+		<form action="adsecondList.do">
 			<table class="table table-striped table-hover">
 				<caption>중고기부 내역</caption>
 				<tr>
@@ -24,7 +24,7 @@
 				<c:forEach var="second" items="${list }">
 					<tr>
 						<th>${second.sh_no }</th>
-						<th><a href="osecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
+						<th><a href="adsecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 						<th>${second.sh_category }</th>
 						<th>${second.sh_reg_date }</th>
 						<th>${second.sh_approve }</th>
@@ -34,9 +34,7 @@
 
 			</table>
 		</form>
-		<div align="center">
-			<button onclick="location.href='osecondForm.do'">요청하기</button>
-		</div>
+
 	</div>
 
 </body>

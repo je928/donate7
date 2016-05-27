@@ -6,16 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+   function readURL(input, id) {
+      if (input.files && input.files[0]) {
+         var reader = new FileReader();
+         reader.onload = function(e) {
+            $('#' + id).attr('src', e.target.result);
+         }
+         reader.readAsDataURL(input.files[0]);
+      }
+   }
+</script>
 </head>
 <body>
-	<c:if test="${not empty msg }">
-			<font color="red">
-				${msg }
-			</font>
-			</c:if>
-			<c:if test="${not empty fileName }">
-				<img src="/ex/${fileName }">
-			</c:if>
+
 	<form action="m_prWrite.do" method="post" enctype="multipart/form-data">
 		<table class="table table-striped table-hover">
 			<caption>판매요청</caption>
@@ -33,9 +37,10 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td><input type="radio" name="pr_item" required="required" >Fashion &nbsp;
-					<input type="radio" name="pr_item" required="required" >Design	&nbsp;
-					<input type="radio" name="pr_item" required="required" >Smart Phone &nbsp;
+				<td><input type="radio" name="targetSelect" id="sendAll" value="option1" checked>
+					<input type="radio" name="pr_item" required="required" id="Fashion" value="option1">Fashion &nbsp;
+					<input type="radio" name="pr_item" required="required" id="Design" value="option1">Design	&nbsp;
+					<input type="radio" name="pr_item" required="required" id="Smart Phone" value="Smart option1" >Smart Phone &nbsp;
 				</td>
 			</tr>
 			<tr>
@@ -44,7 +49,8 @@
 			</tr>
 			<tr>
 				<th>사진</th>
-				<td><input type="file" name="mimg" required="required" ></td>
+				<td><img src="" width="300px" id="UploadImg1">				
+				<input type="file" name="mimg" id="file1" onchange="readURL(this,'UploadImg1');"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
