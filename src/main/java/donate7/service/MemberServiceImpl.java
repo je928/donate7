@@ -43,16 +43,21 @@ public class MemberServiceImpl implements MemberService {
 		return md.o_onameChk(o_oname, organ);
 	}
 	
-	public String selectO_addrByO_no(int o_no) {
-		return md.selectO_addrByO_no(o_no);
-	}
-
 	public List<Organ> selectAll() {
 		return md.selectAll();
 	}
 
+	public List<Member> memberAll() {
+		return md.memberAll();
+	}
+
+	public String selectO_addrByO_no(int o_no) {
+		return md.selectO_addrByO_no(o_no);
+	}
+	
 	public Organ selectByO_no(int o_no) {
 		return md.selectByO_no(o_no);
 	}
+
 	
 }

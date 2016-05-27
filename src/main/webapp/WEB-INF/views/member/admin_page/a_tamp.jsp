@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-9-2">
             	<c:if test="${empty mypgm}">
-					<jsp:include page="a_memberAll.jsp"/>
+					<jsp:include page="a_memberAll.do"/>
 				</c:if> 
 				<c:if test="${not empty mypgm}">
 					<jsp:include page="${mypgm}"/>

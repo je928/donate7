@@ -145,14 +145,18 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
-	public String selectO_addrByO_no(int o_no) {
-		return session.selectOne("organ.selectO_addrByO_no",o_no);
-	}
-
 	public List<Organ> selectAll() {
 		return session.selectList("organ.selectAll");
 	}
 
+	public List<Member> memberAll() {
+		return session.selectList("member.selectAll");
+	}
+
+	public String selectO_addrByO_no(int o_no) {
+		return session.selectOne("organ.selectO_addrByO_no",o_no);
+	}
+	
 	public Organ selectByO_no(int o_no) {
 		return session.selectOne("organ.selectOrgan",o_no);
 	}

@@ -332,7 +332,7 @@ th {
 	font-family: 'Glyphicons Halflings';
 	font-style: normal;
 	font-weight: normal;
-	line-height: 1;
+	line-height: 1.2;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -8709,4 +8709,11 @@ h4 {
 		rgba(102, 175, 233, 0.6);
 }
 
+
+.fa-1x {
+	font-size: 1.2em;
+}
+
 /* ----------------------------------------------------------------------- */
+
+

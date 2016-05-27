@@ -14,8 +14,10 @@ public interface MemberDao {
 	int m_nickChk(String m_nick, Member member);
 	int o_emailChk(String o_email);
 	int o_onameChk(String o_oname, Organ organ);
-	String selectO_addrByO_no(int o_no);
+	List<Member> memberAll();
 	List<Organ> selectAll();
+	
+	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
 	
 }

@@ -122,32 +122,37 @@
 							<th>email</th>
 							<th>name</th>													
 							<th>nick</th>
-							<th>birthday</th>																										
-							<th>gender</th>
+							<th>birthday</th>
 							<th>tel</th>
-							<th>job</th>										
+							<th>warning</th>													
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${not empty memberAll}">
+						<c:forEach var="mem" items="${memberAll}">
 						<tr>
-							<td>1</td>
-							<td>je928@daum.net</td>
-							<td>곽지은</td>
-							<td>je928</td>
-							<td>90/09/28</td>
-							<td>여자</td>
-							<td>010-3381-1638</td>
-							<td>기타</td>
+							<td>${mem.m_no}</td>
+							<td>${mem.m_email}</td>
+							<td>${mem.m_name}</td>
+							<td>${mem.m_nick}</td>
+							<td>${mem.m_birth}</td>
+							<td>${mem.m_tel}</td>
+							<td>0</td>
 							<td align="center">
 								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
 								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
 							</td>
 						</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty memberAll}">
+						<tr>
+							<td colspan="8">데이터가 없습니다.</td>
+						</tr>
+					</c:if>
 					</tbody>
-					
 				</table>
-
 			</div>
 			<div class="panel-footer2">
 				<div class="row">
@@ -185,34 +190,39 @@
 						<tr>
 							<th>no</th>
 							<th>email</th>
-							<th>name</th>													
-							<th>nick</th>
-							<th>birthday</th>																										
-							<th>gender</th>
+							<th>license</th>													
+							<th>oname</th>													
+							<th>name</th>
 							<th>tel</th>
-							<th>job</th>										
+							<th>ok_yn</th>							
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${not empty organAll}">
+						<c:forEach var="org" items="${organAll}">
 						<tr>
-							<td>1</td>
-							<td>je928@daum.net</td>
-							<td>곽지은</td>
-							<td>je928</td>
-							<td>90/09/28</td>
-							<td>여자</td>
-							<td>010-3381-1638</td>
-							<td>기타</td>
+							<td>${org.o_no}</td>
+							<td>${org.o_email}</td>
+							<td>${org.o_license}</td>							
+							<td>${org.o_oname}</td>
+							<td>${org.o_name}</td>
+							<td>${org.o_tel}</td>
+							<td>${org.o_ok_yn}</td>
 							<td align="center">
 								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
 								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
 							</td>
 						</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty organAll}">
+						<tr>
+							<td colspan="8">데이터가 없습니다.</td>
+						</tr>
+					</c:if>
 					</tbody>
-					
 				</table>
-
 			</div>
 			<div class="panel-footer2">
 				<div class="row">

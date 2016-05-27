@@ -9,7 +9,7 @@
 <body>
 	
 	<div class="list-group">
-		<a href="a_memberAll.do" class="list-group-item">모든회원정보보기</a>
+		<a href="a_memberAll.do" class="list-group-item">회원 관리</a>
 		<a href="giftUpload.do" class="list-group-item">기프티콘 올리기</a>
 		<a href="services.html" class="list-group-item">Services</a>
 		<a href="contact.html" class="list-group-item">Contact</a>
