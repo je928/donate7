@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,8 +32,8 @@
             </div>
             <div class="col-md-9-2">
             	<c:if test="${empty mypgm}">
-					<jsp:include page="a_memberAll.do"/>
-				</c:if> 
+					<jsp:include page="a_index.jsp"/>
+				</c:if>
 				<c:if test="${not empty mypgm}">
 					<jsp:include page="${mypgm}"/>
 				</c:if>

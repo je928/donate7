@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-	String no = session.getAttribute("no").toString();
+	String no = String.valueOf(session.getAttribute("no"));
 	if(no == null || no.equals("") || no.equals("null")) {
 %>
 		<script type="text/javascript">

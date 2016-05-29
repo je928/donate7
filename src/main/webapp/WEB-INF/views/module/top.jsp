@@ -66,7 +66,7 @@
 							<li><a href="m_tamp.do">마이페이지</a></li>
 						</c:if>
 						<c:if test="${no == 1}">
-							<li><a href="a_memberAll.do">마이페이지</a></li>
+							<li><a href="a_tamp.do">마이페이지</a></li>
 						</c:if>
 						<li><a href="logout.do">로그아웃</a></li>
 					</ul>

@@ -21,6 +21,7 @@ public class adminController {
 		model.addAttribute("mypgm", "../../gift/giftUpload.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value="adsecondView", method=RequestMethod.GET)
 	public String msecondView(int sh_no, Model model){
 		Second second = ss.selectOne(sh_no);
@@ -29,6 +30,7 @@ public class adminController {
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondView.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value = "adsecondList", method = RequestMethod.GET)
 	public String adsecondList(Model model) {
 		List<Second> list = ss.adlist();
@@ -37,4 +39,5 @@ public class adminController {
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondList.jsp");
 		return "module/main";
 	}
+	
 }
