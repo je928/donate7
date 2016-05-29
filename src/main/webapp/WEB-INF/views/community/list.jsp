@@ -14,7 +14,8 @@
 </script>
 </head>
 <body>
-
+	
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-17">
@@ -32,100 +33,72 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col-lg-8 col-md-offset-18">
-				<table class="table table-striped table-hover">
-					<thead>
-						<tr>
-							<th width="5%">#</th>
-							<th width="35%">제목</th>
-							<th width="12%">글쓴이</th>
-							<th width="9%">작성일</th>
-							<th width="6%">조회수</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>게시물작성자요</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-							<td>Column content</td>
-							<td>2016-05-22</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td colspan="5">데이터가 없습니다.</td>
-						</tr>
-					</tbody>
-				</table>				
+		<div class="col-lg-9 col-md-offset-18">
+				<div class="panel panel-default panel-table">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col col-xs-6">
+							</div>
+							<div class="col col-xs-6 text-right">
+								<button type="button" class="btn btn-sm btn-primary btn-create" onclick="location.href='writeForm.do?pageNum=${pageNum}'">글쓰기</button>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body2">
+						<table class="table table-striped table-bordered table-list">
+							<thead>
+								<tr>
+									<th width="5%">#</th>
+									<th width="35%">제목</th>
+									<th width="12%">글쓴이</th>
+									<th width="9%">작성일</th>
+									<th width="6%">조회수</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:if test="${not empty memberAll}">
+								<c:forEach var="mem" items="${memberAll}">
+								<tr>
+									<td>1</td>
+									<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
+									<td>Column content</td>
+									<td>2016-05-22</td>
+									<td>0</td>
+								</tr>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty memberAll}">
+								<tr>
+									<td colspan="8">데이터가 없습니다.</td>
+								</tr>
+							</c:if>
+							</tbody>
+						</table>
+					</div>
+					<div class="panel-footer2">
+						<div class="row">
+							<div class="col col-xs-4">Page 1 of 5</div>
+							<div class="col col-xs-8">
+								<ul class="pagination hidden-xs pull-right">
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+								</ul>
+								<ul class="pagination visible-xs pull-right">
+									<li><a href="#">«</a></li>
+									<li><a href="#">»</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
+
 	<div align="center">
-		<c:if test="${startPage > pagePerBlock}">
+		<%-- <c:if test="${startPage > pagePerBlock}">
 			<a href="javascript:locate(${startPage-pagePerBlock})">[이전]</a>
 			<a href="javascript:locate(1)">[1]</a>
 			...
@@ -142,13 +115,8 @@
 			...
 			<a href="javascript:locate(${totalPage})">[${totalPage}]</a>
 			<a href="javascript:locate(${startPage+pagePerBlock})">[다음]</a>
-		</c:if>
+		</c:if> --%>
 		
-		<p>
-		<p>
-		<button class="btn btn-default" onclick="location.href='writeForm.do?pageNum=${pageNum}'">글쓰기</button>
-		<br>
-
 	<form class="navbar-form">
 		<div class="form-group">
 			<select class="form-control input-lg" id="searchType">

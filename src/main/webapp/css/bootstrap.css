@@ -1407,7 +1407,7 @@ body {
 	font-size: 13px;
 	line-height: 1.846;
 	color: #666666;
-	background-color: #e8eaee;
+	background-color: #f9f9f9;
 }
 
 input, button, select, textarea {
@@ -8606,11 +8606,6 @@ h4 {
 	margin-top: 5%;
 }
 
-.col-md-offset-18 {
-	position: relative;
-	margin-left: 16.7%;
-}
-
 .red {
 	color: red;
 }
@@ -8647,7 +8642,12 @@ h4 {
 }
 
 /* ----------------------------------------------------------------------- */
-/* community */
+/* community, a_memberAll */
+
+.col-md-offset-18 {
+	position: relative;
+	margin-left: 13%;
+}
 
 .form-control-8 {
 	display: inline;
@@ -8714,6 +8714,77 @@ h4 {
 	font-size: 1.2em;
 }
 
+.panel-table .panel-footer2 .col{
+ line-height: 34px;
+ height: 34px;
+}
+
+.panel-table .panel-heading .col h3{
+ line-height: 30px;
+ height: 30px;
+}
+
+.panel-table .panel-body2 .table-bordered > tbody > tr > td{
+  line-height: 34px;
+}
+
+.panel-table .panel-footer2 .pagination {
+  margin:0; 
+}
+
+.panel-table .panel-body2{
+  padding:0;
+}
+
+.panel-table .panel-body2 .table-bordered{
+  border-style: none;
+  margin:0;
+}
+
+.panel-footer2 {
+	padding: 10px 15px;
+	background-color: #f5f5f5;
+	border-top: 1px solid #dddddd;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.list-group2 {
+	margin-right: 20px;
+	margin-bottom: 20px;
+	padding-left: 0;
+}
+
+.btn-default2 {
+	-webkit-background-size: 200% 200%;
+	background-size: 200%;
+	background-position: 50%;
+}
+
+.btn-default2:focus {
+	background-color: #ffffff;
+}
+
+.btn-default2:hover, .btn-default2:active:hover {
+	background-color: #f0f0f0;
+}
+
+.btn-default2:active {
+	background-color: #e0e0e0;
+	background-image: -webkit-radial-gradient(circle, #e0e0e0 10%, #ffffff 11%);
+	background-image: -o-radial-gradient(circle, #e0e0e0 10%, #ffffff 11%);
+	background-image: radial-gradient(circle, #e0e0e0 10%, #ffffff 11%);
+	background-repeat: no-repeat;
+	-webkit-background-size: 1000% 1000%;
+	background-size: 1000%;
+	-webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-default2 {
+	color: #444444;
+	background-color: #ffffff;
+	border-color: transparent;
+}
+
 /* ----------------------------------------------------------------------- */
-
-
