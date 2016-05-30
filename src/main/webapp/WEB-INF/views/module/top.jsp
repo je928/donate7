@@ -36,11 +36,6 @@
 							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="download">
-							<c:if test="${sessionScope.no < 0 }">
-								<li><a href="reqResist.do">수요 요청</a></li>
-								<li><a href="manageVol.do">봉사 관리</a></li>
-								<li><a href="hopeList.do">봉사자 조회</a></li>
-							</c:if>
 							<li><a href="reqSearch.do">통합 봉사 조회</a></li>
 							<li><a href="reqListByAddr.do">지역별 봉사 조회</a></li>
 							<li><a href="reqListByField.do">분야별 봉사 조회</a></li>

@@ -35,10 +35,10 @@ public class VolController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping(value="reqResist",method=RequestMethod.GET)
+	@RequestMapping(value="recruitForm",method=RequestMethod.GET)
 	public String reqResistForm(VolReq volReq, Model model){
-		model.addAttribute("pgm", "../vt/req.jsp");
-		model.addAttribute("volReq", volReq);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/recruitForm.jsp");
 		return "module/main";
 	}
 	
