@@ -226,8 +226,12 @@ public class m_mypageController {
 		return "module/main";
 	}
 	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
-	public String mdoList(Model model) {
-		List<Donate> list = ds.list();
+	public String mdoList(Model model,HttpSession session) {
+		int no=(Integer)session.getAttribute("no");
+		Donate donate = new Donate();
+		List<Donate> list = ds.mlist(no);
+		int count = ds.count(donate);
+		model.addAttribute("count",count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
@@ -242,14 +246,15 @@ public class m_mypageController {
 	}
 	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
 	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
-			HttpServletRequest request) throws IllegalStateException, IOException {
+			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
+		int no = (Integer)session.getAttribute("no");
 		String fileName = mf.getOriginalFilename();
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 		mf.transferTo(new File(request.getRealPath("/")+uploadName));
 		donate.setD_img(uploadName);
 		int result = ds.mdoReqInsert(donate);
 		model.addAttribute("msg", "사진 업로드 : "+fileName);
-		List<Donate> list = ds.list();
+		List<Donate> list = ds.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		if(result > 0){
@@ -282,10 +287,19 @@ public class m_mypageController {
 		return "module/main";
 	}
 	@RequestMapping(value="mdoReqUp", method=RequestMethod.POST)
-	public String mdoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model) {
-		donate.setD_img("test.jpg");
+	public String odoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model, 
+			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+		int no = (Integer)session.getAttribute("no");
+		if(mf.getOriginalFilename().equals("")) {
+			Donate don = ds.selectOne(donate.getD_no());
+			donate.setD_img(don.getD_img());
+		} else {
+				String fileName = mf.getOriginalFilename();
+				String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+				mf.transferTo(new File(request.getRealPath("/")+uploadName));
+				donate.setD_img(uploadName);
+		}
 		int result = ds.mdoUpdate(donate);
-		
 		if(result >0) {
 			return "redirect:mdoReqV.do?d_no="+donate.getD_no();	
 		} else {
@@ -294,5 +308,10 @@ public class m_mypageController {
 			model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
 			return "module/main";
 		}
+	}
+	@RequestMapping("mdoReqD")
+	public String mdoReqD(int d_no, Model model){
+		ds.mdoDelete(d_no);
+		return "redirect:mdoList.do?d_no="+d_no;
 	}
 }
