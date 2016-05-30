@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recruit">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="RecruitResult" type="recruit">
+		<result property="vt_no" column="VT_NO"/>
+		<result property="vt_name" column="VT_NAME"/>
+		<result property="vt_o_no" column="VT_O_NO"/>
+		<result property="vt_r_start_date" column="VT_R_START_DATE"/>
+		<result property="vt_r_end_date" column="VT_R_END_DATE"/>
+		<result property="vt_a_start_date" column="VT_A_START_DATE"/>
+		<result property="vt_a_end_date" column="VT_A_END_DATE"/>
+		<result property="vt_class" column="VT_CLASS"/>
+		<result property="vt_tot" column="VT_TOT"/>
+		<result property="vt_subject" column="VT_SUBJECT"/>
+		<result property="vt_desc" column="VT_DESC"/>
+	</resultMap>
+
+	<select id="selectRecruitList" resultMap="RecruitResult">
+		SELECT * FROM RECRUIT
+	</select>
+</mapper>

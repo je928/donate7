@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dclass">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="DclassResult" type="dclass">
+		<result property="dclass_no" column="DCLASS_NO"/>
+		<result property="class_no" column="CLASS_NO"/>
+		<result property="dclass_name" column="DCLASS_NAME"/>
+	</resultMap>
+
+	<select id="selectDclass" resultMap="DclassResult" parameterType="int">
+		SELECT * FROM DCLASS WHERE CLASS_NO = #{class_no}
+	</select>
+
+</mapper>

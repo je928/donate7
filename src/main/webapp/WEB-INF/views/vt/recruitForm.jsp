@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
-<%@ include file="../session/orgChk.jsp" %>
+<%@ include file="../session/orgChk.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,99 +45,177 @@
 				};
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 
-				$('#sdate').datepicker();
-				$('#sdate').datepicker("option", "maxDate", $("#edate").val());
-				$('#sdate').datepicker(
+				$('#vsdate').datepicker();
+				$('#vsdate')
+						.datepicker("option", "maxDate", $("#vedate").val());
+				$('#vsdate').datepicker(
 						"option",
 						"onClose",
 						function(selectedDate) {
 							if (selectedDate != 0) {
-								$("#edate").datepicker("option", "minDate",
+								$("#vedate").datepicker("option", "minDate",
 										selectedDate);
 							} else {
-								$("#edate").datepicker("option", "minDate",
+								$("#vedate").datepicker("option", "minDate",
 										'today');
 							}
 
 						});
 
-				$('#edate').datepicker();
-				$('#edate').datepicker("option", "minDate", $("#sdate").val());
-				$('#edate').datepicker(
+				$('#vedate').datepicker();
+				$('#vedate')
+						.datepicker("option", "minDate", $("#vsdate").val());
+				$('#vedate').datepicker(
 						"option",
 						"onClose",
 						function(selectedDate) {
-							$("#sdate").datepicker("option", "maxDate",
+							$("#vsdate").datepicker("option", "maxDate",
 									selectedDate);
 						});
+
+				$('#rsdate').datepicker();
+				$('#rsdate')
+						.datepicker("option", "maxDate", $("#redate").val());
+				$('#rsdate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							if (selectedDate != 0) {
+								$("#redate").datepicker("option", "minDate",
+										selectedDate);
+							} else {
+								$("#redate").datepicker("option", "minDate",
+										'today');
+							}
+
+						});
+
+				$('#redate').datepicker();
+				$('#redate')
+						.datepicker("option", "minDate", $("#rsdate").val());
+				$('#redate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							$("#rsdate").datepicker("option", "maxDate",
+									selectedDate);
+						});
+
+				$('#cls').change(
+						function() {
+							var sendData = 'class_no='
+									+ $('#cls option:selected').val();
+							$.post('dclassList.do', sendData, function(data) {
+								$('#res').html(data);
+							});
+						});
+				
+				/* //검색버튼 클릭
+				$("#searchButton").click(function(){
+				    var objParams = {
+				            searchCd : $("input[name=searchCd]").val() //검색할 코드 (실제로 예제에서는 사용 안함)
+				    }
+				 
+				    var values = []; //ArrayList 값을 받을 변수를 선언
+				 
+				    //검색할 코드를 넘겨서 값을 가져온다.      
+				    $.post(
+				        "http://www.test.com/get", 
+				        objParams,
+				        function(retVal) {
+				            if(retVal.code == "OK") { //controller에서 넘겨준 성공여부 코드
+				                 
+				                values = retVal.bookList ; //java에서 정의한 ArrayList명을 적어준다.
+				                 
+				                $.each(values, function( index, value ) {
+				                   console.log( index + " : " + value.name ); //Book.java 의 변수명을 써주면 된다.
+				                });
+				                 
+				                alert("성공");
+				            }
+				            else {
+				                alert("실패");
+				            }                   
+				        }
+				    );
+				     
+				}); */
 			});
 </script>
 <style type="text/css">
-.req-container{
-	width : 900px;
+.req-container {
+	width: 900px;
 }
-.req-form-area{
+
+.req-form-area {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.req-form-name{
-	margin-bottom: 25px; 
-	text-align: left; 
+
+.req-form-name {
+	margin-bottom: 25px;
+	text-align: left;
 	font-weight: bold;
 }
 </style>
 </head>
 <body>
 	<div class="container">
-		<div class="col-md-offset-14 col-md-5" style="margin-left: 0; margin-top: 0;">
+		<div class="col-md-offset-14 col-md-5"
+			style="margin-left: 0; margin-top: 0;">
 			<div class="form-area req-container">
-				<form role="form" action="reqResist.do" method="post">
-				<input type="hidden" name="vt_o_no" value="${sessionScope.no}">
+				<form role="form" action="recruit.do" method="post">
+					<input type="hidden" name="vt_o_no" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
 					<div class="form-area req-form-area">
 						<p class="req-form-name">봉사 상세</p>
 						<div class="form-group">
-							<b>봉사명:</b> <input type="text" class="form-control" id="vt_Name"
-								name="vt_Name" required>
+							<b>봉사명:</b> <input type="text" class="form-control" id="vt_name"
+								name="vt_name" required>
 						</div>
 						<div class="form-group">
-							<b>봉사지역:</b>
+							<b>봉사지역: </b>${ addr}
 						</div>
 						<div class="form-group">
-							<b>봉사장소:</b>
-						</div>
-						<div class="form-group">
-							<b>봉사대상자:</b> <input type="text" class="form-control"
-								id="vt_Subject" name="vt_Subject" required>
-						</div>
-						<div class="form-group">
-							<b style="display: block;">봉사 기간 :</b> 시작일 : <input
+							<b style="display: block;">봉사 모집 기간 :</b> 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_Start_Date" id="sdate" size="10" maxlength="10" /> 종료일
-							: <input class="form-control-20" readonly="readonly" type="text"
-								name="vt_End_Date" id="edate" size="10" maxlength="10" />
+								name="vt_r_start_Date" id="rsdate" size="10" maxlength="10" />
+							종료일 : <input class="form-control-20" readonly="readonly"
+								type="text" name="vt_r_end_Date" id="redate" size="10"
+								maxlength="10" />
 						</div>
 						<div class="form-group">
-							<b>요청 인원:</b> <select class="form-control-40" name="vt_Total" id="vt_Total">
+							<b style="display: block;">봉사 활동 기간 :</b> 시작일 : <input
+								class="form-control-20" readonly="readonly" type="text"
+								name="vt_a_start_Date" id="vsdate" size="10" maxlength="10" />
+							종료일 : <input class="form-control-20" readonly="readonly"
+								type="text" name="vt_a_end_Date" id="vedate" size="10"
+								maxlength="10" />
+						</div>
+						<div class="form-group">
+							<div style="float: left; width: 50%">
+								<b style="display: block;">활동분야:</b> <select style="float: left; width: 50%"
+									class="form-control-40" name="cls" id="cls">
+										<c:forEach var="cl" items="${list}">
+											<option value="${cl.class_no }">${cl.class_name }</option>
+										</c:forEach>
+								</select><span id="res"></span>
+							</div>
+							<div>
+								<b>봉사 대상자:</b> <select class="form-control-40" name="cls"
+									id="cls" style="display: block;">
+									<c:forEach var="sub" items="${slist}">
+										<option value="${sub.sub_no }">${sub.sub_name }</option>
+									</c:forEach>
+								</select> <span id="res"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<b>요청 인원:</b> <select class="form-control-40" name="vt_tot"
+								id="vt_tot">
 								<c:forEach var="i" begin="0" end="50">
 									<option value="${i }">${i }</option>
 								</c:forEach>
-							</select>
-						</div>
-						<div class="form-group">
-							<b>활동분야:</b> <select class="form-control-40" name="vt_Field" id="vt_Field">
-								<option value="C">시설봉사</option>
-								<option value="H">재가봉사</option>
-								<option value="M">전문봉사</option>
-								<option value="S">지역사회봉사</option>
-								<option value="G">해외봉사</option>
-								<option value="E" selected="selected">기타봉사</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<b>활동주기:</b> <select class="form-control-40" name="vt_Cycle" id="vt_Cycle">
-								<option value="C">정기</option>
-								<option value="N" selected="selected">비정기</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -145,45 +223,6 @@
 							<textarea rows="5" cols="80" name="vt_Desc" id="vt_Desc"></textarea>
 						</div>
 					</div>
-					<div class="form-area req-form-area">
-					<p class="req-form-name">담당자 정보</p>
-						<div class="form-group">
-							<b>담당자:</b> <input type="text" class="form-control" id="vt_Mgr"
-								name="vt_Mgr" required>
-						</div>
-
-						<div class="form-group">
-							<b>담당자 연락처:</b> <input type="tel" class="form-control"
-								id="vt_Mgr_Tel" name="vt_Mgr_Tel" required>
-						</div>
-
-						<div class="form-group">
-							<b>담당자 이메일:</b> <input type="email" class="form-control"
-								id="vt_Mgr_Email" name="vt_Mgr_Email" required>
-						</div>
-					</div>
-					<div class="form-area req-form-area">
-					<p class="req-form-name">봉사자 자격조건</p>
-						<div class="form-group">
-							<b>봉사자 연령:</b> <input type="text" class="form-control" id="vt_Age"
-								name="vt_Age">
-						</div>
-
-						<div class="form-group">
-							<b>봉사자 성별:</b> <input type="text" class="form-control"
-								id="vt_Gender" name="vt_Gender">
-						</div>
-
-						<div class="form-group">
-							<b>자격요건:</b> <input type="text" class="form-control"
-								id="vt_Qualify" name="vt_Qualify">
-						</div>
-						<div class="form-group">
-							<b>사전교육:</b> <input type="text" class="form-control"
-								id="vt_Prior_Edu" name="vt_Prior_Edu">
-						</div>
-					</div>
-
 					<div style="margin-top: 40px; text-align: center;">
 						<input type="submit" class="btn btn-primary btn-md" value="요청">
 					</div>
