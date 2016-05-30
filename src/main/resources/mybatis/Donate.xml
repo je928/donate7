@@ -29,7 +29,7 @@
 			#{d_account},#{d_img},'n',#{d_start_date},#{d_end_date})
 	</insert>
 	<select id="mdoList" resultMap="DonateResult">
-		select * from donate
+		select * from donate where d_member>0 and d_member=#{d_member} order by d_reg_date desc
 	</select>
 	<select id="selectOne" resultType="donate" parameterType="int">
 		select * from donate where d_no=#{d_no}
@@ -38,6 +38,29 @@
 			update donate set d_title=#{d_title},d_content=#{d_content},d_plan=#{d_plan},
 			d_amount=#{d_amount},d_bank=#{d_bank},d_account=#{d_account},d_img=#{d_img},
      d_start_date = to_date(#{d_start_date},'yy/MM/dd'),d_end_date=to_date(#{d_end_date},'yy/MM/dd') where d_no=#{d_no}
-
 	</update>
+	<delete id ="mdoDelete" parameterType="int" >
+		delete from donate where d_no=#{d_no}
+	</delete>
+	<select id="odoList" resultMap="DonateResult">
+		select * from donate where d_member<![CDATA[<]]>0 and d_member=#{d_member} order by d_reg_date desc
+	</select>
+	<insert id="odoReqInsert" parameterType="donate">
+		insert into donate
+		values
+		(#{d_no},#{d_title},#{d_member},sysdate,#{d_content},#{d_plan},#{d_amount},#{d_bank},
+			#{d_account},#{d_img},'n',#{d_start_date},#{d_end_date})
+	</insert>
+	<update id="odoUpdate" parameterType="donate">
+			update donate set d_title=#{d_title},d_content=#{d_content},d_plan=#{d_plan},
+			d_amount=#{d_amount},d_bank=#{d_bank},d_account=#{d_account},d_img=#{d_img},
+     d_start_date = to_date(#{d_start_date},'yy/MM/dd'),d_end_date=to_date(#{d_end_date},'yy/MM/dd') where d_no=#{d_no}
+	</update>
+	<delete id ="odoDelete" parameterType="int" >
+		delete from donate where d_no=#{d_no}
+	</delete>
+	<select id="count" parameterType="donate" resultType="int">
+		select count(*) from donate <if test ="d_member!=1">where d_member=#{d_member}</if>
+	</select>
+	
 </mapper>

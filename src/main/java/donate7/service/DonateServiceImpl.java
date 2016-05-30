@@ -15,14 +15,32 @@ public class DonateServiceImpl implements DonateService {
 	public int mdoReqInsert(Donate donate) {
 		return dd.mdoReqInsert(donate);
 	}
-	public List<Donate> list() {
-		return dd.list();
+	public List<Donate> mlist(int no) {
+		return dd.mlist(no);
 	}
 	public Donate selectOne(int d_no) {
 		return dd.selectOne(d_no);
 	}
 	public int mdoUpdate(Donate donate) {
 		return dd.mdoUpdate(donate);
+	}
+	public void mdoDelete(int d_no) {
+		dd.mdoDelete(d_no);
+	}
+	public List<Donate> olist(int no) {
+		return dd.olist(no);
+	}
+	public int odoReqInsert(Donate donate) {
+		return dd.odoReqInsert(donate);
+	}
+	public int odoUpdate(Donate donate) {
+		return dd.odoUpdate(donate);
+	}
+	public void odoDelete(int d_no) {
+		dd.odoDelete(d_no);
+	}
+	public int count(Donate donate) {
+		return dd.count(donate);
 	}
 
 }

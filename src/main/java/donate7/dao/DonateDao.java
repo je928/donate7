@@ -9,10 +9,22 @@ public interface DonateDao {
 
 	int mdoReqInsert(Donate donate);
 
-	List<Donate> list();
+	List<Donate> mlist(int no);
 
 	Donate selectOne(int d_no);
 
 	int mdoUpdate(Donate donate);
+
+	void mdoDelete(int d_no);
+
+	List<Donate> olist(int no);
+
+	int odoReqInsert(Donate donate);
+
+	int odoUpdate(Donate donate);
+
+	void odoDelete(int d_no);
+
+	int count(Donate donate);
 
 }

@@ -89,10 +89,10 @@
 </head>
 <body>
 	<div class="container">
-		<div class="col-md-offset-14 col-md-5" style="margin-left: 10%">
+		<div class="col-md-offset-14 col-md-5" style="margin-left: 0; margin-top: 0;">
 			<div class="form-area req-container">
 				<form role="form" action="reqResist.do" method="post">
-				<input type="hidden" name="vt_Reg_O_No" value="${sessionScope.no}">
+				<input type="hidden" name="vt_o_no" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록</h4>
 					<div class="form-area req-form-area">
 						<p class="req-form-name">봉사 상세</p>

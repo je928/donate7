@@ -121,10 +121,19 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../second/msecond/msecondView.jsp");
 		return "module/main";
 	}
+	@RequestMapping("msecondDelete")
+	public String msdelete(int sh_no, Model model){
+		ss.msdelete(sh_no);
+		return "redirect:msecondList.do?sh_no="+sh_no;
+	}
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
 		List<Product> list = ps.mlist(no);
+		Product product = new Product();
+		product.setPr_mno(no);
+		int count=ps.count(product);
+		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -148,20 +157,20 @@ public class m_mypageController {
 		product.setPr_img(uploadName);
 		product.setPr_mno(no);
 		ps.insert(product);
-		model.addAttribute("msg", "파일이름 : "+fileName);
-		List<Product> list = ps.prlist();
+		List<Product> list = ps.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value="m_prView", method=RequestMethod.GET)
 	public String m_prView(int pr_no, Model model){
 		Product product = ps.selectOne(pr_no);
 		model.addAttribute("product", product);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/m_prView.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
 		return "module/main";
 	}
 	@RequestMapping(value ="m_prUpdate", method = RequestMethod.GET)
@@ -199,7 +208,6 @@ public class m_mypageController {
 		ps.prdelete(pr_no);
 		return "redirect:m_prList.do?pr_no="+pr_no;
 	}
-	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model,HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
@@ -223,8 +231,13 @@ public class m_mypageController {
 		return "module/main";
 	}
 	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
-	public String mdoList(Model model) {
-		List<Donate> list = ds.list();
+	public String mdoList(Model model,HttpSession session) {
+		int no=(Integer)session.getAttribute("no");
+		Donate donate = new Donate();
+		donate.setD_member(no);
+		List<Donate> list = ds.mlist(no);
+		int count = ds.count(donate);
+		model.addAttribute("count",count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
@@ -239,14 +252,15 @@ public class m_mypageController {
 	}
 	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
 	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
-			HttpServletRequest request) throws IllegalStateException, IOException {
+			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
+		int no = (Integer)session.getAttribute("no");
 		String fileName = mf.getOriginalFilename();
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 		mf.transferTo(new File(request.getRealPath("/")+uploadName));
 		donate.setD_img(uploadName);
 		int result = ds.mdoReqInsert(donate);
 		model.addAttribute("msg", "사진 업로드 : "+fileName);
-		List<Donate> list = ds.list();
+		List<Donate> list = ds.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		if(result > 0){
@@ -279,10 +293,19 @@ public class m_mypageController {
 		return "module/main";
 	}
 	@RequestMapping(value="mdoReqUp", method=RequestMethod.POST)
-	public String mdoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model) {
-		donate.setD_img("test.jpg");
+	public String odoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model, 
+			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+		int no = (Integer)session.getAttribute("no");
+		if(mf.getOriginalFilename().equals("")) {
+			Donate don = ds.selectOne(donate.getD_no());
+			donate.setD_img(don.getD_img());
+		} else {
+				String fileName = mf.getOriginalFilename();
+				String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
+				mf.transferTo(new File(request.getRealPath("/")+uploadName));
+				donate.setD_img(uploadName);
+		}
 		int result = ds.mdoUpdate(donate);
-		
 		if(result >0) {
 			return "redirect:mdoReqV.do?d_no="+donate.getD_no();	
 		} else {
@@ -291,5 +314,10 @@ public class m_mypageController {
 			model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
 			return "module/main";
 		}
+	}
+	@RequestMapping("mdoReqD")
+	public String mdoReqD(int d_no, Model model){
+		ds.mdoDelete(d_no);
+		return "redirect:mdoList.do?d_no="+d_no;
 	}
 }

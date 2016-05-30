@@ -17,20 +17,22 @@
 					<th>작성일</th>
 					<th>승인여부</th>
 				</tr>
-				<c:forEach var="pr" items="${list}">
-					<tr>
-						<td>${pr.pr_no}</td>
-						<td><a href="m_prView.do?pr_no=${pr.pr_no}">
-							${pr.pr_proname }</a></td>
-						<td>${pr.pr_date}</td>
-						<td>${pr.pr_approve}</td>
-					
-					</tr>
+				<c:set var="cnt" value="${count}"/>
+					<c:forEach var="pr" items="${list}">
+						<tr>
+							<td>${cnt}</td>
+							<td><a href="o_prView.do?pr_no=${pr.pr_no}">
+								${pr.pr_proname }</a></td>
+							<td>${pr.pr_date}</td>
+							<td>${pr.pr_approve}</td>
+						
+						</tr>
+					<c:set var="cnt" value="${cnt -1}"/>
 				</c:forEach>
 			</table>
 		</form>
 		<div align="center">
-			<button onclick="location.href='m_prWrite.do'">요청하기</button>
+			<button onclick="location.href='o_prWrite.do'">요청하기</button>
 		</div>
 	
 </body>

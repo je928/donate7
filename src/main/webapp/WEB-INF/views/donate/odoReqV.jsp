@@ -43,9 +43,9 @@
 			</tr>
 		</table>
 		<div align="center">
-				<button onclick="location.href='mdoList.do'">목록</button>			
-				<button onclick="location.href='mdoReqUp.do?d_no=${donate.d_no}'">수정</button>
-				<button onclick="location.href='mdoReqD.do?d_no=${donate.d_no}'">삭제</button>
+				<button onclick="location.href='odoList.do'">목록</button>			
+				<button onclick="location.href='odoReqUp.do?d_no=${donate.d_no}'">수정</button>
+				<button onclick="location.href='odoReqD.do?d_no=${donate.d_no}'">삭제</button>
 		</div>
 </body>
 </html>

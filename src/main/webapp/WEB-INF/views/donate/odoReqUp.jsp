@@ -20,7 +20,7 @@
 </script>
 </head>
 <body>
-	<form action="mdoReqUp.do" method="post" enctype="multipart/form-data">
+	<form action="odoReqUp.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="d_no" value="${donate.d_no}">
 		<table class="table table-striped table-hover">		
 			<tr>

@@ -17,15 +17,18 @@
 					<th>작성일</th>
 					<th>승인여부</th>
 				</tr>
-				<c:forEach var="pr" items="${list}">
-					<tr>
-						<td>${pr.pr_no}</td>
-						<td><a href="m_prView.do?pr_no=${pr.pr_no}">
-							${pr.pr_proname }</a></td>
-						<td>${pr.pr_date}</td>
-						<td>${pr.pr_approve}</td>
+				<c:set var="cnt" value="${count}"/>
+					<c:forEach var="pr" items="${list}">
 					
-					</tr>
+						<tr>
+							<td>${cnt}</td>
+							<td><a href="m_prView.do?pr_no=${pr.pr_no}">
+								${pr.pr_proname }</a></td>
+							<td>${pr.pr_date}</td>
+							<td>${pr.pr_approve}</td>
+						
+						</tr>
+					<c:set var="cnt" value="${cnt -1}"/>
 				</c:forEach>
 			</table>
 		</form>

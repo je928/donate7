@@ -35,9 +35,9 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.mlist",no);
 	}
 
-	public List<Product> olist() {
+	public List<Product> olist(int no) {
 		
-		return st.selectList("product.olist");
+		return st.selectList("product.olist",no);
 	}
 
 	public List<Product> prlist() {
@@ -58,6 +58,11 @@ public class ProductDaoImpl implements ProductDao{
 	public void prdelete(int pr_no) {
 		st.selectOne("product.prDelete", pr_no);
 		
+	}
+
+	public int count(Product product) {
+		
+		return st.selectOne("product.count", product);
 	}
 
 

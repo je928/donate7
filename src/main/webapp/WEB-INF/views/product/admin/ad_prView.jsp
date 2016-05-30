@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td>{product.pr_item}</td>
+				<td>${product.pr_item}</td>
 			</tr>
 			<tr>
 				<th>기부처</th>

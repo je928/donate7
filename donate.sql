@@ -18,4 +18,3 @@ create table donate (
 select * from donate;
 drop table donate;
 
-

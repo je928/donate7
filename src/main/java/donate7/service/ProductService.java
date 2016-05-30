@@ -11,14 +11,18 @@ public interface ProductService {
 	Product selectOne(int pr_no);
 
 	List<Product> mlist(int no);
-
-	List<Product> olist();
+	
+	List<Product> olist(int no);
 
 	List<Product> prlist();
 
 	int prUpdate(Product product);
 
 	void prdelete(int pr_no);
+	
+	int count(Product product);
+
+	
 
 
 

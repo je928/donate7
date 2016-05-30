@@ -14,7 +14,7 @@ public interface ProductDao {
 	List<Product> mlist(int no);
 
 
-	List<Product> olist();
+	List<Product> olist(int no);
 
 
 	List<Product> prlist();
@@ -22,6 +22,8 @@ public interface ProductDao {
 	int prUpdate(Product product);
 
 	void prdelete(int pr_no);
+
+	int count(Product product);
 
 
 }

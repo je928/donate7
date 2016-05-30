@@ -22,8 +22,8 @@
 
  	<c:if test="${not empty list }">
 	<c:forEach var="donate" items="${list }">
-		<tr><td>${cnt}</td>
-			<td><a href="mdoReqV.do?d_no=${donate.d_no }">${donate.d_title }</a></td>
+		<tr><td>${cnt }</td>
+			<td><a href="odoReqV.do?d_no=${donate.d_no }">${donate.d_title }</a></td>
 			<td>${donate.d_reg_date }</td>
 			<td>${donate.d_approve }</td></tr>
 		<c:set var="cnt" value="${cnt-1}"/>
@@ -35,7 +35,7 @@
  	</c:if>	 
 	</table>
 	<div align="center">
-		<button onclick="location.href='mdoReq.do'">요청글쓰기</button>
+		<button onclick="location.href='odoReq.do'">요청글쓰기</button>
 	</div>
 
 </body>
