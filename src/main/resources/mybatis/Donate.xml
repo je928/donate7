@@ -60,7 +60,7 @@
 		delete from donate where d_no=#{d_no}
 	</delete>
 	<select id="count" parameterType="donate" resultType="int">
-		select count(*) from donate <if test ="d_member !=1">where d_member=#{d_member}</if>
+		select count(*) from donate <if test ="d_member!=1">where d_member=#{d_member}</if>
 	</select>
 	
 </mapper>

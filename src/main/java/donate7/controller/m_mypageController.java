@@ -229,6 +229,7 @@ public class m_mypageController {
 	public String mdoList(Model model,HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
 		Donate donate = new Donate();
+		donate.setD_member(no);
 		List<Donate> list = ds.mlist(no);
 		int count = ds.count(donate);
 		model.addAttribute("count",count);
