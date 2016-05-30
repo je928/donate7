@@ -18,7 +18,6 @@
 					<th width="60">제목</th>
 					<th width="60">상품종류</th>
 					<th width="60">등록일</th>
-					<th width="60">수정</th>
 					<th width="60">승인여부</th>
 					<th width="60">도착여부</th>
 				</tr>
@@ -29,7 +28,6 @@
 						<th><a href="osecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 						<th>${second.sh_category }</th>
 						<th>${second.sh_reg_date }</th>
-						<th><a href="osecondUpdate.do?sh_no=${second.sh_no }">수정</a></th>
 						<th>${second.sh_approve }</th>
 						<th>${second.sh_arrive }</th>
 					</tr>

@@ -171,15 +171,5 @@
 		</div>
 	</div>
 
-	<!-- <table align="center">
-		<tr height="500">
-			<td>
-				<관리자 페이지><br>
-				모든 회원 정보를 볼 수 있는 페이지입니다.<br>
-				a_tamp는 기본적으로 이 페이지(모든회원정보보기)로 갑니다.
-			</td>
-		</tr>
-	</table> -->
-
 </body>
 </html>

@@ -17,5 +17,10 @@
 			<tr><th>승인여부</th><td>${second.sh_approve }</td></tr>
 			<tr><th>도착여부</th><td>${second.sh_arrive }</td></tr>
 		</table>
+		<div align="center">
+			<button onclick="location.href='osecondUpdate.do?sh_no=${second.sh_no}'">수정</button>
+			<button onclick="location.href='osecondDelete.do?sh_no=${second.sh_no}'">삭제</button>
+			<button onclick="location.href='osecondList.do'">확인</button>
+		</div>
 </body>
 </html>

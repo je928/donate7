@@ -34,7 +34,6 @@ public class communityController {
 		}
 		
 		int nowPage = Integer.parseInt(pageNum);
-/*		int currentPage = Integer.parseInt(pageNum); */
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int total = cs.getTotal(searchType, searchTxt, community);
