@@ -121,6 +121,11 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../second/msecond/msecondView.jsp");
 		return "module/main";
 	}
+	@RequestMapping("msecondDelete")
+	public String msdelete(int sh_no, Model model){
+		ss.msdelete(sh_no);
+		return "redirect:msecondList.do?sh_no="+sh_no;
+	}
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");

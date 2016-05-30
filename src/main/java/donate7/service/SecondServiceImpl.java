@@ -42,4 +42,10 @@ public class SecondServiceImpl implements SecondService{
 		return sd.count(second);
 	}
 
+	@Override
+	public void msdelete(int sh_no) {
+		sd.delete(sh_no);
+		
+	}
+
 }
