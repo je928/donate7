@@ -120,6 +120,11 @@ public class o_mypageController {
 		model.addAttribute("mypgm", "../../second/osecond/osecondView.jsp");
 		return "module/main";
 	}
+	@RequestMapping("osecondDelete")
+	public String msdelete(int sh_no, Model model){
+		ss.msdelete(sh_no);
+		return "redirect:osecondList.do?sh_no="+sh_no;
+	}
 	@RequestMapping(value="o_prList", method=RequestMethod.GET)
 	public String oprList(Model model, HttpSession session){
 		
