@@ -12,5 +12,6 @@ public interface SecondService {
 	List<Second> adlist();
 	int msecondUpdate(Second second);
 	int count(Second second);
+	void msdelete(int sh_no);
 	
 }

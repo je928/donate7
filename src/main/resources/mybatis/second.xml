@@ -42,4 +42,7 @@
 	<select id="count" resultType="int" parameterType="second">
 		select count(*) from second where sh_mno=#{sh_mno}
 	</select>
+	<delete id="msdelete" parameterType="int">
+		delete from second where sh_no=#{sh_no}
+	</delete>
 </mapper>

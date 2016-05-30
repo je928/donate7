@@ -47,6 +47,10 @@ public class SecondDaoImpl implements SecondDao{
 	}
 	public int count(Second second) {
 		return st.selectOne("second.count", second);
+	}
+
+	public void delete(int sh_no) {
+		st.selectOne("second.msdelete", sh_no);
 	}	
 
 }
