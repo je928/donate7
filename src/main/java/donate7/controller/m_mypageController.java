@@ -125,6 +125,10 @@ public class m_mypageController {
 	public String mproList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
 		List<Product> list = ps.mlist(no);
+		Product product = new Product();
+		product.setPr_mno(no);
+		int count=ps.count(product);
+		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -148,20 +152,20 @@ public class m_mypageController {
 		product.setPr_img(uploadName);
 		product.setPr_mno(no);
 		ps.insert(product);
-		model.addAttribute("msg", "파일이름 : "+fileName);
-		List<Product> list = ps.prlist();
+		List<Product> list = ps.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value="m_prView", method=RequestMethod.GET)
 	public String m_prView(int pr_no, Model model){
 		Product product = ps.selectOne(pr_no);
 		model.addAttribute("product", product);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/m_prView.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
 		return "module/main";
 	}
 	@RequestMapping(value ="m_prUpdate", method = RequestMethod.GET)
@@ -199,7 +203,6 @@ public class m_mypageController {
 		ps.prdelete(pr_no);
 		return "redirect:m_prList.do?pr_no="+pr_no;
 	}
-	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model,HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");

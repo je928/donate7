@@ -23,18 +23,24 @@
 		<result property="o_no" 			column="o_no" />
 		<result property="o_email" 			column="o_email" />
 		<result property="o_oname" 			column="o_oname" /> -->
+		<result property="no" 		column="no" />
+		<result property="email" 		column="email" />
+		<result property="nick" 		column="nick" />
 	</resultMap>
 	<select id="selectNum" resultType="int">
 		select nvl(max(pr_no),0)+1 from pr_product
 	</select>
 	<select id="prlist" resultMap="ProductResult">
-		select * from pr_product
+		select pr.*, a.no as no, a.email as email, a.nick as nick from pr_product pr, 
+			(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' 
+			union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n') 
+			a where pr.pr_mno=a.no order by pr_date desc
 	</select>
 	<select id="mlist" resultMap="ProductResult">
-		select * from pr_product where pr_mno>0 and pr_mno=#{pr_mno}
+		select * from pr_product where pr_mno>0 and pr_mno=#{pr_mno} order by pr_date desc
 	</select>
 	<select id="olist" resultMap="ProductResult">
-		select * from pr_product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno}
+		select * from pr_product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno} order by pr_date desc
 	</select>
 	<insert id="prinsert" parameterType="product">
 		insert into pr_product values
@@ -52,5 +58,7 @@
 	<delete id ="prDelete" parameterType="int" >
 		delete from pr_product where pr_no=#{pr_no}
 	</delete>
-	
+	<select id="count" resultType="int" parameterType="product">
+		select count(*) from pr_product <if test="pr_mno != 1"> where pr_mno=#{pr_mno}</if>
+	</select>
 </mapper>

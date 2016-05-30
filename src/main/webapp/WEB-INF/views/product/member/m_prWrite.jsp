@@ -37,10 +37,9 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td><input type="radio" name="targetSelect" id="sendAll" value="option1" checked>
-					<input type="radio" name="pr_item" required="required" id="Fashion" value="option1">Fashion &nbsp;
-					<input type="radio" name="pr_item" required="required" id="Design" value="option1">Design	&nbsp;
-					<input type="radio" name="pr_item" required="required" id="Smart Phone" value="Smart option1" >Smart Phone &nbsp;
+				<td><input type="radio" name="pr_item" required="required" value="Fashion">Fashion &nbsp;
+					<input type="radio" name="pr_item" required="required" value="Design">Design	&nbsp;
+					<input type="radio" name="pr_item" required="required" value="Smart Phone" >Smart Phone &nbsp;
 				</td>
 			</tr>
 			<tr>

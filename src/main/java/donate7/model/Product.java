@@ -22,8 +22,28 @@ public class Product {
 	private int o_no;
 	private String o_email;
 	private String o_oname;
+	private int no;
+	private String email;
+	private String nick;	
 	
-	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getM_no() {
 		return m_no;
 	}

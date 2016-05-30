@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td>{product.pr_item}</td>
+				<td>${product.pr_item}</td>
 			</tr>
 			<tr>
 				<th>기부처</th>
@@ -48,8 +48,8 @@
 			
 		</table>
 		<div align="center">
-			<button onclick="location.href='o_prUpdate.do'">수정</button>
-			<button onclick="location.href='o_prDelete.do'">삭제</button>
+			<button onclick="location.href='o_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
+			<button onclick="location.href='o_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
 			<button onclick="location.href='o_prList.do'">확인</button>
 		</div>
 
