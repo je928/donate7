@@ -8644,6 +8644,26 @@ h4 {
 	width: 18%;
 }
 
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad	{
+	margin-top:20px;
+}
+.fa-lg3 {
+	margin-left: 15px;
+	font-size: 140px;
+	color: #808080;
+}
+
 /* ----------------------------------------------------------------------- */
 /* community, a_memberAll */
 
