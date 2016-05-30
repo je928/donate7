@@ -10,5 +10,5 @@ create table community (
 	ref number not null,
 	re_step number not null,
 	re_level number not null,
-	writer number not null
+	no number not null
 );

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="community">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="CommunityResult" type="community">
+		<result property="brd_no" column="brd_no"/>
+	    <result property="brd_subject" column="brd_subject"/>
+	    <result property="brd_content" column="brd_content"/>
+	    <result property="brd_readcount" column="brd_readcount"/>
+	    <result property="brd_ip" column="brd_ip"/>
+	    <result property="brd_reg_date" column="brd_reg_date"/>
+	    <result property="brd_update_date" column="brd_update_date"/>
+	    <result property="brd_del_yn" column="brd_del_yn"/>
+	    <result property="ref" column="ref"/>
+	    <result property="re_step" column="re_step"/>
+	    <result property="re_level" column="re_level"/>
+	    <result property="no" column="no"/>
+	    <result property="nick" column="nick"/>	    
+	    <result property="startRow" column="startRow"/>
+	    <result property="endRow" column="endRow"/>
+	    <result property="searchType" column="searchType"/>
+	    <result property="searchTxt" column="searchTxt"/>
+	</resultMap>
+	
+	<select id="communityTotal" parameterType="community" resultType="Integer">
+  		select count(*) from community c, (select m_no, m_nick as nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where c.no=mo.m_no and brd_del_yn='n'
+	  		<if test="searchTxt != null">
+	  			<choose>
+		  			<when test="searchType == 'all'">
+	  					and (brd_subject like '%'||#{searchTxt}||'%' or brd_content like '%'||#{searchTxt}||'%')
+	  				</when>
+		  			<when test="searchType == 'brd_subject'">
+	  					and brd_subject like '%'||#{searchTxt}||'%'
+	  				</when>
+	  				<when test="searchType == 'brd_content'">
+	  					and brd_content like '%'||#{searchTxt}||'%'
+	  				</when>
+	  				<when test="searchType == 'nick'">
+	  					and nick like '%'||#{searchTxt}||'%'
+	  				</when>
+	  			</choose>
+	  		</if>
+  	</select>
+    
+    <select id="communityList" parameterType="community" resultMap="CommunityResult">
+		select * from (select rownum rn,a.* from (select c.*, mo.m_nick as nick from community c, (select m_no, m_nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where c.no=mo.m_no and brd_del_yn='n'
+	  		<if test="searchTxt != null">
+	  			<choose>
+		  			<when test="searchType == 'all'">
+	  					and (brd_subject like '%'||#{searchTxt}||'%' or brd_content like '%'||#{searchTxt}||'%')
+	  				</when>
+		  			<when test="searchType == 'brd_subject'">
+	  					and brd_subject like '%'||#{searchTxt}||'%'
+	  				</when>
+	  				<when test="searchType == 'brd_content'">
+	  					and brd_content like '%'||#{searchTxt}||'%'
+	  				</when>
+	  				<when test="searchType == 'nick'">
+	  					and mo.m_nick like '%'||#{searchTxt}||'%'
+	  				</when>
+	  			</choose>
+	  		</if>
+		order by ref desc, re_step) a) where rn between #{startRow} and #{endRow}
+  	</select>
+  	
+  	<update id="communityHit" parameterType="Integer">
+    	update community set brd_readcount=brd_readcount+1 where brd_no=#{brd_no}
+    </update>
+  	
+  	<select id="communitySelect" parameterType="Integer" resultMap="CommunityResult">
+  		select c.*, mo.m_nick as nick from community c, (select m_no, m_nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where c.brd_no=#{brd_no} and c.no=mo.m_no
+	</select>
+  	
+  	<!-- <select id="insertNo" resultType="Integer">
+  		select nvl(max(brd_no),0)+1 from community
+  	</select>
+  	
+  	<insert id="communityInsert" parameterType="community">
+  		insert into community values(#{brd_no},#{brd_subject},#{brd_content},0,#{brd_ip},sysdate,null,'n',#{ref},#{re_step},#{re_level},#{no})
+  	</insert> -->
+  	
+  	<!-- <update id="stepreco" parameterType="J_RecommendBoard">
+	  	update j_recommendboard set re_step=re_step+1 where ref=${ref} and re_step>#{re_step}
+  	</update>
+	
+    <update id="updatereco" parameterType="J_RecommendBoard">
+    	update j_recommendboard set brd_subject=#{brd_subject},brd_content=#{brd_content},rc_code=#{rc_code},brd_update_date=sysdate where brd_no=#{brd_no}
+	</update>
+	
+	<update id="deletereco" parameterType="Integer">
+		update j_recommendboard set brd_del_yn='y' where brd_no=#{brd_no}
+	</update>
+	
+	<select id="pwdrecoCheck" parameterType="Integer" resultType="String">
+		select m.m_passwd from j_recommendboard jrb, j_member m where jrb.m_no=m.m_no and brd_no=#{brd_no}
+	</select> -->
+	
+</mapper>

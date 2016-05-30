@@ -9,12 +9,11 @@
 	function locate(pageNum){
 		var searchType = document.getElementById("searchType");
 		var searchTxt = document.getElementById("searchTxt");
-		location.href="list.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
+		location.href="community.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
 	}
 </script>
 </head>
 <body>
-	
 	
 	<div class="container">
 		<div class="row">
@@ -34,90 +33,111 @@
 		</div>
 		
 		<div class="col-lg-9 col-md-offset-18">
-				<div class="panel panel-default panel-table">
-					<div class="panel-heading">
-						<div class="row">
-							<div class="col col-xs-6">
-							</div>
-							<div class="col col-xs-6 text-right">
-								<button type="button" class="btn btn-sm btn-primary btn-create" onclick="location.href='writeForm.do?pageNum=${pageNum}'">글쓰기</button>
-							</div>
+			<div class="panel panel-default panel-table">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col col-xs-6">
+							Page ${pb.startPage} of ${pb.endPage}
 						</div>
-					</div>
-					<div class="panel-body2">
-						<table class="table table-striped table-bordered table-list">
-							<thead>
-								<tr>
-									<th width="5%">#</th>
-									<th width="35%">제목</th>
-									<th width="12%">글쓴이</th>
-									<th width="9%">작성일</th>
-									<th width="6%">조회수</th>
-								</tr>
-							</thead>
-							<tbody>
-							<c:if test="${not empty memberAll}">
-								<c:forEach var="mem" items="${memberAll}">
-								<tr>
-									<td>1</td>
-									<td class="text-left">Column content 게시판을 작성하는 중입니다. 게시판을 작</td>
-									<td>Column content</td>
-									<td>2016-05-22</td>
-									<td>0</td>
-								</tr>
-								</c:forEach>
-							</c:if>
-							<c:if test="${empty memberAll}">
-								<tr>
-									<td colspan="8">데이터가 없습니다.</td>
-								</tr>
-							</c:if>
-							</tbody>
-						</table>
-					</div>
-					<div class="panel-footer2">
-						<div class="row">
-							<div class="col col-xs-4">Page 1 of 5</div>
-							<div class="col col-xs-8">
-								<ul class="pagination hidden-xs pull-right">
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-								</ul>
-								<ul class="pagination visible-xs pull-right">
-									<li><a href="#">«</a></li>
-									<li><a href="#">»</a></li>
-								</ul>
-							</div>
+						<div class="col col-xs-6 text-right">
+							<a href="writeForm.do?pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성<em class="fa fa-edit"></em></a>	
 						</div>
 					</div>
 				</div>
+				<div class="panel-body2">
+					<table class="table table-striped table-bordered table-list">
+						<thead>
+							<tr>
+								<th width="5%">#</th>
+								<th width="35%">제목</th>
+								<th width="12%">글쓴이</th>
+								<th width="9%">작성일</th>
+								<th width="6%">조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:set var="no" value="${pb.no}" />
+						<c:forEach var="brd" items="${list}">
+						<c:if test="${brd.brd_del_yn != 'y'}">
+							<tr>
+								<td>${no }</td>
+								<td class="text-left">
+								<c:if test="${brd.re_step>0}">
+									<img alt="" src="images/level.gif" height="10" width="${brd.re_step*10}">
+									<img alt="" src="images/re.gif">
+								</c:if>
+									<a href="view.do?num=${brd.brd_no}&pageNum=${pb.nowPage}"> ${brd.brd_subject} </a>
+								<c:if test="${brd.brd_readcount > 30}">
+									<img alt="" src="images/hot.gif">
+								</c:if>
+								</td>
+								<td>${brd.nick}</td>
+								<td>${brd.brd_reg_date}</td>
+								<td>${brd.brd_readcount}</td>
+							</tr>
+						</c:if>
+						<c:set var="no" value="${no - 1}"></c:set>
+						</c:forEach>
+						<c:if test="${empty list}">
+							<tr>
+								<td colspan="5">데이터가 없습니다.</td>
+							</tr>
+						</c:if>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-footer2 text-center">
+					<ul class="pagination">
+						<c:if test="${pb.startPage > pb.pagePerBlock}">
+						<li><a href="javascript:locate(1)">««</a></li>						
+						<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+						</c:if>
+					</ul>
+					<ul class="pagination">
+						<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+							<c:if test="${i eq pb.nowPage}">
+								<li><a href="#"><b class="b2">${i}</b></a></li>
+							</c:if>
+							<c:if test="${i ne pb.nowPage}">
+								<li><a href="javascript:locate(${i})">${i}</a></li>
+							</c:if>
+						</c:forEach>
+					</ul>
+					<ul class="pagination">
+						<c:if test="${pb.totalPage > pb.endPage}">
+						<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
+						<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
+						</c:if>
+					</ul>
+					<%-- <div class="row">
+						<div class="col col-xs-4">Page ${pb.startPage} of ${pb.endPage}</div>
+					</div> --%>
+				</div>
 			</div>
 		</div>
+	</div>
 
 	<div align="center">
-		<%-- <c:if test="${startPage > pagePerBlock}">
-			<a href="javascript:locate(${startPage-pagePerBlock})">[이전]</a>
+		<%-- <c:if test="${pb.startPage > pb.pagePerBlock}">
+			<a href="javascript:locate(${pb.startPage-pb.pagePerBlock})">[이전]</a>
 			<a href="javascript:locate(1)">[1]</a>
 			...
 		</c:if>
-		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<c:if test="${i eq nowPage}">
+		<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+			<c:if test="${i eq pb.nowPage}">
 				<b class="b">[${i}]</b>
 			</c:if>
-			<c:if test="${i ne nowPage}">
+			<c:if test="${i ne pb.nowPage}">
 				<a href="javascript:locate(${i})">[${i}]</a>
 			</c:if>
 		</c:forEach>
-		<c:if test="${totalPage > endPage}">
+		<c:if test="${pb.totalPage > pb.endPage}">
 			...
-			<a href="javascript:locate(${totalPage})">[${totalPage}]</a>
-			<a href="javascript:locate(${startPage+pagePerBlock})">[다음]</a>
+			<a href="javascript:locate(${pb.totalPage})">[${pb.totalPage}]</a>
+			<a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">[다음]</a>
 		</c:if> --%>
 		
-	<form class="navbar-form">
+	<div class="navbar-form">
 		<div class="form-group">
 			<select class="form-control input-lg" id="searchType">
 				<c:if test="${searchType eq 'all'}">
@@ -141,17 +161,17 @@
 					<option value="brd_content">내용</option>
 				</c:if>
 					
-				<c:if test="${searchType eq 'm_nick'}">
-					<option value="m_nick" selected="selected">글쓴이</option>
+				<c:if test="${searchType eq 'nick'}">
+					<option value="nick" selected="selected">글쓴이</option>
 				</c:if>
-				<c:if test="${searchType ne 'm_nick'}">
-					<option value="m_nick">글쓴이</option>
+				<c:if test="${searchType ne 'nick'}">
+					<option value="nick">글쓴이</option>
 				</c:if>
 			</select>			
 			<input type="text" id="searchTxt" class="form-control" placeholder="Search" value="${searchTxt}">
 			</div>
 			<button type="submit" class="btn btn-default" onclick="locate(1)"><i class="glyphicon fa-1x glyphicon-search"></i></button>
-		</form>
+		</div>
 	</div>
       
 </body>
