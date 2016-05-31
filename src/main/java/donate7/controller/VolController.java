@@ -54,14 +54,27 @@ public class VolController {
 		int result = vs.insertRc(rc);
 		
 		if(result > 0){
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			return "redirect:myRecruit.do";
 		}else{
 			model.addAttribute("rc", rc);
 			return "redirect:recruit.do";
-		}
-		
-		return "module/main";
+		}		
 	}
+	@RequestMapping("myRecruit")
+	public String myRecruit(HttpSession session, Model model){
+		int o_no = 0;
+		if(session.getAttribute("no") != null){
+			o_no = Integer.parseInt(session.getAttribute("no").toString());
+			List<Recruit> list = vs.selectRcListByO_no(o_no);
+			model.addAttribute("list", list);
+			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
+			return "module/main";
+		}else{
+			return "redirect:login.do";
+		}
+	}
+	
 /*
 	@RequestMapping("manageVol")
 	public String manageVol(HttpSession session, Model model) {

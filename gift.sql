@@ -1,8 +1,11 @@
+ALTER TABLE gift ADD (g_delChk char(1));
+
 create table gift (
    g_no number primary key,
    g_name VARCHAR2(50) not null,
    g_img VARCHAR2(100) not null,
-   g_price number not null
+   g_price number not null,
+   g_delChk  char(1) check (g_delChk in ('y','n'))
 )
 create table cpoint_info(
    cp_no number primary key,
@@ -23,9 +26,8 @@ select * from gift;
 select * from cpoint_info;
 select * from gift_buy;
 
+update gift set g_delChk='n';
 
-Alter table cpoint_info add Foreign Key (m_no) references member (m_no);
-Alter table gift_buy add Foreign Key (m_no) references member (m_no);
 
 drop table gift;
 drop table cpoint_info;

@@ -35,7 +35,10 @@
 			기프티콘 가격 : ${gift.g_price }<p>
 			<c:if test="${no>1 }">
 				<input type="button" onclick="location.href='gift_buy.do?g_no=${gift.g_no}'" value="기프티콘 구매">
-			</c:if>				
+			</c:if>
+			<c:if test="${no==1 }">
+				<input type="button" onclick="location.href='gift_delete.do?g_no=${gift.g_no}'" value="기프티콘 삭제">
+			</c:if>					
 			<input type="button" onclick="location.href='giftList.do'" value="기프티콘 샵">
 		</div>
 	</div>

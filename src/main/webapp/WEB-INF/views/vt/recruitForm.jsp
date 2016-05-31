@@ -44,7 +44,7 @@
 					yearRange : 'c-5:c+5',
 				};
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$('#rsdate').datepicker();
+				/* $('#rsdate').datepicker();
 				$('#rsdate')
 						.datepicker("option", "maxDate", $("#redate").val());
 				$('#rsdate').datepicker(
@@ -59,11 +59,11 @@
 										'today');
 							}
 
-						});
+						}); */
 
 				$('#redate').datepicker();
 				$('#redate')
-						.datepicker("option", "minDate", $("#rsdate").val());
+						.datepicker("option", "minDate", 'today');
 				$('#redate').datepicker(
 						"option",
 						"onClose",
@@ -112,6 +112,15 @@
 				
 			});
 	});
+	
+	function nameChek() {
+		var content = document.getElementById("vt_name");
+		if(content.value.length >= content.maxLength){
+			if(event.KeyCode != 8 || event.KeyCOde != 27){
+				alert("최대 " + content.maxLength + "글자 까지 작성할수 있습니다.");
+			}
+		}
+	}
 </script>
 <style type="text/css">
 .req-container {
@@ -142,15 +151,15 @@
 						<p class="req-form-name">봉사 상세</p>
 						<div class="form-group">
 							<b>봉사명:</b> <input type="text" class="form-control" id="vt_name"
-								name="vt_name" required>
+								name="vt_name" maxlength="100" onkeyup="nameChek()" required>
 						</div>
 						<div class="form-group">
 							<b>봉사지역: </b>${ addr}
 						</div>
 						<div class="form-group">
-							<b style="display: block;">봉사 모집 기간 :</b> 시작일 : <input
+							<b style="display: block;">봉사 모집 기간 :</b> <!-- 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" />
+								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" /> -->
 							종료일 : <input class="form-control-20" readonly="readonly"
 								type="text" name="vt_r_end_date" id="redate" size="10"
 								maxlength="10" />

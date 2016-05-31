@@ -20,5 +20,8 @@ public class GiftServiceImpl implements GiftService{
 	public Gift selectOne(int g_no) {
 		return gd.selectOne(g_no);
 	}
+	public int delete(int g_no) {
+		return gd.delete(g_no);
+	}
 
 }

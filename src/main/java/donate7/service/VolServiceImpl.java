@@ -1,5 +1,7 @@
 package donate7.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,11 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public int insertRc(Recruit rc) {
 		return vd.insertRc(rc);
+	}
+
+	@Override
+	public List<Recruit> selectRcListByO_no(int o_no) {
+		return vd.selectRcListByO_no(o_no);
 	}
 	
 	/*@Override

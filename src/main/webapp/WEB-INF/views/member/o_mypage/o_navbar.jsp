@@ -15,7 +15,7 @@
 		<a href="o_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
 		<a href="osecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="recruit.do" class="list-group-item">봉사 모집</a>
-		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
+		<a href="myRecruit.do" class="list-group-item">봉사 관리</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
 		<a href="o_delete.do" class="list-group-item">회원탈퇴</a>
 	</div>
