@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>업무 시스템</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jui/jui.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/animate.min.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/main.css"/>
