@@ -14,8 +14,36 @@ public class Donate {
 	private String d_account;
 	private String d_img;
 	private String d_approve;
+	private int o_no;
+	private String o_oname;
+	private String o_category;
+	private int m_no;
+	private String m_name;
 	private String d_start_date;
 	private String d_end_date;
+	private int no;
+	private String email;
+	private String nick;
+	
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public String getD_start_date() {
 		return d_start_date;
 	}
@@ -28,11 +56,7 @@ public class Donate {
 	public void setD_end_date(String d_end_date) {
 		this.d_end_date = d_end_date;
 	}
-	private int o_no;
-	private String o_oname;
-	private String o_category;
-	private int m_no;
-	private String m_name;
+
 	public int getD_no() {
 		return d_no;
 	}

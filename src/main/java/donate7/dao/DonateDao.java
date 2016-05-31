@@ -27,4 +27,6 @@ public interface DonateDao {
 
 	int count(Donate donate);
 
+	List<Donate> adlist();
+
 }
