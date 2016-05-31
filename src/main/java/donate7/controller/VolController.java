@@ -178,4 +178,11 @@ public class VolController {
 		}
 		return "vt/map";
 	}*/
+	
+	/*달력 테스트*/
+	@RequestMapping("namnam")
+	public String namnam(Model model) {
+		model.addAttribute("pgm", "../calendar/namnam.jsp");
+		return "module/main";
+	}
 }

@@ -1,32 +1,33 @@
-<%@ page language="java"  contentType="text/html;charset=UTF-8"  %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%-- <%@ include file="../module/header.jsp"%> --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>업무 시스템</title>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jui/jui.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/animate.min.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/main.css"/>
-<link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
-<script src="${pageContext.request.contextPath}/resources/SE/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
-<script src='${pageContext.request.contextPath}/resources/lib/jquery.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/lib/jquery-ui.custom.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/fullcalendar/fullcalendar.min.js'></script>
-<script src="${pageContext.request.contextPath}/resources/lib/niee-canvas-chart003.js"></script>
-<script src="${pageContext.request.contextPath}/resources/lib/ajaxfileupload.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/base.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/core.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/ui/button.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/ui/combo.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/ui/datepicker.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/ui/dropdown.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/ui/modal.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/uix/table.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/uix/tree.js"></script>
+<title>Insert title here</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/cld/jui/jui.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/cld/lib/animate.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/cld/lib/main.css"/>
+<link href='${pageContext.request.contextPath}/js/cld/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath}/js/cld/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src="${pageContext.request.contextPath}/js/cld/SE/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
+<script src='${pageContext.request.contextPath}/js/cld/lib/jquery.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/cld/lib/jquery-ui.custom.min.js'></script>
+<script src='${pageContext.request.contextPath}/js/cld/fullcalendar/fullcalendar.min.js'></script>
+<script src="${pageContext.request.contextPath}/js/cld/lib/niee-canvas-chart003.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/lib/ajaxfileupload.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/base.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/core.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/ui/button.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/ui/combo.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/ui/datepicker.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/ui/dropdown.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/ui/modal.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/uix/table.js"></script>
+<script src="${pageContext.request.contextPath}/js/cld/js/uix/tree.js"></script>
 </head>
 <body>
 <div class="jui" style="width: 1250px;margin: 0 auto;">
@@ -254,9 +255,9 @@ function getContextPath(){
     return context;
 }
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JUI.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_JQUERY.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_FUNCTION.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/intranet_DATE.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cld/js/intranet_JUI.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cld/js/intranet_JQUERY.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cld/js/intranet_FUNCTION.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/cld/js/intranet_DATE.js"></script>
 </body>
 </html>
