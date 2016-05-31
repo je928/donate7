@@ -21,6 +21,11 @@ public class VolServiceImpl implements VolService {
 	public List<Recruit> selectRcListByO_no(int o_no) {
 		return vd.selectRcListByO_no(o_no);
 	}
+
+	@Override
+	public Recruit selectRcByVt_no(int vt_no) {
+		return vd.selectRcByVt_no(vt_no);
+	}
 	
 	/*@Override
 	public int volReqInsert(VolReq req) {

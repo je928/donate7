@@ -51,4 +51,9 @@ public class VolDaoImpl implements VolDao{
 	public List<Recruit> selectRcListByO_no(int o_no) {
 		return session.selectList("recruit.selectRcListByO_no",o_no);
 	}
+
+	@Override
+	public Recruit selectRcByVt_no(int vt_no) {
+		return session.selectOne("recruit.selectRcByVt_no",vt_no);
+	}
 }

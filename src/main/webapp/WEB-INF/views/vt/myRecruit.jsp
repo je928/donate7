@@ -24,7 +24,7 @@
 				<c:forEach var="rc" items="${list}">
 					<tr>
 						<td>${rc.vt_no}</td>
-						<td><a href="">${rc.vt_name}</a></td>
+						<td><a href="rcView.do?vt_no=${rc.vt_no }">${rc.vt_name}</a></td>
 						<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 						<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 						<td>${rc.vt_tot }</td>
@@ -34,6 +34,7 @@
 				</c:forEach>
 			</table>
 		</div>
+
 	</div>
 </body>
 </html>

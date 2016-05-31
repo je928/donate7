@@ -75,6 +75,17 @@ public class VolController {
 		}
 	}
 	
+	@RequestMapping("rcView")
+	public String rcView(int vt_no,Model model){
+		Recruit rc = vs.selectRcByVt_no(vt_no);
+		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
+		model.addAttribute("rc", rc);
+		model.addAttribute("addr", addr);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/rcView.jsp");
+		return "module/main";
+	}
+	
 /*
 	@RequestMapping("manageVol")
 	public String manageVol(HttpSession session, Model model) {

@@ -16,6 +16,34 @@ public class Recruit {
 	private int vt_subject;
 	private String vt_desc;
 	private int count;
+	private String class_name;
+	private String dclass_name;
+	private String sub_name;
+
+	
+	public String getClass_name() {
+		return class_name;
+	}
+
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
+	
+	public String getDclass_name() {
+		return dclass_name;
+	}
+
+	public void setDclass_name(String dclass_name) {
+		this.dclass_name = dclass_name;
+	}
+
+	public String getSub_name() {
+		return sub_name;
+	}
+
+	public void setSub_name(String sub_name) {
+		this.sub_name = sub_name;
+	}
 
 	public int getCount() {
 		return count;
