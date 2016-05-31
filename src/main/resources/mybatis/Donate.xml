@@ -17,6 +17,9 @@
 		<result property="d_approve" column="d_approve" />
 		<result property="d_start_date" column="d_start_date" />
 		<result property="d_end_date" column="d_end_date" />
+		<result property="no" 		column="no" />
+		<result property="email" 		column="email" />
+		<result property="nick" 		column="nick" />
 	</resultMap>
 
 	<select id="selectNum" resultType="int">
@@ -62,5 +65,10 @@
 	<select id="count" parameterType="donate" resultType="int">
 		select count(*) from donate <if test ="d_member!=1">where d_member=#{d_member}</if>
 	</select>
-	
+	<select id="adlist" resultMap="DonateResult">
+		select d.*, a.no as no, a.email as email, a.nick as nick from donate d, 
+			(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' 
+			union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n') 
+			a where d.d_member=a.no order by d_reg_date desc
+	</select>
 </mapper>

@@ -58,10 +58,8 @@ public class GiftController {
 		mf.transferTo(new File(request.getRealPath("/")+uploadName));
 		gift.setG_img(uploadName);
 		gs.insert(gift);
-		model.addAttribute("msg", "?��?�� 로드 ?���? : "+fileName);
 		List<Gift> list = gs.list();
 		model.addAttribute("list", list);
-		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../gift/giftList.jsp");
 		return "module/main";
 	}
@@ -103,5 +101,18 @@ public class GiftController {
 				return "module/main";
 			}
 		}
-	}	
+	}
+	@RequestMapping(value="gift_delete", method=RequestMethod.GET)
+	public String gift_delete(int g_no,Model model){
+		int result = gs.delete(g_no);
+		List<Gift> list = gs.list();
+		if(result>0){
+			model.addAttribute("list", list);
+			model.addAttribute("pgm", "../gift/giftList.jsp");
+		}else{
+			model.addAttribute("pgm", "../gift/giftDetail.jsp");
+			model.addAttribute("msg", "기프티콘 삭제 실패");
+		}		
+		return "module/main";
+	}
 }

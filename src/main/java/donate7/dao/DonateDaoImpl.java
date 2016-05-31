@@ -2,6 +2,7 @@ package donate7.dao;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -46,5 +47,8 @@ public class DonateDaoImpl implements DonateDao {
 	}
 	public int count(Donate donate) {
 		return session.selectOne("donate.count",donate);
+	}
+	public List<Donate> adlist() {
+		return session.selectList("donate.adList");
 	}
 }

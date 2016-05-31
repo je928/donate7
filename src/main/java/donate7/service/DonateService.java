@@ -25,4 +25,6 @@ public interface DonateService {
 	void odoDelete(int d_no);
 	
 	int count(Donate donate);
+
+	List<Donate> adlist();
 }
