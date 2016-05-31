@@ -87,56 +87,38 @@
 					</table>
 				</div>
 				<div class="panel-footer2 text-center">
-					<ul class="pagination">
-						<c:if test="${pb.startPage > pb.pagePerBlock}">
-						<li><a href="javascript:locate(1)">««</a></li>						
-						<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
-						</c:if>
-					</ul>
-					<ul class="pagination">
-						<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
-							<c:if test="${i eq pb.nowPage}">
-								<li><a href="#"><b class="b2">${i}</b></a></li>
-							</c:if>
-							<c:if test="${i ne pb.nowPage}">
-								<li><a href="javascript:locate(${i})">${i}</a></li>
-							</c:if>
-						</c:forEach>
-					</ul>
-					<ul class="pagination">
-						<c:if test="${pb.totalPage > pb.endPage}">
-						<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
-						<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
-						</c:if>
-					</ul>
-					<%-- <div class="row">
-						<div class="col col-xs-4">Page ${pb.startPage} of ${pb.endPage}</div>
-					</div> --%>
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pb.startPage > pb.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+									<c:if test="${i eq pb.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pb.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pb.totalPage > pb.endPage}">
+								<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div align="center">
-		<%-- <c:if test="${pb.startPage > pb.pagePerBlock}">
-			<a href="javascript:locate(${pb.startPage-pb.pagePerBlock})">[이전]</a>
-			<a href="javascript:locate(1)">[1]</a>
-			...
-		</c:if>
-		<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
-			<c:if test="${i eq pb.nowPage}">
-				<b class="b">[${i}]</b>
-			</c:if>
-			<c:if test="${i ne pb.nowPage}">
-				<a href="javascript:locate(${i})">[${i}]</a>
-			</c:if>
-		</c:forEach>
-		<c:if test="${pb.totalPage > pb.endPage}">
-			...
-			<a href="javascript:locate(${pb.totalPage})">[${pb.totalPage}]</a>
-			<a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">[다음]</a>
-		</c:if> --%>
-		
 	<div class="navbar-form">
 		<div class="form-group">
 			<select class="form-control input-lg" id="searchType">

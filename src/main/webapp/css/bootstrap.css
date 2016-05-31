@@ -25,7 +25,7 @@ body {
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, menu, nav, section, summary {
-	display: block;
+	display: inline-block;
 }
 
 audio, canvas, progress, video {
@@ -5520,7 +5520,7 @@ border-radius
 .pagination>li>a, .pagination>li>span {
 	position: relative;
 	float: left;
-	padding: 6px 16px;
+	padding: 5px 15px;
 	line-height: 1.846;
 	text-decoration: none;
 	color: #2196f3;
@@ -8738,8 +8738,8 @@ h4 {
 }
 
 .panel-table .panel-footer2 .col{
- line-height: 34px;
- height: 34px;
+	line-height: 34px;
+	height: 34px;
 }
 
 .panel-table .panel-heading .col h3{
@@ -8752,7 +8752,7 @@ h4 {
 }
 
 .panel-table .panel-footer2 .pagination {
-  margin:0; 
+  margin:0;
 }
 
 .panel-table .panel-body2{
@@ -8771,6 +8771,7 @@ h4 {
 	border-bottom-right-radius: 2px;
 	border-bottom-left-radius: 2px;
 }
+
 
 .list-group2 {
 	margin-right: 20px;
@@ -8813,6 +8814,4 @@ h4 {
 .b2 {
 	color: #004080;
 }
-
-
 /* ----------------------------------------------------------------------- */
