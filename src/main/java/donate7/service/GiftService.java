@@ -10,4 +10,6 @@ public interface GiftService {
 	List<Gift> list();
 
 	Gift selectOne(int g_no);
+
+	int delete(int g_no);
 }

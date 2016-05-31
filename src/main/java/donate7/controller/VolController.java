@@ -54,14 +54,38 @@ public class VolController {
 		int result = vs.insertRc(rc);
 		
 		if(result > 0){
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			return "redirect:myRecruit.do";
 		}else{
 			model.addAttribute("rc", rc);
 			return "redirect:recruit.do";
+		}		
+	}
+	@RequestMapping("myRecruit")
+	public String myRecruit(HttpSession session, Model model){
+		int o_no = 0;
+		if(session.getAttribute("no") != null){
+			o_no = Integer.parseInt(session.getAttribute("no").toString());
+			List<Recruit> list = vs.selectRcListByO_no(o_no);
+			model.addAttribute("list", list);
+			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
+			return "module/main";
+		}else{
+			return "redirect:login.do";
 		}
-		
+	}
+	
+	@RequestMapping("rcView")
+	public String rcView(int vt_no,Model model){
+		Recruit rc = vs.selectRcByVt_no(vt_no);
+		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
+		model.addAttribute("rc", rc);
+		model.addAttribute("addr", addr);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/rcView.jsp");
 		return "module/main";
 	}
+	
 /*
 	@RequestMapping("manageVol")
 	public String manageVol(HttpSession session, Model model) {
@@ -178,4 +202,11 @@ public class VolController {
 		}
 		return "vt/map";
 	}*/
+	
+	/*달력 테스트*/
+	@RequestMapping("namnam")
+	public String namnam(Model model) {
+		model.addAttribute("pgm", "../calendar/namnam.jsp");
+		return "module/main";
+	}
 }

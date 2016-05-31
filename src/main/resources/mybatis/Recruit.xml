@@ -9,20 +9,28 @@
 		<result property="vt_o_no" column="VT_O_NO"/>
 		<result property="vt_r_start_date" column="VT_R_START_DATE"/>
 		<result property="vt_r_end_date" column="VT_R_END_DATE"/>
+		<result property="vt_r_yn" column="VT_R_YN"/>
 		<result property="vt_a_start_date" column="VT_A_START_DATE"/>
 		<result property="vt_a_end_date" column="VT_A_END_DATE"/>
 		<result property="vt_class" column="VT_CLASS"/>
 		<result property="vt_tot" column="VT_TOT"/>
 		<result property="vt_subject" column="VT_SUBJECT"/>
 		<result property="vt_desc" column="VT_DESC"/>
-		<result property="vt_reg_date" column="VT_REG_DATE"/>
+		<result property="count" column="COUNT"/>
+		<result property="class_name" column="CLASS_NAME" />
+		<result property="dclass_name" column="DCLASS_NAME" />
+		<result property="sub_name" column="SUB_NAME"/>
 	</resultMap>
 
-	<select id="selectRecruitList" resultMap="RecruitResult">
-		SELECT * FROM VT_RECRUIT
+	<select id="selectRcListByO_no" resultMap="RecruitResult" parameterType="int">
+		SELECT * FROM VT_RECRUIT WHERE VT_O_NO = #{o_no} ORDER BY VT_NO DESC
 	</select>
 	
+	<select id="selectRcByVt_no" resultType="recruit" parameterType="int">
+		SELECT A.*,SUB_NAME,CLASS_NAME,DCLASS_NAME FROM VT_RECRUIT A, DCLASS B, CLASS C, SUBJECT D WHERE  A.VT_CLASS = B.DCLASS_NO AND B.CLASS_NO = C.CLASS_NO AND A.VT_SUBJECT = D.SUB_NO AND VT_NO = #{vt_no}
+	</select>
+
 	<insert id="insertRc" parameterType="recruit">
-		INSERT INTO VT_RECRUIT VALUES (NEW_VT_NO, #{vt_name},#{vt_o_no},#{vt_r_start_date},#{vt_r_end_date},#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_tot},#{vt_subject},#{vt_desc},SYSDATE)
+		INSERT INTO VT_RECRUIT VALUES (NEW_VT_NO, #{vt_name},#{vt_o_no},TO_CHAR(SYSDATE,'yyyyMMdd'),#{vt_r_end_date},'Y',#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_tot},#{vt_subject},#{vt_desc})
 	</insert>
 </mapper>

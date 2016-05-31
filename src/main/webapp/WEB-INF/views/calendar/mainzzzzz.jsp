@@ -47,11 +47,18 @@
 	<div id="modal" class="msgbox" style="display: none;">
 		<div class="head">
 			<span id="modal-title"></span>
+			<!-- 508: $("#modal-title").html(article.title + '<span style="float:right;">'+article.name+'</span>');
+			337: $("#modal-title").html(article.title + '<span style="float:right;">'+article.writer+'</span>');  -->
 	    </div>
 		<div class="body">
 			<span id="modal-contents"></span>
+			<!-- 497: $("#modal-contents").html(html);
+			296: $("#modal-contents").html('<div class="label label-red" style="min-width:300px;">' + stime + ' ~ ' + etime + '</div><br><div class="notify contents-view" style="margin-top:5px;">' + article.contents +'</div>'+fileHtml); --> 
+			
 			<div style="text-align: center; margin-top: 45px;" id="contentsBtn">
 			</div>
+			<!-- 497: $("#modal-contents").html(html);
+			296: $("#modal-contents").html('<div class="label label-red" style="min-width:300px;">' + stime + ' ~ ' + etime + '</div><br><div class="notify contents-view" style="margin-top:5px;">' + article.contents +'</div>'+fileHtml); -->  
 		</div>
 	</div>
 

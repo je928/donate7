@@ -42,5 +42,8 @@ public class DonateServiceImpl implements DonateService {
 	public int count(Donate donate) {
 		return dd.count(donate);
 	}
+	public List<Donate> adlist() {
+		return dd.adlist();
+	}
 
 }
