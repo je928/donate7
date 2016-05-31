@@ -236,37 +236,37 @@
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">기관 회원가입</h4>
 					<div class="form-group">
-						<strong>이메일:</strong>
+						<b class="o">이메일:</b>
 						<input type="email" class="form-control" id="o_email" name="o_email" maxlength="30" required autofocus="autofocus">
 						<span id="email_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>비밀번호:</strong>
+						<b class="o">비밀번호:</b>
 						<input type="password" class="form-control" id="o_passwd" name="o_passwd" maxlength="20" required>
 						<span id="pwd_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>비밀번호 재확인:</strong>
+						<b class="o">비밀번호 재확인:</b>
 						<input type="password" class="form-control" id="o_passwd2" name="o_passwd2" maxlength="20" required>
 						<span id="pwd_chk2"> </span>
 					</div>
 					<div class="form-group">
-						<strong>허가번호:</strong>
+						<b class="o">허가번호:</b>
 						<input type="text" class="form-control" id="o_license" name="o_license" maxlength="50" required>
 						<span id="license_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>기관명:</strong>
+						<b class="o">기관명:</b>
 						<input type="text" class="form-control" id="o_oname" name="o_oname" maxlength="30" required>
 						<span id="oname_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>가입자명:</strong>
+						<b class="o">가입자명:</b>
 						<input type="text" class="form-control" id="o_name" name="o_name" maxlength="40" required>
 						<span id="name_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>전화번호:</strong>
+						<b class="o">전화번호:</b>
 						<div>
 							<input type="text" class="form-control-20" name="o_tel1" id="o_tel1" maxlength="3" required>
 							- <input type="text" class="form-control-20" name="o_tel2" id="o_tel2" maxlength="4" required>
@@ -275,7 +275,7 @@
 						<span id="tel_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>주소:</strong>
+						<b class="o">주소:</b>
 						<div>
 							<input type="text" class="form-control-30" name="post1" id="post1" required readonly="readonly">
 							- <input type="text" class="form-control-30" name="post2" id="post2" required readonly="readonly">
@@ -288,7 +288,7 @@
 						<span id="addr_chk"> </span>
 					</div>
 					<div class="form-group">
-						<strong>카테고리:</strong>
+						<b class="o">카테고리:</b>
 						<div>
 							<select class="form-control-40" name="o_category">
 								<option value="사람">사람</option>

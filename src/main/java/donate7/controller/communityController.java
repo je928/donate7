@@ -2,6 +2,8 @@ package donate7.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,13 +61,61 @@ public class communityController {
 	}
 	
 	@RequestMapping(value="view")
-	public String view(int num, String pageNum, Model model) {
-		cs.communityHit(num);
-		Community community = cs.communitySelect(num);
+	public String view(int brd_no, String pageNum, Model model) {
+		cs.communityHit(brd_no);
+		Community community = cs.communitySelect(brd_no);
 		model.addAttribute("community", community);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../community/view.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping(value="writeForm")
+	public String writeForm(Community community, String pageNum, String brd_no, Model model) {
+		community.setBrd_no(0);
+		community.setRef(0);
+		community.setRe_level(0);
+		community.setRe_step(0);
+		// 답변글 시작
+		if(brd_no != null) {
+			int no = Integer.parseInt(brd_no);
+			Community board = cs.communitySelect(no);
+			community.setBrd_no(board.getBrd_no());
+			community.setRef(board.getRef());
+			community.setRe_level(board.getRe_level());
+			community.setRe_step(board.getRe_step());
+		}
+		// 끝
+		model.addAttribute("community", community);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pgm", "../community/write.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="write")
+	public String write(Community community, String pageNum, Model model, HttpServletRequest request) {
+		int number = cs.insertNo();
+		// 답변글 시작
+		if(community.getBrd_no() > 0) {
+			cs.updateRe_step(community);
+			community.setRe_level(community.getRe_level()+1);
+			community.setRe_step(community.getRe_step()+1);
+		}else {
+			community.setRef(number);
+		}
+		// 답변글 끝
+		String ip = request.getRemoteAddr();
+		community.setBrd_no(number);
+		community.setBrd_ip(ip);
+		int result = cs.communityInsert(community);
+		model.addAttribute("pageNum", pageNum);
+		if(result > 0) {
+			return "redirect:community.do";
+		}else {
+			model.addAttribute("msg", "입력 실패");
+			model.addAttribute("community", community);
+			return "forward:writeForm.do";
+		}
 	}
 	
 }

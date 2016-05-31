@@ -35,11 +35,29 @@ public class CommunityDaoImpl implements CommunityDao {
 	}
 
 	public void communityHit(int num) {
-		session.update("communityHit", num);
+		session.update("community.communityHit", num);
 	}
 
-	public Community communitySelect(int num) {
-		return session.selectOne("communitySelect", num);
+	public Community communitySelect(int no) {
+		return session.selectOne("community.communitySelect", no);
+	}
+
+	public int insertNo() {
+		return session.selectOne("community.insertNo");
+	}
+
+	public int communityInsert(Community community) {
+		int result = 0;
+		try {
+			result = session.insert("community.communityInsert", community);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public void updateRe_step(Community community) {
+		session.update("community.updateRe_step", community);
 	}
 	
 }

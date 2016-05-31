@@ -30,4 +30,16 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.communitySelect(num);
 	}
 
+	public int insertNo() {
+		return cd.insertNo();
+	}
+
+	public int communityInsert(Community community) {
+		return cd.communityInsert(community);
+	}
+
+	public void updateRe_step(Community community) {
+		cd.updateRe_step(community);
+	}
+
 }

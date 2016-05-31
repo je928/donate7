@@ -9,5 +9,8 @@ public interface CommunityDao {
 	int getTotal(String searchType, String searchTxt, Community community);
 	void communityHit(int num);
 	Community communitySelect(int num);
+	int insertNo();
+	int communityInsert(Community community);
+	void updateRe_step(Community community);
 
 }
