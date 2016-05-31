@@ -1,5 +1,7 @@
 package donate7.model;
 
+import java.sql.Date;
+
 public class Recruit {
 	 private int vt_no;
 	 private String vt_name;
@@ -12,6 +14,7 @@ public class Recruit {
 	 private int vt_tot;
 	 private int vt_subject;
 	 private String vt_desc;
+	 private Date vt_reg_date;
 	 
 	public int getVt_no() {
 		return vt_no;
@@ -79,4 +82,12 @@ public class Recruit {
 	public void setVt_desc(String vt_desc) {
 		this.vt_desc = vt_desc;
 	}
+	@Override
+	public String toString() {
+		return "Recruit [vt_no=" + vt_no + ", vt_name=" + vt_name + ", vt_o_no=" + vt_o_no + ", vt_r_start_date="
+				+ vt_r_start_date + ", vt_r_end_date=" + vt_r_end_date + ", vt_a_start_date=" + vt_a_start_date
+				+ ", vt_a_end_date=" + vt_a_end_date + ", vt_class=" + vt_class + ", vt_tot=" + vt_tot + ", vt_subject="
+				+ vt_subject + ", vt_desc=" + vt_desc + ", vt_reg_date=" + vt_reg_date + "]";
+	}
+	
 }
