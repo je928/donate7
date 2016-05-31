@@ -88,6 +88,12 @@ public class adminController {
 	@RequestMapping(value="adView", method=RequestMethod.GET)
 	public String adView(int d_no, Model model){
 		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
 		model.addAttribute("donate", donate);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/adView.jsp");
