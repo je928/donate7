@@ -22,5 +22,8 @@ public class GiftDaoImpl implements GiftDao{
 	public Gift selectOne(int g_no) {
 		return st.selectOne("gift.selectOne",g_no);
 	}
+	public int delete(int g_no) {
+		return st.update("gift.delete",g_no);
+	}
 
 }

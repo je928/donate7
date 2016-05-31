@@ -8,17 +8,21 @@
 		<result property="g_name" 	column="g_name" />
 		<result property="g_img" 	column="g_img" />
 		<result property="g_price" 	column="g_price" />
+		<result property="g_delChk" column="g_delChk" />
 	</resultMap>
 	<select id="selectNum" resultType="int">
 		select nvl(max(g_no),0)+1 from gift
 	</select>
 	<insert id="insertGift" parameterType="gift">
-		insert into gift values(#{g_no},#{g_name},#{g_img},#{g_price})		
+		insert into gift values(#{g_no},#{g_name},#{g_img},#{g_price},'n')		
 	</insert>
 	<select id="list" resultMap="GiftResult">
-		select * from gift
+		select * from gift where g_delChk='n'
 	</select>
 	<select id="selectOne" resultType="gift" parameterType="int">
 		select * from gift where g_no=#{g_no}
 	</select>
+	<update id="delete" parameterType="int">
+		update gift set g_delChk='y' where g_no=#{g_no}
+	</update>
 </mapper>

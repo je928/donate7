@@ -5,6 +5,13 @@ public class Gift {
 	private String g_name;
 	private String g_img;
 	private int g_price;
+	private String g_delChk;
+	public String getG_delChk() {
+		return g_delChk;
+	}
+	public void setG_delChk(String g_delChk) {
+		this.g_delChk = g_delChk;
+	}
 	public int getG_no() {
 		return g_no;
 	}
