@@ -5520,7 +5520,7 @@ border-radius
 .pagination>li>a, .pagination>li>span {
 	position: relative;
 	float: left;
-	padding: 6px 16px;
+	padding: 5px 15px;
 	line-height: 1.846;
 	text-decoration: none;
 	color: #2196f3;
@@ -8814,6 +8814,4 @@ h4 {
 .b2 {
 	color: #004080;
 }
-
-
 /* ----------------------------------------------------------------------- */
