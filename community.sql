@@ -12,3 +12,7 @@ create table community (
 	re_level number not null,
 	no number not null
 );
+
+select * from community;
+
+drop table community;
