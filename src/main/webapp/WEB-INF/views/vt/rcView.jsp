@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ include file="../module/header.jsp"%>
+<%@ include file="../session/orgChk.jsp"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,15 +40,15 @@
 						<b>봉사지역: </b>${ addr}
 					</div>
 					<div class="form-group">
-						<b style="display: block;">봉사 모집 기간 :</b>
+						<b style="display: inline;">봉사 모집 기간 :</b> ${rc.vt_r_start_date} ~
+						${rc.vt_r_end_date}
 						<!-- 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
 								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" /> -->
-						${rc.vt_r_start_date } ~ ${rc.vt_r_end_date }
 					</div>
 					<div class="form-group">
-						<b style="display: block;">봉사 활동 기간 :</b> ${rc.vt_a_start_date } ~
-						${rc.vt_a_end_date }
+						<b style="display: inline;">봉사 활동 기간 :</b> ${rc.vt_a_start_date }
+						~ ${rc.vt_a_end_date }
 					</div>
 					<div class="form-group">
 						<div style="float: left; width: 50%">
@@ -62,13 +64,14 @@
 						<b>요청 인원:</b> ${rc.vt_tot }명
 					</div>
 					<div class="form-group">
-						<b style="display: block;">상세 내용:</b> ${rc.vt_desc}
+						<b style="display: block;">상세 내용:</b>
+						<pre class="">${rc.vt_desc}</pre>
 					</div>
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
-					<input type="button" class="btn btn-primary btn-md" value="수정"
-						onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}'">
-				</div>
+						<input type="button" class="btn btn-primary btn-md" value="수정"
+							onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}'">
+					</div>
 			</div>
 		</div>
 	</div>

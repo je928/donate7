@@ -1,5 +1,8 @@
 package donate7.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,6 +63,7 @@ public class VolController {
 			return "redirect:recruit.do";
 		}		
 	}
+	
 	@RequestMapping("myRecruit")
 	public String myRecruit(HttpSession session, Model model){
 		int o_no = 0;
@@ -76,14 +80,44 @@ public class VolController {
 	}
 	
 	@RequestMapping("rcView")
-	public String rcView(int vt_no,Model model){
+	public String rcView(int vt_no,HttpSession session,Model model){
+		int o_no = 0;
+		if(session.getAttribute("no") != null){
+			o_no = Integer.parseInt(session.getAttribute("no").toString());
+		}
 		Recruit rc = vs.selectRcByVt_no(vt_no);
-		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
+		String addr = ms.selectO_addrByO_no(o_no);
 		model.addAttribute("rc", rc);
 		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../vt/rcView.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping(value="rcUpdate", method=RequestMethod.GET)
+	public String rcUpdateForm(int vt_no, Model model){
+		Recruit rc = vs.selectRcByVt_no(vt_no);
+		List<Class> list = cs.selectClass(); 
+		List<Subject> slist = cs.selectSubject();
+		List<Dclass> dlist = cs.selectDclassByClass_no(1);
+		model.addAttribute("list", list);
+		model.addAttribute("slist", slist);
+		model.addAttribute("dlist", dlist);
+		model.addAttribute("rc", rc);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/rcUpdateForm.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="rcUpdate", method=RequestMethod.POST)
+	public String rcUpdate(Recruit rc, Model model){
+		int result = vs.rcUpdate(rc);
+		if(result > 0){
+			return "redirect:rcView.do?vt_no="+ rc.getVt_no();
+		}else{
+			return "redirect:rcUpdate.do?vt_no=" + rc.getVt_no();
+		}
+		
 	}
 	
 /*

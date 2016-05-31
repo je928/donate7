@@ -56,4 +56,9 @@ public class VolDaoImpl implements VolDao{
 	public Recruit selectRcByVt_no(int vt_no) {
 		return session.selectOne("recruit.selectRcByVt_no",vt_no);
 	}
+
+	@Override
+	public int rcUpdate(Recruit rc) {
+		return session.update("recruit.rcUpdate",rc);
+	}
 }

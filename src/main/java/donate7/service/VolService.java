@@ -15,4 +15,6 @@ public interface VolService {
 	List<VolReqSearch> searchList();*/
 	List<Recruit> selectRcListByO_no(int o_no);
 	Recruit selectRcByVt_no(int vt_no);
+	int rcUpdate(Recruit rc);
+	
 }

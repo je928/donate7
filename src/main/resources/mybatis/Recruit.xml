@@ -27,10 +27,17 @@
 	</select>
 	
 	<select id="selectRcByVt_no" resultType="recruit" parameterType="int">
-		SELECT A.*,SUB_NAME,CLASS_NAME,DCLASS_NAME FROM VT_RECRUIT A, DCLASS B, CLASS C, SUBJECT D WHERE  A.VT_CLASS = B.DCLASS_NO AND B.CLASS_NO = C.CLASS_NO AND A.VT_SUBJECT = D.SUB_NO AND VT_NO = #{vt_no}
+		SELECT VT_NAME, VT_O_NO, TO_CHAR(to_date(VT_R_START_DATE),'yyyy.MM.dd') VT_R_START_DATE, TO_CHAR(to_date(VT_R_END_DATE),'yyyy.MM.dd') VT_R_END_DATE,VT_R_YN,
+		TO_CHAR(to_date(VT_A_START_DATE),'yyyy.MM.dd') VT_A_START_DATE,TO_CHAR(to_date(VT_A_END_DATE),'yyyy.MM.dd') VT_A_END_DATE, VT_CLASS, VT_TOT, VT_SUBJECT,
+		VT_SUBJECT,VT_DESC, SUB_NAME,CLASS_NAME,DCLASS_NAME FROM VT_RECRUIT A, DCLASS B, CLASS C, SUBJECT D WHERE  A.VT_CLASS = B.DCLASS_NO AND B.CLASS_NO = C.CLASS_NO AND A.VT_SUBJECT = D.SUB_NO AND VT_NO = #{vt_no}
 	</select>
 
 	<insert id="insertRc" parameterType="recruit">
 		INSERT INTO VT_RECRUIT VALUES (NEW_VT_NO, #{vt_name},#{vt_o_no},TO_CHAR(SYSDATE,'yyyyMMdd'),#{vt_r_end_date},'Y',#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_tot},#{vt_subject},#{vt_desc})
 	</insert>
+	
+	<update id="rcUpdate" parameterType="recruit">
+		UPDATE VT_RECRUIT SET VT_NAME = #{vt_name}, VT_R_END_DATE = #{vt_r_end_date}, VT_A_START_DATE = #{vt_a_start_date}, VT_A_END_DATE = #{vt_a_end_date}, VT_CLASS = #{vt_class}, VT_TOT = #{vt_tot}, VT_SUBJECT = #{vt_subject}, VT_DESC = #{vt_desc} WHERE VT_NO = #{vt_no}
+	</update>
+	
 </mapper>
