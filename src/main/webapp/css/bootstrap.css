@@ -1581,6 +1581,10 @@ small, .small {
 	font-size: 92%;
 }
 
+.small2 {
+	font-size: 52%;
+}
+
 mark, .mark {
 	background-color: #ffe0b2;
 	padding: .2em;
@@ -8814,4 +8818,12 @@ h4 {
 .b2 {
 	color: #004080;
 }
+/* ----------------------------------------------------------------------- */
+/* home.jsp */
+
+.col-md-offset-18 {
+	position: relative;
+	margin-top: 10%;
+}
+
 /* ----------------------------------------------------------------------- */
