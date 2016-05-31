@@ -1,5 +1,7 @@
 package donate7.dao;
 
+import java.util.List;
+
 import donate7.model.Recruit;
 
 public interface VolDao {
@@ -11,4 +13,6 @@ public interface VolDao {
 	int updateVolReq(VolReq volReq);
 	List<VolReq> volReqList();
 	List<VolReqSearch> searchList();*/
+
+	List<Recruit> selectRcListByO_no(int o_no);
 }

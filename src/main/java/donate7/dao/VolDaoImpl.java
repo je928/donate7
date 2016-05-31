@@ -1,5 +1,7 @@
 package donate7.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,5 +45,10 @@ public class VolDaoImpl implements VolDao{
 	public int insertRc(Recruit rc) {
 		System.out.println("rc : " + rc);
 		return session.insert("recruit.insertRc",rc);
+	}
+
+	@Override
+	public List<Recruit> selectRcListByO_no(int o_no) {
+		return session.selectList("recruit.selectRcListByO_no",o_no);
 	}
 }
