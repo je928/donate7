@@ -86,9 +86,8 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="panel-footer2">
-					<div class="row">
-					<ul class="col col-xs-6 text-center pagination">
+				<div class="panel-footer2 text-center">
+					<ul class="col pagination">
 						<c:if test="${pb.startPage > pb.pagePerBlock}">
 						<li><a href="javascript:locate(1)">««</a></li>						
 						<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
@@ -110,7 +109,6 @@
 						<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
 						</c:if>
 					</ul>
-					</div>
 				</div>
 			</div>
 		</div>
