@@ -1,19 +1,15 @@
 package donate7.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import donate7.dao.VolDao;
-import donate7.model.VolReq;
-import donate7.model.VolReqSearch;
 @Service
 public class VolServiceImpl implements VolService {
 	@Autowired
 	VolDao vd;
 	
-	@Override
+	/*@Override
 	public int volReqInsert(VolReq req) {
 		return vd.volReqInsert(req);
 	}
@@ -41,6 +37,6 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public List<VolReqSearch> searchList() {
 		return vd.searchList();
-	}
+	}*/
 
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="class">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="ClassResult" type="class">
+		<result property="class_no" column="CLASS_NO"/>
+		<result property="class_name" column="CLASS_NAME"/>
+	</resultMap>
+
+	<select id="selectClass" resultMap="ClassResult">
+		SELECT * FROM CLASS
+	</select>
+
+</mapper>
