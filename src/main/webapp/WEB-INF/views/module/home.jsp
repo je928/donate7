@@ -1,210 +1,209 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-/*
-Ref:
-Thanks to:
-http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html
-*/
-
 #pinBoot {
-  position: relative;
-  max-width: 100%;
-  width: 100%;
+	position: relative;
+	max-width: 100%;
+	width: 100%;
 }
+
 img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+	width: 100%;
+	max-width: 100%;
+	height: 100px;
 }
+
 .white-panel {
-  background: white;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 10px;
+	background: white;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	margin-bottom: 20px;
+	margin-right: 30px;
 }
-/*
-stylize any heading tags withing white-panel below
-*/
 
 .white-panel h1 {
-  font-size: 1em;
+	font-size: 1em;
 }
+
 .white-panel h1 a {
-  color: #A92733;
+	color: #A92733;
 }
+
 .white-panel:hover {
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-  margin-top: -5px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	margin-top: -5px;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#pinBoot').pinterest_grid({
-		no_columns: 4,
-		padding_x: 10,
-		padding_y: 10,
-		margin_bottom: 50,
-		single_column_breakpoint: 700
+			no_columns : 6,
+			padding_x : 10,
+			padding_y : 10,
+			margin_bottom : 50,
+			single_column_breakpoint : 700
 		});
 	});
-	
-	;(function ($, window, document, undefined) {
-	    var pluginName = 'pinterest_grid',
-	        defaults = {
-	            padding_x: 10,
-	            padding_y: 10,
-	            no_columns: 3,
-	            margin_bottom: 50,
-	            single_column_breakpoint: 700
-	        },
-	        columns,
-	        $article,
-	        article_width;
 
-	    function Plugin(element, options) {
-	        this.element = element;
-	        this.options = $.extend({}, defaults, options) ;
-	        this._defaults = defaults;
-	        this._name = pluginName;
-	        this.init();
-	    }
+	;
+	(function($, window, document, undefined) {
+		var pluginName = 'pinterest_grid', defaults = {
+			padding_x : 10,
+			padding_y : 10,
+			no_columns : 3,
+			margin_bottom : 50,
+			single_column_breakpoint : 700
+		}, columns, $article, article_width;
 
-	    Plugin.prototype.init = function () {
-	        var self = this,
-	            resize_finish;
+		function Plugin(element, options) {
+			this.element = element;
+			this.options = $.extend({}, defaults, options);
+			this._defaults = defaults;
+			this._name = pluginName;
+			this.init();
+		}
 
-	        $(window).resize(function() {
-	            clearTimeout(resize_finish);
-	            resize_finish = setTimeout( function () {
-	                self.make_layout_change(self);
-	            }, 11);
-	        });
+		Plugin.prototype.init = function() {
+			var self = this, resize_finish;
 
-	        self.make_layout_change(self);
+			$(window).resize(function() {
+				clearTimeout(resize_finish);
+				resize_finish = setTimeout(function() {
+					self.make_layout_change(self);
+				}, 11);
+			});
 
-	        setTimeout(function() {
-	            $(window).resize();
-	        }, 500);
-	    };
+			self.make_layout_change(self);
 
-	    Plugin.prototype.calculate = function (single_column_mode) {
-	        var self = this,
-	            tallest = 0,
-	            row = 0,
-	            $container = $(this.element),
-	            container_width = $container.width();
-	            $article = $(this.element).children();
+			setTimeout(function() {
+				$(window).resize();
+			}, 500);
+		};
 
-	        if(single_column_mode === true) {
-	            article_width = $container.width() - self.options.padding_x;
-	        } else {
-	            article_width = ($container.width() - self.options.padding_x * self.options.no_columns) / self.options.no_columns;
-	        }
+		Plugin.prototype.calculate = function(single_column_mode) {
+			var self = this, tallest = 0, row = 0, $container = $(this.element), container_width = $container.width();
+			$article = $(this.element).children();
 
-	        $article.each(function() {
-	            $(this).css('width', article_width);
-	        });
+			if (single_column_mode === true) {
+				article_width = $container.width() - self.options.padding_x;
+			} else {
+				article_width = ($container.width() - self.options.padding_x
+						* self.options.no_columns)
+						/ self.options.no_columns;
+			}
 
-	        columns = self.options.no_columns;
+			$article.each(function() {
+				$(this).css('width', article_width);
+			});
 
-	        $article.each(function(index) {
-	            var current_column,
-	                left_out = 0,
-	                top = 0,
-	                $this = $(this),
-	                prevAll = $this.prevAll(),
-	                tallest = 0;
+			columns = self.options.no_columns;
 
-	            if(single_column_mode === false) {
-	                current_column = (index % columns);
-	            } else {
-	                current_column = 0;
-	            }
+			$article
+					.each(function(index) {
+						var current_column, left_out = 0, top = 0, $this = $(this), prevAll = $this.prevAll(), tallest = 0;
 
-	            for(var t = 0; t < columns; t++) {
-	                $this.removeClass('c'+t);
-	            }
+						if (single_column_mode === false) {
+							current_column = (index % columns);
+						} else {
+							current_column = 0;
+						}
 
-	            if(index % columns === 0) {
-	                row++;
-	            }
+						for (var t = 0; t < columns; t++) {
+							$this.removeClass('c' + t);
+						}
 
-	            $this.addClass('c' + current_column);
-	            $this.addClass('r' + row);
+						if (index % columns === 0) {
+							row++;
+						}
 
-	            prevAll.each(function(index) {
-	                if($(this).hasClass('c' + current_column)) {
-	                    top += $(this).outerHeight() + self.options.padding_y;
-	                }
-	            });
+						$this.addClass('c' + current_column);
+						$this.addClass('r' + row);
 
-	            if(single_column_mode === true) {
-	                left_out = 0;
-	            } else {
-	                left_out = (index % columns) * (article_width + self.options.padding_x);
-	            }
+						prevAll.each(function(index) {
+							if ($(this).hasClass('c' + current_column)) {
+								top += $(this).outerHeight()
+										+ self.options.padding_y;
+							}
+						});
 
-	            $this.css({
-	                'left': left_out,
-	                'top' : top
-	            });
-	        });
+						if (single_column_mode === true) {
+							left_out = 0;
+						} else {
+							left_out = (index % columns)
+									* (article_width + self.options.padding_x);
+						}
 
-	        this.tallest($container);
-	        $(window).resize();
-	    };
+						$this.css({
+							'left' : left_out,
+							'top' : top
+						});
+					});
 
-	    Plugin.prototype.tallest = function (_container) {
-	        var column_heights = [],
-	            largest = 0;
+			this.tallest($container);
+			$(window).resize();
+		};
 
-	        for(var z = 0; z < columns; z++) {
-	            var temp_height = 0;
-	            _container.find('.c'+z).each(function() {
-	                temp_height += $(this).outerHeight();
-	            });
-	            column_heights[z] = temp_height;
-	        }
+		Plugin.prototype.tallest = function(_container) {
+			var column_heights = [], largest = 0;
 
-	        largest = Math.max.apply(Math, column_heights);
-	        _container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
-	    };
+			for (var z = 0; z < columns; z++) {
+				var temp_height = 0;
+				_container.find('.c' + z).each(function() {
+					temp_height += $(this).outerHeight();
+				});
+				column_heights[z] = temp_height;
+			}
 
-	    Plugin.prototype.make_layout_change = function (_self) {
-	        if($(window).width() < _self.options.single_column_breakpoint) {
-	            _self.calculate(true);
-	        } else {
-	            _self.calculate(false);
-	        }
-	    };
+			largest = Math.max.apply(Math, column_heights);
+			_container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
+		};
 
-	    $.fn[pluginName] = function (options) {
-	        return this.each(function () {
-	            if (!$.data(this, 'plugin_' + pluginName)) {
-	                $.data(this, 'plugin_' + pluginName,
-	                new Plugin(this, options));
-	            }
-	        });
-	    }
+		Plugin.prototype.make_layout_change = function(_self) {
+			if ($(window).width() < _self.options.single_column_breakpoint) {
+				_self.calculate(true);
+			} else {
+				_self.calculate(false);
+			}
+		};
+
+		$.fn[pluginName] = function(options) {
+			return this.each(function() {
+				if (!$.data(this, 'plugin_' + pluginName)) {
+					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+				}
+			});
+		}
 	})(jQuery, window, document);
 </script>
 </head>
 <body>
 
 	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-offset-19"></div>
+		</div>
+		<div class="container">
 			<div class="row">
-				<section id="pinBoot">
+				<section id="pinBoot" class="text-center">
 					<article class="white-panel">
-						<img src="http://i.imgur.com/8lhFhc1.gif" alt="">
+						<img src="/donate7/${gift.g_img }" alt="">
+						<h4>
+							<a href="#">Title 2</a>
+						</h4>
+						<p>내용을 입력합니다. 내용을 입력합니다. 내용을 입력합니다. 내용을 입력합니다.</p>
+					</article>
+					<article class="white-panel">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>
@@ -212,7 +211,7 @@ stylize any heading tags withing white-panel below
 							culpa qui officia deserunt mollit anim id est laborum.</p>
 					</article>
 					<article class="white-panel">
-						<img src="http://i.imgur.com/8lhFhc1.gif" alt="">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>
@@ -220,7 +219,22 @@ stylize any heading tags withing white-panel below
 							culpa qui officia deserunt mollit anim id est laborum.</p>
 					</article>
 					<article class="white-panel">
-						<img src="http://i.imgur.com/8lhFhc1.gif" alt="">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
+						<h3>
+							<a href="#">Title 2</a>
+						</h3>
+						<p>내용을 입력합니다.</p>
+					</article>
+
+					<article class="white-panel">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
+						<h4>
+							<a href="#">Title 2</a>
+						</h4>
+						<p>내용을 입력합니다. 내용을 입력합니다. 내용을 입력합니다. 내용을 입력합니다.</p>
+					</article>
+					<article class="white-panel">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>
@@ -228,7 +242,7 @@ stylize any heading tags withing white-panel below
 							culpa qui officia deserunt mollit anim id est laborum.</p>
 					</article>
 					<article class="white-panel">
-						<img src="http://i.imgur.com/8lhFhc1.gif" alt="">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>
@@ -236,7 +250,23 @@ stylize any heading tags withing white-panel below
 							culpa qui officia deserunt mollit anim id est laborum.</p>
 					</article>
 					<article class="white-panel">
-						<img src="http://i.imgur.com/8lhFhc1.gif" alt="">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
+						<h4>
+							<a href="#">Title 2</a>
+						</h4>
+						<p>Excepteur sint occaecat cupidatat non proident, sunt in
+							culpa qui officia deserunt mollit anim id est laborum.</p>
+					</article>
+					<article class="white-panel">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
+						<h4>
+							<a href="#">Title 2</a>
+						</h4>
+						<p>Excepteur sint occaecat cupidatat non proident, sunt in
+							culpa qui officia deserunt mollit anim id est laborum.</p>
+					</article>
+					<article class="white-panel">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>
@@ -245,6 +275,7 @@ stylize any heading tags withing white-panel below
 					</article>
 				</section>
 			</div>
+		</div>
 	</div>
 
 </body>

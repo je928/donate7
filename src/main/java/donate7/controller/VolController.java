@@ -27,7 +27,7 @@ public class VolController {
 	@Autowired
 	private MemberService ms;
 
-	@RequestMapping(value = "recruitForm", method = RequestMethod.GET)
+	@RequestMapping(value = "recruit", method = RequestMethod.GET)
 	public String reqResistForm(Recruit rc, HttpSession session, Model model) {
 		int o_no = 0;
 		if (session.getAttribute("no") != null) {
@@ -35,8 +35,10 @@ public class VolController {
 			String addr = ms.selectO_addrByO_no(o_no);
 			List<Class> list = cs.selectClass(); 
 			List<Subject> slist = cs.selectSubject();
+			List<Dclass> dlist = cs.selectDclassByClass_no(1);
 			model.addAttribute("list", list);
 			model.addAttribute("slist", slist);
+			model.addAttribute("dlist", dlist);
 			model.addAttribute("addr", addr);
 			model.addAttribute("rc", rc);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -47,20 +49,20 @@ public class VolController {
 		}
 	}
 	
-	/*@RequestMapping(value = "reqResist", method = RequestMethod.POST)
-	public String reqResist(VolReq volReq, Model model) {
-		int result = vs.volReqInsert(volReq);
-		List<VolReq> list = vs.volListByVt_Reg_O_No(volReq.getVt_Reg_O_No());
-		if (result > 0) {
-			model.addAttribute("list", list);
-			model.addAttribute("pgm", "../vt/manageVol.jsp");
-		} else {
-			model.addAttribute("pgm", "../vt/req.jsp");
-			model.addAttribute("volReq", volReq);
+	@RequestMapping(value = "recruit", method = RequestMethod.POST)
+	public String reqResist(Recruit rc, Model model) {
+		int result = vs.insertRc(rc);
+		
+		if(result > 0){
+			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		}else{
+			model.addAttribute("rc", rc);
+			return "redirect:recruit.do";
 		}
+		
 		return "module/main";
 	}
-
+/*
 	@RequestMapping("manageVol")
 	public String manageVol(HttpSession session, Model model) {
 
@@ -122,41 +124,6 @@ public class VolController {
 		model.addAttribute("volReq", volReq);
 		return "vt/reqDetail";
 	}*/
-	/*@RequestMapping(value="http://www.test.com/get", method=RequestMethod.POST)
-	@ResponseBody
-	public Object getBookInfo(@RequestParam Map<String,Object> map) {
-	     
-	    String searchCd = (String) map.get("searchCd"); //검색코드
-	     
-	    //실제로 해당 부분은 서비스에서 처리 해야 하지만 그냥 Controller에서 처리
-	    //검색코드를 조건으로 값을 가져 와야 하는데 설명을 위해 임의적으로 값을 셋팅
-	 
-	    List<Book> bookList = new ArrayList<Book>();
-	    Book book = new Book();
-	     
-	    book.setName("홍길동전");
-	    book.setPrice(100);
-	     
-	    bookList.add(book);
-	     
-	    book = new Book();
-	     
-	    book.setName("레미제라블");
-	    book.setPrice(300);
-	     
-	    bookList.add(book);
-	 
-	     
-	    Map<String, Object> retVal = new HashMap<String, Object>();
-	     
-	    retVal.put("bookList", bookList); //bookList란 키로 bookList의 값을 넣어줍니다. (웹에서 bookList키로 추출
-	     
-	    retVal.put("code", "OK");
-	     
-	    return retVal;
-	     
-	}*/
-
 	
 	@RequestMapping(value = "dclassList", method = RequestMethod.POST)
 	public String dclassList(int class_no, Model model) {

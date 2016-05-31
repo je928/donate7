@@ -15,9 +15,14 @@
 		<result property="vt_tot" column="VT_TOT"/>
 		<result property="vt_subject" column="VT_SUBJECT"/>
 		<result property="vt_desc" column="VT_DESC"/>
+		<result property="vt_reg_date" column="VT_REG_DATE"/>
 	</resultMap>
 
 	<select id="selectRecruitList" resultMap="RecruitResult">
-		SELECT * FROM RECRUIT
+		SELECT * FROM VT_RECRUIT
 	</select>
+	
+	<insert id="insertRc" parameterType="recruit">
+		INSERT INTO VT_RECRUIT VALUES (NEW_VT_NO, #{vt_name},#{vt_o_no},#{vt_r_start_date},#{vt_r_end_date},#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_tot},#{vt_subject},#{vt_desc},SYSDATE)
+	</insert>
 </mapper>
