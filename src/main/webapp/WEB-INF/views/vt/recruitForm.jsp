@@ -41,38 +41,9 @@
 					changeMonth : true,
 					changeYear : true,
 					showButtonPanel : true,
-					yearRange : 'c-99:c+99',
+					yearRange : 'c-5:c+5',
 				};
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
-
-				$('#vsdate').datepicker();
-				$('#vsdate')
-						.datepicker("option", "maxDate", $("#vedate").val());
-				$('#vsdate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							if (selectedDate != 0) {
-								$("#vedate").datepicker("option", "minDate",
-										selectedDate);
-							} else {
-								$("#vedate").datepicker("option", "minDate",
-										'today');
-							}
-
-						});
-
-				$('#vedate').datepicker();
-				$('#vedate')
-						.datepicker("option", "minDate", $("#vsdate").val());
-				$('#vedate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							$("#vsdate").datepicker("option", "maxDate",
-									selectedDate);
-						});
-
 				$('#rsdate').datepicker();
 				$('#rsdate')
 						.datepicker("option", "maxDate", $("#redate").val());
@@ -80,7 +51,7 @@
 						"option",
 						"onClose",
 						function(selectedDate) {
-							if (selectedDate != 0) {
+							if (selectedDate != null) {
 								$("#redate").datepicker("option", "minDate",
 										selectedDate);
 							} else {
@@ -99,48 +70,48 @@
 						function(selectedDate) {
 							$("#rsdate").datepicker("option", "maxDate",
 									selectedDate);
+							$("#vsdate").datepicker("option", "minDate",
+									selectedDate);
 						});
 
-				$('#cls').change(
-						function() {
-							var sendData = 'class_no='
-									+ $('#cls option:selected').val();
-							$.post('dclassList.do', sendData, function(data) {
-								$('#res').html(data);
-							});
+				$('#vsdate').datepicker();
+				$('#vsdate')
+						.datepicker("option", "maxDate", $("#vedate").val());
+				$('#vsdate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							if (selectedDate != null) {
+								$("#vedate").datepicker("option", "minDate",
+										selectedDate);
+								$("#redate").datepicker("option", "maxDate",
+										selectedDate);
+							} else {
+								$("#vedate").datepicker("option", "minDate",
+										'today');
+							}
+						});
+
+				$('#vedate').datepicker();
+				$('#vedate')
+						.datepicker("option", "minDate", $("#vsdate").val());
+				$('#vedate').datepicker(
+						"option",
+						"onClose",
+						function(selectedDate) {
+							$("#vsdate").datepicker("option", "maxDate",
+									selectedDate);
 						});
 				
-				/* //검색버튼 클릭
-				$("#searchButton").click(function(){
-				    var objParams = {
-				            searchCd : $("input[name=searchCd]").val() //검색할 코드 (실제로 예제에서는 사용 안함)
-				    }
-				 
-				    var values = []; //ArrayList 값을 받을 변수를 선언
-				 
-				    //검색할 코드를 넘겨서 값을 가져온다.      
-				    $.post(
-				        "http://www.test.com/get", 
-				        objParams,
-				        function(retVal) {
-				            if(retVal.code == "OK") { //controller에서 넘겨준 성공여부 코드
-				                 
-				                values = retVal.bookList ; //java에서 정의한 ArrayList명을 적어준다.
-				                 
-				                $.each(values, function( index, value ) {
-				                   console.log( index + " : " + value.name ); //Book.java 의 변수명을 써주면 된다.
-				                });
-				                 
-				                alert("성공");
-				            }
-				            else {
-				                alert("실패");
-				            }                   
-				        }
-				    );
-				     
-				}); */
+				$('#cls').change(function() {
+					var sendData = 'class_no=' + $('#cls option:selected').val();
+					$.post('dclassList.do', sendData, function(data) {
+						$('#res').html(data);
+						$.datepicker.setDefaults($.datepicker.regional['ko']);
+					});
+				
 			});
+	});
 </script>
 <style type="text/css">
 .req-container {
@@ -179,31 +150,38 @@
 						<div class="form-group">
 							<b style="display: block;">봉사 모집 기간 :</b> 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_r_start_Date" id="rsdate" size="10" maxlength="10" />
+								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" />
 							종료일 : <input class="form-control-20" readonly="readonly"
-								type="text" name="vt_r_end_Date" id="redate" size="10"
+								type="text" name="vt_r_end_date" id="redate" size="10"
 								maxlength="10" />
 						</div>
 						<div class="form-group">
 							<b style="display: block;">봉사 활동 기간 :</b> 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_a_start_Date" id="vsdate" size="10" maxlength="10" />
+								name="vt_a_start_date" id="vsdate" size="10" maxlength="10" />
 							종료일 : <input class="form-control-20" readonly="readonly"
-								type="text" name="vt_a_end_Date" id="vedate" size="10"
+								type="text" name="vt_a_end_date" id="vedate" size="10"
 								maxlength="10" />
 						</div>
 						<div class="form-group">
 							<div style="float: left; width: 50%">
-								<b style="display: block;">활동분야:</b> <select style="float: left; width: 50%"
-									class="form-control-40" name="cls" id="cls">
-										<c:forEach var="cl" items="${list}">
-											<option value="${cl.class_no }">${cl.class_name }</option>
+								<b style="display: block;">활동분야:</b> <select
+									style="float: left; width: 50%" class="form-control-40"
+									name="cls" id="cls">
+									<c:forEach var="cl" items="${list}">
+										<option value="${cl.class_no }">${cl.class_name }</option>
+									</c:forEach>
+								</select><span id="res">
+									<select id="vt_class" class="form-control-40">
+										<c:forEach var="dc" items="${dlist }">
+											<option value="${dc.dclass_no }">${dc.dclass_name }</option>
 										</c:forEach>
-								</select><span id="res"></span>
+									</select>
+								</span>
 							</div>
 							<div>
-								<b>봉사 대상자:</b> <select class="form-control-40" name="cls"
-									id="cls" style="display: block;">
+								<b>봉사 대상자:</b> <select class="form-control-40" name="vt_subject"
+									id="vt_subject" style="display: block;">
 									<c:forEach var="sub" items="${slist}">
 										<option value="${sub.sub_no }">${sub.sub_name }</option>
 									</c:forEach>
@@ -211,8 +189,8 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<b>요청 인원:</b> <select class="form-control-40" name="vt_tot"
-								id="vt_tot">
+							<b>요청 인원:</b> <select class="form-control-40" style="width: 10%"
+								name="vt_tot" id="vt_tot">
 								<c:forEach var="i" begin="0" end="50">
 									<option value="${i }">${i }</option>
 								</c:forEach>
@@ -220,7 +198,7 @@
 						</div>
 						<div class="form-group">
 							<b style="display: block;">상세 내용:</b>
-							<textarea rows="5" cols="80" name="vt_Desc" id="vt_Desc"></textarea>
+							<textarea rows="5" cols="80" name="vt_desc" id="vt_desc"></textarea>
 						</div>
 					</div>
 					<div style="margin-top: 40px; text-align: center;">

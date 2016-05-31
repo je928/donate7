@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import donate7.model.Recruit;
+
 @Repository
 public class VolDaoImpl implements VolDao{
 	@Autowired
@@ -36,4 +38,10 @@ public class VolDaoImpl implements VolDao{
 	public List<VolReqSearch> searchList() {
 		return session.selectList("volReqSearch.searchVolReq");
 	}*/
+
+	@Override
+	public int insertRc(Recruit rc) {
+		System.out.println("rc : " + rc);
+		return session.insert("recruit.insertRc",rc);
+	}
 }

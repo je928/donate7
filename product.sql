@@ -1,28 +1,28 @@
-create table pr_product (
-	pr_no number primary key, 						-- ¿äÃ»°Ô½Ã±Û ¹øÈ£
-	pr_mno number not null,							-- ÀÛ¼ºÀÚÀÌ¸ÞÀÏ
-	pr_proname varchar2(70)	not null,				-- Á¦Ç° ÀÌ¸§
-	pr_item	varchar2(50) not null,					-- Á¦Ç° Á¾·ù
-	pr_content 	varchar2(4000)	not null,			-- ¼³¸í
-	pr_qty number not null,							-- ¼ö·®
-	pr_price varchar2(50) not null,					-- °¡°Ý
-	pr_img varchar2(50)	default 'nothing.jpg',	-- »çÁø
-	pr_donation varchar2(20) not null,				--±âºÎÃ³
-	pr_approve CHAR(1) default 'n' check (pr_APPROVE in ('y','n')), --½ÂÀÎ¿©ºÎ
-	pr_callm varchar2(1000)	not null,				-- ¿äÃ»¸Þ¼¼Áö
+create table product (
+	pr_no number primary key, 						-- ï¿½ï¿½Ã»ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È£
+	pr_mno number not null,							-- ï¿½Û¼ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½
+	pr_proname varchar2(70)	not null,				-- ï¿½ï¿½Ç° ï¿½Ì¸ï¿½
+	pr_item	varchar2(50) not null,					-- ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
+	pr_content 	varchar2(4000)	not null,			-- ï¿½ï¿½ï¿½ï¿½
+	pr_qty number not null,							-- ï¿½ï¿½ï¿½ï¿½
+	pr_price varchar2(50) not null,					-- ï¿½ï¿½ï¿½ï¿½
+	pr_img varchar2(50)	default 'nothing.jpg',	-- ï¿½ï¿½ï¿½ï¿½
+	pr_donation varchar2(20) not null,				--ï¿½ï¿½ï¿½Ã³
+	pr_approve CHAR(1) default 'n' check (pr_APPROVE in ('y','n')), --ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½
+	pr_callm varchar2(1000)	not null,				-- ï¿½ï¿½Ã»ï¿½Þ¼ï¿½ï¿½ï¿½
 	pr_date date default sysdate,
 	pr_update date
 );                
 
 
 create table pr_buy (	
-	pb_no number primary key,				-- ±¸¸Å»óÅÂ¹øÈ£
-	pb_prno number not null,				-- ÆÇ¸ÅÁ¤º¸(ÆÇ¸ÅÀÚ ´Ð³×ÀÓ, Á¦Ç° °¡°Ý)
+	pb_no number primary key,				-- ï¿½ï¿½ï¿½Å»ï¿½ï¿½Â¹ï¿½È£
+	pb_prno number not null,				-- ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½, ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½)
 	pb_date date default sysdate,
-	pb_mno number not null,					-- ±¸¸ÅÀÚ
-	pb_buyqty number not null,				-- ±¸¸Å¼ö·®
-	pb_addr	varchar2(100) not null,			-- ÁÖ¼Ò
-	pb_delivery	varchar2(100) not null		-- ¹è¼Û»óÅÂ
+	pb_mno number not null,					-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	pb_buyqty number not null,				-- ï¿½ï¿½ï¿½Å¼ï¿½ï¿½ï¿½
+	pb_addr	varchar2(100) not null,			-- ï¿½Ö¼ï¿½
+	pb_delivery	varchar2(100) not null		-- ï¿½ï¿½Û»ï¿½ï¿½ï¿½
 		
 );
 
