@@ -66,7 +66,7 @@
 									<img alt="" src="images/level.gif" height="10" width="${brd.re_step*10}">
 									<img alt="" src="images/re.gif">
 								</c:if>
-									<a href="view.do?num=${brd.brd_no}&pageNum=${pb.nowPage}"> ${brd.brd_subject} </a>
+									<a href="view.do?brd_no=${brd.brd_no}&pageNum=${pb.nowPage}"> ${brd.brd_subject} </a>
 								<c:if test="${brd.brd_readcount > 30}">
 									<img alt="" src="images/hot.gif">
 								</c:if>

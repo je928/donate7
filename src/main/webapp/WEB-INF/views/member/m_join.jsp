@@ -214,36 +214,36 @@
 		        	<br style="clear:both">
 		        	<h4 style="margin-bottom: 25px; text-align: center;">일반 회원가입</h4>
 					<div class="form-group">
-						<b>이메일:</b>
+						<b class="m">이메일:</b>
 						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required autofocus="autofocus">
 						<span id="email_chk"> </span>
 					</div>
 					<div class="form-group">
-						<b>비밀번호:</b>
+						<b class="m">비밀번호:</b>
 						<input type="password" class="form-control" id="m_passwd" name="m_passwd" maxlength="20" required>
 						<span id="pwd_chk"> </span>
 					</div>
 					<div class="form-group">
-						<b>비밀번호 재확인:</b>
+						<b class="m">비밀번호 재확인:</b>
 						<input type="password" class="form-control" id="m_passwd2" name="m_passwd2" maxlength="20" required>
 						<span id="pwd_chk2"> </span>
 					</div>
 					<div class="form-group">
-						<b>이름:</b>
+						<b class="m">이름:</b>
 						<input type="text" class="form-control" id="m_name" name="m_name" maxlength="40" required>
 						<span id="name_chk"> </span>
 					</div>
 					<div class="form-group">
-						<b>닉네임:</b>
+						<b class="m">닉네임:</b>
 						<input type="text" class="form-control" id="m_nick" name="m_nick" maxlength="10" required>
 						<span id="nick_chk"> </span>
 					</div>
 					<div class="form-group">
-						<b>생년월일:</b>
+						<b class="m">생년월일:</b>
 						<input type="date" class="form-control-50" id="m_birth" name="m_birth" required>
 					</div>
 					<div class="form-group">
-                    	<b>성별:</b>
+                    	<b class="m">성별:</b>
                     	<div class="radio">
 	                    	<label>
 	                    		<input type="radio" name="m_gender" id="m_gender" value="남자" required>남자
@@ -255,7 +255,7 @@
                     	</div>
                     </div>				
 					<div class="form-group">
-						<b>전화번호:</b>
+						<b class="m">전화번호:</b>
 						<div>
 							<input type="text" class="form-control-20" name="m_tel1" id="m_tel1" maxlength="3" required>
 							- <input type="text" class="form-control-20" name="m_tel2" id="m_tel2" maxlength="4" required>
@@ -264,7 +264,7 @@
 						<span id="tel_chk"> </span>
 					</div>
 					<div class="form-group">
-						<b>직업:</b>
+						<b class="m">직업:</b>
 						<div>
 							<select class="form-control-40" name="m_job">
 								<option value="학생">학생</option>

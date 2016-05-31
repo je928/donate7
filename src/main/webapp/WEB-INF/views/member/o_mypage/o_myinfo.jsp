@@ -66,7 +66,7 @@
 					<div class="panel-footer">
 						<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
 						<span class="pull-right">
-							<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">수정<i class="glyphicon glyphicon-edit"></i></a>
+							<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
 							<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
 						</span>
 					</div>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery2.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
