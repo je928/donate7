@@ -10,7 +10,19 @@
 <script type="text/javascript">
 	window.onload = function(){
 		CKEDITOR.replace('brd_content');
+		CKEDITOR.config.height = '500px';
 	}
+	
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.brd_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
+	
 </script>
 </head>
 <body>
@@ -35,7 +47,7 @@
 		<div class="container">
 			<div class="col-lg-9 col-md-offset-20">
 				<div class="panel panel-default panel-table">
-					<form action="write.do" method="post" role="form">
+					<form action="write.do" name="frm" method="post" role="form" onsubmit="return checkEditorValue()">
 						<input type="hidden" name="no" value="${no}">						
 						<input type="hidden" name="brd_no" value="${community.brd_no}">
 						<input type="hidden" name="ref" value="${community.ref}">
@@ -47,10 +59,10 @@
 							<em class="fa fa-edit"></em>
 						</h3>
 						<div class="form-group">
-							<input type="text" class="form-control-95" name="brd_subject" id="brd_subject" placeholder="제목을 입력해 주세요." autofocus="autofocus" value="${community.brd_subject}" required>
+							<input type="text" class="form-control-95" name="brd_subject" id="brd_subject" maxlength="50" placeholder="제목을 입력해 주세요." autofocus="autofocus" value="${community.brd_subject}" required>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control-95" name="brd_content" id="brd_content" required>${community.brd_content}</textarea>
+							<textarea class="form-control-95" name="brd_content" id="brd_content" rows="50">${community.brd_content}</textarea>
 						</div>
 						<div class="panel-footer text-center">
 						<span>
