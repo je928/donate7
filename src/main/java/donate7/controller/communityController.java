@@ -61,9 +61,21 @@ public class communityController {
 	}
 	
 	@RequestMapping(value="view")
-	public String view(int brd_no, String pageNum, Model model) {
+	public String view(int brd_no, String pageNum, String searchType, String searchTxt, Model model) {
+		if(searchType == null || searchType.equals("null") || searchType.equals("")){
+			searchType = "all";
+		}
+		if(searchTxt == null || searchTxt.equals("null")){
+			searchTxt = "";
+		}
 		cs.communityHit(brd_no);
 		Community community = cs.communitySelect(brd_no);
+		community.setSearchType(searchType);		
+		community.setSearchTxt(searchTxt);
+		if (community.getSearchType() != null) {
+			model.addAttribute("searchType", community.getSearchType());
+			model.addAttribute("searchTxt",community.getSearchTxt());
+		}
 		model.addAttribute("community", community);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../community/view.jsp");
@@ -115,6 +127,28 @@ public class communityController {
 			model.addAttribute("msg", "입력 실패");
 			model.addAttribute("community", community);
 			return "forward:writeForm.do";
+		}
+	}
+	
+	@RequestMapping(value="updateForm")
+	public String updateForm(int brd_no, String pageNum, Model model) {
+		Community community = cs.communitySelect(brd_no);
+		model.addAttribute("community", community);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pgm", "../community/updateForm.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="update")
+	public String update(Community community, String pageNum, Model model) {
+		int result = cs.communityUpdate(community);
+		if(result > 0) {
+			return "redirect:view.do?brd_no="+community.getBrd_no()+"&pageNum="+pageNum;
+		}else {
+			model.addAttribute("msg", "수정 실패");		
+			model.addAttribute("community", community);
+			model.addAttribute("pageNum", pageNum);
+			return "forward:updateForm.do?brd_no="+community.getBrd_no()+"&pageNum="+pageNum;
 		}
 	}
 	

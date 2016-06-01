@@ -34,12 +34,12 @@ public class CommunityDaoImpl implements CommunityDao {
 		return total;
 	}
 
-	public void communityHit(int num) {
-		session.update("community.communityHit", num);
+	public void communityHit(int brd_no) {
+		session.update("community.communityHit", brd_no);
 	}
 
-	public Community communitySelect(int no) {
-		return session.selectOne("community.communitySelect", no);
+	public Community communitySelect(int brd_no) {
+		return session.selectOne("community.communitySelect", brd_no);
 	}
 
 	public int insertNo() {
@@ -58,6 +58,16 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	public void updateRe_step(Community community) {
 		session.update("community.updateRe_step", community);
+	}
+
+	public int communityUpdate(Community community) {
+		int result = 0;
+		try {
+			result = session.update("community.communityUpdate", community);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 	
 }
