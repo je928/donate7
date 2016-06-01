@@ -51,27 +51,7 @@ public class adminController {
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondList.jsp");
 		return "module/main";
 	}
-	@RequestMapping(value="ad_prList", method=RequestMethod.GET)
-	public String adprList(Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		Product product = new Product();
-		product.setPr_mno(no);
-		int count=ps.count(product);
-		List<Product> list = ps.prlist();
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="ad_prView", method=RequestMethod.GET)
-	public String ad_prView(int pr_no, Model model){
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_prView.jsp");
-		return "module/main";
-	}
+	
 	@RequestMapping(value="adList", method=RequestMethod.GET)
 	public String adList(Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");

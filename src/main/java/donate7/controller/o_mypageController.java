@@ -26,8 +26,7 @@ import donate7.service.SecondService;
 public class o_mypageController {
 	@Autowired
 	private SecondService ss;
-	@Autowired
-	private ProductService ps;
+
 	@Autowired
 	private DonateService ds;
 
@@ -125,87 +124,7 @@ public class o_mypageController {
 		ss.msdelete(sh_no);
 		return "redirect:osecondList.do?sh_no="+sh_no;
 	}
-	@RequestMapping(value="o_prList", method=RequestMethod.GET)
-	public String oprList(Model model, HttpSession session){
-		
-		int no=(Integer)session.getAttribute("no");
-		Product product = new Product();
-		product.setPr_mno(no);
-		int count=ps.count(product);
-		List<Product> list = ps.olist(no);
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm","../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="o_prWrite", method=RequestMethod.GET)
-	public String oprwriteForm(Model model){
-		model.addAttribute("pgm","../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/organ/o_prWrite.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="o_prWrite", method=RequestMethod.POST)
-	public String oprwrite(@RequestParam("oimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
-	int no=(Integer)session.getAttribute("no");
-	String fileName = mf.getOriginalFilename();
-	String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-	mf.transferTo(new File(request.getRealPath("/")+uploadName));
-	product.setPr_img(uploadName);
-	product.setPr_mno(no);
-	ps.insert(product);
-	model.addAttribute("msg", "파일이름 : "+fileName);
-	List<Product> list = ps.olist(no);
-	model.addAttribute("list", list);
-	model.addAttribute("fileName", uploadName);
-	model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-	model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
-	return "module/main";
-	}
-	@RequestMapping(value="o_prView", method=RequestMethod.GET)
-	public String o_prView(int pr_no, Model model){
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/organ/o_prView.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value ="o_prUpdate", method = RequestMethod.GET)
-	public String oprupdateForm(int pr_no, Model model) {
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/organ/o_prUpdate.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="o_prUpdate", method=RequestMethod.POST)
-	public String oprupdate(@RequestParam("oimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
-		int no=(Integer)session.getAttribute("no");
-		
-		if(mf.getOriginalFilename().equals("")){
-			Product pr = ps.selectOne(product.getPr_no());
-			product.setPr_img(pr.getPr_img());
-		}else{
-			String fileName = mf.getOriginalFilename();
-			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-			mf.transferTo(new File(request.getRealPath("/")+uploadName));
-			product.setPr_img(uploadName);
-		}
-		product.setPr_mno(no);
-		ps.prUpdate(product);
-		List<Product> list = ps.olist(no);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/organ/o_prView.jsp");
-		return "module/main";
-	}
-	@RequestMapping("o_prDelete")
-	public String delete(int pr_no, Model model){
-		ps.prdelete(pr_no);
-		return "redirect:o_prList.do?pr_no="+pr_no;
-	}
+	
 	@RequestMapping(value = "odoList", method = RequestMethod.GET)
 	public String odoList(Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");

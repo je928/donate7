@@ -65,5 +65,15 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectOne("product.count", product);
 	}
 
+	public int apUpdate(int pr_no) {
+		return st.update("product.apUpdate",pr_no);
+		
+	}
+
+	public void apCancel(int pr_no) {
+		st.update("product.apCancel",pr_no);
+		
+	}
+
 
 }

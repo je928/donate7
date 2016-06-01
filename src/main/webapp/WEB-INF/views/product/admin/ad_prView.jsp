@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="goods">
 	<input type="hidden" name="pr_mno" value="${sessionScope.no}">
 		<table class="table table-striped table-hover">
 			<caption>판매요청</caption>
@@ -34,7 +35,7 @@
 			<tr>
 				<th>사진</th>
 				<td align="center">
-					<img src="/ex/${product.pr_img}" width="300px">
+					<img src="image/${product.pr_img}" width="300px">
 				</td>
 			</tr>
 			<tr>
@@ -45,11 +46,18 @@
 				<th>요청메세지</th>
 				<td>${product.pr_callm}</td>
 			</tr>
-			
+			<tr>
+				<th>승인여부</th>
+				<td>${product.pr_approve}</td>
+			</tr>
 		</table>
+	</form>
 		<div align="center">
-			<button onclick="location.href='prList.do'">승인</button>
+		
+			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}'">승인</button>
 			<button onclick="location.href='ad_prList.do'">보류</button>
+			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}'">승인취소</button>
+
 			
 		</div>
 

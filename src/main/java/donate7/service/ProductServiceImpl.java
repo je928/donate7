@@ -53,4 +53,13 @@ public class ProductServiceImpl implements ProductService {
 		return pd.count(product);
 	}
 
+	public int apUpdate(int pr_no) {
+		return pd.apUpdate(pr_no);
+		
+	}
+
+	public void apCancel(int pr_no) {
+		pd.apCancel(pr_no);
+	}
+
 }

@@ -25,5 +25,10 @@ public interface ProductDao {
 
 	int count(Product product);
 
+	int apUpdate(int pr_no);
+
+	void apCancel(int pr_no);
+
+
 
 }

@@ -58,7 +58,7 @@
 			</tr>
 			<tr>
 				<th>사진</th>
-				<td> <img src="/ex/${product.pr_img}" width="300px" id="UploadImg1">				
+				<td> <img src="image/${product.pr_img}" width="300px" id="UploadImg1">				
 				<input type="file" name="mimg" id="file1" onchange="readURL(this,'UploadImg1');"></td>
 			</tr>
 			<tr>

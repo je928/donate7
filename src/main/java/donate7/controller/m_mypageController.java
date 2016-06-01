@@ -36,8 +36,7 @@ public class m_mypageController {
 	private DonateService ds;
 	@Autowired
 	private SecondService ss;
-	@Autowired
-	private ProductService ps;
+
 	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model) {
@@ -126,88 +125,7 @@ public class m_mypageController {
 		ss.msdelete(sh_no);
 		return "redirect:msecondList.do?sh_no="+sh_no;
 	}
-	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
-	public String mproList(Model model, HttpSession session) {
-		int no=(Integer)session.getAttribute("no");
-		List<Product> list = ps.mlist(no);
-		Product product = new Product();
-		product.setPr_mno(no);
-		int count=ps.count(product);
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
-		
-		return "module/main";
-	}
-	@RequestMapping(value ="m_prWrite", method = RequestMethod.GET)
-	public String m_prWriteForm(Model model) {
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prWrite.jsp");
-		return "module/main";
-	}
 	
-	@RequestMapping(value="m_prWrite", method=RequestMethod.POST)
-	public String m_prWrite(@RequestParam("mimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
-		int no=(Integer)session.getAttribute("no");
-		String fileName = mf.getOriginalFilename();
-		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-		mf.transferTo(new File(request.getRealPath("/")+uploadName));
-		product.setPr_img(uploadName);
-		product.setPr_mno(no);
-		ps.insert(product);
-		List<Product> list = ps.mlist(no);
-		model.addAttribute("list", list);
-		model.addAttribute("fileName", uploadName);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
-		return "module/main";
-	}
-	
-	@RequestMapping(value="m_prView", method=RequestMethod.GET)
-	public String m_prView(int pr_no, Model model){
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value ="m_prUpdate", method = RequestMethod.GET)
-	public String mprupdateForm(int pr_no, Model model) {
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prUpdate.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="m_prUpdate", method=RequestMethod.POST)
-	public String mprupdate(@RequestParam("mimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
-		int no=(Integer)session.getAttribute("no");
-		
-		if(mf.getOriginalFilename().equals("")){
-			Product pr = ps.selectOne(product.getPr_no());
-			product.setPr_img(pr.getPr_img());
-		}else{
-			String fileName = mf.getOriginalFilename();
-			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-			mf.transferTo(new File(request.getRealPath("/")+uploadName));
-			product.setPr_img(uploadName);
-		}
-		product.setPr_mno(no);
-		ps.prUpdate(product);
-		List<Product> list = ps.mlist(no);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
-		return "module/main";
-	}
-	@RequestMapping("m_prDelete")
-	public String delete(int pr_no, Model model){
-		ps.prdelete(pr_no);
-		return "redirect:m_prList.do?pr_no="+pr_no;
-	}
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model,HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");

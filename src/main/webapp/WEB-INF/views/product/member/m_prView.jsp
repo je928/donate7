@@ -34,7 +34,7 @@
 			<tr>
 				<th>사진</th>
 				<td align="center">
-					<img src="/ex/${product.pr_img}" width="300px">
+					<img src="image/${product.pr_img}" width="300px">
 				</td>
 			</tr>
 			<tr>
