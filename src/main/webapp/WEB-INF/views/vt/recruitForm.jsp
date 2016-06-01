@@ -14,109 +14,34 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.regional['ko'] = {
-					closeText : '닫기',
-					prevText : '이전달',
-					nextText : '다음달',
-					currentText : '오늘',
-					minDate : 0,
-					monthNames : [ '1월(JAN)', '2월(FEB)', '3월(MAR)', '4월(APR)',
-							'5월(MAY)', '6월(JUN)', '7월(JUL)', '8월(AUG)',
-							'9월(SEP)', '10월(OCT)', '11월(NOV)', '12월(DEC)' ],
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-					weekHeader : 'Wk',
-					dateFormat : 'yymmdd',
-					firstDay : 0,
-					isRTL : false,
-					showMonthAfterYear : true,
-					yearSuffix : '',
-					showOn : 'both',
-					buttonText : "▼",
-					changeMonth : true,
-					changeYear : true,
-					showButtonPanel : true,
-					yearRange : 'c-5:c+5',
-				};
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				/* $('#rsdate').datepicker();
-				$('#rsdate')
-						.datepicker("option", "maxDate", $("#redate").val());
-				$('#rsdate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							if (selectedDate != null) {
-								$("#redate").datepicker("option", "minDate",
-										selectedDate);
-							} else {
-								$("#redate").datepicker("option", "minDate",
-										'today');
-							}
+	$(document).ready(function() {
+		$('#redate').change(function() {
+			var currentDate = new Date();
+			var strDate = $('#redate').val();
+			var redate = new Date(strDate);
+			if(currentDate > redate){
+				alert('모집 종료일은 오늘 일자 이후로 선택하여 주세요.');
+				$('#redate').val('');
+			}
+			$('#vsdate').attr('min', strDate);
+		});
+		$('#vsdate').change(function() {
+			var selDate = $('#vsdate').val();
+			$('#vedate').attr('min',selDate);
+		});
 
-						}); */
-
-				$('#redate').datepicker();
-				$('#redate')
-						.datepicker("option", "minDate", 'today');
-				$('#redate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							$("#rsdate").datepicker("option", "maxDate",
-									selectedDate);
-							$("#vsdate").datepicker("option", "minDate",
-									selectedDate);
-						});
-
-				$('#vsdate').datepicker();
-				$('#vsdate')
-						.datepicker("option", "maxDate", $("#vedate").val());
-				$('#vsdate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							if (selectedDate != null) {
-								$("#vedate").datepicker("option", "minDate",
-										selectedDate);
-								$("#redate").datepicker("option", "maxDate",
-										selectedDate);
-							} else {
-								$("#vedate").datepicker("option", "minDate",
-										'today');
-							}
-						});
-
-				$('#vedate').datepicker();
-				$('#vedate')
-						.datepicker("option", "minDate", $("#vsdate").val());
-				$('#vedate').datepicker(
-						"option",
-						"onClose",
-						function(selectedDate) {
-							$("#vsdate").datepicker("option", "maxDate",
-									selectedDate);
-						});
-				
-				$('#cls').change(function() {
-					var sendData = 'class_no=' + $('#cls option:selected').val();
-					$.post('dclassList.do', sendData, function(data) {
-						$('#res').html(data);
-						$.datepicker.setDefaults($.datepicker.regional['ko']);
-					});
-				
+		$('#cls').change(function() {
+			var sendData = 'class_no=' + $('#cls option:selected').val();
+			$.post('dclassList.do', sendData, function(data) {
+				$('#res').html(data);
 			});
+		});
 	});
-	
+
 	function nameChek() {
 		var content = document.getElementById("vt_name");
-		if(content.value.length >= content.maxLength){
-			if(event.KeyCode != 8 || event.KeyCOde != 27){
+		if (content.value.length >= content.maxLength) {
+			if (event.KeyCode != 8 || event.KeyCode != 27) {
 				alert("최대 " + content.maxLength + "글자 까지 작성할수 있습니다.");
 			}
 		}
@@ -157,20 +82,19 @@
 							<b>봉사지역: </b>${ addr}
 						</div>
 						<div class="form-group">
-							<b style="display: block;">봉사 모집 기간 :</b> <!-- 시작일 : <input
+							<b style="display: block;">봉사 모집 기간 :</b>
+							<!-- 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
 								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" /> -->
-							종료일 : <input class="form-control-20" readonly="readonly"
-								type="text" name="vt_r_end_date" id="redate" size="10"
-								maxlength="10" />
+							종료일 : <input class="form-control-20" type="date"
+								name="vt_r_end_date" id="redate" size="10" maxlength="10" />
 						</div>
 						<div class="form-group">
 							<b style="display: block;">봉사 활동 기간 :</b> 시작일 : <input
-								class="form-control-20" readonly="readonly" type="text"
-								name="vt_a_start_date" id="vsdate" size="10" maxlength="10" />
-							종료일 : <input class="form-control-20" readonly="readonly"
-								type="text" name="vt_a_end_date" id="vedate" size="10"
-								maxlength="10" />
+								class="form-control-20" type="date"
+								name="vt_a_start_date" id="vsdate" /> 종료일 : <input
+								class="form-control-20" type="date" name="vt_a_end_date"
+								id="vedate"/>
 						</div>
 						<div class="form-group">
 							<div style="float: left; width: 50%">
@@ -180,12 +104,12 @@
 									<c:forEach var="cl" items="${list}">
 										<option value="${cl.class_no }">${cl.class_name }</option>
 									</c:forEach>
-								</select><span id="res">
-									<select id="vt_class" class="form-control-40">
+								</select><span id="res"> <select id="vt_class"
+									class="form-control-40">
 										<c:forEach var="dc" items="${dlist }">
 											<option value="${dc.dclass_no }">${dc.dclass_name }</option>
 										</c:forEach>
-									</select>
+								</select>
 								</span>
 							</div>
 							<div>

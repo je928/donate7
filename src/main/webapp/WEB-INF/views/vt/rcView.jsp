@@ -37,7 +37,10 @@
 						<b>봉사명:</b> ${rc.vt_name }
 					</div>
 					<div class="form-group">
-						<b>봉사지역: </b>${ addr}
+						<b>봉사지역 : </b>${ addr}
+					</div>
+					<div class="form-group">
+						<b>봉사 기관 : </b>${rc.o_oname}
 					</div>
 					<div class="form-group">
 						<b style="display: inline;">봉사 모집 기간 :</b> ${rc.vt_r_start_date} ~

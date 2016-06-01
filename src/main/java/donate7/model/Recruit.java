@@ -6,6 +6,7 @@ public class Recruit {
 	private int vt_no;
 	private String vt_name;
 	private int vt_o_no;
+	private String o_oname;
 	private String vt_r_start_date;
 	private String vt_r_end_date;
 	private String vt_r_yn;
@@ -22,6 +23,14 @@ public class Recruit {
 	private int startrow;
 	private int endrow;
 	
+	public String getO_oname() {
+		return o_oname;
+	}
+
+	public void setO_oname(String o_oname) {
+		this.o_oname = o_oname;
+	}
+
 	public int getStartrow() {
 		return startrow;
 	}

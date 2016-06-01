@@ -18,11 +18,6 @@ public class VolServiceImpl implements VolService {
 	}
 
 	@Override
-	public List<Recruit> selectRcListByO_no(Recruit rc) {
-		return vd.selectRcListByO_no(rc);
-	}
-
-	@Override
 	public Recruit selectRcByVt_no(int vt_no) {
 		return vd.selectRcByVt_no(vt_no);
 	}
@@ -33,10 +28,16 @@ public class VolServiceImpl implements VolService {
 	}
 
 	@Override
-	public int selectRcTotalByVt_o_no(int vt_o_no) {
-		return vd.selectRcTotalByVt_o_no(vt_o_no);
+	public List<Recruit> selectRcList(Recruit rc) {
+		return vd.selectRcList(rc);
 	}
-	
+
+	@Override
+	public int selectRcTotal(int vt_o_no) {
+		return vd.selectRcTotal(vt_o_no);
+	}
+
+
 	/*@Override
 	public int volReqInsert(VolReq req) {
 		return vd.volReqInsert(req);

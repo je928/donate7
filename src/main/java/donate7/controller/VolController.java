@@ -1,20 +1,24 @@
 package donate7.controller;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import donate7.model.Dclass;
+import donate7.model.Organ;
 import donate7.model.Recruit;
 import donate7.model.Subject;
 import donate7.service.CommService;
@@ -73,7 +77,7 @@ public class VolController {
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
 			
 			
-			int total = vs.selectRcTotalByVt_o_no(o_no);
+			int total = vs.selectRcTotal(o_no);
 			if(pageNum == 0){
 				pageNum = 1;
 			}
@@ -82,7 +86,7 @@ public class VolController {
 			rc.setStartrow(paging.getStartRow());
 			rc.setEndrow(paging.getEndRow());
 			rc.setVt_o_no(o_no);
-			List<Recruit> list = vs.selectRcListByO_no(rc);
+			List<Recruit> list = vs.selectRcList(rc);
 			model.addAttribute("paging", paging);
 			model.addAttribute("list", list);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -132,6 +136,19 @@ public class VolController {
 			return "redirect:rcUpdate.do?vt_no=" + rc.getVt_no();
 		}
 		
+	}
+	
+	@RequestMapping("volSearch")
+	public String volSearch(Model model){
+		List<Class> list = cs.selectClass(); 
+		List<Subject> slist = cs.selectSubject();
+		List<Dclass> dlist = cs.selectDclassByClass_no(1);
+		model.addAttribute("list", list);
+		model.addAttribute("slist", slist);
+		model.addAttribute("dlist", dlist);
+		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/volSearch.jsp");
+		return "module/main";
 	}
 	
 /*
@@ -204,7 +221,7 @@ public class VolController {
 		return "vt/dclassList";
 	}
 
-	/*@RequestMapping("centerList")
+	@RequestMapping("centerList")
 	public String centerList(Model model) {
 		List<Organ> list = ms.selectAll();
 		model.addAttribute("list", list);
@@ -249,7 +266,7 @@ public class VolController {
 			e.printStackTrace();
 		}
 		return "vt/map";
-	}*/
+	}
 	
 	/*달력 테스트*/
 	@RequestMapping("namnam")

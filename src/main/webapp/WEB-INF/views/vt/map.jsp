@@ -35,7 +35,6 @@ function initMap() {
 	alert(latlng.lng);
 }
 
-
 function SetMarker(){
 	marker = new google.maps.Marker({
 		position:latlng,

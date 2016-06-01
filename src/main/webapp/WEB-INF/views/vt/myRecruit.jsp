@@ -14,6 +14,21 @@ function locate(pageNum){
 	location.href="myRecruit.do?pageNum=" + pageNum;
 }
 </script>
+<style type="text/css">
+	span{
+		
+		border-radius: 0.5em;
+		padding: 0 .5em 0 .5em;
+		font-size: 0.75em;
+		color: white;
+	}
+	.ry{
+		background: rgba(0, 0, 255, 0.5);
+	}
+	.rn{
+		background: rgba(255, 0, 0, 0.5);
+	}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -37,7 +52,14 @@ function locate(pageNum){
 						<td>${rc.vt_tot }</td>
 						<th>${rc.count}
 						</td>
-						<td>${rc.vt_r_yn}</td>
+						<td>
+							<c:if test="${rc.vt_r_yn == 'Y'}">
+								<span class="ry">모집 중</span>
+							</c:if>
+							<c:if test="${rc.vt_r_yn == 'N'}">
+								<span class="rn">모집 완료</span>
+							</c:if>	
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
