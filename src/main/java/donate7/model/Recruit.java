@@ -19,8 +19,25 @@ public class Recruit {
 	private String class_name;
 	private String dclass_name;
 	private String sub_name;
-
+	private int startrow;
+	private int endrow;
 	
+	public int getStartrow() {
+		return startrow;
+	}
+
+	public void setStartrow(int startrow) {
+		this.startrow = startrow;
+	}
+
+	public int getEndrow() {
+		return endrow;
+	}
+
+	public void setEndrow(int endrow) {
+		this.endrow = endrow;
+	}
+
 	public String getClass_name() {
 		return class_name;
 	}

@@ -22,8 +22,12 @@
 		<result property="sub_name" column="SUB_NAME"/>
 	</resultMap>
 
-	<select id="selectRcListByO_no" resultMap="RecruitResult" parameterType="int">
-		SELECT * FROM VT_RECRUIT WHERE VT_O_NO = #{o_no} ORDER BY VT_NO DESC
+	<select id="selectRcListByO_no" resultMap="RecruitResult" parameterType="recruit">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM VT_RECRUIT WHERE VT_O_NO = #{vt_o_no} ORDER BY VT_NO DESC) A) WHERE RN BETWEEN #{startrow} AND #{endrow}
+	</select>
+	
+	<select id="selectRcTotalByVt_o_no" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM VT_RECRUIT WHERE VT_O_NO = #{vt_o_no}
 	</select>
 	
 	<select id="selectRcByVt_no" resultType="recruit" parameterType="int">
