@@ -71,4 +71,10 @@
 			union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n') 
 			a where d.d_member=a.no order by d_reg_date desc
 	</select>
+	<update id="adUpdate" parameterType="int">
+		update donate set d_approve='y' where d_no=#{d_no}
+	</update>
+		<update id="adDelete" parameterType="int">
+		update donate set d_approve='n' where d_no=#{d_no}
+	</update>
 </mapper>

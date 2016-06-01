@@ -22,7 +22,7 @@
 					<font color="red"> ${msg } </font>
 				</c:if>
 				<c:if test="${not empty fileName }">
-					<img src="/donate7/${fileName }">
+					<img src="image/${fileName }">
 				</c:if>
 				<td><input type="file" name="img" required="required"></td>
 			</tr>

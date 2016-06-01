@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<th>사진첨부</th>
-				<td><img src="/donate7/${donate.d_img }" width="80%" id="imgUp">
+				<td><img src="image/${donate.d_img }" width="80%" id="imgUp">
 					<input type="file" name="img" id="fileD" onchange="readURL(this,'imgUp');"></td>
 			</tr>
 			<tr>

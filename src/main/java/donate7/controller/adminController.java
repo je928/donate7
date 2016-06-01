@@ -22,10 +22,6 @@ public class adminController {
 	
 	@Autowired
 	private SecondService ss;
-	@Autowired
-	private ProductService ps;
-	@Autowired
-	private DonateService ds;
 	
 	@RequestMapping(value="giftUpload", method=RequestMethod.GET)
 	public String upload(Model model){
@@ -52,32 +48,6 @@ public class adminController {
 		return "module/main";
 	}
 	
-	@RequestMapping(value="adList", method=RequestMethod.GET)
-	public String adList(Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		Donate donate = new Donate();
-		donate.setD_member(no);
-		int count=ds.count(donate);
-		List<Donate> list = ds.adlist();
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/adList.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="adView", method=RequestMethod.GET)
-	public String adView(int d_no, Model model){
-		Donate donate = ds.selectOne(d_no);
-		String start = donate.getD_start_date();
-		String res1 = start.substring(0,10);
-		String end = donate.getD_end_date();
-		String res2 = end.substring(0,10);
-		donate.setD_start_date(res1);
-		donate.setD_end_date(res2);
-		model.addAttribute("donate", donate);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/adView.jsp");
-		return "module/main";
-	}
+
 	
 }

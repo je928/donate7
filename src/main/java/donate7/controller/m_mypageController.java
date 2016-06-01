@@ -33,8 +33,6 @@ public class m_mypageController {
 	@Autowired
 	private GiftService gs;
 	@Autowired
-	private DonateService ds;
-	@Autowired
 	private SecondService ss;
 
 	
@@ -148,94 +146,5 @@ public class m_mypageController {
 		model.addAttribute("gift", gift);
 		return "module/main";
 	}
-	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
-	public String mdoList(Model model,HttpSession session) {
-		int no=(Integer)session.getAttribute("no");
-		Donate donate = new Donate();
-		donate.setD_member(no);
-		List<Donate> list = ds.mlist(no);
-		int count = ds.count(donate);
-		model.addAttribute("count",count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value = "mdoReq", method = RequestMethod.GET)
-	public String mdoReqForm(Donate donate,Model model) {
-		model.addAttribute("donate", donate);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/mdoReq.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value ="mdoReq", method = RequestMethod.POST)
-	public String mdoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
-			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
-		int no = (Integer)session.getAttribute("no");
-		String fileName = mf.getOriginalFilename();
-		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-		mf.transferTo(new File(request.getRealPath("/")+uploadName));
-		donate.setD_img(uploadName);
-		int result = ds.mdoReqInsert(donate);
-		model.addAttribute("msg", "사진 업로드 : "+fileName);
-		List<Donate> list = ds.mlist(no);
-		model.addAttribute("list", list);
-		model.addAttribute("fileName", uploadName);
-		if(result > 0){
-			return "redirect:mdoList.do";
-		}else{
-			model.addAttribute("donate", donate);
-			return "redirect:mdoReq.do";
-		}
-	}
-	@RequestMapping(value="mdoReqV", method=RequestMethod.GET)
-	public String mdoReqV(int d_no,Model model) {
-		Donate donate = ds.selectOne(d_no);
-		String start = donate.getD_start_date();
-		String res1 = start.substring(0,10);
-		String end = donate.getD_end_date();
-		String res2 = end.substring(0,10);
-		donate.setD_start_date(res1);
-		donate.setD_end_date(res2);
-		model.addAttribute("donate",donate);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/mdoReqV.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="mdoReqUp", method=RequestMethod.GET)
-	public String mdoReqUpForm(int d_no, Model model){
-		Donate donate = ds.selectOne(d_no);
-		model.addAttribute("donate",donate);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="mdoReqUp", method=RequestMethod.POST)
-	public String odoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model, 
-			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
-		int no = (Integer)session.getAttribute("no");
-		if(mf.getOriginalFilename().equals("")) {
-			Donate don = ds.selectOne(donate.getD_no());
-			donate.setD_img(don.getD_img());
-		} else {
-				String fileName = mf.getOriginalFilename();
-				String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-				mf.transferTo(new File(request.getRealPath("/")+uploadName));
-				donate.setD_img(uploadName);
-		}
-		int result = ds.mdoUpdate(donate);
-		if(result >0) {
-			return "redirect:mdoReqV.do?d_no="+donate.getD_no();	
-		} else {
-			model.addAttribute("donate",donate);
-			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-			model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
-			return "module/main";
-		}
-	}
-	@RequestMapping("mdoReqD")
-	public String mdoReqD(int d_no, Model model){
-		ds.mdoDelete(d_no);
-		return "redirect:mdoList.do?d_no="+d_no;
-	}
+
 }

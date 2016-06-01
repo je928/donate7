@@ -16,7 +16,7 @@
 			</tr>
 			<tr>	
 				<th>사진</th>
-				<td><img src="/donate7/${donate.d_img }" width="80%"></td>
+				<td><img src="image/${donate.d_img }" width="80%"></td>
 			</tr>
 			<tr>
 				<th>내용</th>

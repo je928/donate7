@@ -27,9 +27,6 @@ public class o_mypageController {
 	@Autowired
 	private SecondService ss;
 
-	@Autowired
-	private DonateService ds;
-
 	@RequestMapping(value = "o_myinfo", method = RequestMethod.GET)
 	public String o_myinfo(Model model) {
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -125,95 +122,6 @@ public class o_mypageController {
 		return "redirect:osecondList.do?sh_no="+sh_no;
 	}
 	
-	@RequestMapping(value = "odoList", method = RequestMethod.GET)
-	public String odoList(Model model, HttpSession session) {
-		int no=(Integer)session.getAttribute("no");
-		List<Donate> list = ds.olist(no);
-		Donate donate = new Donate();
-		donate.setD_member(no);
-		int count = ds.count(donate);
-		model.addAttribute("count",count);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/odoList.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value = "odoReq", method = RequestMethod.GET)
-	public String odoReqForm(Donate donate,Model model) {
-		model.addAttribute("donate", donate);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/odoReq.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value ="odoReq", method = RequestMethod.POST)
-	public String odoReq(Donate donate, Model model, @RequestParam("img") MultipartFile mf,
-			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
-		int no = (Integer)session.getAttribute("no");
-		String fileName = mf.getOriginalFilename();
-		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-		mf.transferTo(new File(request.getRealPath("/")+uploadName));
-		donate.setD_img(uploadName);
-		int result = ds.odoReqInsert(donate);
-		model.addAttribute("msg", "사진 업로드 : "+fileName);
-		List<Donate> list = ds.olist(no);
-		model.addAttribute("list", list);
-		model.addAttribute("fileName", uploadName);
-		if(result > 0){
-			return "redirect:odoList.do";
-		}else{
-			model.addAttribute("donate", donate);
-			return "redirect:odoReq.do";
-		}
-	}
-	@RequestMapping(value="odoReqV", method=RequestMethod.GET)
-	public String odoReqV(int d_no,Model model) {
-		Donate donate = ds.selectOne(d_no);
-		String start = donate.getD_start_date();
-		String res1 = start.substring(0,10);
-		String end = donate.getD_end_date();
-		String res2 = end.substring(0,10);
-		donate.setD_start_date(res1);
-		donate.setD_end_date(res2);
-		model.addAttribute("donate",donate);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/odoReqV.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="odoReqUp", method=RequestMethod.GET)
-	public String odoReqUpForm(int d_no, Model model){
-		Donate donate = ds.selectOne(d_no);
-		model.addAttribute("donate",donate);
-		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-		model.addAttribute("mypgm", "../../donate/odoReqUp.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="odoReqUp", method=RequestMethod.POST)
-	public String odoReqUp(Donate donate,@RequestParam("img") MultipartFile mf, Model model, 
-			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
-		int no = (Integer)session.getAttribute("no");
-		if(mf.getOriginalFilename().equals("")) {
-			Donate don = ds.selectOne(donate.getD_no());
-			donate.setD_img(don.getD_img());
-		} else {
-				String fileName = mf.getOriginalFilename();
-				String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-				mf.transferTo(new File(request.getRealPath("/")+uploadName));
-				donate.setD_img(uploadName);
-		}
-		int result = ds.odoUpdate(donate);
-		if(result >0) {
-			return "redirect:odoReqV.do?d_no="+donate.getD_no();	
-		} else {
-			model.addAttribute("donate",donate);
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-			model.addAttribute("mypgm", "../../donate/odoReqUp.jsp");
-			return "module/main";
-		}
-	}
-	@RequestMapping("odoReqD")
-	public String odoReqD(int d_no, Model model){
-		ds.odoDelete(d_no);
-		return "redirect:odoList.do?d_no="+d_no;
-	}
+
 
 }

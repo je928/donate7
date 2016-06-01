@@ -29,4 +29,8 @@ public interface DonateDao {
 
 	List<Donate> adlist();
 
+	int adUpdate(int d_no);
+
+	int adDelete(int d_no);
+
 }

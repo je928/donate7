@@ -27,4 +27,8 @@ public interface DonateService {
 	int count(Donate donate);
 
 	List<Donate> adlist();
+
+	int adUpdate(int d_no);
+	
+	int adDelete(int d_no);
 }

@@ -45,5 +45,11 @@ public class DonateServiceImpl implements DonateService {
 	public List<Donate> adlist() {
 		return dd.adlist();
 	}
+	public int adUpdate(int d_no) {
+		return dd.adUpdate(d_no);
+	}
+	public int adDelete(int d_no) {
+		return dd.adDelete(d_no);
+	}
 
 }

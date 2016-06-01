@@ -51,4 +51,10 @@ public class DonateDaoImpl implements DonateDao {
 	public List<Donate> adlist() {
 		return session.selectList("donate.adList");
 	}
+	public int adUpdate(int d_no) {
+		return session.update("donate.adUpdate",d_no);
+	}
+	public int adDelete(int d_no) {
+		return session.update("donate.adDelete",d_no);
+	}
 }

@@ -13,11 +13,15 @@
 			<caption>기부금 요청글</caption>
 			<tr>
 				<th>제목</th>
-				<td>${product.d_title}</td>
+				<td>${donate.d_title}</td>
 			</tr>
-						<tr>	
+			<tr>
+				<th>승인여부</th>
+				<td>${donate.d_approve}</td>
+			</tr>
+			<tr>	
 				<th>사진</th>
-				<td><img src="/donate7/${donate.d_img }" width="80%"></td>
+				<td><img src="image/${donate.d_img }" width="80%"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -44,8 +48,9 @@
 			</tr>
 		</table>
 		<div align="center">
-			<button onclick="location.href='List.do'">승인</button>
 			<button onclick="location.href='adList.do'">보류</button>
+			<button onclick="location.href='adUpdate.do?d_no=${donate.d_no}'">승인</button>
+			<button onclick="location.href='adDelete.do?d_no=${donate.d_no}'">승인취소</button>
 		</div>
 
 </body>
