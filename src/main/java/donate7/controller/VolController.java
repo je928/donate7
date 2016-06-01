@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import donate7.model.Dclass;
 import donate7.model.Recruit;
@@ -19,6 +20,7 @@ import donate7.model.Subject;
 import donate7.service.CommService;
 import donate7.service.MemberService;
 import donate7.service.VolService;
+import donate7.util.Paging;
 /*import net.sf.json.JSONArray;*/
 
 @Controller
@@ -65,11 +67,23 @@ public class VolController {
 	}
 	
 	@RequestMapping("myRecruit")
-	public String myRecruit(HttpSession session, Model model){
+	public String myRecruit(int pageNum, HttpSession session, Model model){
 		int o_no = 0;
 		if(session.getAttribute("no") != null){
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
-			List<Recruit> list = vs.selectRcListByO_no(o_no);
+			
+			
+			int total = vs.selectRcTotalByVt_o_no(o_no);
+			if(pageNum == 0){
+				pageNum = 1;
+			}
+			Paging paging = new Paging(10, 10, pageNum, total);
+			Recruit rc = new Recruit();
+			rc.setStartrow(paging.getStartRow());
+			rc.setEndrow(paging.getEndRow());
+			rc.setVt_o_no(o_no);
+			List<Recruit> list = vs.selectRcListByO_no(rc);
+			model.addAttribute("paging", paging);
 			model.addAttribute("list", list);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
