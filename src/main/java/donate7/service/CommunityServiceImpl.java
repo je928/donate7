@@ -22,12 +22,12 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.getTotal(searchType, searchTxt, community);
 	}	
 
-	public void communityHit(int num) {
-		cd.communityHit(num);
+	public void communityHit(int brd_no) {
+		cd.communityHit(brd_no);
 	}
 
-	public Community communitySelect(int num) {
-		return cd.communitySelect(num);
+	public Community communitySelect(int brd_no) {
+		return cd.communitySelect(brd_no);
 	}
 
 	public int insertNo() {
@@ -40,6 +40,10 @@ public class CommunityServiceImpl implements CommunityService {
 
 	public void updateRe_step(Community community) {
 		cd.updateRe_step(community);
+	}
+
+	public int communityUpdate(Community community) {
+		return cd.communityUpdate(community);
 	}
 
 }

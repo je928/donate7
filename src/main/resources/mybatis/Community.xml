@@ -84,11 +84,11 @@
   		update community set re_step=re_step+1 where ref=#{ref} and re_step>#{re_step}
   	</update>
 	
-    <!-- <update id="updatereco" parameterType="J_RecommendBoard">
-    	update j_recommendboard set brd_subject=#{brd_subject},brd_content=#{brd_content},rc_code=#{rc_code},brd_update_date=sysdate where brd_no=#{brd_no}
+    <update id="communityUpdate" parameterType="community">
+    	update community set brd_subject=#{brd_subject},brd_content=#{brd_content},brd_update_date=sysdate where brd_no=#{brd_no}
 	</update>
 	
-	<update id="deletereco" parameterType="Integer">
+	<!-- <update id="deletereco" parameterType="Integer">
 		update j_recommendboard set brd_del_yn='y' where brd_no=#{brd_no}
 	</update>
 	
