@@ -11,8 +11,8 @@
 		</script>
 <%
 	} else {
-		int memNo = Integer.parseInt(no);
-		if(memNo < 2) {
+		int m_no = Integer.parseInt(no);
+		if(m_no < 2) {
 %>
 		<script type="text/javascript">
 			alert("일반 회원 전용 페이지입니다.");
