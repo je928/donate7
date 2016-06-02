@@ -11,8 +11,8 @@
 		</script>
 <%
 	} else {
-		int orgNo = Integer.parseInt(no);
-		if(orgNo > 0) {
+		int o_no = Integer.parseInt(no);
+		if(o_no > 0) {
 %>
 		<script type="text/javascript">
 			alert("시설관리자 회원 전용 페이지입니다.");

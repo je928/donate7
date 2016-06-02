@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="register">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="RegisterResult"		type="register">
+		<result property="re_no" 		column="re_no" />
+		<result property="reporter_no" 	column="reporter_no" />
+		<result property="reported_no" 	column="reported_no" />
+		<result property="re_content" 	column="re_content" />
+		<result property="re_chk"		 column="re_chk" />
+		<result property="re_date" 		column="re_date" />
+		<result property="re_sort" 		column="re_sort" />
+		<result property="re_sort_no" 	column="re_sort_no"/>
+	</resultMap>
+	<select id="selectNum" resultType="int">
+		select nvl(max(re_no),0)+1 from register
+	</select>
+	<insert id="insert" parameterType="register">
+		insert into register values(#{g_no},#{g_name},#{g_img},#{g_price},'n')		
+	</insert>	
+</mapper>

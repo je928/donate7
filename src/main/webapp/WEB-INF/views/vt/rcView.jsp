@@ -73,7 +73,9 @@
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
 						<input type="button" class="btn btn-primary btn-md" value="수정"
-							onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}'">
+							onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}&pageNum=${pageNum}'">
+						<input type="button" class="btn btn-primary btn-md" value="뒤로"
+							onclick="location.href='myRecruit.do?pageNum=${pageNum}'">
 					</div>
 			</div>
 		</div>

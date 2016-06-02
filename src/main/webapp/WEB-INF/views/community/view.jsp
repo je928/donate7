@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function registerPop (brd_no) {
+    window.open("registerPop.do?brd_no="+brd_no+"&chk=c","","width=370, height=300");
+}
+</script>
 </head>
 <body>
 
@@ -30,7 +35,9 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							<a href="register.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
+							<c:if test="${community.no != sessionScope.no && community.no>1 &&sessionScope.no!=null}">
+								<a href="javascript:registerPop(${community.brd_no});" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
+							</c:if>
 						</div>
 						<div class="col col-xs-6 text-right">
 							<a href="community.do?pageNum=${pageNum}&searchType=${searchType}&searchTxt=${searchTxt}" class="btn btn-sm btn-default">목록<em class="fa fa-list-ul"></em></a>

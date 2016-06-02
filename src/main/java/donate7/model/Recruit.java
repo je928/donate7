@@ -7,11 +7,11 @@ public class Recruit {
 	private String vt_name;
 	private int vt_o_no;
 	private String o_oname;
-	private String vt_r_start_date;
-	private String vt_r_end_date;
+	private Date vt_r_start_date;
+	private Date vt_r_end_date;
 	private String vt_r_yn;
-	private String vt_a_start_date;
-	private String vt_a_end_date;
+	private Date vt_a_start_date;
+	private Date vt_a_end_date;
 	private int vt_class;
 	private int vt_tot;
 	private int vt_subject;
@@ -22,7 +22,16 @@ public class Recruit {
 	private String sub_name;
 	private int startrow;
 	private int endrow;
+	private String searchType;
 	
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
 	public String getO_oname() {
 		return o_oname;
 	}
@@ -103,20 +112,36 @@ public class Recruit {
 		this.vt_o_no = vt_o_no;
 	}
 
-	public String getVt_r_start_date() {
+	public Date getVt_r_start_date() {
 		return vt_r_start_date;
 	}
 
-	public void setVt_r_start_date(String vt_r_start_date) {
+	public void setVt_r_start_date(Date vt_r_start_date) {
 		this.vt_r_start_date = vt_r_start_date;
 	}
 
-	public String getVt_r_end_date() {
+	public Date getVt_r_end_date() {
 		return vt_r_end_date;
 	}
 
-	public void setVt_r_end_date(String vt_r_end_date) {
+	public void setVt_r_end_date(Date vt_r_end_date) {
 		this.vt_r_end_date = vt_r_end_date;
+	}
+
+	public Date getVt_a_start_date() {
+		return vt_a_start_date;
+	}
+
+	public void setVt_a_start_date(Date vt_a_start_date) {
+		this.vt_a_start_date = vt_a_start_date;
+	}
+
+	public Date getVt_a_end_date() {
+		return vt_a_end_date;
+	}
+
+	public void setVt_a_end_date(Date vt_a_end_date) {
+		this.vt_a_end_date = vt_a_end_date;
 	}
 
 	public String getVt_r_yn() {
@@ -127,21 +152,7 @@ public class Recruit {
 		this.vt_r_yn = vt_r_yn;
 	}
 
-	public String getVt_a_start_date() {
-		return vt_a_start_date;
-	}
-
-	public void setVt_a_start_date(String vt_a_start_date) {
-		this.vt_a_start_date = vt_a_start_date;
-	}
-
-	public String getVt_a_end_date() {
-		return vt_a_end_date;
-	}
-
-	public void setVt_a_end_date(String vt_a_end_date) {
-		this.vt_a_end_date = vt_a_end_date;
-	}
+	
 
 	public int getVt_class() {
 		return vt_class;
@@ -177,10 +188,12 @@ public class Recruit {
 
 	@Override
 	public String toString() {
-		return "Recruit [vt_no=" + vt_no + ", vt_name=" + vt_name + ", vt_o_no=" + vt_o_no + ", vt_r_start_date="
-				+ vt_r_start_date + ", vt_r_end_date=" + vt_r_end_date + ", vt_r_yn=" + vt_r_yn + ", vt_a_start_date="
-				+ vt_a_start_date + ", vt_a_end_date=" + vt_a_end_date + ", vt_class=" + vt_class + ", vt_tot=" + vt_tot
-				+ ", vt_subject=" + vt_subject + ", vt_desc=" + vt_desc + "]";
+		return "Recruit [vt_no=" + vt_no + ", vt_name=" + vt_name + ", vt_o_no=" + vt_o_no + ", o_oname=" + o_oname
+				+ ", vt_r_start_date=" + vt_r_start_date + ", vt_r_end_date=" + vt_r_end_date + ", vt_r_yn=" + vt_r_yn
+				+ ", vt_a_start_date=" + vt_a_start_date + ", vt_a_end_date=" + vt_a_end_date + ", vt_class=" + vt_class
+				+ ", vt_tot=" + vt_tot + ", vt_subject=" + vt_subject + ", vt_desc=" + vt_desc + ", count=" + count
+				+ ", class_name=" + class_name + ", dclass_name=" + dclass_name + ", sub_name=" + sub_name
+				+ ", startrow=" + startrow + ", endrow=" + endrow + ", searchType=" + searchType + "]";
 	}
 
 }

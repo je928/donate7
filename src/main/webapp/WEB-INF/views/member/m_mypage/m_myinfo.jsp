@@ -13,7 +13,7 @@
 			<div class="col-xs-12 col-lg-9 toppad">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+						<h3 class="panel-title">je928님의 상세정보</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -24,32 +24,40 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td width="30%">Department:</td>
-											<td width="70%">Programming</td>
+											<td width="30%">이메일:</td>
+											<td width="70%">je928@daum.net</td>
 										</tr>
 										<tr>
-											<td>Hire date:</td>
-											<td>06/23/2013</td>
+											<td>이름:</td>
+											<td>곽지은</td>
 										</tr>
 										<tr>
-											<td>Date of Birth</td>
-											<td>01/24/1988</td>
+											<td>닉네임:</td>
+											<td>je928</td>
 										</tr>
 										<tr>
-											<td>Gender</td>
-											<td>Male</td>
+											<td>생년월일</td>
+											<td>1990/09/28</td>
 										</tr>
 										<tr>
-											<td>Home Address</td>
-											<td>경기도 포천시 동교동 499-38, 주공아파트 403동 1602호 고운마을 주공4단지</td>
+											<td>성별</td>
+											<td>여자</td>
 										</tr>
 										<tr>
-											<td>Email</td>
-											<td><a href="mailto:info@support.com">info@support.com</a></td>
+											<td>전화번호</td>
+											<td>010-3381-1638</td>
 										</tr>
 										<tr>
-											<td>Phone Number</td>
-											<td>123-4567-890(Landline)</td>
+											<td>직업</td>
+											<td>무직</td>
+										</tr>
+										<tr>
+											<td>가입일</td>
+											<td>2016/06/02</td>
+										</tr>
+										<tr>
+											<td>경고횟수</td>
+											<td>0</td>
 										</tr>
 									</tbody>
 								</table>
