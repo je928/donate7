@@ -16,7 +16,8 @@
 	    <result property="re_step" column="re_step"/>
 	    <result property="re_level" column="re_level"/>
 	    <result property="no" column="no"/>
-	    <result property="nick" column="nick"/>	    
+	    <result property="nick" column="nick"/>
+	    <result property="passwd" column="passwd"/>	    
 	    <result property="startRow" column="startRow"/>
 	    <result property="endRow" column="endRow"/>
 	    <result property="searchType" column="searchType"/>
@@ -88,12 +89,12 @@
     	update community set brd_subject=#{brd_subject},brd_content=#{brd_content},brd_update_date=sysdate where brd_no=#{brd_no}
 	</update>
 	
-	<!-- <update id="deletereco" parameterType="Integer">
-		update j_recommendboard set brd_del_yn='y' where brd_no=#{brd_no}
-	</update>
+	<select id="deletePwdChk" parameterType="Integer" resultType="String">
+		select mo.m_passwd as passwd from community c, (select m_no, m_passwd from member where m_del_yn='n' union select o_no, o_passwd from organ where o_del_yn='n') mo where c.brd_no=#{brd_no} and c.no=mo.m_no
+	</select>
 	
-	<select id="pwdrecoCheck" parameterType="Integer" resultType="String">
-		select m.m_passwd from j_recommendboard jrb, j_member m where jrb.m_no=m.m_no and brd_no=#{brd_no}
-	</select> -->
+	<update id="communityDelete" parameterType="Integer">
+		update community set brd_del_yn='y' where brd_no=#{brd_no}
+	</update>
 	
 </mapper>

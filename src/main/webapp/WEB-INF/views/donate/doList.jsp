@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@include file="../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -7,46 +7,49 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body {
- background-color:#eee;   
-}    
 #pinBoot {
-  position: relative;
-  max-width: 100%;
-  width: 100%;
+	position: relative;
+	max-width: 100%;
+	width: 100%;
+	margin-left: 8px;
 }
+
 img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
+
 .white-panel {
-  position: absolute;
-  background: white;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 10px;
+	position: absolute;
+	background: white;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	padding: 10px;
 }
+
 .white-panel h1 {
-  font-size: 1em;
+	font-size: 1em;
 }
+
 .white-panel h1 a {
-  color: #A92733;
+	color: #A92733;
 }
+
 .white-panel:hover {
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-  margin-top: -5px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+	margin-top: -5px;
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#pinBoot').pinterest_grid({
-			no_columns : 6,
-			padding_x : 10,
-			padding_y : 10,
+			no_columns : 3,
+			padding_x : 15,
+			padding_y : 30,
 			margin_bottom : 50,
 			single_column_breakpoint : 700
 		});
@@ -88,7 +91,8 @@ img {
 		};
 
 		Plugin.prototype.calculate = function(single_column_mode) {
-			var self = this, tallest = 0, row = 0, $container = $(this.element), container_width = $container.width();
+			var self = this, tallest = 0, row = 0, $container = $(this.element), container_width = $container
+					.width();
 			$article = $(this.element).children();
 
 			if (single_column_mode === true) {
@@ -107,7 +111,8 @@ img {
 
 			$article
 					.each(function(index) {
-						var current_column, left_out = 0, top = 0, $this = $(this), prevAll = $this.prevAll(), tallest = 0;
+						var current_column, left_out = 0, top = 0, $this = $(this), prevAll = $this
+								.prevAll(), tallest = 0;
 
 						if (single_column_mode === false) {
 							current_column = (index % columns);
@@ -162,7 +167,8 @@ img {
 			}
 
 			largest = Math.max.apply(Math, column_heights);
-			_container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
+			_container.css('height', largest
+					+ (this.options.padding_y + this.options.margin_bottom));
 		};
 
 		Plugin.prototype.make_layout_change = function(_self) {
@@ -176,7 +182,8 @@ img {
 		$.fn[pluginName] = function(options) {
 			return this.each(function() {
 				if (!$.data(this, 'plugin_' + pluginName)) {
-					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+					$.data(this, 'plugin_' + pluginName, new Plugin(this,
+							options));
 				}
 			});
 		}
@@ -184,34 +191,39 @@ img {
 </script>
 </head>
 <body>
-<div class="container">
-  <div class="row">
-    <h2>Pinterest Responsive Grid</h2>
+		<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-offset-17">
+				<h3 class="page-header">Donation
+					<small>기부</small>
+				</h3>
+				<ol class="breadcrumb">
+					<li>
+						<a href="main.do">Home</a>
+					</li>
+					<li class="active">
+						Donation
+					</li>
+				</ol>
+			</div>
+		</div>
 
-    <p>Best viewed <a href="http://bootsnipp.com/iframe/Zkk0O" target="_blank">full screen</a>
-    </p>
-    <hr>
-    <section id="pinBoot">
-      <article class="white-panel"> <img src="http://i.imgur.com/kFFpuKA.jpg" alt="">
-        <h4><a href="#">Title 6</a></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </article>
-            <article class="white-panel"> <img src="http://i.imgur.com/kFFpuKA.jpg" alt="">
-        <h4><a href="#">Title 6</a></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </article>
-            <article class="white-panel"> <img src="http://i.imgur.com/kFFpuKA.jpg" alt="">
-        <h4><a href="#">Title 6</a></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </article>
-            <article class="white-panel"> <img src="http://i.imgur.com/kFFpuKA.jpg" alt="">
-        <h4><a href="#">Title 6</a></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </article>
-            <article class="white-panel"> <img src="http://i.imgur.com/kFFpuKA.jpg" alt="">
-        <h4><a href="#">Title 6</a></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-      </article>
-	</section>
+			<div class="container">
+			<div class="row">
+				<c:forEach var="donate" items="${list}">
+				<section id="pinBoot">
+					<article class="white-panel">
+						<img src="image/${donate.d_img}" width="100%">
+						<h4>
+							<a href="#">${donate.d_title}</a>
+						</h4>
+						<p>${donate.d_amount}원</p>
+						<p>%</p>
+					</article>
+				</section>
+				</c:forEach>
+				</div>
+			</div>
+			</div>
 </body>
 </html>

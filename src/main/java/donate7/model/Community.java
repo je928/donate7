@@ -17,6 +17,8 @@ public class Community {
 	private int re_level;
 	private int no;
 	private String nick;
+	private String passwd;
+	
 	// 조회용
 	private int startRow;
 	private int endRow;
@@ -126,6 +128,14 @@ public class Community {
 
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public int getStartRow() {

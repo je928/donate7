@@ -43,7 +43,7 @@
 			</tr>
 			<tr>
 				<th>희망금액</th>
-				<td><input type="text" name="d_amount" required="required">원</td>
+				<td><input type="number" name="d_amount" required="required">원</td>
 			</tr>
 			<tr>
 			<th>계좌번호</th>

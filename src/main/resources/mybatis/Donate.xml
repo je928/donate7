@@ -77,4 +77,7 @@
 		<update id="adDelete" parameterType="int">
 		update donate set d_approve='n' where d_no=#{d_no}
 	</update>
+	<select id="doList" resultMap="DonateResult">
+		select * from donate where d_approve='y' order by d_reg_date desc
+	</select>
 </mapper>

@@ -16,6 +16,7 @@
 				<tr>
 					<th width="60">번호</th>
 					<th width="60">제목</th>
+					<th width="60">작성자</th>
 					<th width="60">상품종류</th>
 					<th width="60">등록일</th>
 					<th width="60">승인여부</th>
@@ -25,6 +26,7 @@
 					<tr>
 						<th>${second.sh_no }</th>
 						<th><a href="adsecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
+						<th>${second.email }</th>
 						<th>${second.sh_category }</th>
 						<th>${second.sh_reg_date }</th>
 						<th>${second.sh_approve }</th>

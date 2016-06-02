@@ -12,6 +12,27 @@ public class Second {
 	private String sh_image;
 	private String sh_approve;
 	private String sh_arrive;
+	private int no;
+	private String email;
+	private String nick;
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getSh_mno() {
 		return sh_mno;
 	}
