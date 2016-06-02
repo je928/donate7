@@ -33,4 +33,6 @@ public interface DonateDao {
 
 	int adDelete(int d_no);
 
+	List<Donate> doList();
+
 }

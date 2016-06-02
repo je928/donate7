@@ -23,7 +23,7 @@
 			<div class="navbar-collapse collapse" id="navbar-main">
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href=".do" id="themes"> 기부<span
+						data-toggle="dropdown" href="doList.do" id="themes"> 기부<span
 							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="themes">
