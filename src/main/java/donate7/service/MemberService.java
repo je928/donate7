@@ -16,7 +16,9 @@ public interface MemberService {
 	int o_onameChk(String o_oname, Organ organ);
 	List<Organ> selectAll();
 	List<Member> memberAll();
-
+	Member selectMember(int m_no);
+	Organ selectOrgan(int o_no);
+	
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
 	

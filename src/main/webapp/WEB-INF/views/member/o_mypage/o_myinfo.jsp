@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
+<%@ include file="../../session/orgChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 			<div class="col-xs-12 col-lg-9 toppad">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+						<h3 class="panel-title"><b>${organ.o_oname}</b> 기관의 상세정보</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -31,32 +32,41 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td width="30%">Department:</td>
-											<td width="70%">Programming</td>
+											<td width="30%">이메일:</td>
+											<td width="70%"><b>${organ.o_email}</b></td>
 										</tr>
 										<tr>
-											<td>Hire date:</td>
-											<td>06/23/2013</td>
+											<td>허가번호:</td>
+											<td><b>${organ.o_license}</b></td>
 										</tr>
 										<tr>
-											<td>Date of Birth</td>
-											<td>01/24/1988</td>
+											<td>기관명:</td>
+											<td><b>${organ.o_oname}</b></td>
 										</tr>
 										<tr>
-											<td>Gender</td>
-											<td>Male</td>
+											<td>가입자명:</td>
+											<td><b>${organ.o_name}</b></td>
 										</tr>
 										<tr>
-											<td>Home Address</td>
-											<td>경기도 포천시 동교동 499-38, 주공아파트 403동 1602호 고운마을 주공4단지</td>
+											<td>전화번호</td>
+											<td><b>${organ.o_tel}</b></td>
 										</tr>
 										<tr>
-											<td>Email</td>
-											<td><a href="mailto:info@support.com">info@support.com</a></td>
+											<td>주소</td>
+											<td><b>${organ.o_addr}</b></td>
 										</tr>
 										<tr>
-											<td>Phone Number</td>
-											<td>123-4567-890(Landline)</td>
+											<td>카테고리</td>
+											<td><b>${organ.o_category}</b></td>
+										</tr>
+										<tr>
+											<td>승인유무</td>
+											<c:if test="${organ.o_ok_yn eq 'y'}">
+											<td><b class="green">승인 완료</b></td>
+											</c:if>
+											<c:if test="${organ.o_ok_yn eq 'n'}">
+											<td><b class="red">승인 처리중</b></td>
+											</c:if>
 										</tr>
 									</tbody>
 								</table>
@@ -64,10 +74,10 @@
 						</div>
 					</div>
 					<div class="panel-footer">
-						<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
+						<a href="mail.do" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
 						<span class="pull-right">
-							<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
-							<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
+							<a href="edit.html" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
+							<a href="edit.html" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
 						</span>
 					</div>
 				</div>

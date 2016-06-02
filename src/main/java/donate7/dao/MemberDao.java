@@ -16,6 +16,8 @@ public interface MemberDao {
 	int o_onameChk(String o_oname, Organ organ);
 	List<Member> memberAll();
 	List<Organ> selectAll();
+	Member selectMember(int m_no);
+	Organ selectOrgan(int o_no);
 	
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
