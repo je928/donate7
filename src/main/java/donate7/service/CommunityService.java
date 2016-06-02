@@ -13,5 +13,7 @@ public interface CommunityService {
 	int communityInsert(Community community);
 	void updateRe_step(Community community);
 	int communityUpdate(Community community);
+	Community deletePwdChk(int number);
+	int communityDelete(int number);
 
 }

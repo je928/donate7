@@ -69,5 +69,26 @@ public class CommunityDaoImpl implements CommunityDao {
 		}
 		return result;
 	}
+
+	public Community deletePwdChk(int number) {
+		Community community = new Community();
+		try {
+			String passwd = session.selectOne("community.deletePwdChk", number);
+			community.setPasswd(passwd);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return community;
+	}
+
+	public int communityDelete(int number) {
+		int result = 0;
+		try {
+			result = session.update("community.communityDelete", number);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 	
 }

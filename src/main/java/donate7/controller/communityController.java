@@ -152,4 +152,30 @@ public class communityController {
 		}
 	}
 	
+	@RequestMapping(value="deleteForm")
+	public String deleteForm(int brd_no, String pageNum, Model model) {
+		Community community = cs.deletePwdChk(brd_no);
+		String dbPass = community.getPasswd();
+		model.addAttribute("brd_no", brd_no);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("dbPass", dbPass);
+		model.addAttribute("pgm", "../community/deleteForm.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="delete")
+	public String delete(Community community, String brd_no, String pageNum, Model model) {
+		int number = Integer.parseInt(brd_no);
+		int result = cs.communityDelete(number);
+		if(result > 0) {
+			return "redirect:community.do?pageNum="+pageNum;
+		}else {
+			model.addAttribute("msg", "삭제 실패");
+			model.addAttribute("community", community);
+			model.addAttribute("pageNum", pageNum);
+			return "forward:deleteForm.do?brd_no="+community.getBrd_no()+"&pageNum="+pageNum;
+		}
+	}
+	
+	
 }

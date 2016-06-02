@@ -30,13 +30,13 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							<a href="community.do?pageNum=${pageNum}" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
+							<a href="register.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
 						</div>
 						<div class="col col-xs-6 text-right">
 							<a href="community.do?pageNum=${pageNum}&searchType=${searchType}&searchTxt=${searchTxt}" class="btn btn-sm btn-default">목록<em class="fa fa-list-ul"></em></a>
 							<a href="writeForm.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-default">답변<em class="fa fa-comment-o"></em></a>							
 							<a href="updateForm.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-default">수정<em class="fa fa-pencil"></em></a>
-							<a href="delete.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-danger">삭제<em class="fa fa-trash"></em></a>
+							<a href="deleteForm.do?brd_no=${community.brd_no}&pageNum=${pageNum}" class="btn btn-sm btn-danger">삭제<em class="fa fa-trash"></em></a>
 						</div>
 					</div>
 				</div>

@@ -46,4 +46,12 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.communityUpdate(community);
 	}
 
+	public Community deletePwdChk(int number) {
+		return cd.deletePwdChk(number);
+	}
+
+	public int communityDelete(int number) {
+		return cd.communityDelete(number);
+	}
+
 }
