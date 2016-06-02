@@ -14,40 +14,46 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-			$('#redate').change(function() {
-				var currentDate = 
-				var strDate = $('#redate').val();
-				var redate = new Date(strDate);
-				if(currentDate > redate){
-					alert('모집 종료일은 오늘 일자 이후로 선택하여 주세요.');
-					$('#redate').val('');
-				}
-				$('#vsdate').attr('min', strDate);
-			});
-			
-			$('#vsdate').change(function() {
-				var selDate = $('#vsdate').val();
-				$('#vedate').attr('min',selDate);
-			});
-				
-			$('#cls').change(function() {
-				var sendData = 'class_no=' + $('#cls option:selected').val();
-				$.post('dclassList.do', sendData, function(data) {
-					$('#res').html(data);
-				});
-				
-			});
+$(document).ready(function() {
+	var sendData = 'class_no=' + $('#cls option:selected').val();
+	$.post('dclassList.do', sendData, function(data) {
+		$('#res').html(data);
 	});
-	
-	function nameChek() {
-		var content = document.getElementById("vt_name");
-		if(content.value.length >= content.maxLength){
-			if(event.KeyCode != 8 || event.KeyCOde != 27){
-				alert("최대 " + content.maxLength + "글자 까지 작성할수 있습니다.");
-			}
+	$('#redate').change(function() {
+		var currentDate = new Date();
+		var strDate = $('#redate').val();
+		var redate = new Date(strDate);
+		if(currentDate > redate){
+			alert('모집 종료일은 오늘 일자 이후로 선택하여 주세요.');
+			$('#redate').val('');
+		}
+		$('#vsdate').attr('min', strDate);
+	});
+	$('#vsdate').change(function() {
+		var selDate = $('#vsdate').val();
+		$('#vedate').attr('min',selDate);
+	});
+	$('#vedate').change(function(){
+		var selDate = $('#vedate').val();
+		$('#vsdate').attr('max',selDate);
+	});
+
+	$('#cls').change(function() {
+		var sendData = 'class_no=' + $('#cls option:selected').val();
+		$.post('dclassList.do', sendData, function(data) {
+			$('#res').html(data);
+		});
+	});
+});
+
+function nameChek() {
+	var content = document.getElementById("vt_name");
+	if (content.value.length >= content.maxLength) {
+		if (event.KeyCode != 8 || event.KeyCode != 27) {
+			alert("최대 " + content.maxLength + "글자 까지 작성할수 있습니다.");
 		}
 	}
+}
 </script>
 <style type="text/css">
 .req-container {
@@ -71,7 +77,7 @@
 		<div class="col-md-offset-14 col-md-5"
 			style="margin-left: 0; margin-top: 0;">
 			<div class="form-area req-container">
-				<form role="form" action="rcUpdate.do?vt_no=${rc.vt_no }" method="post">
+				<form role="form" action="rcUpdate.do?vt_no=${rc.vt_no }&pageNum=${pageNum}" method="post">
 					<input type="hidden" name="vt_no" value="${rc.vt_no }"> <input
 						type="hidden" name="vt_o_no" value="${sessionScope.no}">
 					<h4 style="margin-bottom: 25px; text-align: center;">수요처 요청 등록
@@ -159,11 +165,12 @@
 						</div>
 						<div class="form-group">
 							<b style="display: block;">상세 내용:</b>
-							<textarea rows="5" cols="80" name="vt_desc" id="vt_desc">${rc.vt_desc }</textarea>
+							<textarea rows="5" cols="80" maxlength="4000" name="vt_desc" id="vt_desc">${rc.vt_desc }</textarea>
 						</div>
 					</div>
 					<div style="margin-top: 40px; text-align: center;">
-						<input type="submit" class="btn btn-primary btn-md" value="요청">
+						<input type="submit" class="btn btn-primary btn-md" value="수정">
+						<input type="button" class="btn btn-primary btn-md" value="뒤로" onclick="location.href='rcView.do?vt_no=${rc.vt_no}&pageNum=${pageNum}'">
 					</div>
 				</form>
 			</div>

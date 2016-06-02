@@ -37,17 +37,15 @@ public class VolController {
 	private MemberService ms;
 
 	@RequestMapping(value = "recruit", method = RequestMethod.GET)
-	public String reqResistForm(Recruit rc, HttpSession session, Model model) {
+	public String recruitForm(Recruit rc, HttpSession session, Model model) {
 		int o_no = 0;
 		if (session.getAttribute("no") != null) {
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
 			String addr = ms.selectO_addrByO_no(o_no);
 			List<Class> list = cs.selectClass(); 
 			List<Subject> slist = cs.selectSubject();
-			List<Dclass> dlist = cs.selectDclassByClass_no(1);
 			model.addAttribute("list", list);
 			model.addAttribute("slist", slist);
-			model.addAttribute("dlist", dlist);
 			model.addAttribute("addr", addr);
 			model.addAttribute("rc", rc);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -59,9 +57,8 @@ public class VolController {
 	}
 	
 	@RequestMapping(value = "recruit", method = RequestMethod.POST)
-	public String reqResist(Recruit rc, Model model) {
+	public String recruit(Recruit rc, Model model) {
 		int result = vs.insertRc(rc);
-		
 		if(result > 0){
 			return "redirect:myRecruit.do";
 		}else{
@@ -71,24 +68,29 @@ public class VolController {
 	}
 	
 	@RequestMapping("myRecruit")
-	public String myRecruit(int pageNum, HttpSession session, Model model){
+	public String myRecruit(String pageNum, Recruit rc, HttpSession session, Model model){
+		String num = pageNum;
+		Recruit rec = rc;
+		if(num == null){
+			num = "1";
+		}
+		if(rc == null){
+			rec = new Recruit();
+		}
+		int pnum = Integer.parseInt(num);
 		int o_no = 0;
 		if(session.getAttribute("no") != null){
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
-			
-			
-			int total = vs.selectRcTotal(o_no);
-			if(pageNum == 0){
-				pageNum = 1;
-			}
-			Paging paging = new Paging(10, 10, pageNum, total);
-			Recruit rc = new Recruit();
-			rc.setStartrow(paging.getStartRow());
-			rc.setEndrow(paging.getEndRow());
-			rc.setVt_o_no(o_no);
-			List<Recruit> list = vs.selectRcList(rc);
+			rec.setVt_o_no(o_no);
+			int total = vs.selectRcTotal(rec);
+			Paging paging = new Paging(10, 10, pnum, total);
+			rec.setStartrow(paging.getStartRow());
+			rec.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRcList(rec);
+			model.addAttribute("tot", total);
 			model.addAttribute("paging", paging);
 			model.addAttribute("list", list);
+			model.addAttribute("rec", rec);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
 			return "module/main";
@@ -98,13 +100,14 @@ public class VolController {
 	}
 	
 	@RequestMapping("rcView")
-	public String rcView(int vt_no,HttpSession session,Model model){
+	public String rcView(int pageNum, int vt_no,HttpSession session,Model model){
 		int o_no = 0;
 		if(session.getAttribute("no") != null){
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
 		}
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		String addr = ms.selectO_addrByO_no(o_no);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("rc", rc);
 		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -113,27 +116,26 @@ public class VolController {
 	}
 	
 	@RequestMapping(value="rcUpdate", method=RequestMethod.GET)
-	public String rcUpdateForm(int vt_no, Model model){
+	public String rcUpdateForm(int pageNum,int vt_no, Model model){
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		List<Class> list = cs.selectClass(); 
 		List<Subject> slist = cs.selectSubject();
-		List<Dclass> dlist = cs.selectDclassByClass_no(1);
 		model.addAttribute("list", list);
 		model.addAttribute("slist", slist);
-		model.addAttribute("dlist", dlist);
 		model.addAttribute("rc", rc);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../vt/rcUpdateForm.jsp");
 		return "module/main";
 	}
 	
 	@RequestMapping(value="rcUpdate", method=RequestMethod.POST)
-	public String rcUpdate(Recruit rc, Model model){
+	public String rcUpdate(int pageNum, Recruit rc, Model model){
 		int result = vs.rcUpdate(rc);
 		if(result > 0){
-			return "redirect:rcView.do?vt_no="+ rc.getVt_no();
+			return "redirect:rcView.do?vt_no="+ rc.getVt_no() + "&pageNum=" + pageNum;
 		}else{
-			return "redirect:rcUpdate.do?vt_no=" + rc.getVt_no();
+			return "redirect:rcUpdate.do?vt_no=" + rc.getVt_no() + "&pageNum=" + pageNum;
 		}
 		
 	}

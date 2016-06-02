@@ -7,14 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-	type="text/css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<style type="text/css">
+.req-container {
+	width: 900px;
+}
+
+.req-form-area {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.req-form-name {
+	margin-bottom: 25px;
+	text-align: left;
+	font-weight: bold;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var sendData = 'class_no=' + $('#cls option:selected').val();
+		$.post('dclassList.do', sendData, function(data) {
+			$('#res').html(data);
+		});
 		$('#redate').change(function() {
 			var currentDate = new Date();
 			var strDate = $('#redate').val();
@@ -28,6 +42,10 @@
 		$('#vsdate').change(function() {
 			var selDate = $('#vsdate').val();
 			$('#vedate').attr('min',selDate);
+		});
+		$('#vedate').change(function(){
+			var selDate = $('#vedate').val();
+			$('#vsdate').attr('max',selDate);
 		});
 
 		$('#cls').change(function() {
@@ -47,22 +65,6 @@
 		}
 	}
 </script>
-<style type="text/css">
-.req-container {
-	width: 900px;
-}
-
-.req-form-area {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.req-form-name {
-	margin-bottom: 25px;
-	text-align: left;
-	font-weight: bold;
-}
-</style>
 </head>
 <body>
 	<div class="container">
@@ -85,16 +87,16 @@
 							<b style="display: block;">봉사 모집 기간 :</b>
 							<!-- 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
-								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" /> -->
+								name="vt_r_start_date" id="rsdate" /> -->
 							종료일 : <input class="form-control-20" type="date"
-								name="vt_r_end_date" id="redate" size="10" maxlength="10" />
+								name="vt_r_end_date" id="redate" required="required"/>
 						</div>
 						<div class="form-group">
 							<b style="display: block;">봉사 활동 기간 :</b> 시작일 : <input
 								class="form-control-20" type="date"
-								name="vt_a_start_date" id="vsdate" /> 종료일 : <input
+								name="vt_a_start_date" id="vsdate" required="required"/> 종료일 : <input
 								class="form-control-20" type="date" name="vt_a_end_date"
-								id="vedate"/>
+								id="vedate" required="required"/>
 						</div>
 						<div class="form-group">
 							<div style="float: left; width: 50%">
@@ -104,12 +106,12 @@
 									<c:forEach var="cl" items="${list}">
 										<option value="${cl.class_no }">${cl.class_name }</option>
 									</c:forEach>
-								</select><span id="res"> <select id="vt_class"
+								</select><span id="res"> <%-- <select id="vt_class"
 									class="form-control-40">
 										<c:forEach var="dc" items="${dlist }">
 											<option value="${dc.dclass_no }">${dc.dclass_name }</option>
 										</c:forEach>
-								</select>
+								</select> --%>
 								</span>
 							</div>
 							<div>
@@ -131,7 +133,7 @@
 						</div>
 						<div class="form-group">
 							<b style="display: block;">상세 내용:</b>
-							<textarea rows="5" cols="80" name="vt_desc" id="vt_desc"></textarea>
+							<textarea rows="5" cols="80" name="vt_desc" maxlength="4000" id="vt_desc" required="required"></textarea>
 						</div>
 					</div>
 					<div style="margin-top: 40px; text-align: center;">
