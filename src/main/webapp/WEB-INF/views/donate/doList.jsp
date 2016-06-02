@@ -17,7 +17,7 @@
 img {
 	width: 100%;
 	max-width: 100%;
-	height: 28%;
+	height: 25%;
 }
 
 .white-panel {
@@ -43,6 +43,17 @@ img {
 	-o-transition: all 0.1s ease-in-out;
 	transition: all 0.1s ease-in-out;
 }
+.s{
+	font-size: 18px;
+}
+.num_area{padding-top:10px}
+.num_area strong{font-family:arial}
+.status_num{padding-bottom:3px;color:#666}
+.status_num strong{font-size:30px;font-weight:normal;color:#000}
+.status_num span{margin-top:14px;vertical-align:middle;}
+.target_num{color:#888}
+.target_num strong{font-size:15px;font-weight:normal}
+.target_num span{margin-top:2px;vertical-align:top}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -60,7 +71,7 @@ img {
 		var pluginName = 'pinterest_grid', defaults = {
 			padding_x : 10,
 			padding_y : 10,
-			no_columns : 3,
+			no_columns : 8,
 			margin_bottom : 50,
 			single_column_breakpoint : 700
 		}, columns, $article, article_width;
@@ -213,12 +224,13 @@ img {
 				<section id="pinBoot">
 					<c:forEach var="donate" items="${list}">
 					<article class="white-panel">
-						<img src="image/${donate.d_img}">
-						<h5>
-							<a href="#">${donate.d_title}</a>
-						</h5>
-						<p><fmt:formatNumber value="${donate.d_amount}" groupingUsed="true"/>원</p>
-						<p>%</p>
+						<strong>[ ${donate.category} ]</strong>
+						<img src="image/${donate.d_img}">						
+						<h5><a href="#">${donate.d_title}</a></h5>
+					<div class="num_area">
+						<p class="target_num"><strong><fmt:formatNumber value="${donate.d_amount}" groupingUsed="true"/></strong><span>원 목표</span></p>
+						<p class="status_num"><strong>0</strong><span>원 후원</span></p>
+					</div>			
 					</article>
 					</c:forEach>
 				</section>

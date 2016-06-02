@@ -18,3 +18,8 @@ create table donate (
 select * from donate;
 drop table donate;
 
+
+select d.*, a.no as no, a.email as email, a.nick as nick, a.job as category from donate d, 
+			(select m_no as no, m_email as email, m_nick as nick, m_job as job, m_del_yn as del_yn from member where m_del_yn='n' 
+			union select o_no, o_email, o_oname, o_category, o_del_yn from organ where o_del_yn='n') 
+			a where d.d_member=a.no order by d_reg_date desc;
