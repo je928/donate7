@@ -9,15 +9,15 @@
 <style type="text/css">
 #pinBoot {
 	position: relative;
-	max-width: 100%;
-	width: 100%;
-	margin-left: 8px;
+	max-width: 95%;
+	width: 95%;
+	margin-left: 20px;
 }
 
 img {
 	width: 100%;
 	max-width: 100%;
-	height: auto;
+	height: 28%;
 }
 
 .white-panel {
@@ -210,18 +210,18 @@ img {
 
 			<div class="container">
 			<div class="row">
-				<c:forEach var="donate" items="${list}">
 				<section id="pinBoot">
+					<c:forEach var="donate" items="${list}">
 					<article class="white-panel">
-						<img src="image/${donate.d_img}" width="100%">
-						<h4>
+						<img src="image/${donate.d_img}">
+						<h5>
 							<a href="#">${donate.d_title}</a>
-						</h4>
-						<p>${donate.d_amount}원</p>
+						</h5>
+						<p><fmt:formatNumber value="${donate.d_amount}" groupingUsed="true"/>원</p>
 						<p>%</p>
 					</article>
+					</c:forEach>
 				</section>
-				</c:forEach>
 				</div>
 			</div>
 			</div>
