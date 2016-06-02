@@ -51,6 +51,14 @@ public class SecondDaoImpl implements SecondDao{
 
 	public void delete(int sh_no) {
 		st.selectOne("second.msdelete", sh_no);
+	}
+
+	public int spUpdate(int sh_no) {
+		return st.update("second.spUpdate", sh_no);
+	}
+
+	public void spCancel(int sh_no) {
+		st.update("second.spCancel", sh_no);
 	}	
 
 }

@@ -48,4 +48,14 @@ public class SecondServiceImpl implements SecondService{
 		
 	}
 
+	public int spUpdate(int sh_no) {
+		return sd.spUpdate(sh_no);
+	}
+
+	public void spCancel(int sh_no) {
+		sd.spCancel(sh_no);
+		
+	}
+
+
 }

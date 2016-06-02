@@ -51,4 +51,10 @@
 	<delete id="msdelete" parameterType="int">
 		delete from second where sh_no=#{sh_no}
 	</delete>
+	<update id="spUpdate" parameterType="int">
+		update second set sh_approve='y', sh_arrive='y' where sh_no=#{sh_no}
+	</update>
+	<update id="spCancel" parameterType="int">
+		update second set sh_approve='n' where sh_no=#{sh_no}
+	</update>
 </mapper>

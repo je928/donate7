@@ -14,12 +14,14 @@
 			<tr><th>상품종류</th><td>${second.sh_category }</td></tr>
 			<tr><th>등록일</th><td>${second.sh_reg_date }</td></tr>
 			<tr><th>설명</th><td>${second.sh_explanation }</td></tr>
-			<tr><th>승인여부</th><td>${second.sh_approve }</td></tr>
+			<tr><th>승인여부</th><td>${second.sh_approve } 
+			<button onclick="location.href='spUpdate.do?sh_no=${second.sh_no}'">승인</button>
+			<button onclick="location.href='spCancel.do?sh_no=${second.sh_no}'">거부</button>
+			</td></tr>
 			<tr><th>도착여부</th><td>${second.sh_arrive }</td></tr>
 		</table>
 		<div align="center">
-			<button onclick="location.href='adsecondForm.do'">수락</button>
-			<button onclick="location.href='adsecondForm.do'">거부</button>
+		<button onclick="location.href='adsecondList.do'">보류</button>
 		</div>
 </body>
 </html>

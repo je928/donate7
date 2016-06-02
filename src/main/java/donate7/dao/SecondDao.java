@@ -18,4 +18,6 @@ public interface SecondDao {
 	int secondUpdate(Second second);
 	int count(Second second);
 	void delete(int sh_no);
+	int spUpdate(int sh_no);
+	void spCancel(int sh_no);
 }

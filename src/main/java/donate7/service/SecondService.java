@@ -13,5 +13,7 @@ public interface SecondService {
 	int msecondUpdate(Second second);
 	int count(Second second);
 	void msdelete(int sh_no);
+	int spUpdate(int sh_no);
+	void spCancel(int sh_no);
 	
 }
