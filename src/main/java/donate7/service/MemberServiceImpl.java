@@ -50,7 +50,15 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> memberAll() {
 		return md.memberAll();
 	}
+	
+	public Member selectMember(int m_no) {
+		return md.selectMember(m_no);
+	}
 
+	public Organ selectOrgan(int o_no) {
+		return md.selectOrgan(o_no);
+	}
+	
 	public String selectO_addrByO_no(int o_no) {
 		return md.selectO_addrByO_no(o_no);
 	}
