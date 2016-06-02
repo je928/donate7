@@ -27,7 +27,7 @@
 							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="themes">
-							<li><a href=".do">기부금</a></li>
+							<li><a href="doList.do">기부금</a></li>
 							<li class="divider"></li>
 							<li><a href="goods.do">완제품</a></li>
 						</ul></li>

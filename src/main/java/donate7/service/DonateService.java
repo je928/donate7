@@ -31,4 +31,6 @@ public interface DonateService {
 	int adUpdate(int d_no);
 	
 	int adDelete(int d_no);
+
+	List<Donate> doList();
 }

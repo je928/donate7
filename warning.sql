@@ -18,7 +18,7 @@ create table register (
 	re_sort_no number not null
 );
 select * from warning;
-select * from report;
+select * from register;
 
 drop table warning;
-drop table report;
+drop table register;

@@ -33,8 +33,8 @@ public class VolServiceImpl implements VolService {
 	}
 
 	@Override
-	public int selectRcTotal(int vt_o_no) {
-		return vd.selectRcTotal(vt_o_no);
+	public int selectRcTotal(Recruit rc) {
+		return vd.selectRcTotal(rc);
 	}
 
 

@@ -16,5 +16,5 @@ public interface VolService {
 	Recruit selectRcByVt_no(int vt_no);
 	int rcUpdate(Recruit rc);
 	List<Recruit> selectRcList(Recruit rc);
-	int selectRcTotal(int vt_o_no);
+	int selectRcTotal(Recruit rc);
 }
