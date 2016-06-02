@@ -9,7 +9,7 @@
 <body>
 		<table class="table table-striped table-hover">
 			<tr><th>제목</th><td>${second.sh_title }</td></tr>
-			<tr><th>글쓴이</th><td>${second.sh_mno }</td></tr>
+			<tr><th>글쓴이</th><td>${second.email }</td></tr>
 			<tr><th>이미지</th><td><img src="/donate7/${second.sh_image }" width="300px"></td></tr>
 			<tr><th>상품종류</th><td>${second.sh_category }</td></tr>
 			<tr><th>등록일</th><td>${second.sh_reg_date }</td></tr>
