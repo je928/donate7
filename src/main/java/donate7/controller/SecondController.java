@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import donate7.model.Recruit;
 import donate7.model.Second;
 import donate7.service.SecondService;
+import donate7.util.Paging;
 @Controller
 public class SecondController {
 	@Autowired
@@ -32,7 +34,16 @@ public class SecondController {
 		ss.spCancel(sh_no);
 		return "redirect:adsecondView.do?sh_no="+sh_no;
 	}
-	
+	@RequestMapping("srUpdate")
+	public String srUpdate(int sh_no, Model model){
+		ss.srUpdate(sh_no);
+		return "redirect:adsecondView2.do?sh_no="+sh_no;
+	}
+	@RequestMapping("srCancel")
+	public String srCancel(int sh_no, Model model){
+		ss.srCancel(sh_no);
+		return "redirect:adsecondView2.do?sh_no="+sh_no;
+	}
 	@RequestMapping(value="msecondView", method=RequestMethod.GET)
 	public String msecondView(int sh_no, Model model){
 		Second second = ss.selectOne(sh_no);
@@ -47,7 +58,7 @@ public class SecondController {
 		List<Second> list = ss.mlist(no);
 		Second second = new Second();
 		second.setSh_mno(no);
-		int count = ss.count(second);
+		int count = ss.count(no);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
@@ -129,7 +140,7 @@ public class SecondController {
 		List<Second> list = ss.olist(no);
 		Second second = new Second();
 		second.setSh_mno(no);
-		int count = ss.count(second);
+		int count = ss.count(no);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -212,15 +223,58 @@ public class SecondController {
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondView.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value="adsecondView2", method=RequestMethod.GET)
+	public String adsecondView2(int sh_no, Model model){
+		Second second = ss.selectOne(sh_no);
+		model.addAttribute("second", second);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/adsecond/adsecondView2.jsp");
+		return "module/main";
+	}
 	
 	@RequestMapping(value = "adsecondList", method = RequestMethod.GET)
-	public String adsecondList(Model model) {
+	public String adsecondList(HttpSession session,Model model) {
+		int no = 0;
+		if(session.getAttribute("no") != null){
+			no = Integer.parseInt(session.getAttribute("no").toString());
+		}
 		List<Second> list = ss.adlist();
+		int total = ss.count(no);
+		model.addAttribute("total", total);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondList.jsp");
 		return "module/main";
 	}
+/*	@RequestMapping("myRecruit")
+	public String myRecruit(String pageNum, Recruit rc, HttpSession session, Model model){
+		String num = pageNum;
+		Recruit rec = rc;
+		if(num == null){
+			num = "1";
+		}
+		if(rc == null){
+			rec = new Recruit();
+		}
+		int pnum = Integer.parseInt(num);
+		int o_no = 0;
+		if(session.getAttribute("no") != null){
+			o_no = Integer.parseInt(session.getAttribute("no").toString());
+			rec.setVt_o_no(o_no);
+			int total = vs.selectRcTotal(rec);
+			Paging paging = new Paging(10, 10, pnum, total);
+			rec.setStartrow(paging.getStartRow());
+			rec.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRcList(rec);
+			model.addAttribute("tot", total);
+			model.addAttribute("paging", paging);
+			model.addAttribute("list", list);
+			model.addAttribute("rec", rec);
+			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
+			return "module/main";
+		}else{
+			return "redirect:login.do";
+		}*/
+	}
 	
-	
-}

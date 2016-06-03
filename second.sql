@@ -12,3 +12,5 @@
 
 drop table second;
 select * from second;
+
+select * from (select rownum rn, a.* from (select sc.*, mo.no as no, mo.email as email, mo.nick as nick from second sc,(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n') mo where sc.sh_mno=a.no order by sh_reg_date desc) a);
