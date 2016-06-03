@@ -7,6 +7,8 @@ public class Recruit {
 	private String vt_name;
 	private int vt_o_no;
 	private String o_oname;
+	private String addr;
+	private String cn;
 	private Date vt_r_start_date;
 	private Date vt_r_end_date;
 	private String vt_r_yn;
@@ -23,7 +25,59 @@ public class Recruit {
 	private int startrow;
 	private int endrow;
 	private String searchType;
+	private int sido_no;
+	private String sido_name;
+	private int gugun_no;
+	private String gugun_name;
 	
+	public int getSido_no() {
+		return sido_no;
+	}
+
+	public void setSido_no(int sido_no) {
+		this.sido_no = sido_no;
+	}
+
+	public String getSido_name() {
+		return sido_name;
+	}
+
+	public void setSido_name(String sido_name) {
+		this.sido_name = sido_name;
+	}
+
+	public int getGugun_no() {
+		return gugun_no;
+	}
+
+	public void setGugun_no(int gugun_no) {
+		this.gugun_no = gugun_no;
+	}
+
+	public String getGugun_name() {
+		return gugun_name;
+	}
+
+	public void setGugun_name(String gugun_name) {
+		this.gugun_name = gugun_name;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getCn() {
+		return cn;
+	}
+
+	public void setCn(String cn) {
+		this.cn = cn;
+	}
+
 	public String getSearchType() {
 		return searchType;
 	}

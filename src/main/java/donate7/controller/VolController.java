@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import donate7.model.Dclass;
 import donate7.model.Organ;
 import donate7.model.Recruit;
+import donate7.model.SidoGugun;
 import donate7.model.Subject;
 import donate7.service.CommService;
 import donate7.service.MemberService;
@@ -141,13 +142,29 @@ public class VolController {
 	}
 	
 	@RequestMapping("volSearch")
-	public String volSearch(Model model){
-		List<Class> list = cs.selectClass(); 
+	public String volSearch(String pageNum, Recruit rc, Model model){
+		String num = pageNum;
+		Recruit rec = rc;
+		if(num == null){
+			num = "1";
+		}
+		if(rc == null){
+			rec = new Recruit();
+		}
+		int pnum = Integer.parseInt(num);
+		int total = vs.selectRcTotal(rec);
+		Paging paging = new Paging(10, 10, pnum, total);
+		rec.setStartrow(paging.getStartRow());
+		rec.setEndrow(paging.getEndRow());
+		List<Recruit> result = vs.selectRcList(rec);
+		List<SidoGugun> addr = cs.selectSido();
+		List<Class> list = cs.selectClass();
 		List<Subject> slist = cs.selectSubject();
-		List<Dclass> dlist = cs.selectDclassByClass_no(1);
+		model.addAttribute("paging", paging);
+		model.addAttribute("result", result);
 		model.addAttribute("list", list);
 		model.addAttribute("slist", slist);
-		model.addAttribute("dlist", dlist);
+		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../vt/volSearch.jsp");
 		return "module/main";
@@ -201,14 +218,15 @@ public class VolController {
 		model.addAttribute("pgm", "../vt/reqList.jsp");
 		return "module/main";
 	}
-
+*/
+	
 	@RequestMapping(value = "gugunList", method = RequestMethod.POST)
 	public String gugunList(int sido_no, Model model) {
-		List<SidoGugun> list = ss.selectGugunBySido_No(sido_no);
+		List<SidoGugun> list = cs.selectGugunBySido_No(sido_no);
 		model.addAttribute("list", list);
 		return "vt/gugunList";
 	}
-
+/*
 	@RequestMapping("reqDetail")
 	public String reqDetail(int vt_No, Model model) {
 		VolReq volReq = vs.SelectByVt_No(vt_No);

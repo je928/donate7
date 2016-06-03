@@ -69,8 +69,11 @@ public class VolDaoImpl implements VolDao{
 
 	@Override
 	public int selectRcTotal(Recruit rc) {
+		
+		int result = session.selectOne("recruit.selectRcTotal",rc);
 		System.out.println("selectRcTotal : " + rc);
-		return session.selectOne("recruit.selectRcTotal",rc);
+		System.out.println("result : " + result);
+		return result;
 	}
 
 }

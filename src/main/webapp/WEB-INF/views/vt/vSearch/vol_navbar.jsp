@@ -8,11 +8,11 @@
 </head>
 <body>
 	<div class="list-group">
-		<a href="volSearch.do?pageNum=1" class="list-group-item">통합봉사조회</a>
-		<a href="volSearch.do?pageNum=1" class="list-group-item">분야별봉사조회</a>
-		<a href="volSearch.do?pageNum=1" class="list-group-item">지역별봉사조회</a>
-		<a href="volSearch.do?pageNum=1" class="list-group-item">시간별봉사조회</a>
-		<a href="volSearch.do?pageNum=1" class="list-group-item">수요처 조회</a>
+		<a href="volSearch.do" class="list-group-item">통합봉사조회</a>
+		<a href="volSearch.do" class="list-group-item">분야별봉사조회</a>
+		<a href="volSearch.do" class="list-group-item">지역별봉사조회</a>
+		<a href="volSearch.do" class="list-group-item">시간별봉사조회</a>
+		<a href="volSearch.do" class="list-group-item">수요처 조회</a>
 	</div>
 </body>
 </html>

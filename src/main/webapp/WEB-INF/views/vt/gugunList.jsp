@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<select name="gugun">
+	<select name="gugun_no" class="form-control-40" style="display: inline; width: 100;" >
 	<c:if test="${not empty list }">
 		<option value="0">전체</option>
 		<c:forEach var="gg" items="${list}">

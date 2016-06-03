@@ -45,12 +45,12 @@
 		var type = $('#searchType option:selected').val();
 		var vt_name = $('#vt_name').val();
 		if (type == 'r') {
-			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_r_start_date' id='rsdate' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_r_end_date' id='redate' value='${rec.vt_r_start_date}'/>");
+			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_r_start_date' id='rsdate' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_r_end_date' id='redate' value='${rec.vt_r_end_date}'/>");
 			var rsdate = $('#rsdate').val();
 			var redate = $('#redate').val();
 			location.href = "myRecruit.do?pageNum=" + pageNum + "&searchType=" + type + "&vt_r_start_date=" + rsdate + "&vt_r_end_date=" + redate + "vt_name="+vt_name;
 		} else if (type == 'a') {
-			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_a_start_date' id='asdate' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_a_end_date' id='aedate' value='${rec.vt_a_start_date}'/>");
+			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_a_start_date' id='asdate' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_a_end_date' id='aedate' value='${rec.vt_a_end_date}'/>");
 			var asdate = $('#asdate').val();
 			var aedate = $('#aedate').val();
 			location.href = "myRecruit.do?pageNum=" + pageNum + "&searchType=" + type + "&vt_a_start_date=" + asdate + "&vt_a_end_date=" + aedate + "&vt_name=" + vt_name;
@@ -103,9 +103,10 @@ span {
 							<option value="a">봉사기간</option>
 						</c:if>
 					</select> <span id="dt" style="color: black;"></span> <b>봉사명 : </b><input
-						type="text" name="vt_name" id="vt_name" value="${rec.vt_name}"> <input type="submit"
-						class="btn btn-primary btn-md"
-						style="margin-left: 5px; vertical-align: top;" value="검색">
+						type="text" name="vt_name" id="vt_name" value="${rec.vt_name}">
+					
+					<input type="submit" class="btn btn-primary btn-md" value="검색">
+					
 				</form>
 			</div>
 			<table class="table table-striped table-hover" style="width: 80%">
@@ -122,7 +123,8 @@ span {
 				<c:forEach var="rc" items="${list}">
 					<tr>
 						<td>${rc.vt_no}</td>
-						<td><a href="rcView.do?vt_no=${rc.vt_no}&pageNum=${paging.nowPage}">${rc.vt_name}</a></td>
+						<td><a
+							href="rcView.do?vt_no=${rc.vt_no}&pageNum=${paging.nowPage}">${rc.vt_name}</a></td>
 						<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 						<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 						<td>${rc.vt_tot }</td>

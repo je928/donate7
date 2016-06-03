@@ -7,6 +7,8 @@
 		<result property="vt_no" column="VT_NO" />
 		<result property="vt_name" column="VT_NAME" />
 		<result property="vt_o_no" column="VT_O_NO" />
+		<result property="addr" column="ADDR"/>
+		<result property="cn" column="CN"/>
 		<result property="o_oname" column="O_ONAME" />
 		<result property="vt_r_start_date" column="VT_R_START_DATE" />
 		<result property="vt_r_end_date" column="VT_R_END_DATE" />
@@ -21,11 +23,15 @@
 		<result property="class_name" column="CLASS_NAME" />
 		<result property="dclass_name" column="DCLASS_NAME" />
 		<result property="sub_name" column="SUB_NAME" />
+		<result property="sido_no" column="SIDO_NO"/>
+		<result property="gugun_no" column="GUGUN_NO"/>
+		<result property="sido_name" column="SIDO_NAME"/>
+		<result property="gugun_name" column="GUGUN_NAME"/>
 	</resultMap>
 
 	<select id="selectRcList" resultMap="RecruitResult"
 		parameterType="recruit">
-		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM VT_RECRUIT
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM V_VOL_SEARCH
 		<where>
 			<if test="vt_o_no != 0">
 				VT_O_NO = #{vt_o_no}
@@ -45,6 +51,7 @@
 					<![CDATA[ AND VT_A_END_DATE <= #{vt_a_end_date} ]]>
 				</if>
 			</if>
+			
 			<if test="vt_name != null">
 					<![CDATA[ AND VT_NAME LIKE '%'||#{vt_name}||'%' ]]>
 			</if>
