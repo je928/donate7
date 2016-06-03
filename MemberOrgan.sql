@@ -27,7 +27,7 @@ create table organ (
 	o_reg_date date default sysdate,
 	o_out_date date,
 	o_del_yn char(1) default 'n',
-	o_ok_yn char(1) default 'n'
+	o_ok_xyn char(1) default 'x'
 );
 
 select * from member;

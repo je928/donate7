@@ -134,7 +134,7 @@
 							<td>${org.o_oname}</td>
 							<td>${org.o_name}</td>
 							<td>${org.o_tel}</td>
-							<td>${org.o_ok_yn}</td>
+							<td>${org.o_ok_xyn}</td>
 							<td align="center">
 								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
 								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>

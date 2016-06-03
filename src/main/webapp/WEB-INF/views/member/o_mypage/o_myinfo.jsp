@@ -61,11 +61,14 @@
 										</tr>
 										<tr>
 											<td>승인유무</td>
-											<c:if test="${organ.o_ok_yn eq 'y'}">
+											<c:if test="${organ.o_ok_xyn eq 'x'}">
+											<td><b class="red">승인 처리중</b></td>
+											</c:if>
+											<c:if test="${organ.o_ok_xyn eq 'y'}">
 											<td><b class="green">승인 완료</b></td>
 											</c:if>
-											<c:if test="${organ.o_ok_yn eq 'n'}">
-											<td><b class="red">승인 처리중</b></td>
+											<c:if test="${organ.o_ok_xyn eq 'n'}">
+											<td><b class="red">승인 거절</b></td>
 											</c:if>
 										</tr>
 									</tbody>

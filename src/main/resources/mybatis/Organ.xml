@@ -16,7 +16,7 @@
 		<result property="o_reg_date" column="o_reg_date"/>
 		<result property="o_out_date" column="o_out_date"/>
 		<result property="o_del_yn" column="o_del_yn"/>
-		<result property="o_ok_yn" column="o_ok_yn"/>
+		<result property="o_ok_xyn" column="o_ok_xyn"/>
 	</resultMap>
 	
 	<select id="selectNum" resultType="Integer">

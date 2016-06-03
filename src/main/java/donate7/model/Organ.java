@@ -16,7 +16,7 @@ public class Organ {
 	private Date o_reg_date;
 	private Date o_out_date;
 	private String o_del_yn;
-	private String o_ok_yn;
+	private String o_ok_xyn;
 	private int no;
 	
 	public int getNo() {
@@ -123,12 +123,12 @@ public class Organ {
 		this.o_del_yn = o_del_yn;
 	}
 
-	public String getO_ok_yn() {
-		return o_ok_yn;
+	public String getO_ok_xyn() {
+		return o_ok_xyn;
 	}
 
-	public void setO_ok_yn(String o_ok_yn) {
-		this.o_ok_yn = o_ok_yn;
+	public void setO_ok_xyn(String o_ok_xyn) {
+		this.o_ok_xyn = o_ok_xyn;
 	}
 /*
 	@Override
