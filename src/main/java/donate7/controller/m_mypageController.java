@@ -38,7 +38,14 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");
 		return "module/main";
 	}
-
+	
+	@RequestMapping(value = "m_updateForm", method = RequestMethod.GET)
+	public String m_updateForm(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/m_updateForm.jsp");
+		return "module/main";
+	}
+	
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model, HttpSession session) {
