@@ -29,6 +29,8 @@ public interface ProductDao {
 
 	void apCancel(int pr_no);
 
+	List<Product> aplist();
+
 
 
 }

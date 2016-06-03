@@ -11,21 +11,14 @@ body {
 	font-family: 'Quicksand', sans-serif;
 }
 
-h6.description {
-	font-weight: bold;
-	letter-spacing: 2px;
-	color: #999;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	padding-bottom: 5px;
-}
-
 .profile {
 	margin-top: 25px;
+	text-align: center;
 }
 
 .profile h1 {
 	font-weight: normal;
-	font-size: 20px;
+	font-size: 16px;
 	margin: 10px 0 0 0;
 }
 
@@ -37,7 +30,7 @@ h6.description {
 
 .profile .img-box {
 	opacity: 1;
-	display: block;
+	display: white;
 	position: relative;
 }
 
@@ -52,77 +45,57 @@ h6.description {
 	bottom: 0;
 }
 
-.img-box ul {
-	position: absolute;
-	z-index: 2;
-	bottom: 50px;
-	text-align: center;
-	width: 100%;
-	padding-left: 0px;
-	height: 0px;
-	margin: 0px;
-	opacity: 0;
-}
-
 .profile .img-box:after, .img-box ul, .img-box ul li {
 	-webkit-transition: all 0.5s ease-in-out 0s;
 	-moz-transition: all 0.5s ease-in-out 0s;
 	transition: all 0.5s ease-in-out 0s;
 }
 
-.img-box ul i {
-	font-size: 20px;
-	letter-spacing: 10px;
-}
-
-.img-box ul li {
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	border: 1px solid #88C425;
-	margin: 2px;
-	padding: 5px;
-	display: inline-block;
-}
-
-.img-box a {
-	color: #fff;
-}
-
-.img-box:hover:after {
-	opacity: 1;
-}
-
-.img-box:hover ul {
-	opacity: 1;
-}
-
+/* 
 .img-box ul a {
 	-webkit-transition: all 0.3s ease-in-out 0s;
 	-moz-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 }
-
-.img-box a:hover li {
-	border-color: #fff;
-	color: #88C425;
-}
-
-a {
-	color: #88C425;
-}
-
-a:hover {
-	text-decoration: none;
-	color: #519548;
-}
-
-i.red {
-	color: #BC0213;
+ */
+.btn-margin {
+	margin: 15px 0 30px;
+	padding-left: 400px;
 }
 </style>
+<script type="text/javascript">
+	
+	function al() {
+		All.style.display = 'block';
+		fashion.style.display = 'none';
+		design.style.display = 'none';
+		phonecase.style.display = 'none';
+	}
+	
+	function fa() {
+		All.style.display = 'none';
+		fashion.style.display = 'block';
+		design.style.display = 'none';
+		phonecase.style.display = 'none';
+	}
+
+	function de() {
+		All.style.display = 'none';
+		fashion.style.display = 'none';
+		design.style.display = 'block';
+		phonecase.style.display = 'none';
+	}
+
+	function pc() {
+		All.style.display = 'none';
+		fashion.style.display = 'none';
+		design.style.display = 'none';
+		phonecase.style.display = 'block';
+	}
+</script>
 </head>
 <body>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-17">
@@ -136,28 +109,84 @@ i.red {
 			</div>
 		</div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="col-lg-12">
-						<h6 class="description">제품판매</h6>
-						<div class="row pt-md">
-							<c:forEach var="product" items="${list}">
-								<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
-									<div class="img-box">
-										<img src="ex/${product.pr_img}"	class="img-responsive">
-									</div>
-									<h1>Marrie Doi</h1>
-									<h2>Co-founder/ Operations</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit.</p>
-								</div>
-							</c:forEach>
-						</div>
+		<div class="btn-margin">
+			<input type="button" id="fa" name="fa" class="btn btn-primary" onclick="fa()" value="Fashion"> 
+			<input type="button" id="de" name="de" class="btn btn-warning" onclick="de()" value="Design">
+			<input type="button" id="pc" name="pc" class="btn btn-success" onclick="pc()" value="Phone Case">
+		</div>
+
+		<div id="All" style="display: block">
+			<div class="row pt-md">
+				<c:forEach var="product" items="${list}">
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+							
+							<a href="go_view.do?pr_no=${product.pr_no}">
+								<img src="image/${product.pr_img}" class="img-responsive" class="img-box">
+								</a>
+							
+						<h1><a href="go_view.do?pr_no=${product.pr_no}">
+							${product.pr_proname}</a></h1>
+						<h2>${product.pr_price}원</h2>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
+
+
+		<div id="fashion" style="display: none">
+			<div class="row pt-md">
+				<c:forEach var="product" items="${list}">
+					<c:if test="${product.pr_item eq 'Fashion' }">
+						<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+							
+								<a href="go_view.do?pr_no=${product.pr_no}">
+								<img src="image/${product.pr_img}" class="img-responsive" class="img-box">
+								</a>
+							
+							<h1><a href="go_view.do?pr_no=${product.pr_no}">
+							${product.pr_proname}</a></h1>
+							<h2>${product.pr_price}원</h2>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+		</div>
+
+		<div id="design" style="display: none">
+			<c:forEach var="product" items="${list}">
+				<c:if test="${product.pr_item eq 'Design' }">
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+							<a href="go_view.do?pr_no=${product.pr_no}">
+								<img src="image/${product.pr_img}" class="img-responsive" class="img-box">
+								</a>
+							
+							<h1><a href="go_view.do?pr_no=${product.pr_no}">
+							${product.pr_proname}</a></h1>
+						<h2>${product.pr_price}원</h2>
+					</div>
+				</c:if>
+			</c:forEach>
+		</div>
+
+
+		<div id="phonecase" style="display: none">
+			<c:forEach var="product" items="${list}">
+				<c:if test="${product.pr_item eq 'Phone Case' }">
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+							<a href="go_view.do?pr_no=${product.pr_no}">
+								<img src="image/${product.pr_img}" class="img-responsive" class="img-box">
+								</a>
+							
+							<h1><a href="go_view.do?pr_no=${product.pr_no}">
+							${product.pr_proname}</a></h1>
+						<h2>${product.pr_price}원</h2>
+					</div>
+				</c:if>
+			</c:forEach>
+		</div>
+
 	</div>
+
+
 </body>
 </html>

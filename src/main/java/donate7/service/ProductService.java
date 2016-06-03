@@ -26,6 +26,8 @@ public interface ProductService {
 
 	void apCancel(int pr_no);
 
+	List<Product> aplist();
+
 	
 
 

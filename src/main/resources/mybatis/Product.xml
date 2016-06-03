@@ -67,5 +67,8 @@
 	<update id="apCancel" parameterType="int">
 		update product set pr_approve='n' where pr_no=#{pr_no}
 	</update>
+	<select id="aplist" resultMap="ProductResult">
+		select * from product where pr_approve='y' order by pr_date desc	
+	</select>
 	
 </mapper>

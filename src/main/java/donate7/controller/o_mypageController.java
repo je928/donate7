@@ -33,5 +33,12 @@ public class o_mypageController {
 		model.addAttribute("mypgm", "../../member/o_mypage/o_updateForm.jsp");
 		return "module/main";
 	}
+	
+	@RequestMapping(value = "o_deleteForm", method = RequestMethod.GET)
+	public String o_deleteForm(Model model) {
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/o_mypage/o_deleteForm.jsp");
+		return "module/main";
+	}
 
 }

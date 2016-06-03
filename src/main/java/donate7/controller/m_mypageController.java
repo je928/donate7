@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.Community;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
 import donate7.model.Member;
@@ -40,12 +41,34 @@ public class m_mypageController {
 	}
 	
 	@RequestMapping(value = "m_updateForm", method = RequestMethod.GET)
-	public String m_updateForm(Model model) {
+	public String m_updateForm(Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		Member member = ms.selectMember(m_no);
+		model.addAttribute("member", member);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_updateForm.jsp");
 		return "module/main";
 	}
 	
+	/*@RequestMapping(value="m_update")
+	public String m_update(Community community, String pageNum, Model model) {
+		int result = cs.communityUpdate(community);
+		if(result > 0) {
+			return "redirect:m_myinfo.do";
+		}else {
+			model.addAttribute("msg", "수정 실패");		
+			model.addAttribute("community", community);
+			model.addAttribute("pageNum", pageNum);
+			return "forward:updateForm.do;
+		}
+	}*/
+	
+	@RequestMapping(value = "m_deleteForm", method = RequestMethod.GET)
+	public String m_deleteForm(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/m_deleteForm.jsp");
+		return "module/main";
+	}
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model, HttpSession session) {
