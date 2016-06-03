@@ -135,7 +135,7 @@
 						class="btn btn-primary btn-md"
 						style="margin-left: 5px; vertical-align: top;" value="검색">
 					</div>
-				</form>
+				
 				<table class="table table-striped table-hover" >
 					<tr>
 						<th>번호</th>
@@ -188,7 +188,7 @@
 			<c:if test="${paging.endPage != paging.totalPage}">
 				<a href="javascript:locate(${paging.totalPage})">맨 뒤로&gt;&gt;</a>
 			</c:if>
-
+			</form>
 		</div>
 			</div>
 		</div>
