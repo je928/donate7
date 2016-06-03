@@ -42,16 +42,18 @@ public class m_mypageController {
 	@RequestMapping(value = "m_updateForm", method = RequestMethod.GET)
 	public String m_updateForm(Model model, HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
-		Member member = ms.selectMember(m_no);
+		Member member = ms.selectMember_tel(m_no);
 		model.addAttribute("member", member);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_updateForm.jsp");
 		return "module/main";
 	}
 	
-	/*@RequestMapping(value="m_update")
-	public String m_update(Member member, Model model) {
-		int result = ms.memberUpdate(community);
+	@RequestMapping(value="m_update")
+	public String m_update(Member member, String m_tel1, String m_tel2, String m_tel3, Model model) {
+		String m_tel = m_tel1 + "-" + m_tel2 + "-" + m_tel3;
+		member.setM_tel(m_tel);
+		int result = ms.updateMember(member);
 		if(result > 0) {
 			return "redirect:m_myinfo.do";
 		}else {
@@ -59,7 +61,7 @@ public class m_mypageController {
 			model.addAttribute("member", member);
 			return "forward:m_updateForm.do";
 		}
-	}*/
+	}
 	
 	@RequestMapping(value = "m_deleteForm", method = RequestMethod.GET)
 	public String m_deleteForm(Model model) {

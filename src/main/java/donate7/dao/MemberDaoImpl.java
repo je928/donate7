@@ -156,6 +156,20 @@ public class MemberDaoImpl implements MemberDao {
 	public Member selectMember(int m_no) {
 		return session.selectOne("member.selectMember", m_no);
 	}
+	
+	public Member selectMember_tel(int m_no) {
+		return session.selectOne("member.selectMember_tel", m_no);
+	}
+
+	public int updateMember(Member member) {
+		int result = 0;
+		try {
+			result = session.update("member.updateMember", member);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 
 	public Organ selectOrgan(int o_no) {
 		return session.selectOne("organ.selectOrgan", o_no);

@@ -17,6 +17,8 @@ public interface MemberDao {
 	List<Member> memberAll();
 	List<Organ> selectAll();
 	Member selectMember(int m_no);
+	Member selectMember_tel(int m_no);
+	int updateMember(Member member);
 	Organ selectOrgan(int o_no);
 	
 	String selectO_addrByO_no(int o_no);

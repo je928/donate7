@@ -54,7 +54,15 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectMember(int m_no) {
 		return md.selectMember(m_no);
 	}
+	
+	public Member selectMember_tel(int m_no) {
+		return md.selectMember_tel(m_no);
+	}
 
+	public int updateMember(Member member) {
+		return md.updateMember(member);
+	}
+	
 	public Organ selectOrgan(int o_no) {
 		return md.selectOrgan(o_no);
 	}
@@ -67,5 +75,4 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectByO_no(o_no);
 	}
 
-	
 }

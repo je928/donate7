@@ -19,23 +19,10 @@ public class Member {
 	private String m_del_yn;
 	private int no;
 	private String passwd;
+	private String m_tel1;
+	private String m_tel2;
+	private String m_tel3;
 	
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public String getPasswd() {
-		return passwd;
-	}
-
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-
 	public int getM_no() {
 		return m_no;
 	}
@@ -139,6 +126,48 @@ public class Member {
 	public void setM_del_yn(String m_del_yn) {
 		this.m_del_yn = m_del_yn;
 	}
+	
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	
+	public String getM_tel1() {
+		return m_tel1;
+	}
+
+	public void setM_tel1(String m_tel1) {
+		this.m_tel1 = m_tel1;
+	}
+
+	public String getM_tel2() {
+		return m_tel2;
+	}
+
+	public void setM_tel2(String m_tel2) {
+		this.m_tel2 = m_tel2;
+	}
+
+	public String getM_tel3() {
+		return m_tel3;
+	}
+
+	public void setM_tel3(String m_tel3) {
+		this.m_tel3 = m_tel3;
+	}
+
+	
 /*
 	@Override
 	public String toString() {

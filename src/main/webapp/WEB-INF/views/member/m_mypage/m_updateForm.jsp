@@ -27,52 +27,49 @@
 							<div class="form-group">
 								<label for="m_email" class="col-lg-3 control-label"><b>이메일</b></label>
 								<div class="col-lg-8">
-									<label for="m_email" class="control-label">je928@daum.net</label>
+									<label for="m_email" class="control-label">${member.m_email}</label>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_passwd" class="col-lg-3 control-label"><b>비밀번호</b></label>
 								<div class="col-lg-8">
-									<input type="text" class="form-control-95-2" id="m_passwd"
-										required>
+									<input type="password" class="form-control-95-2" id="m_passwd" value="${member.m_passwd}" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_passwd2" class="col-lg-3 control-label"><b>재확인</b></label>
 								<div class="col-lg-8">
-									<input type="password" class="form-control-95-2" id="m_passwd2"
-										required>
+									<input type="password" class="form-control-95-2" id="m_passwd2" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_name" class="col-lg-3 control-label"><b>이름</b></label>
 								<div class="col-lg-8">
-									<input type="text" class="form-control-95-2" id="m_name"
-										required>
+									<input type="text" class="form-control-95-2" id="m_name" value="${member.m_name}" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_nick" class="col-lg-3 control-label"><b>닉네임</b></label>
 								<div class="col-lg-8">
-									<input type="text" class="form-control-95-2" id="m_nick"
-										required>
+									<input type="text" class="form-control-95-2" id="m_nick" value="${member.m_nick}" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_birth" class="col-lg-3 control-label"><b>생년월일</b></label>
 								<div class="col-lg-8">
-									<input type="date" class="form-control-50" id="m_birth"
-										name="m_birth" required>
+									<input type="date" class="form-control-50" id="m_birth" name="m_birth" value="${member.m_birth}" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_gender" class="col-lg-3 control-label"><b>성별</b></label>
 								<div class="col-lg-8">
 									<div class="radio">
-										<label> <input type="radio" name="m_gender"
-											id="m_gender" value="남자" required>남자
-										</label> &nbsp;&nbsp; <label> <input type="radio"
-											name="m_gender" id="m_gender" value="여자" required>여자
+										<label>
+											<input type="radio" name="m_gender" id="m_gender" value="남자" <c:if test="${member.m_gender eq '남자'}">checked</c:if> required>남자
+										</label>
+										&nbsp;&nbsp;
+										<label>
+											<input type="radio" name="m_gender" id="m_gender" value="여자" <c:if test="${member.m_gender eq '여자'}">checked</c:if> required>여자
 										</label>
 									</div>
 								</div>
@@ -80,23 +77,20 @@
 							<div class="form-group">
 								<label for="m_tel" class="col-lg-3 control-label"><b>전화번호</b></label>
 								<div class="col-lg-8">
-									<input type="text" class="form-control-20" name="m_tel1"
-										id="m_tel1" maxlength="3" required> - <input
-										type="text" class="form-control-20" name="m_tel2" id="m_tel2"
-										maxlength="4" required> - <input type="text"
-										class="form-control-20" name="m_tel3" id="m_tel3"
-										maxlength="4" required>
+									<input type="text" class="form-control-20" name="m_tel1" id="m_tel1" maxlength="3" value="${member.m_tel1}" required> - 
+									<input type="text" class="form-control-20" name="m_tel2" id="m_tel2" maxlength="4" value="${member.m_tel2}" required> -
+									<input type="text" class="form-control-20" name="m_tel3" id="m_tel3" maxlength="4" value="${member.m_tel3}" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="m_job" class="col-lg-3 control-label"><b>직업</b></label>
 								<div class="col-lg-8">
 									<select class="form-control-30" name="m_job">
-										<option value="학생">학생</option>
-										<option value="회사원">회사원</option>
-										<option value="자영업">자영업</option>
-										<option value="무직">무직</option>
-										<option value="기타">기타</option>
+										<option value="학생" <c:if test="${member.m_job eq '학생'}">selected</c:if>>학생</option>
+										<option value="회사원" <c:if test="${member.m_job eq '회사원'}">selected</c:if>>회사원</option>
+										<option value="자영업" <c:if test="${member.m_job eq '자영업'}">selected</c:if>>자영업</option>
+										<option value="무직" <c:if test="${member.m_job eq '무직'}">selected</c:if>>무직</option>
+										<option value="기타" <c:if test="${member.m_job eq '기타'}">selected</c:if>>기타</option>
 									</select>
 								</div>
 							</div>
