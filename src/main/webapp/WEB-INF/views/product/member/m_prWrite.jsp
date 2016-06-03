@@ -39,7 +39,7 @@
 				<th>종류</th>
 				<td><input type="radio" name="pr_item" required="required" value="Fashion">Fashion &nbsp;
 					<input type="radio" name="pr_item" required="required" value="Design">Design	&nbsp;
-					<input type="radio" name="pr_item" required="required" value="Smart Phone" >Smart Phone &nbsp;
+					<input type="radio" name="pr_item" required="required" value="Phone Case" >Phone Case &nbsp;
 				</td>
 			</tr>
 			<tr>
@@ -49,7 +49,7 @@
 			<tr>
 				<th>사진</th>
 				<td><img src="" width="300px" id="UploadImg1">				
-				<input type="file" name="mimg" id="file1" onchange="readURL(this,'UploadImg1');"></td>
+				<input type="file" name="mimg" required="required"></td>
 			</tr>
 			<tr>
 				<th>내용</th>

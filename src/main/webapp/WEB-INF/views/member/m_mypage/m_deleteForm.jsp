@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../module/header.jsp" %>
-<%@ include file="../session/sessionChk.jsp"%>
+<%@ include file="../../module/header.jsp" %>
+<%@ include file="../../session/memChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,26 +23,13 @@
 </script>
 </head>
 <body>
+		
+	<c:if test="">
+		<font color="red"> ${msg} </font>
+	</c:if>
 
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-md-offset-17">
-				<h3 class="page-header">
-					Community <small>게시판</small>
-				</h3>
-				<ol class="breadcrumb">
-					<li><a href="main.do">Home</a></li>
-					<li class="active">Community</li>
-				</ol>
-			</div>
-		</div>
-
-		<c:if test="">
-			<font color="red"> ${msg} </font>
-		</c:if>
-
-		<div class="container">
-			<div class="col-lg-4 col-md-offset-3-2">
+			<div class="col-lg-4 col-md-offset-2-2 toppad">
 				<div class="panel panel-default panel-table">
 					<form action="delete.do" name="frm" method="post" role="form" onsubmit="return passwdChk()">
 						<input type="hidden" name="brd_no" value="${brd_no}">
@@ -53,24 +40,23 @@
 							<em class="glyphicon glyphicon-trash"></em>
 						</h3>
 						<h6 style="margin-bottom: 25px; text-align: center;">
-							정말로 삭제하시겠습니까?
+							정말로 탈퇴하시겠습니까?
 						</h6>
 						<div class="form-group">
 							<input type="password" class="form-control-87" name="password"
 								id="password" maxlength="50" placeholder="비밀번호를 입력해 주세요."
 								autofocus="autofocus" required>
-						</div>
+								</div>
 						<div class="panel-footer text-center">
 							<span>
 								<button type="submit" class="btn btn-sm btn-danger">
-									삭제<i class="glyphicon glyphicon-ok"></i>
+									탈퇴<i class="glyphicon glyphicon-ok"></i>
 								</button>
 							</span>
 						</div>
 					</form>
 				</div>
 			</div>
-		</div>
 	</div>
 
 </body>

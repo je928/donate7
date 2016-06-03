@@ -38,7 +38,35 @@ public class m_mypageController {
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");
 		return "module/main";
 	}
-
+	
+	@RequestMapping(value = "m_updateForm", method = RequestMethod.GET)
+	public String m_updateForm(Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		Member member = ms.selectMember(m_no);
+		model.addAttribute("member", member);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/m_updateForm.jsp");
+		return "module/main";
+	}
+	
+	/*@RequestMapping(value="m_update")
+	public String m_update(Member member, Model model) {
+		int result = ms.memberUpdate(community);
+		if(result > 0) {
+			return "redirect:m_myinfo.do";
+		}else {
+			model.addAttribute("msg", "수정 실패");		
+			model.addAttribute("member", member);
+			return "forward:m_updateForm.do";
+		}
+	}*/
+	
+	@RequestMapping(value = "m_deleteForm", method = RequestMethod.GET)
+	public String m_deleteForm(Model model) {
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/m_deleteForm.jsp");
+		return "module/main";
+	}
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
 	public String ownGift(Model model, HttpSession session) {

@@ -79,8 +79,8 @@
 					<div class="panel-footer">
 						<a href="mail.do" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
 						<span class="pull-right">
-							<a href="edit.html" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
-							<a href="edit.html" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
+							<a href="o_updateForm.do" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
+							<a href="o_deleteForm.do" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
 						</span>
 					</div>
 				</div>

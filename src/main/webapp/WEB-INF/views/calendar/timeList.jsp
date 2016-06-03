@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
-<%@ include file="../session/orgChk.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +73,7 @@ span {
 		<div class="col-md-offset-14"
 			style="margin-left: 0; margin-top: 0; margin-right: 0;">
 			<div id="search" style="color: black;">
-				<form action="myRecruit.do" method="get">
+				<form action="timeList.do" method="get">
 					<select name="searchType" id="searchType" class="form-control-40"
 						style="width: auto; display: inline;">
 						<c:if test="${rec.searchType eq 'all'}">

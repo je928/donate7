@@ -75,5 +75,10 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 
+	public List<Product> aplist() {
+		
+		return st.selectList("product.aplist");
+	}
+
 
 }

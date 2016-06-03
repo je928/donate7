@@ -12,14 +12,14 @@
 
 	<div class="list-group">
 		<a href="m_myinfo.do" class="list-group-item">회원정보</a>
-		<a href="m_update.do" class="list-group-item">회원정보수정</a>
+		<a href="m_updateForm.do" class="list-group-item">회원정보수정</a>
 		<a href="mdoList.do" class="list-group-item">기부금 요청/내역</a>
 		<a href="m_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
 		<a href="msecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="ownGift.do" class="list-group-item">보유 기프티콘</a>
 		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
-		<a href="m_delete.do" class="list-group-item">회원탈퇴</a>
+		<a href="m_deleteForm.do" class="list-group-item">회원탈퇴</a>
 	</div>
 
 </body>
