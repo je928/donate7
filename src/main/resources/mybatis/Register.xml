@@ -17,6 +17,13 @@
 		select nvl(max(re_no),0)+1 from register
 	</select>
 	<insert id="insert" parameterType="register">
-		insert into register values(#{g_no},#{g_name},#{g_img},#{g_price},'n')		
-	</insert>	
+		insert into register values(#{re_no},#{reporter_no},#{reported_no},#{re_content},'n',
+		sysdate,#{re_sort},#{re_sort_no})		
+	</insert>
+	<select id="list" resultMap="RegisterResult">
+		select * from register order by re_no desc
+	</select>
+	<select id="selectOne" resultType="register">
+		select * from register where re_no = #{re_no}
+	</select>	
 </mapper>

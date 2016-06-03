@@ -19,6 +19,9 @@ create table register (
 );
 select * from warning;
 select * from register;
+select nvl(max(re_no),0)+1 from register;
 
 drop table warning;
 drop table register;
+
+delete from register;

@@ -12,8 +12,8 @@
 		<a href="a_memberAll.do" class="list-group-item">회원 관리</a>
 		<a href="giftUpload.do" class="list-group-item">기프티콘 올리기</a>
 		<a href="adList.do" class="list-group-item">기부금 요청내역</a>
-		<a href="contact.html" class="list-group-item">Contact</a>
-		<a href="ad_prList" class="list-group-item">1 Column Portfolio</a>
+		<a href="registerPro.do" class="list-group-item">신고 처리</a>
+		<a href="ad_prList.do" class="list-group-item">완제품 관리</a>
 		<a href="adsecondList.do" class="list-group-item">중고기부 관리</a>
 		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
