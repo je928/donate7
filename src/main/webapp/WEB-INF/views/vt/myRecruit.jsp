@@ -12,24 +12,32 @@
 		$('#searchType').val('${rec.searchType == null ? "all" : rec.searchType}').attr('selected', 'selected');
 		var type = $('#searchType option:selected').val();
 		if (type == 'r') {
-			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_r_start_date' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_r_end_date' value='${rec.vt_r_start_date}'/>");
+			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' id='sdate' name='vt_r_start_date' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' id='edate' name='vt_r_end_date' value='${rec.vt_r_end_date}'/>");
 		} else if (type == 'a') {
-			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_a_start_date' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_a_end_date' value='${rec.vt_a_start_date}'/>");
+			$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' id='sdate' name='vt_a_start_date' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' id='edate' name='vt_a_end_date' value='${rec.vt_a_end_date}'/>");
 		} else{
 			$('#dt').html("");
 		}
 		
-		
 		$('#searchType').change(function() {
 			var type = $('#searchType option:selected').val();
 			if (type == 'r') {
-				$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_r_start_date' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_r_end_date' value='${rec.vt_r_end_date}'/>");
+				$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' id='sdate' name='vt_r_start_date' value='${rec.vt_r_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' id='edate' name='vt_r_end_date' value='${rec.vt_r_end_date}'/>");
 			} else if (type == 'a') {
-				$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' name='vt_a_start_date' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' name='vt_a_end_date' value='${rec.vt_a_end_date}'/>");
+				$('#dt').html("<b>시작일:</b><input class='form-control-20' type='date' id='sdate' name='vt_a_start_date' value='${rec.vt_a_start_date}'/> <b>종료일:</b><input class='form-control-20' type='date' id='edate' name='vt_a_end_date' value='${rec.vt_a_end_date}'/>");
 			}else{
 				$('#dt').html("");
 			}
-
+		});
+		
+		$('#frm').submit(function(){
+			if($('#sdate').val().length == 0){
+				$('#sdate').attr("name","sdate");
+			}
+			if($('#edate').val().length == 0){
+				$('#edate').attr("name","edate");
+			}
+			return true;
 		});
 	});
 
@@ -49,7 +57,6 @@
 		}else{
 			location.href = "myRecruit.do?pageNum=" + pageNum + "&vt_name=" + vt_name;
 		}
-		
 	}
 </script>
 <style type="text/css">
@@ -74,7 +81,7 @@ span {
 		<div class="col-md-offset-14"
 			style="margin-left: 0; margin-top: 0; margin-right: 0;">
 			<div id="search" style="color: black;">
-				<form action="myRecruit.do" method="get">
+				<form id="frm" action="myRecruit.do" method="get">
 					<select name="searchType" id="searchType" class="form-control-40"
 						style="width: auto; display: inline;">
 						<c:if test="${rec.searchType eq 'all'}">
@@ -90,10 +97,10 @@ span {
 							<option value="r">모집기간</option>
 						</c:if>
 						<c:if test="${rec.searchType eq 'a'}">
-							<option value="a" selected="selected">활동기간</option>
+							<option value="a" selected="selected">봉사기간</option>
 						</c:if>
 						<c:if test="${rec.searchType ne 'a'}">
-							<option value="a">활동기간</option>
+							<option value="a">봉사기간</option>
 						</c:if>
 					</select> <span id="dt" style="color: black;"></span> <b>봉사명 : </b><input
 						type="text" name="vt_name" id="vt_name" value="${rec.vt_name}"> <input type="submit"

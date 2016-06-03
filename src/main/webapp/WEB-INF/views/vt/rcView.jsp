@@ -45,19 +45,13 @@
 					<div class="form-group">
 						<b style="display: inline;">봉사 모집 기간 :</b> ${rc.vt_r_start_date} ~
 						${rc.vt_r_end_date}
-						<!-- 시작일 : <input
-								class="form-control-20" readonly="readonly" type="text"
-								name="vt_r_start_date" id="rsdate" size="10" maxlength="10" /> -->
-					</div>
-					<div class="form-group">
-						<b style="display: inline;">봉사 활동 기간 :</b> ${rc.vt_a_start_date }
+						<b style="display: inline; margin-left: 16.25%">봉사 활동 기간 :</b> ${rc.vt_a_start_date }
 						~ ${rc.vt_a_end_date }
 					</div>
 					<div class="form-group">
 						<div style="float: left; width: 50%">
 							<b style="display: block; float: left;">활동분야:</b><span>${rc.class_name }
 								${rc.dclass_name}</span>
-
 						</div>
 						<div>
 							<b>봉사 대상자:</b> ${rc.sub_name}

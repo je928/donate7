@@ -42,7 +42,7 @@ public class VolController {
 		if (session.getAttribute("no") != null) {
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
 			String addr = ms.selectO_addrByO_no(o_no);
-			List<Class> list = cs.selectClass(); 
+			List<Class> list = cs.selectClass();
 			List<Subject> slist = cs.selectSubject();
 			model.addAttribute("list", list);
 			model.addAttribute("slist", slist);
