@@ -51,13 +51,7 @@ body {
 	transition: all 0.5s ease-in-out 0s;
 }
 
-/* 
-.img-box ul a {
-	-webkit-transition: all 0.3s ease-in-out 0s;
-	-moz-transition: all 0.3s ease-in-out 0s;
-	transition: all 0.3s ease-in-out 0s;
-}
- */
+
 .btn-margin {
 	margin: 15px 0 30px;
 	padding-left: 400px;

@@ -6,16 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script>
-   function readURL(input, id) {
-      if (input.files && input.files[0]) {
-         var reader = new FileReader();
-         reader.onload = function(e) {
-            $('#' + id).attr('src', e.target.result);
-         }
-         reader.readAsDataURL(input.files[0]);
-      }
-   }
+<script type="text/javascript">
+	window.onload = function() {
+		CKEDITOR.replace('pr_content');
+		CKEDITOR.config.height = '500px';
+	
+	}
+
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.pr_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -48,12 +54,11 @@
 			</tr>
 			<tr>
 				<th>사진</th>
-				<td><img src="" width="300px" id="UploadImg1">				
-				<input type="file" name="mimg" required="required"></td>
+				<td><input type="file" name="mimg" required="required" ></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="100" name="pr_content" required="required" ></textarea></td>
+				<td><textarea rows="10" cols="100" name="pr_content" id = "pr_content" required="required" ></textarea></td>
 			</tr>
 			<tr>
 				<th>요청메세지</th>

@@ -18,6 +18,22 @@
       }
      
    }
+
+	window.onload = function() {
+		CKEDITOR.replace('pr_content');
+		CKEDITOR.config.height = '500px';
+	}
+
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.pr_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
+
 </script>
 </head>
 <body>
@@ -63,7 +79,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="100" name="pr_content" required="required" >${product.pr_content }</textarea></td>
+				<td><textarea rows="10" cols="100" name="pr_content" id = "pr_content" required="required" ></textarea></td>
 			</tr>
 			<tr>
 				<th>요청메세지</th>
