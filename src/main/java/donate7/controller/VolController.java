@@ -271,9 +271,28 @@ public class VolController {
 	}
 	
 	/*달력 테스트*/
-	@RequestMapping("namnam")
-	public String namnam(Model model) {
-		model.addAttribute("pgm", "../calendar/namnam.jsp");
-		return "module/main";
+	@RequestMapping("timeList")
+	public String timeList(String pageNum, Recruit rc, HttpSession session, Model model){
+		String num = pageNum;
+		Recruit rec = rc;
+		if(num == null){
+			num = "1";
+		}
+		if(rc == null){
+			rec = new Recruit();
+		}
+		int pnum = Integer.parseInt(num);
+			int total = vs.selectRcTotal(rec);
+			Paging paging = new Paging(10, 10, pnum, total);
+			rec.setStartrow(paging.getStartRow());
+			rec.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRcList(rec);
+			model.addAttribute("tot", total);
+			model.addAttribute("paging", paging);
+			model.addAttribute("list", list);
+			model.addAttribute("rec", rec);
+			model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+			model.addAttribute("mypgm", "../../calendar/timeList.jsp");
+			return "module/main";
+		}
 	}
-}

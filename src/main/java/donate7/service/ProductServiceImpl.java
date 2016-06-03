@@ -62,4 +62,9 @@ public class ProductServiceImpl implements ProductService {
 		pd.apCancel(pr_no);
 	}
 
+	public List<Product> aplist() {
+		
+		return pd.aplist();
+	}
+
 }

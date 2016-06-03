@@ -47,7 +47,7 @@
 					<input type="radio" name="pr_item" required="required" value="Design"
 						<c:if test="${product.pr_item eq 'Design' }" >checked</c:if> >Design &nbsp;
 					<input type="radio" name="pr_item" required="required" value="Smart Phone"
-						<c:if test="${product.pr_item eq 'Smart Phone' }" >checked</c:if> >Smart Phone &nbsp;
+						<c:if test="${product.pr_item eq 'Phone Case' }" >checked</c:if> >Phone Case &nbsp;
 					
 					
 				</td>

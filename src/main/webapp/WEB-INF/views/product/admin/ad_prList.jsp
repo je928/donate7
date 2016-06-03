@@ -23,13 +23,16 @@
 <body>
 
 	<div class="text-left list-group2">
-		<input type="button" id="m" name="m" class="btn btn-default2"
-			onclick="m()" value="일반"> <input type="button" id="o"
-			name="o" class="btn btn-default2" onclick="o()" value="기관">
+		<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반"> 
+		<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
+		
 	</div>
 		<div class="col-md-12" id="mlist" style="display: block">
 			<div class="row">
+			
+			
 				<table class="table table-striped table-hover">
+				
 					<caption>일반회원요청</caption>
 					<tr>
 						<th>번호</th>
