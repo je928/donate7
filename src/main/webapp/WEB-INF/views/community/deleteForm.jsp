@@ -52,6 +52,9 @@
 						<h3 style="margin-bottom: 25px; text-align: center;">
 							<em class="glyphicon glyphicon-trash"></em>
 						</h3>
+						<h6 style="margin-bottom: 25px; text-align: center;">
+							정말로 삭제하시겠습니까?
+						</h6>
 						<div class="form-group">
 							<input type="password" class="form-control-87" name="password"
 								id="password" maxlength="50" placeholder="비밀번호를 입력해 주세요."
