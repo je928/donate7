@@ -38,11 +38,10 @@ public class SecondServiceImpl implements SecondService{
 		return sd.secondUpdate(second);
 	}
 
-	public int count(Second second) {
-		return sd.count(second);
+	public int count(int no) {
+		return sd.count(no);
 	}
 
-	@Override
 	public void msdelete(int sh_no) {
 		sd.delete(sh_no);
 		
@@ -55,6 +54,14 @@ public class SecondServiceImpl implements SecondService{
 	public void spCancel(int sh_no) {
 		sd.spCancel(sh_no);
 		
+	}
+
+	public int srUpdate(int sh_no) {
+		return sd.srUpdate(sh_no);
+	}
+
+	public void srCancel(int sh_no) {
+		sd.srCancel(sh_no);
 	}
 
 

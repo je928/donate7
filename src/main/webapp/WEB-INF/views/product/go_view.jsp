@@ -15,7 +15,7 @@
 .btn-social {
 	color: white;
 	opacity: 0.9;
-}
+} 
 
 .btn-social:hover {
 	color: white;

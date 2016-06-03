@@ -33,4 +33,17 @@ public class DonateController {
 		model.addAttribute("pgm", "../donate/doList.jsp");
 		return "module/main";
 	}
+	@RequestMapping(value="doView", method=RequestMethod.GET)
+	public String doView(int d_no,Model model) {
+		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
+		model.addAttribute("donate",donate);
+		model.addAttribute("pgm", "../donate/doView.jsp");
+		return "module/main";
+	}
 }

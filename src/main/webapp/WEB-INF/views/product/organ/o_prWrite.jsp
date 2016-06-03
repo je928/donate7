@@ -6,16 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function() {
+		CKEDITOR.replace('pr_content');
+		CKEDITOR.config.height = '500px';
+	}
+
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.pr_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
+</script>
+
 </head>
 <body>
-	<c:if test="${not empty msg }">
-			<font color="red">
-				${msg }
-			</font>
-			</c:if>
-			<c:if test="${not empty fileName }">
-				<img src="/ex/${fileName }">
-			</c:if>
+	
 	<form action="o_prWrite.do" method="post" enctype="multipart/form-data">
 		<table class="table table-striped table-hover">
 			<caption>판매요청</caption>
@@ -48,7 +58,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="100" name="pr_content" required="required" ></textarea></td>
+				<td><textarea rows="10" cols="100" name="pr_content" id = "pr_content" required="required" ></textarea></td>
 			</tr>
 			<tr>
 				<th>요청메세지</th>

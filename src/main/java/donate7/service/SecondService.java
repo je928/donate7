@@ -11,9 +11,11 @@ public interface SecondService {
 	List<Second> olist(int no);
 	List<Second> adlist();
 	int msecondUpdate(Second second);
-	int count(Second second);
+	int count(int no);
 	void msdelete(int sh_no);
 	int spUpdate(int sh_no);
 	void spCancel(int sh_no);
+	int srUpdate(int sh_no);
+	void srCancel(int sh_no);
 	
 }

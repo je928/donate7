@@ -45,8 +45,8 @@ public class SecondDaoImpl implements SecondDao{
 		}
 		return result;
 	}
-	public int count(Second second) {
-		return st.selectOne("second.count", second);
+	public int count(int no) {
+		return st.selectOne("second.adsecondTotal", no);
 	}
 
 	public void delete(int sh_no) {
@@ -59,6 +59,15 @@ public class SecondDaoImpl implements SecondDao{
 
 	public void spCancel(int sh_no) {
 		st.update("second.spCancel", sh_no);
-	}	
+	}
+
+	public void srCancel(int sh_no) {
+		st.update("second.srCancel", sh_no);
+		
+	}
+
+	public int srUpdate(int sh_no) {
+		return st.update("second.srUpdate", sh_no);
+	}
 
 }
