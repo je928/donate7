@@ -53,7 +53,7 @@
 			</tr>
 		</table>
 			<div align="center">
-				<input type="submit" class="btn btn-primary btn-md" value="요청하기">
+				<input type="submit" class="btn btn-primary btn-md" name="req" value="요청하기">
 			</div>
 	</form>
 </body>
