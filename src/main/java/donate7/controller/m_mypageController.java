@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import donate7.model.Community;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
 import donate7.model.Member;
@@ -51,15 +50,14 @@ public class m_mypageController {
 	}
 	
 	/*@RequestMapping(value="m_update")
-	public String m_update(Community community, String pageNum, Model model) {
-		int result = cs.communityUpdate(community);
+	public String m_update(Member member, Model model) {
+		int result = ms.memberUpdate(community);
 		if(result > 0) {
 			return "redirect:m_myinfo.do";
 		}else {
 			model.addAttribute("msg", "수정 실패");		
-			model.addAttribute("community", community);
-			model.addAttribute("pageNum", pageNum);
-			return "forward:updateForm.do;
+			model.addAttribute("member", member);
+			return "forward:m_updateForm.do";
 		}
 	}*/
 	
