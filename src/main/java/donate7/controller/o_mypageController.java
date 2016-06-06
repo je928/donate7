@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.Member;
 import donate7.model.Organ;
 import donate7.service.MemberService;
 
@@ -28,10 +29,29 @@ public class o_mypageController {
 	}
 	
 	@RequestMapping(value = "o_updateForm", method = RequestMethod.GET)
-	public String o_updateForm(Model model) {
+	public String o_updateForm(Model model, HttpSession session) {
+		int o_no = (Integer)session.getAttribute("no");
+		Organ organ = ms.selectOrgan_addr_tel(o_no);
+		model.addAttribute("organ", organ);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/o_mypage/o_updateForm.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping(value="o_update")
+	public String o_update(Organ organ, String o_tel1, String o_tel2, String o_tel3, String post1, String post2, String addr1, String addr2, Model model) {
+		String o_tel = o_tel1 + "-" + o_tel2 + "-" + o_tel3;
+		String o_addr = "(" + post1 + "-" + post2 + ") " + addr1 + " " + addr2;
+		organ.setO_tel(o_tel);
+		organ.setO_addr(o_addr);
+		int result = ms.updateOrgan(organ);
+		if(result > 0) {
+			return "redirect:o_myinfo.do";
+		}else {
+			model.addAttribute("msg", "수정 실패");		
+			model.addAttribute("organ", organ);
+			return "forward:o_updateForm.do";
+		}
 	}
 	
 	@RequestMapping(value = "o_deleteForm", method = RequestMethod.GET)

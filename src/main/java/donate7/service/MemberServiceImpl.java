@@ -66,6 +66,14 @@ public class MemberServiceImpl implements MemberService {
 	public Organ selectOrgan(int o_no) {
 		return md.selectOrgan(o_no);
 	}
+
+	public Organ selectOrgan_addr_tel(int o_no) {
+		return md.selectOrgan_addr_tel(o_no);
+	}
+	
+	public int updateOrgan(Organ organ) {
+		return md.updateOrgan(organ);
+	}
 	
 	public String selectO_addrByO_no(int o_no) {
 		return md.selectO_addrByO_no(o_no);

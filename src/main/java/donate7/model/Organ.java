@@ -3,7 +3,6 @@ package donate7.model;
 import java.sql.Date;
 
 public class Organ {
-
 	private int o_no;
 	private String o_email;
 	private String o_passwd;
@@ -18,14 +17,13 @@ public class Organ {
 	private String o_del_yn;
 	private String o_ok_xyn;
 	private int no;
-	
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
+	private String post1;
+	private String post2;
+	private String addr1;
+	private String addr2;
+	private String o_tel1;
+	private String o_tel2;
+	private String o_tel3;
 
 	public int getO_no() {
 		return o_no;
@@ -129,6 +127,70 @@ public class Organ {
 
 	public void setO_ok_xyn(String o_ok_xyn) {
 		this.o_ok_xyn = o_ok_xyn;
+	}
+	
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+	
+	public String getPost1() {
+		return post1;
+	}
+
+	public void setPost1(String post1) {
+		this.post1 = post1;
+	}
+
+	public String getPost2() {
+		return post2;
+	}
+
+	public void setPost2(String post2) {
+		this.post2 = post2;
+	}
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
+
+	public String getO_tel1() {
+		return o_tel1;
+	}
+
+	public void setO_tel1(String o_tel1) {
+		this.o_tel1 = o_tel1;
+	}
+
+	public String getO_tel2() {
+		return o_tel2;
+	}
+
+	public void setO_tel2(String o_tel2) {
+		this.o_tel2 = o_tel2;
+	}
+
+	public String getO_tel3() {
+		return o_tel3;
+	}
+
+	public void setO_tel3(String o_tel3) {
+		this.o_tel3 = o_tel3;
 	}
 /*
 	@Override

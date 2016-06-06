@@ -16,7 +16,14 @@
 		<result property="o_reg_date" column="o_reg_date"/>
 		<result property="o_out_date" column="o_out_date"/>
 		<result property="o_del_yn" column="o_del_yn"/>
-		<result property="o_ok_xyn" column="o_ok_xyn"/>
+		<result property="no" column="no"/>
+		<result property="post1" column="post1"/>
+		<result property="post2" column="post2"/>
+		<result property="addr1" column="addr1"/>
+		<result property="addr2" column="addr2"/>
+		<result property="o_tel1" column="o_tel1"/>
+		<result property="o_tel2" column="o_tel2"/>
+		<result property="o_tel3" column="o_tel3"/>
 	</resultMap>
 	
 	<select id="selectNum" resultType="Integer">
@@ -24,7 +31,7 @@
 	</select>
 	
 	<insert id="insertOrgan" parameterType="organ">
-		insert into organ values(#{o_no},#{o_email},#{o_passwd},#{o_license},#{o_oname},#{o_name},#{o_tel},#{o_addr},#{o_category},sysdate,null,'n','n')
+		insert into organ values(#{o_no},#{o_email},#{o_passwd},#{o_license},#{o_oname},#{o_name},#{o_tel},#{o_addr},#{o_category},sysdate,null,'n','x')
 	</insert>
 	
 	<select id="selectOno" parameterType="String" resultType="Integer">
@@ -51,8 +58,13 @@
 		select * from organ where o_no=#{o_no} and o_del_yn='n'
 	</select>
 	
+	<select id="selectOrgan_addr_tel" parameterType="Integer" resultMap="OrganResult">
+		select o.*, (substr(o_addr, instr(o_addr, '(', 1, 1)+1, 3)) as post1, (substr(o_addr, instr(o_addr, '-', 1, 1)+1, 3)) as post2, regexp_substr(o_addr, '[^ ]+', 1, 2)||' '||regexp_substr(o_addr, '[^ ]+', 1, 3)||' '||regexp_substr(o_addr, '[^ ]+', 1, 4)||' '||regexp_substr(o_addr, '[^ ]+', 1, 5) as addr1, substr(o_addr, (length(regexp_substr(o_addr, '[^ ]+', 1, 2)||' '||regexp_substr(o_addr, '[^ ]+', 1, 3)||' '||regexp_substr(o_addr, '[^ ]+', 1, 4)||' '||regexp_substr(o_addr, '[^ ]+', 1, 5))+12), 1000) as addr2, 
+		(regexp_substr(o_tel, '[^-]+', 1, 1)) as o_tel1, (regexp_substr(o_tel, '[^-]+', 1, 2)) as o_tel2, (regexp_substr(o_tel, '[^-]+', 1, 3)) as o_tel3 from organ o where o_no=#{o_no} and o_del_yn='n'
+	</select>
+	
 	<update id="updateOrgan" parameterType="organ">
-		update organ set o_passwd=#{o_passwd}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, m_del_yn='n' where o_no=#{o_no}
+		update organ set o_passwd=#{o_passwd}, o_license=#{o_license}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, o_category=#{o_category}, o_del_yn='n' where o_no=#{o_no}
 	</update>
 	
 	<select id="passwdChk" parameterType="hashMap" resultType="String">
@@ -70,13 +82,5 @@
 	<select id="selectAll" resultMap="OrganResult">
 		select * from organ where o_del_yn='n'
 	</select>
-	
-	<!-- select o.*, (substr(o_addr, instr(o_addr, '(', 1, 1)+1, 3)) as post1, (substr(o_addr, instr(o_addr, '-', 1, 1)+1, 3)) as post2,
-regexp_substr(O_ADDR, '[^ ]+', 1, 2)||' '||regexp_substr(o_addr, '[^ ]+', 1, 3)||' '||regexp_substr(o_addr, '[^ ]+', 1, 4)||' '||regexp_substr(o_addr, '[^ ]+', 1, 5) as addr1,
-substr(o_addr, (length(regexp_substr(o_addr, '[^ ]+', 1, 2)||' '||regexp_substr(o_addr, '[^ ]+', 1, 3)||' '||regexp_substr(o_addr, '[^ ]+', 1, 4)||' '||regexp_substr(o_addr, '[^ ]+', 1, 5))+12), 1000) as addr2,
-(regexp_substr(o_tel, '[^-]+', 1, 1)) as o_tel1, (regexp_substr(o_tel, '[^-]+', 1, 2)) as o_tel2, (regexp_substr(o_tel, '[^-]+', 1, 3)) as o_tel3
-from organ o where o_no=-1 and o_del_yn='n';
-
- -->
 	
 </mapper>

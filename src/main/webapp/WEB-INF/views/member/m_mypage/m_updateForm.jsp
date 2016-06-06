@@ -35,13 +35,16 @@
 		$('#m_name').keyup(function() {
 			var regex = /^[가-힣A-Za-z]{2,40}$/;
 			var str_space = /\s/;
+			var dbmname = '${member.m_name}';
 			if($("#m_name").val().length < 2) {
 				$('#name_chk').html("<font class='red'>2자 이상 사용가능합니다.</font>");
-			} else if(str_space.test($("#m_name").val())) {
+			}else if(str_space.test($("#m_name").val())) {
 				$('#name_chk').html("<font class='red'>공백 없이 입력해 주세요.</font>");
-			} else if(regex.test(frm.m_name.value) === false) {
+			}else if(regex.test(frm.m_name.value) === false) {
 				$('#name_chk').html("<font class='red'>한글, 영문 대소문자를 이용해 주세요.</font>");
-			} else {
+			}else if($("#m_name").val() === dbmname) {
+				$('#name_chk').html("");
+			}else {
 				$('#name_chk').html("<font class='green'>사용 가능합니다.</font>");
 			}
 		});
@@ -132,8 +135,11 @@
 			frm.m_name.focus();
 			return false;
 		}
-
-		if(frm.nickChk.value == "false") {
+		
+		var dbmnick = '${member.m_nick}';
+		if(frm.m_nick.value === dbmnick) {
+			frm.nickChk.value == "true";
+		}else if(frm.nickChk.value == "false") {
 			$('#nick_chk').html("<font class='red'>닉네임을 다시 확인해주세요.</font>");
 			frm.m_nick.focus();
 			return false;

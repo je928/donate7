@@ -20,8 +20,10 @@ public interface MemberDao {
 	Member selectMember_tel(int m_no);
 	int updateMember(Member member);
 	Organ selectOrgan(int o_no);
+	Organ selectOrgan_addr_tel(int o_no);
+	int updateOrgan(Organ organ);
 	
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
-	
+
 }
