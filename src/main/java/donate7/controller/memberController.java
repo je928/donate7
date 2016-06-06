@@ -102,7 +102,6 @@ public class memberController {
 			msg = "사용 가능한 닉네임입니다.";
 		}
 		model.addAttribute("msg", msg);
-		System.out.println(msg);
 		return "member/m_nickChk";
 	}
 	
