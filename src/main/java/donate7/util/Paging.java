@@ -1,8 +1,8 @@
 package donate7.util;
 
 public class Paging {
-	private int rowPerPage;
-	private int pagePerBlock;
+	private final int rowPerPage = 10;
+	private final int pagePerBlock = 10;
 	private int nowPage;
 	private int total;
 	private int totalPage;
@@ -12,9 +12,7 @@ public class Paging {
 	private int startPage;
 	private int endPage;
 
-	public Paging(int rowPerPage, int pagePerBlock, int nowPage, int total) {
-		this.rowPerPage = rowPerPage;
-		this.pagePerBlock = pagePerBlock;
+	public Paging(int nowPage, int total) {
 		this.nowPage = nowPage;
 		this.total = total;
 		this.totalPage = (int) Math.ceil((double) total / rowPerPage);
@@ -67,14 +65,6 @@ public class Paging {
 
 	public int getEndPage() {
 		return endPage;
-	}
-
-	public void setRowPerPage(int rowPerPage) {
-		this.rowPerPage = rowPerPage;
-	}
-
-	public void setPagePerBlock(int pagePerBlock) {
-		this.pagePerBlock = pagePerBlock;
 	}
 
 	public void setNowPage(int nowPage) {

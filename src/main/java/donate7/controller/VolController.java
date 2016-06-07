@@ -84,7 +84,7 @@ public class VolController {
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
 			rec.setVt_o_no(o_no);
 			int total = vs.selectRcTotal(rec);
-			Paging paging = new Paging(10, 10, pnum, total);
+			Paging paging = new Paging(pnum, total);
 			rec.setStartrow(paging.getStartRow());
 			rec.setEndrow(paging.getEndRow());
 			List<Recruit> list = vs.selectRcList(rec);
@@ -153,7 +153,7 @@ public class VolController {
 		}
 		int pnum = Integer.parseInt(num);
 		int total = vs.selectRcTotal(rec);
-		Paging paging = new Paging(10, 10, pnum, total);
+		Paging paging = new Paging( pnum, total);
 		rec.setStartrow(paging.getStartRow());
 		rec.setEndrow(paging.getEndRow());
 		List<Recruit> result = vs.selectRcList(rec);
@@ -301,7 +301,7 @@ public class VolController {
 		}
 		int pnum = Integer.parseInt(num);
 			int total = vs.selectRcTotal(rec);
-			Paging paging = new Paging(10, 10, pnum, total);
+			Paging paging = new Paging(pnum, total);
 			rec.setStartrow(paging.getStartRow());
 			rec.setEndrow(paging.getEndRow());
 			List<Recruit> list = vs.selectRcList(rec);

@@ -33,9 +33,9 @@ public class ProductServiceImpl implements ProductService {
 		return pd.olist(no);
 	}
 
-	public List<Product> prlist() {
+	public List<Product> prlist(Product product) {
 	
-		return pd.prlist();
+		return pd.prlist(product);
 	}
 
 	public int prUpdate(Product product) {
@@ -65,6 +65,12 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> aplist() {
 		
 		return pd.aplist();
+	}
+
+	
+	public int getTotal(Product product) {
+		
+		return pd.getTotal(product);
 	}
 
 }

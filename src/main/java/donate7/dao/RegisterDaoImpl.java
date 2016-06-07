@@ -1,5 +1,6 @@
 package donate7.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,5 +22,8 @@ public class RegisterDaoImpl implements RegisterDao{
 	}
 	public Register selectOne(int re_no) {
 		return st.selectOne("register.selectOne",re_no);
+	}
+	public int updateChk(HashMap<Object, Object> hashMap) {
+		return st.update("register.updateChk",hashMap);
 	}
 }

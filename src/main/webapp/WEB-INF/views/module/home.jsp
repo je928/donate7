@@ -196,7 +196,7 @@ img {
 			<div class="row">
 				<section id="pinBoot" class="text-center">
 					<article class="white-panel">
-						<img src="/donate7/${gift.g_img }" alt="">
+						<img src="http://i.imgur.com/xOIMvAe.jpg" alt="">
 						<h4>
 							<a href="#">Title 2</a>
 						</h4>

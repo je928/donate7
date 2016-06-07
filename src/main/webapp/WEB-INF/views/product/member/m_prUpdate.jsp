@@ -6,7 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="ckfinder/ckfinder.js"></script>
 <script>
    function readURL(input, id) {
       if (input.files && input.files[0]) {
@@ -79,7 +80,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="100" name="pr_content" id = "pr_content" required="required" ></textarea></td>
+				<td><textarea rows="10" cols="100" name="pr_content" id = "pr_content" required="required" >${product.pr_content}</textarea></td>
 			</tr>
 			<tr>
 				<th>요청메세지</th>

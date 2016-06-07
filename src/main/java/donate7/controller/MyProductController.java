@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import donate7.model.Product;
 import donate7.service.ProductService;
+import donate7.util.Paging;
+
 
 @Controller
 public class MyProductController {
@@ -24,15 +27,27 @@ public class MyProductController {
 	@Autowired
 	private ProductService ps;
 	//일반
+	
+	
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
-	public String mproList(Model model, HttpSession session) {
+	public String mproList(Product product, String pageNum, Model model, HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
-		List<Product> list = ps.mlist(no);
-		Product product = new Product();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
 		product.setPr_mno(no);
+		
+		List<Product> list = ps.mlist(no);
 		int count=ps.count(product);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
 		
@@ -54,8 +69,12 @@ public class MyProductController {
 		mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 		product.setPr_img(uploadName);
 		product.setPr_mno(no);
+		
+		int count=ps.count(product);
+		
 		ps.insert(product);
 		List<Product> list = ps.mlist(no);
+		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
@@ -137,9 +156,11 @@ public class MyProductController {
 	mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 	product.setPr_img(uploadName);
 	product.setPr_mno(no);
+	int count=ps.count(product);
 	ps.insert(product);
 	model.addAttribute("msg", "파일이름 : "+fileName);
 	List<Product> list = ps.olist(no);
+	model.addAttribute("count", count);
 	model.addAttribute("list", list);
 	model.addAttribute("fileName", uploadName);
 	model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -178,6 +199,7 @@ public class MyProductController {
 		}
 		product.setPr_mno(no);
 		ps.prUpdate(product);
+		int count=ps.count(product);
 		List<Product> list = ps.olist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -189,17 +211,64 @@ public class MyProductController {
 		ps.prdelete(pr_no);
 		return "redirect:o_prList.do?pr_no="+pr_no;
 	}
+	/*
+	@RequestMapping(value="prlist")
+	public String prlist(Product product, String pageNum, Model model) {
+		final int rowPerPage = 10;
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		
+		product.setStartRow(startRow);
+		product.setEndRow(endRow);
+	
+		ProductPagingBean ppg = new ProductPagingBean(nowPage, total);
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
+		int nowPage = Integer.parseInt(pageNum);
+		
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> list = ps.prlist(product);
+		model.addAttribute("list", list);
+		model.addAttribute("pg", pg);
+	
+		
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
+		return "module/main";
+	}
+	*/
 	
 	//관리자
 	@RequestMapping(value="ad_prList", method=RequestMethod.GET)
-	public String adprList(Model model, HttpSession session){
+	public String adprList(Product product, String pageNum, Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
-		Product product = new Product();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+
 		product.setPr_mno(no);
 		int count=ps.count(product);
-		List<Product> list = ps.prlist();
+		List<Product> list = ps.prlist(product);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");
 		return "module/main";
