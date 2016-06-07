@@ -22,4 +22,7 @@ public class RegisterDaoImpl implements RegisterDao{
 	public Register selectOne(int re_no) {
 		return st.selectOne("register.selectOne",re_no);
 	}
+	public int updateCan(int re_no) {
+		return st.update("register.updateCan",re_no);
+	}
 }

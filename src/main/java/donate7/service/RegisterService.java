@@ -10,4 +10,6 @@ public interface RegisterService {
 	List<Register> list();
 
 	Register selectOne(int re_no);
+
+	int updateCan(int re_no);
 }
