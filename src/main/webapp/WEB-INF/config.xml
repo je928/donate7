@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 	<baseDir></baseDir>
-	<baseURL>C:/Users/USER/workspace/donate7/WebContent/userfiles/</baseURL>
+	<baseURL>C:/spring/springSrc/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/donate7/userfile/</baseURL>
 	<licenseKey>http://192.168.40.31:8181/danate7/userfiles/</licenseKey>
 	<licenseName></licenseName>
 	<!--

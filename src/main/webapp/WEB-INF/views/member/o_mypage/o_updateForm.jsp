@@ -224,7 +224,6 @@
 								<div class="col-lg-8">
 									<label for="o_license" class="control-label">${organ.o_license}</label>
 								</div>
-								<input type="hidden" name="o_license" value="${organ.o_license}">
 							</div>
 							</c:if>
 							<c:if test="${organ.o_ok_xyn eq 'n' or organ.o_ok_xyn eq 'x'}">
