@@ -16,6 +16,6 @@
 		select nvl(max(wa_no),0)+1 from warning
 	</select>
 	<insert id="insert" parameterType="warning">
-		insert into gift values(#{wa_no},#{m_no},#{re_no},#{wa_sort},#{wa_cnt},#{wa_re},sysdate)		
+		insert into warning values(#{wa_no},#{m_no},#{re_no},#{wa_sort},#{wa_cnt},#{wa_re},sysdate)		
 	</insert>	
 </mapper>
