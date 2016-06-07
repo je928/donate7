@@ -8,7 +8,6 @@ create table member (
 	m_gender varchar2(10) not null,
 	m_tel varchar2(30) not null,
 	m_job varchar2(30) not null,
-	m_warning number,
 	m_reg_date date default sysdate,
 	m_out_date date,
 	m_del_yn char(1) default 'n'
