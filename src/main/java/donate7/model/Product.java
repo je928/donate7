@@ -26,6 +26,21 @@ public class Product {
 	private String email;
 	private String nick;	
 	
+	private int startRow;
+	private int endRow;
+	
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
 	public int getNo() {
 		return no;
 	}
