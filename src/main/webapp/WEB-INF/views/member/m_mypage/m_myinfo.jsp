@@ -57,7 +57,19 @@
 											<td><b>${member.m_reg_date}</b></td>
 										</tr>
 										<tr>
-											<td>경고횟수</td>
+											<td><b class="orange">경고(봉사)</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="orange">경고(게시판)</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="blue">보유 캐시</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="blue">보유 포인트</b></td>
 											<td><b>0</b></td>
 										</tr>
 									</tbody>

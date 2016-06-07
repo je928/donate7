@@ -5,6 +5,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import donate7.model.Community;
 import donate7.model.Member;
 import donate7.model.Organ;
 
@@ -167,6 +169,27 @@ public class MemberDaoImpl implements MemberDao {
 		int result = 0;
 		try {
 			result = session.update("member.updateMember", member);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public Member deletePwdChk(int m_no) {
+		Member member = new Member();
+		try {
+			String passwd = session.selectOne("member.deletePwdChk", m_no);
+			member.setM_passwd(passwd);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return member;
+	}
+
+	public int deleteMember(int m_no) {
+		int result = 0;
+		try {
+			result = session.update("member.deleteMember", m_no);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

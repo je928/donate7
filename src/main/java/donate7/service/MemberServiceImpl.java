@@ -63,6 +63,14 @@ public class MemberServiceImpl implements MemberService {
 		return md.updateMember(member);
 	}
 	
+	public Member deletePwdChk(int m_no) {
+		return md.deletePwdChk(m_no);
+	}
+
+	public int deleteMember(int m_no) {
+		return md.deleteMember(m_no);
+	}
+	
 	public Organ selectOrgan(int o_no) {
 		return md.selectOrgan(o_no);
 	}
