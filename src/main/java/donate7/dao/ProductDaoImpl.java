@@ -40,9 +40,9 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.olist",no);
 	}
 
-	public List<Product> prlist() {
+	public List<Product> prlist(Product product) {
 		
-		return st.selectList("product.prlist");
+		return st.selectList("product.prlist",product);
 	}
 
 	public int prUpdate(Product product) {
@@ -78,6 +78,11 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> aplist() {
 		
 		return st.selectList("product.aplist");
+	}
+
+
+	public int getTotal(Product product) {
+		return st.selectOne("product.getTotal",product);
 	}
 
 
