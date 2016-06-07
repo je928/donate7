@@ -26,7 +26,7 @@
 	<select id="selectOne" resultType="register">
 		select * from register where re_no = #{re_no}
 	</select>
-	<update id="updateCan" parameterType="int">
-		update register set re_chk='c' where re_no=#{re_no}
+	<update id="updateChk" parameterType="HashMap">
+		update register set re_chk=#{re_chk} where re_no=#{re_no}
 	</update>	
 </mapper>

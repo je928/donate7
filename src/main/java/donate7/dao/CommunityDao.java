@@ -15,5 +15,5 @@ public interface CommunityDao {
 	int communityUpdate(Community community);
 	Community deletePwdChk(int number);
 	int communityDelete(int number);
-
+	void updateWarn(int re_sort_no);
 }

@@ -53,5 +53,9 @@ public class CommunityServiceImpl implements CommunityService {
 	public int communityDelete(int number) {
 		return cd.communityDelete(number);
 	}
+	
+	public void updateWarn(int re_sort_no) {
+		cd.updateWarn(re_sort_no);		
+	}
 
 }

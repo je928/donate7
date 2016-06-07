@@ -97,4 +97,7 @@
 		update community set brd_del_yn='y' where brd_no=#{brd_no}
 	</update>
 	
+	<update id="updateWarn" parameterType="Integer">
+		update community set brd_del_yn='w' where brd_no=#{re_sort_no}
+	</update>
 </mapper>
