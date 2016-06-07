@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import donate7.model.Community;
 import donate7.model.Member;
 import donate7.model.Register;
+import donate7.model.Warning;
 import donate7.service.CommunityService;
 import donate7.service.MemberService;
 import donate7.service.RegisterService;
+import donate7.service.WarningService;
 
 @Controller
 public class RegisterController {
@@ -24,6 +26,8 @@ public class RegisterController {
 	private MemberService ms;
 	@Autowired
 	private RegisterService rs;
+	@Autowired
+	private WarningService ws;
 	@RequestMapping(value="registerPop",method=RequestMethod.GET)
 	public String registerPop(int brd_no,String chk,Model model){
 		if(chk.equals("w")){
@@ -77,7 +81,13 @@ public class RegisterController {
 				cs.updateWarn(reg.getRe_sort_no());
 			}
 			if(re_chk.equals("y")){
-				
+				Warning warning = new Warning();
+				warning.setM_no(reg.getReported_no());
+				warning.setRe_no(re_no);
+				warning.setWa_sort("b");
+				warning.setWa_cnt(1);
+				warning.setWa_re("게시판 신고");
+				ws.insert(warning);
 			}
 		}
 		return "register/reg_pro";
