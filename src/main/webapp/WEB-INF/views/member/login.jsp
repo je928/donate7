@@ -5,8 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-</style>
+<script type="text/javascript">
+	$(function() {
+		$('#email').keyup(function() {
+			$('#msg1').html("<font></font>");
+			$('#msg2').html("<font></font>");
+		});
+	});
+</script>
 </head>
 <body>
           
@@ -19,12 +25,12 @@
 					<div class="form-group">
 						<input type="text" id="email" name="email" class="form-control input-lg" placeholder="이메일" />
 						<c:if test="${not empty msg1}">
-						<span><font color="red"> ${msg1 }</font></span>
+						<span id="msg1"><font color="red"> ${msg1 }</font></span>
 						</c:if>
 						<br>
 						<input type="password" id="passwd" name="passwd" class="form-control input-lg" placeholder="비밀번호" />
 						<c:if test="${not empty msg2}">
-						<span><font color="red"> ${msg2 }</font></span>
+						<span id="msg2"><font color="red"> ${msg2 }</font></span>
 						</c:if>
 						<br>
 					</div>

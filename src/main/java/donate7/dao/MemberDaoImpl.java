@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import donate7.model.Community;
 import donate7.model.Member;
 import donate7.model.Organ;
 
@@ -175,7 +174,7 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
-	public Member deletePwdChk(int m_no) {
+	public Member m_deletePwdChk(int m_no) {
 		Member member = new Member();
 		try {
 			String passwd = session.selectOne("member.deletePwdChk", m_no);
@@ -213,6 +212,27 @@ public class MemberDaoImpl implements MemberDao {
 			}else if(ok.equals("n") || ok.equals("x")) {
 				result = session.update("organ.XupdateOrgan", organ);
 			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public Organ o_deletePwdChk(int o_no) {
+		Organ organ = new Organ();
+		try {
+			String passwd = session.selectOne("organ.deletePwdChk", o_no);
+			organ.setO_passwd(passwd);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return organ;
+	}
+
+	public int deleteOrgan(int o_no) {
+		int result = 0;
+		try {
+			result = session.update("organ.deleteOrgan", o_no);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

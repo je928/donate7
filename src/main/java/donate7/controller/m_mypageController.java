@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import donate7.model.Community;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
 import donate7.model.Member;
@@ -67,7 +66,7 @@ public class m_mypageController {
 	@RequestMapping(value = "m_deleteForm", method = RequestMethod.GET)
 	public String m_deleteForm(Model model, HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
-		Member member = ms.deletePwdChk(m_no);
+		Member member = ms.m_deletePwdChk(m_no);
 		String dbPass = member.getM_passwd();
 		model.addAttribute("dbPass", dbPass);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");

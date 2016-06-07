@@ -63,8 +63,8 @@ public class MemberServiceImpl implements MemberService {
 		return md.updateMember(member);
 	}
 	
-	public Member deletePwdChk(int m_no) {
-		return md.deletePwdChk(m_no);
+	public Member m_deletePwdChk(int m_no) {
+		return md.m_deletePwdChk(m_no);
 	}
 
 	public int deleteMember(int m_no) {
@@ -81,6 +81,14 @@ public class MemberServiceImpl implements MemberService {
 	
 	public int updateOrgan(Organ organ) {
 		return md.updateOrgan(organ);
+	}
+	
+	public Organ o_deletePwdChk(int o_no) {
+		return md.o_deletePwdChk(o_no);
+	}
+
+	public int deleteOrgan(int o_no) {
+		return md.deleteOrgan(o_no);
 	}
 	
 	public String selectO_addrByO_no(int o_no) {

@@ -8,13 +8,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function passwdChk() {
-		if (frm.password.value == '') {
-			alert("비밀번호를 입력해주세요.");
-			frm.password.focus();
-			return false;
-		}
+		$(function() {
+			$('#password').keyup(function() {
+				$('#password_Chk').html("<font></font>");
+			});
+		});
+		
 		if (frm.password.value != frm.dbPass.value) {
-			alert("비밀번호가 다릅니다.");
+			$('#password_Chk').html("<font class=red>비밀번호를 확인해주세요.</font>");
 			frm.password.focus();
 			return false;
 		}
@@ -45,6 +46,7 @@
 						<input type="password" class="form-control-87" name="password"
 							id="password" maxlength="50" placeholder="비밀번호를 입력해 주세요."
 							autofocus="autofocus" required>
+						<div style="margin-left: 23px;" id="password_Chk"> </div>
 					</div>
 					<div class="panel-footer text-center">
 						<span>
