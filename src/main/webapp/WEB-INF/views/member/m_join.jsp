@@ -197,10 +197,8 @@
 			frm.m_tel1.focus();
 			return false;
 		}
-		
 		return true;
 	}
-	
 </script>
 </head>
 <body>

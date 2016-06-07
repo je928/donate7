@@ -88,19 +88,20 @@ public class MemberDaoImpl implements MemberDao {
 			selectNick = session.selectOne("member.selectNick", member.getM_no());
 			db_Nick = session.selectOne("member.nickChk", member);
 			if(selectNick != null) {
-				if(db_Nick.equals(selectNick)) {
+				if(db_Nick == null) {
+					result = -1;
+				}else if(db_Nick.equals(selectNick)) {
 					result = 0;
-				}else {
+				}else if(db_Nick != null){
 					result = 1;
 				}
 			}else {
 				if(db_Nick != null) {
-					result = 2;
+					result = 1;
 				}else {
 					result = -1;
 				}
 			}
-			System.out.println("result : " + result);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -126,19 +127,20 @@ public class MemberDaoImpl implements MemberDao {
 			selectOname = session.selectOne("organ.selectOname", organ.getO_no());
 			db_Oname = session.selectOne("organ.onameChk", organ);
 			if(selectOname != null) {
-				if(db_Oname.equals(selectOname)) {
+				if(db_Oname == null) {
+					result = -1;
+				}else if(db_Oname.equals(selectOname)) {
 					result = 0;
-				}else {
+				}else if(db_Oname != null){
 					result = 1;
 				}
 			}else {
 				if(db_Oname != null) {
-					result = 2;
+					result = 1;
 				}else {
 					result = -1;
 				}
 			}
-			System.out.println("result : " + result);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -173,6 +175,20 @@ public class MemberDaoImpl implements MemberDao {
 
 	public Organ selectOrgan(int o_no) {
 		return session.selectOne("organ.selectOrgan", o_no);
+	}
+	
+	public Organ selectOrgan_addr_tel(int o_no) {
+		return session.selectOne("organ.selectOrgan_addr_tel", o_no);
+	}
+	
+	public int updateOrgan(Organ organ) {
+		int result = 0;
+		try {
+			result = session.update("organ.updateOrgan", organ);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 	public String selectO_addrByO_no(int o_no) {

@@ -102,7 +102,6 @@ public class memberController {
 			msg = "사용 가능한 닉네임입니다.";
 		}
 		model.addAttribute("msg", msg);
-		System.out.println(msg);
 		return "member/m_nickChk";
 	}
 	
@@ -113,9 +112,9 @@ public class memberController {
 	}
 	
 	@RequestMapping(value = "o_join", method = RequestMethod.POST)
-	public String o_join(Organ organ, Model model, String o_tel1, String o_tel2, String o_tel3, String post1, String post2, String o_addr1, String o_addr2) {
+	public String o_join(Organ organ, Model model, String o_tel1, String o_tel2, String o_tel3, String post1, String post2, String addr1, String addr2) {
 		String o_tel = o_tel1 + "-" + o_tel2 + "-" + o_tel3;
-		String o_addr = "(" + post1 + "-" + post2 + ") " + o_addr1 + " " + o_addr2;
+		String o_addr = "(" + post1 + "-" + post2 + ") " + addr1 + " " + addr2;
 		organ.setO_tel(o_tel);
 		organ.setO_addr(o_addr);
 		int result = ms.insertOrgan(organ);
@@ -156,7 +155,6 @@ public class memberController {
 			msg = "사용 가능한 기관명입니다.";
 		}
 		model.addAttribute("msg", msg);
-		System.out.println(msg);
 		return "member/o_onameChk";
 	}
 	
