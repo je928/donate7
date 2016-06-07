@@ -20,5 +20,8 @@ public class RegisterServiceImpl implements RegisterService{
 	public Register selectOne(int re_no) {
 		return rd.selectOne(re_no);
 	}
+	public int updateCan(int re_no) {
+		return rd.updateCan(re_no);
+	}
 
 }

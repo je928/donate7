@@ -25,9 +25,18 @@
 신고 날짜 : <fmt:formatDate value="${reg.re_date }"/><p>
 <input type="hidden" name="reported_no" value="${reg.reported_no}">
 <input type="hidden" name="reported_no" value="${reg.reporter_no}">
-신고 사유 : <textarea name="re_content" rows="4" cols="50" readonly="readonly">${reg.re_content }</textarea><p>
-<input type="submit" value="신고한 처리">
-<input type="submit" value="신고당한 처리">
+신고 사유 : <textarea name="re_content" rows="3" cols="50" readonly="readonly">${reg.re_content }</textarea><p>
+신고 당한 (댓)글 내용:<textarea rows="2" cols="50" readonly="readonly">${content }</textarea><p>
+<c:if test="${reg.re_chk == 'n' }">
+	<input type="button" value="신고 보류(처리 안함)" onclick="location.href='reg_proX.do?re_no=${reg.re_no}'">
+	<input type="button" value="신고 처리" onclick="location.href='reg_proY.do?re_no=${reg.re_no}'">	
+</c:if>
+<c:if test="${reg.re_chk == 'y' }">
+	신고 처리
+</c:if>
+<c:if test="${reg.re_chk == 'c' }">
+	신고 보류
+</c:if>
 </form>
 </c:if>
 </body>

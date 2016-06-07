@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function registerPop (brd_no) {
-    window.open("registerPop.do?brd_no="+brd_no+"&chk=c","","width=370, height=300");
+    window.open("registerPop.do?brd_no="+brd_no+"&chk=w","","width=370, height=300");
 }
 </script>
 </head>

@@ -25,7 +25,7 @@ public class RegisterController {
 	private RegisterService rs;
 	@RequestMapping(value="registerPop",method=RequestMethod.GET)
 	public String registerPop(int brd_no,String chk,Model model){
-		if(chk.equals("c")){
+		if(chk.equals("w")){
 			Community comm = cs.communitySelect(brd_no);
 			Member member = ms.selectMember(comm.getNo());
 			String nick = member.getM_nick();
@@ -53,9 +53,31 @@ public class RegisterController {
 		String reported = member.getM_nick();
 		member = ms.selectMember(reg.getReporter_no());
 		String reporter = member.getM_nick();
+		
+		if(reg.getRe_sort().equals("w")){
+			Community comm = cs.communitySelect(reg.getRe_no());
+			model.addAttribute("content", comm.getBrd_content());
+		}		
 		model.addAttribute("reg", reg);
 		model.addAttribute("reported", reported);
 		model.addAttribute("reporter", reporter);
+		return "register/reg_pro";
+	}
+	@RequestMapping(value="reg_proX",method=RequestMethod.GET)
+	public String reg_proX(int re_no,Model model){
+		int result = rs.updateCan(re_no);
+		if(result>0){
+			model.addAttribute("msg", "msg");
+		}
+		return "register/reg_pro";
+	}
+	@RequestMapping(value="reg_proY",method=RequestMethod.GET)
+	public String reg_proY(int re_no,Model model){
+		int result = rs.updateYes(re_no);
+		if(result>0){
+			
+			model.addAttribute("msg", "msg");
+		}
 		return "register/reg_pro";
 	}
 	@RequestMapping(value="registerPop",method=RequestMethod.POST)
