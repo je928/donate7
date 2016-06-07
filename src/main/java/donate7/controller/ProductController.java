@@ -28,7 +28,7 @@ public class ProductController {
 		ps.apCancel(pr_no);
 		return "redirect:ad_prView.do?pr_no="+pr_no;
 	}
-	
+	 
 	@RequestMapping(value="goods", method=RequestMethod.GET)
 	public String goods(Model model){
 		List<Product> list = ps.aplist();
