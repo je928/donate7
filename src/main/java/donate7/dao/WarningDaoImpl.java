@@ -10,6 +10,8 @@ public class WarningDaoImpl implements WarningDao{
 	@Autowired
 	private SqlSessionTemplate st;
 	public int insert(Warning warning) {
+		int wa_no = st.selectOne("warning.selectNum");
+		warning.setWa_no(wa_no);
 		return st.insert("warning.insert",warning);
 	}
 }

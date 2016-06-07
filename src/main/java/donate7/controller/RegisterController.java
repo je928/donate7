@@ -73,11 +73,11 @@ public class RegisterController {
 	}
 	@RequestMapping(value="reg_proY",method=RequestMethod.GET)
 	public String reg_proY(int re_no,Model model){
-		int result = rs.updateYes(re_no);
+		/*int result = rs.updateYes(re_no);
 		if(result>0){
 			
 			model.addAttribute("msg", "msg");
-		}
+		}*/
 		return "register/reg_pro";
 	}
 	@RequestMapping(value="registerPop",method=RequestMethod.POST)
