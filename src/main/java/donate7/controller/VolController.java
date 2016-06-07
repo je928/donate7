@@ -316,8 +316,10 @@ public class VolController {
 	@RequestMapping("View")
 	public String View(int pageNum, int vt_no,HttpSession session,Model model){
 		Recruit rc = vs.selectRcByVt_no(vt_no);
+		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("rc", rc);
+		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../calendar/View.jsp");
 		return "module/main";
