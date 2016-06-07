@@ -13,9 +13,9 @@
 		<result property="wa_date" column="wa_date" />
 	</resultMap>
 	<select id="selectNum" resultType="int">
-		select nvl(max(g_no),0)+1 from gift
+		select nvl(max(wa_no),0)+1 from warning
 	</select>
 	<insert id="insert" parameterType="warning">
-		insert into gift values(#{g_no},#{g_name},#{g_img},#{g_price},'n')		
+		insert into gift values(#{wa_no},#{m_no},#{re_no},#{wa_sort},#{wa_cnt},#{wa_re},sysdate)		
 	</insert>	
 </mapper>

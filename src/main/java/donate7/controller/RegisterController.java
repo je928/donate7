@@ -1,5 +1,6 @@
 package donate7.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class RegisterController {
 		String reporter = member.getM_nick();
 		
 		if(reg.getRe_sort().equals("w")){
-			Community comm = cs.communitySelect(reg.getRe_no());
+			Community comm = cs.communitySelect(reg.getRe_sort_no());		
 			model.addAttribute("content", comm.getBrd_content());
 		}		
 		model.addAttribute("reg", reg);
@@ -63,21 +64,22 @@ public class RegisterController {
 		model.addAttribute("reporter", reporter);
 		return "register/reg_pro";
 	}
-	@RequestMapping(value="reg_proX",method=RequestMethod.GET)
-	public String reg_proX(int re_no,Model model){
-		int result = rs.updateCan(re_no);
-		if(result>0){
+	@RequestMapping(value="reg_update",method=RequestMethod.GET)
+	public String reg_update(int re_no,String re_chk,Model model){
+		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+		Register reg = rs.selectOne(re_no);
+		hashMap.put("re_no",re_no);
+		hashMap.put("re_chk",re_chk);
+		int result = rs.updateChk(hashMap);
+		if(result>0){			
 			model.addAttribute("msg", "msg");
+			if(reg.getRe_sort().equals("w")){
+				cs.updateWarn(reg.getRe_sort_no());
+			}
+			if(re_chk.equals("y")){
+				
+			}
 		}
-		return "register/reg_pro";
-	}
-	@RequestMapping(value="reg_proY",method=RequestMethod.GET)
-	public String reg_proY(int re_no,Model model){
-		/*int result = rs.updateYes(re_no);
-		if(result>0){
-			
-			model.addAttribute("msg", "msg");
-		}*/
 		return "register/reg_pro";
 	}
 	@RequestMapping(value="registerPop",method=RequestMethod.POST)
