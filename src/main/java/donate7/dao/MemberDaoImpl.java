@@ -184,7 +184,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int updateOrgan(Organ organ) {
 		int result = 0;
 		try {
-			result = session.update("organ.updateOrgan", organ);
+			String ok = session.selectOne("organ.selectOk", organ);
+			if(ok.equals("y")) {
+				result = session.update("organ.updateOrgan", organ);
+			}else if(ok.equals("n") || ok.equals("x")) {
+				result = session.update("organ.XupdateOrgan", organ);
+			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
