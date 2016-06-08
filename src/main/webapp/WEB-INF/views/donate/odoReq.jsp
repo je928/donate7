@@ -26,6 +26,45 @@
 	}
 	
 </script>
+<style type="text/css">
+.form-control-b {
+	width: 15%;
+	height: 34px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+.form-control-ac {
+	width: 30%;
+	margin-left: 5px;
+	height: 34px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+</style>
 </head>
 <body>
 	<form action="odoReq.do" method="post" enctype="multipart/form-data">
@@ -33,11 +72,11 @@
 		<table class="table table-striped table-hover">		
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="d_title" id="d_title"
+				<td><input type="text" name="d_title" id="d_title" class="form-control-95"
 					required="required"></td>
 			</tr>
 			<tr>
-				<th>사진첨부</th>
+				<th>메인 사진</th>
 				<c:if test="${not empty msg }">
 					<font color="red"> ${msg } </font>
 				</c:if>
@@ -47,7 +86,7 @@
 				<td><input type="file" name="img" required="required"></td>
 			</tr>
 			<tr>
-				<th>내용</th>
+				<th>사진첨부 및 내용</th>
 				<td><textarea rows="6" cols="100" name="d_content"
 					required="required"></textarea></td>
 			</tr>
@@ -67,9 +106,9 @@
 			</tr>
 			<tr>
 			<th>계좌번호</th>
-			<td><input type="text" name="d_bank" id="d_bank" value="은행"
-				required="required"> <input type="text" name="d_account"
-				id="d_account" value="계좌번호" required="required"></td>
+			<td><input type="text" name="d_bank" id="d_bank" placeholder="은행" class="form-control-b"
+				required="required"> <input type="text" name="d_account" class="form-control-ac"
+				id="d_account" placeholder="계좌번호" required="required"></td>
 			</tr>
 		</table>
 		<div class="panel-footer2 text-center">
