@@ -9,7 +9,7 @@ public interface Cpoint_InfoDao {
 
 	int insert(Cpoint_info ci);
 
-	int getTotal(int m_no);
+	int getTotal(Cpoint_info ci);
 
 	List<Cpoint_info> list(int startRow, int endRow, int m_no);
 

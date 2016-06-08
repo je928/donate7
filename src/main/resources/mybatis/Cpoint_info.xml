@@ -27,7 +27,8 @@
 	<select id="sumCash" resultType="int" parameterType="int">
 		select nvl(sum(cp_point),0) from cpoint_info where m_no=#{m_no} and cp_sort='c'
 	</select>
-	<select id="getTotal" parameterType="int" resultType="int">
+	<select id="getTotal" parameterType="HashMap" resultType="int">
 		select count(*) from cpoint_info where m_no=#{m_no}
+		<if test="pr_mno != 1"></if>
 	</select>
 </mapper>
