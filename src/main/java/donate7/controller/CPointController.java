@@ -29,7 +29,7 @@ public class CPointController {
 		Cpoint_info ci = new Cpoint_info();
 		ci.setCp_point(cp_point);
 		ci.setCp_point_re("캐시 충전");
-		ci.setCp_sort('c');
+		ci.setCp_sort("c");
 		ci.setM_no(m_no);
 		int result = cs.insert(ci);
 		if(result>0){
@@ -64,6 +64,7 @@ public class CPointController {
 		
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
+		model.addAttribute("sort", sort);
 		model.addAttribute("sumP", sumP);
 		model.addAttribute("sumC", sumC);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");

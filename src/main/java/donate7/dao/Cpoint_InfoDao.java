@@ -11,7 +11,7 @@ public interface Cpoint_InfoDao {
 
 	int getTotal(Cpoint_info ci);
 
-	List<Cpoint_info> list(int startRow, int endRow, int m_no);
+	List<Cpoint_info> list(int startRow, int endRow, int m_no,String sort);
 
 	int sumCash(int m_no);
 }
