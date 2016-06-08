@@ -65,7 +65,7 @@
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
 					<input type="button" class="btn btn-primary btn-md" value="참여"
-						onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}&pageNum=${pageNum}'">
+						onclick="location.href='rqn.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
 					<input type="button" class="btn btn-primary btn-md" value="뒤로"
 						onclick="location.href='timeList.do?pageNum=${pageNum}'">
 				</div>
