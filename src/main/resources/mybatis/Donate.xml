@@ -21,6 +21,8 @@
 		<result property="email" 		column="email" />
 		<result property="nick" 		column="nick" />
 		<result property="category" 		column="category" />
+		<result property="startRow" 		column="startRow" />
+		<result property="endRow" 		column="endRow" />
 	</resultMap>
 
 	<select id="selectNum" resultType="int">
@@ -83,5 +85,8 @@
 			(select m_no as no, m_email as email, m_nick as nick, m_job as job, m_del_yn as del_yn from member where m_del_yn='n' 
 			union select o_no, o_email, o_oname, o_category, o_del_yn from organ where o_del_yn='n') 
 			a where d.d_member=a.no and d_approve='y' order by d_reg_date desc
+	</select>
+	<select id="getTotal" parameterType="donate" resultType="int">
+		select count(*) from donate <if test="d_member != 1"> where d_member=#{d_member}</if>
 	</select>
 </mapper>

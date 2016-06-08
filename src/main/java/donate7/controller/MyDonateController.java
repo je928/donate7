@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import donate7.model.Donate;
 import donate7.service.DonateService;
+import donate7.util.Paging;
 
 @Controller
 public class MyDonateController {
@@ -25,14 +26,26 @@ public class MyDonateController {
 	
 	//일반회원
 	@RequestMapping(value = "mdoList", method = RequestMethod.GET)
-	public String mdoList(Model model,HttpSession session) {
+	public String mdoList(Donate donate,Model model,String pageNum,HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
-		Donate donate = new Donate();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
 		donate.setD_member(no);
+		
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ds.getTotal(donate);
+		Paging pg = new Paging(nowPage, total);
+		donate.setStartRow(pg.getStartRow());
+		donate.setEndRow(pg.getEndRow());
+		
 		List<Donate> list = ds.mlist(no);
-		int count = ds.count(donate);
-		model.addAttribute("count",count);
+/*		int count = ds.count(donate);
+		model.addAttribute("count",count);*/
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoList.jsp");
 		return "module/main";
@@ -81,6 +94,12 @@ public class MyDonateController {
 	@RequestMapping(value="mdoReqUp", method=RequestMethod.GET)
 	public String mdoReqUpForm(int d_no, Model model){
 		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
 		model.addAttribute("donate",donate);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoReqUp.jsp");
@@ -119,14 +138,24 @@ public class MyDonateController {
 	
 	//기관회원
 	@RequestMapping(value = "odoList", method = RequestMethod.GET)
-	public String odoList(Model model, HttpSession session) {
+	public String odoList(Donate donate,Model model,String pageNum,HttpSession session) {
 		int no=(Integer)session.getAttribute("no");
-		List<Donate> list = ds.olist(no);
-		Donate donate = new Donate();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		donate.setD_member(no);
-		int count = ds.count(donate);
-		model.addAttribute("count",count);
+		
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ds.getTotal(donate);
+		Paging pg = new Paging(nowPage, total);
+		donate.setStartRow(pg.getStartRow());
+		donate.setEndRow(pg.getEndRow());
+
+		List<Donate> list = ds.olist(donate);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/odoList.jsp");
 		return "module/main";
@@ -148,7 +177,7 @@ public class MyDonateController {
 		donate.setD_img(uploadName);
 		int result = ds.odoReqInsert(donate);
 		model.addAttribute("msg", "사진 업로드 : "+fileName);
-		List<Donate> list = ds.olist(no);
+		List<Donate> list = ds.olist(donate);
 		model.addAttribute("list", list);
 		model.addAttribute("fileName", uploadName);
 		if(result > 0){
@@ -175,6 +204,12 @@ public class MyDonateController {
 	@RequestMapping(value="odoReqUp", method=RequestMethod.GET)
 	public String odoReqUpForm(int d_no, Model model){
 		Donate donate = ds.selectOne(d_no);
+		String start = donate.getD_start_date();
+		String res1 = start.substring(0,10);
+		String end = donate.getD_end_date();
+		String res2 = end.substring(0,10);
+		donate.setD_start_date(res1);
+		donate.setD_end_date(res2);
 		model.addAttribute("donate",donate);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/odoReqUp.jsp");
