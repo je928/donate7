@@ -3,6 +3,7 @@ package donate7.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +62,7 @@ public class communityController {
 	}
 	
 	@RequestMapping(value="view")
-	public String view(int brd_no, String pageNum, String searchType, String searchTxt, Model model) {
+	public String view(int brd_no, String pageNum, String searchType, String searchTxt, Model model, HttpSession session) {
 		if(searchType == null || searchType.equals("null") || searchType.equals("")){
 			searchType = "all";
 		}
