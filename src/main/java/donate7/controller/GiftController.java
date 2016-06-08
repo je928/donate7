@@ -75,7 +75,7 @@ public class GiftController {
 		}else{	
 			Cpoint_info ci = new Cpoint_info();
 			ci.setM_no(m_no);
-			ci.setCp_sort('p');
+			ci.setCp_sort("p");
 			ci.setCp_point(-gift.getG_price());
 			ci.setCp_point_re("기프티콘 구매");
 			int result = cs.insert(ci);
