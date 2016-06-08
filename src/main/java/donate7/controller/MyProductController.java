@@ -36,21 +36,22 @@ public class MyProductController {
 			pageNum = "1";
 		}
 	
+		product.setPr_mno(no);
+
 		int nowPage = Integer.parseInt(pageNum);
 		int total = ps.getTotal(product);
+		
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
-		product.setPr_mno(no);
-		
-		List<Product> list = ps.mlist(no);
-		int count=ps.count(product);
-		model.addAttribute("count", count);
+		List<Product> list = ps.mlist(product);
+		/*int count=ps.count(product);
+		model.addAttribute("count", count);*/
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
-		
 		return "module/main";
 	}
 	@RequestMapping(value ="m_prWrite", method = RequestMethod.GET)
@@ -62,20 +63,27 @@ public class MyProductController {
 	
 	@RequestMapping(value="m_prWrite", method=RequestMethod.POST)
 	public String m_prWrite(@RequestParam("mimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+			HttpServletRequest request,Model model,Product product,String pageNum, HttpSession session) throws IllegalStateException, IOException{
 		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		String fileName = mf.getOriginalFilename();
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 		mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 		product.setPr_img(uploadName);
 		product.setPr_mno(no);
-		
-		int count=ps.count(product);
-		
 		ps.insert(product);
-		List<Product> list = ps.mlist(no);
-		model.addAttribute("count", count);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> list = ps.mlist(product);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("fileName", uploadName);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -100,9 +108,11 @@ public class MyProductController {
 	}
 	@RequestMapping(value="m_prUpdate", method=RequestMethod.POST)
 	public String mprupdate(@RequestParam("mimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+			HttpServletRequest request,Model model,Product product, String pageNum, HttpSession session) throws IllegalStateException, IOException{
 		int no=(Integer)session.getAttribute("no");
-		
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		if(mf.getOriginalFilename().equals("")){
 			Product pr = ps.selectOne(product.getPr_no());
 			product.setPr_img(pr.getPr_img());
@@ -114,8 +124,15 @@ public class MyProductController {
 		}
 		product.setPr_mno(no);
 		ps.prUpdate(product);
-		List<Product> list = ps.mlist(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> list = ps.mlist(product);
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prView.jsp");
 		return "module/main";
@@ -128,15 +145,24 @@ public class MyProductController {
 	
 	//기관
 	@RequestMapping(value="o_prList", method=RequestMethod.GET)
-	public String oprList(Model model, HttpSession session){
-		
+	public String oprList(Product product, String pageNum, Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
-		Product product = new Product();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
 		product.setPr_mno(no);
-		int count=ps.count(product);
-		List<Product> list = ps.olist(no);
-		model.addAttribute("count", count);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		
+		List<Product> list = ps.olist(product);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm","../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
 		return "module/main";
@@ -149,19 +175,28 @@ public class MyProductController {
 	}
 	@RequestMapping(value="o_prWrite", method=RequestMethod.POST)
 	public String oprwrite(@RequestParam("oimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+			HttpServletRequest request,Model model,Product product, String pageNum, HttpSession session) throws IllegalStateException, IOException{
 	int no=(Integer)session.getAttribute("no");
+	if(pageNum == null || pageNum.equals("")) {
+		pageNum = "1";
+	}
 	String fileName = mf.getOriginalFilename();
 	String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 	mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 	product.setPr_img(uploadName);
 	product.setPr_mno(no);
-	int count=ps.count(product);
 	ps.insert(product);
+	int nowPage = Integer.parseInt(pageNum);
+	int total = ps.getTotal(product);
+	Paging pg = new Paging(nowPage, total);
+	product.setStartRow(pg.getStartRow());
+	product.setEndRow(pg.getEndRow());
 	model.addAttribute("msg", "파일이름 : "+fileName);
-	List<Product> list = ps.olist(no);
-	model.addAttribute("count", count);
+	List<Product> list = ps.olist(product);
+	
 	model.addAttribute("list", list);
+	model.addAttribute("total", total);
+	model.addAttribute("pg", pg);
 	model.addAttribute("fileName", uploadName);
 	model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 	model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
@@ -185,9 +220,12 @@ public class MyProductController {
 	}
 	@RequestMapping(value="o_prUpdate", method=RequestMethod.POST)
 	public String oprupdate(@RequestParam("oimg") MultipartFile mf,
-			HttpServletRequest request,Model model,Product product,HttpSession session) throws IllegalStateException, IOException{
+			HttpServletRequest request,Model model,Product product, String pageNum, HttpSession session) throws IllegalStateException, IOException{
 		int no=(Integer)session.getAttribute("no");
-		
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+	
 		if(mf.getOriginalFilename().equals("")){
 			Product pr = ps.selectOne(product.getPr_no());
 			product.setPr_img(pr.getPr_img());
@@ -199,9 +237,16 @@ public class MyProductController {
 		}
 		product.setPr_mno(no);
 		ps.prUpdate(product);
-		int count=ps.count(product);
-		List<Product> list = ps.olist(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.getTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+
+		List<Product> list = ps.olist(product);
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/organ/o_prView.jsp");
 		return "module/main";
@@ -257,17 +302,16 @@ public class MyProductController {
 			pageNum = "1";
 		}
 	
+		product.setPr_mno(no);
 		int nowPage = Integer.parseInt(pageNum);
 		int total = ps.getTotal(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
-
-		product.setPr_mno(no);
-		int count=ps.count(product);
 		List<Product> list = ps.prlist(product);
-		model.addAttribute("count", count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");

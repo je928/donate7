@@ -30,14 +30,14 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectOne("product.selectOne",pr_no);
 	}
 
-	public List<Product> mlist(int no) {
+	public List<Product> mlist(Product product) {
 	
-		return st.selectList("product.mlist",no);
+		return st.selectList("product.mlist",product);
 	}
 
-	public List<Product> olist(int no) {
+	public List<Product> olist(Product product) {
 		
-		return st.selectList("product.olist",no);
+		return st.selectList("product.olist",product);
 	}
 
 	public List<Product> prlist(Product product) {

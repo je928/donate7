@@ -11,10 +11,10 @@ public interface ProductDao {
 	Product selectOne(int pr_no);
 
 
-	List<Product> mlist(int no);
+	List<Product> mlist(Product product);
 
 
-	List<Product> olist(int no);
+	List<Product> olist(Product product);
 
 
 	List<Product> prlist(Product product);

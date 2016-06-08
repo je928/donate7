@@ -23,14 +23,14 @@ public class ProductServiceImpl implements ProductService {
 		return pd.selectOne(pr_no);
 	}
 
-	public List<Product> mlist(int no) {
+	public List<Product> mlist(Product product) {
 		
-		return pd.mlist(no);
+		return pd.mlist(product);
 	}
 
-	public List<Product> olist(int no) {
+	public List<Product> olist(Product product) {
 	
-		return pd.olist(no);
+		return pd.olist(product);
 	}
 
 	public List<Product> prlist(Product product) {
