@@ -21,14 +21,15 @@ public class Cpoint_InfoDaoImpl implements Cpoint_InfoDao{
 		ci.setCp_no(cp_no);
 		return st.insert("cpoint_info.insert",ci);
 	}
-	public int getTotal(int m_no) {
-		return st.selectOne("cpoint_info.getTotal",m_no);
+	public int getTotal(Cpoint_info ci) {
+		return st.selectOne("cpoint_info.getTotal",ci);
 	}
-	public List<Cpoint_info> list(int startRow, int endRow, int m_no) {
+	public List<Cpoint_info> list(int startRow, int endRow, int m_no,String sort) {
 		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
 		hashMap.put("startRow", startRow);
 		hashMap.put("endRow", endRow);
 		hashMap.put("m_no", m_no);
+		hashMap.put("sort", sort);
 		return st.selectList("cpoint_info.list",hashMap);
 	}
 	public int sumCash(int m_no) {

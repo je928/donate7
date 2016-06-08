@@ -9,9 +9,9 @@ public interface Cpoint_InfoService {
 
 	int insert(Cpoint_info ci);
 
-	int getTotal(int m_no);
+	int getTotal(Cpoint_info ci);
 
-	List<Cpoint_info> list(int startRow, int endRow, int m_no);
+	List<Cpoint_info> list(int startRow, int endRow, int m_no, String sort);
 
 	int sumCash(int m_no);
 }

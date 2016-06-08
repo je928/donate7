@@ -20,6 +20,14 @@
 	<select id="list" resultMap="Cpoint_infoResult">
 		select * from (select rownum rn,a.* from (select * from cpoint_info
 		order by cp_no desc) a) where rn between #{startRow} and #{endRow} and m_no=#{m_no}
+		<if test="cp_sort != 'all'">
+			<if test="cp_sort == 'c'">
+				and cp_sort='c'
+			</if>
+			<if test="cp_sort == 'p'">
+				and cp_sort='p'
+			</if>	
+		</if>
 	</select>
 	<select id="sumPoint" resultType="int" parameterType="int">
 		select nvl(sum(cp_point),0) from cpoint_info where m_no=#{m_no} and cp_sort='p'
@@ -27,7 +35,15 @@
 	<select id="sumCash" resultType="int" parameterType="int">
 		select nvl(sum(cp_point),0) from cpoint_info where m_no=#{m_no} and cp_sort='c'
 	</select>
-	<select id="getTotal" parameterType="int" resultType="int">
+	<select id="getTotal" parameterType="cpoint_info" resultType="int">
 		select count(*) from cpoint_info where m_no=#{m_no}
+		<if test="cp_sort != 'all'">
+			<if test="cp_sort == 'c'">
+				and cp_sort='c'
+			</if>
+			<if test="cp_sort == 'p'">
+				and cp_sort='p'
+			</if>	
+		</if>
 	</select>
 </mapper>

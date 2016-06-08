@@ -19,6 +19,9 @@
 <body>
 <div class="panel-body2">
 <table class="table table-striped table-bordered table-list">
+<a href="cpointList.do?sort=all" class="btn btn-sm btn-info">캐시/포인트</a>
+<a href="cpointList.do?sort=c" class="btn btn-sm btn-info">캐시</a>
+<a href="cpointList.do?sort=p" class="btn btn-sm btn-info">포인트</a>
 <div style="float: right"><a href="javascript:addCash()" class="btn btn-sm btn-primary">캐시 충전</a></div>
 		<caption>캐시/포인트 내역<div style="float: right">총 포인트 : ${sumP },총 캐시 : ${sumC }</div></caption>
 		<tr>

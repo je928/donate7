@@ -29,7 +29,7 @@ public class CPointController {
 		Cpoint_info ci = new Cpoint_info();
 		ci.setCp_point(cp_point);
 		ci.setCp_point_re("캐시 충전");
-		ci.setCp_sort('c');
+		ci.setCp_sort("c");
 		ci.setM_no(m_no);
 		int result = cs.insert(ci);
 		if(result>0){
@@ -38,26 +38,33 @@ public class CPointController {
 		return "member/m_mypage/m_addCash";
 	}
 	@RequestMapping("cpointList")
-	public String cpointList(HttpSession session,String pageNum,Model model){
+	public String cpointList(HttpSession session,String pageNum,String sort,Model model){		
 		int m_no = (Integer) session.getAttribute("no");		
 		final int rowPerPage = 10;
-		
+		if(sort == null || sort.equals("")){
+			sort = "all";
+		}
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = cs.getTotal(m_no);		
+		
+		Cpoint_info ci = new Cpoint_info();
+		ci.setM_no(m_no);
+		ci.setCp_sort(sort);
+		int total = cs.getTotal(ci);		
 		
 		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
 		
-		List<Cpoint_info> list = cs.list(startRow, endRow, m_no);
+		List<Cpoint_info> list = cs.list(startRow, endRow, m_no,sort);
 		int sumP = cs.sumPoint(m_no);
 		int sumC = cs.sumCash(m_no);
 		
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
+		model.addAttribute("sort", sort);
 		model.addAttribute("sumP", sumP);
 		model.addAttribute("sumC", sumC);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");

@@ -75,11 +75,11 @@
 					<th width="60">등록일</th>
 					<th width="60">승인여부</th>
 				</tr>
-				<c:set var="cnt" value="${count }" />
+				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${list }">
 					<c:if test="${second.no>0 }">
 						<tr>
-							<th>${cnt }</th>
+							<th>${num }</th>
 							<th><a href="adsecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 							<th>${second.email }</th>
 							<th>${second.sh_category }</th>
@@ -87,9 +87,37 @@
 							<th>${second.sh_approve }</th>
 						</tr>
 					</c:if>
-					<c:set var="cnt" value="${cnt-1 }" />
+					<c:set var="num" value="${num-1 }" />
 				</c:forEach>
 			</table>
+			<div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
 	<div class="col-md-12" id="asecondList" style="display: none">
@@ -104,12 +132,12 @@
 					<th width="60">등록일</th>
 					<th width="60">도착여부</th>
 				</tr>
-				<c:set var="cnt" value="${count }" />
+				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${list }">
 					<c:if test="${second.no>0 }">
 						<c:if test="${second.sh_approve eq 'Y' }">
 							<tr>
-							<th>${cnt }</th>
+							<th>${num }</th>
 							<th><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 							<th>${second.email }</th>
 							<th>${second.sh_category }</th>
@@ -118,9 +146,37 @@
 						</tr>
 						</c:if>
 					</c:if>
-					<c:set var="cnt" value="${cnt-1 }" />
+					<c:set var="num" value="${num-1 }" />
 				</c:forEach>
 			</table>
+			<div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
 	
@@ -138,11 +194,11 @@
 					<th width="60">등록일</th>
 					<th width="60">승인여부</th>
 				</tr>
-				<c:set var="cnt" value="${count }" />
+				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${list }">
 					<c:if test="${second.no<0 }">
 						<tr>
-							<th>${cnt }</th>
+							<th>${num }</th>
 							<th><a href="adsecondView.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 							<th>${second.email }</th>
 							<th>${second.sh_category }</th>
@@ -150,9 +206,37 @@
 							<th>${second.sh_approve }</th>
 						</tr>
 					</c:if>
-					<c:set var="cnt" value="${cnt-1 }" />
+					<c:set var="num" value="${num-1 }" />
 				</c:forEach>
 			</table>
+			<div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
 	<div class="col-md-12" id="aasecondList" style="display: none">
@@ -167,11 +251,11 @@
 					<th width="60">등록일</th>
 					<th width="60">도착여부</th>
 				</tr>
-				<c:set var="cnt" value="${count }" />
+				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${list }">
 					<c:if test="${second.no<0 }">
 						<tr>
-							<th>${cnt }</th>
+							<th>${num }</th>
 							<th><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
 							<th>${second.email }</th>
 							<th>${second.sh_category }</th>
@@ -179,9 +263,37 @@
 							<th>${second.sh_arrive }</th>
 						</tr>
 					</c:if>
-					<c:set var="cnt" value="${cnt-1 }" />
+					<c:set var="num" value="${num-1 }" />
 				</c:forEach>
 			</table>
+			<div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
 		</div>
 	</div>
 	
