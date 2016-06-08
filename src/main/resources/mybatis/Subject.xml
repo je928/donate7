@@ -11,5 +11,4 @@
 	<select id="selectSubject" resultMap="SubResult">
 		SELECT * FROM SUBJECT
 	</select>
-
 </mapper>

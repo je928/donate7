@@ -17,7 +17,7 @@
 img {
 	width: 100%;
 	max-width: 100%;
-	height: 25%;
+	height: 50%;
 }
 
 .white-panel {
@@ -25,6 +25,7 @@ img {
 	background: white;
 	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
 	padding: 10px;
+	height: 83%;
 }
 
 .white-panel h1 {

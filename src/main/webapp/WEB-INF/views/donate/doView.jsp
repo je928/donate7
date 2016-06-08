@@ -66,22 +66,25 @@
 							</table>
 						</div>
 					</div>
-					<div class="panel-body">${donate.d_content}</div>
-					<div class="panel-body text-center">
-						<h6>
+					<br>
+					<div class="panel-body" style="margin-left:70px;">${donate.d_content}</div>
+					<div class="panel-body text-center" style="text-align:left;margin-left:60px;">
+						<h5>
 							<strong>기부금 사용계획</strong>
-						</h6>
+						</h5>
+						<div style="margin-left:10px;">
 						*총 집행금액 &nbsp;
 						<fmt:formatNumber value="${donate.d_amount}" groupingUsed="true" />
-						원 <br> ${donate.d_plan } <br> <br>
+						원 <br> ${donate.d_plan } <br>
+						</div>
 					</div>
 					<div class="panel-footer text-center">
 						<button onclick="location.href='doList.do'"
 							class="btn btn-sm btn-primary">
-							목록으로<i class="glyphicon glyphicon-edit"></i>
+							목록으로<i class="glyphicon glyphicon-menu-hamburger"></i>
 						</button>
 						<button class="btn btn-sm btn-success">
-							기부하기<i class="glyphicon glyphicon-remove"></i>
+							기부하기<i class="glyphicon glyphicon-heart"></i>
 						</button>
 					</div>
 				</div>

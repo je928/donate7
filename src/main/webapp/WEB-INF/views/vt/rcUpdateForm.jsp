@@ -7,15 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
-	type="text/css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var sendData = 'class_no=' + $('#cls option:selected').val();
+	var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}';
 	$.post('dclassList.do', sendData, function(data) {
 		$('#res').html(data);
 	});
@@ -38,9 +32,9 @@ $(document).ready(function() {
 		$('#vsdate').attr('max',selDate);
 	});
 
-	$('#cls').change(function() {
-		var sendData = 'class_no=' + $('#cls option:selected').val();
-		$.post('dclassList.do', sendData, function(data) {
+	$('#vt_class').change(function() {
+		var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}';
+		$.post('dclassList.do', sendData, function(data) {0
 			$('#res').html(data);
 		});
 	});
@@ -110,28 +104,17 @@ function nameChek() {
 							<div style="float: left; width: 50%">
 								<b style="display: block;">활동분야:</b> <select
 									style="float: left; width: 50%" class="form-control-40"
-									name="cls" id="cls">
+									name="vt_class" id="vt_class">
 									<c:forEach var="cl" items="${list}">
-										<c:if test="${cl.class_name == rc.class_name}">
+										<c:if test="${cl.class_no == rc.vt_class}">
 											<option value="${cl.class_no }" selected="selected">${cl.class_name }</option>
 										</c:if>
-										<c:if test="${cl.class_name != rc.class_name}">
+										<c:if test="${cl.class_no != rc.vt_class}">
 											<option value="${cl.class_no }">${cl.class_name }</option>
 										</c:if>
-
 									</c:forEach>
-								</select><span id="res"> <select id="vt_class"
-									class="form-control-40">
-										<c:forEach var="dc" items="${dlist }">
-											<c:if test="${dc.dclass_no == rc.vt_class}">
-												<option value="${dc.dclass_no }" selected="selected">${dc.dclass_name }</option>
-											</c:if>
-											<c:if test="${dc.dclass_no != rc.vt_class }">
-												<option value="${dc.dclass_no }">${dc.dclass_name }</option>
-											</c:if>
-
-										</c:forEach>
 								</select>
+								<span id="res">
 								</span>
 							</div>
 							<div>

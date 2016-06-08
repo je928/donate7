@@ -53,14 +53,23 @@ public class SecondController {
 		return "module/main";
 	}
 	@RequestMapping(value = "msecondList", method = RequestMethod.GET)
-	public String msecondList(Model model, HttpSession session) {
+	public String msecondList(Second second, String pageNum, Model model, HttpSession session) {
 		int no = (Integer)session.getAttribute("no");
-		List<Second> list = ss.mlist(no);
-		Second second = new Second();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
 		second.setSh_mno(no);
-		int count = ss.count(no);
-		model.addAttribute("count", count);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.getTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> list = ss.mlist(second);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
 		return "module/main";
@@ -83,7 +92,7 @@ public class SecondController {
 			second.setSh_image(uploadName);
 			ss.insert(second);
 			model.addAttribute("msg", "파일이름 : "+fileName);
-			List<Second> list = ss.mlist(no);
+			List<Second> list = ss.mlist(second);
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
@@ -114,7 +123,7 @@ public class SecondController {
 		}
 		second.setSh_mno(no);
 		ss.msecondUpdate(second);
-		List<Second> list = ss.mlist(no);
+		List<Second> list = ss.mlist(second);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/msecond/msecondView.jsp");
@@ -135,14 +144,23 @@ public class SecondController {
 		return "module/main";
 	}
 	@RequestMapping(value = "osecondList", method = RequestMethod.GET)
-	public String osecondList(Model model, HttpSession session) {
+	public String osecondList(Second second, String pageNum, Model model, HttpSession session) {
 		int no = (Integer)session.getAttribute("no");
-		List<Second> list = ss.olist(no);
-		Second second = new Second();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
 		second.setSh_mno(no);
-		int count = ss.count(no);
-		model.addAttribute("count", count);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.getTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> list = ss.olist(second);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/osecond/osecondList.jsp");
 		return "module/main";
@@ -165,7 +183,7 @@ public class SecondController {
 			second.setSh_image(uploadName);
 			ss.insert(second);
 			model.addAttribute("msg", "파일이름 : "+fileName);
-			List<Second> list = ss.olist(no);
+			List<Second> list = ss.olist(second);
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
 			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
@@ -203,7 +221,7 @@ public class SecondController {
 		}
 		second.setSh_mno(no);
 		ss.msecondUpdate(second);
-		List<Second> list = ss.mlist(no);
+		List<Second> list = ss.mlist(second);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/osecond/osecondView.jsp");
@@ -233,48 +251,27 @@ public class SecondController {
 	}
 	
 	@RequestMapping(value = "adsecondList", method = RequestMethod.GET)
-	public String adsecondList(HttpSession session,Model model) {
-		int no = 0;
-		if(session.getAttribute("no") != null){
-			no = Integer.parseInt(session.getAttribute("no").toString());
+	public String adsecondList(Second second, String pageNum, HttpSession session,Model model) {
+		int no = (Integer)session.getAttribute("no");
+		if(pageNum== null || pageNum.equals("")){
+			pageNum="1";
 		}
-		List<Second> list = ss.adlist();
-		int total = ss.count(no);
-		model.addAttribute("total", total);
+		
+		second.setSh_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.getTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> list = ss.adlist(second);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondList.jsp");
 		return "module/main";
 	}
-/*	@RequestMapping("myRecruit")
-	public String myRecruit(String pageNum, Recruit rc, HttpSession session, Model model){
-		String num = pageNum;
-		Recruit rec = rc;
-		if(num == null){
-			num = "1";
-		}
-		if(rc == null){
-			rec = new Recruit();
-		}
-		int pnum = Integer.parseInt(num);
-		int o_no = 0;
-		if(session.getAttribute("no") != null){
-			o_no = Integer.parseInt(session.getAttribute("no").toString());
-			rec.setVt_o_no(o_no);
-			int total = vs.selectRcTotal(rec);
-			Paging paging = new Paging(10, 10, pnum, total);
-			rec.setStartrow(paging.getStartRow());
-			rec.setEndrow(paging.getEndRow());
-			List<Recruit> list = vs.selectRcList(rec);
-			model.addAttribute("tot", total);
-			model.addAttribute("paging", paging);
-			model.addAttribute("list", list);
-			model.addAttribute("rec", rec);
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
-			return "module/main";
-		}else{
-			return "redirect:login.do";
-		}*/
-	}
+
+}
 	

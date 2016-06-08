@@ -4,10 +4,17 @@
 <mapper namespace="rqn">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="RqnResult" type="rqn">
-		<result property="sub_no" column="VT_RQN_NO"/>
-		<result property="sub_name" column="VT_NO"/>
-		<result property="sub_name" column="VT_M_NO"/>
-		<result property="sub_name" column="VT_REG_DATE"/>
-		<result property="sub_name" column="VT_SEL_YN"/>
+		<result property="vt_rqn_no" column="VT_RQN_NO" />
+		<result property="vt_no" column="VT_NO" />
+		<result property="vt_m_no" column="VT_M_NO" />
+		<result property="vt_reg_date" column="VT_REG_DATE" />
+		<result property="vt_sel_yn" column="VT_SEL_YN" />
 	</resultMap>
+
+	<insert id="insertRqn" parameterType="rqn">
+		INSERT INTO VT_RQN
+		VALUES
+		(NEW_VT_RQN_NO,
+		#{vt_no},#{vt_m_no},SYSDATE,'N')
+	</insert>
 </mapper>

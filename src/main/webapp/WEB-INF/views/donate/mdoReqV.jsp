@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${donate.d_content}</td>
+				<td style="text-align: left;">${donate.d_content}</td>
 			</tr>
 			<tr>
 				<th>기부 기간</th>				
@@ -43,9 +43,12 @@
 			</tr>
 		</table>
 		<div align="center">
-				<button onclick="location.href='mdoList.do'">목록</button>			
-				<button onclick="location.href='mdoReqUp.do?d_no=${donate.d_no}'">수정</button>
-				<button onclick="location.href='mdoReqD.do?d_no=${donate.d_no}'">삭제</button>
+				<button class="btn btn-sm btn-primary" onclick="location.href='mdoList.do'">목록
+					<i class="glyphicon glyphicon-menu-hamburger"></i></button>			
+				<button class="btn btn-sm btn-primary" onclick="location.href='mdoReqUp.do?d_no=${donate.d_no}'">수정
+					<i class="fa fa-pencil"></i></button>
+				<button class="btn btn-sm btn-primary" onclick="location.href='mdoReqD.do?d_no=${donate.d_no}'">삭제
+					<i class="glyphicon glyphicon-remove"></i></button>
 		</div>
 </body>
 </html>

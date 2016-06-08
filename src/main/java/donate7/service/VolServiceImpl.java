@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import donate7.dao.VolDao;
 import donate7.model.Recruit;
+import donate7.model.Rqn;
 @Service
 public class VolServiceImpl implements VolService {
 	@Autowired
@@ -35,6 +36,16 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public int selectRcTotal(Recruit rc) {
 		return vd.selectRcTotal(rc);
+	}
+
+	@Override
+	public int insertRqn(Rqn rqn) {
+		return vd.insertRqn(rqn);
+	}
+
+	@Override
+	public List<Recruit> selectRqnList(Recruit rc) {
+		return vd.selectRqnList(rc);
 	}
 
 

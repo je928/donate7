@@ -48,9 +48,12 @@
 			</tr>
 		</table>
 		<div align="center">
-			<button onclick="location.href='adList.do'">보류</button>
-			<button onclick="location.href='adUpdate.do?d_no=${donate.d_no}'">승인</button>
-			<button onclick="location.href='adDelete.do?d_no=${donate.d_no}'">승인취소</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='adList.do'">목록
+				<i class="glyphicon glyphicon-menu-hamburger"></i></button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='adUpdate.do?d_no=${donate.d_no}'">승인
+				<i class="glyphicon glyphicon-ok"></i></button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='adDelete.do?d_no=${donate.d_no}'">승인취소
+				<i class="glyphicon glyphicon-remove"></i></button>
 		</div>
 
 </body>

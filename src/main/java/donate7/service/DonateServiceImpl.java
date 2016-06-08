@@ -27,8 +27,8 @@ public class DonateServiceImpl implements DonateService {
 	public void mdoDelete(int d_no) {
 		dd.mdoDelete(d_no);
 	}
-	public List<Donate> olist(int no) {
-		return dd.olist(no);
+	public List<Donate> olist(Donate donate) {
+		return dd.olist(donate);
 	}
 	public int odoReqInsert(Donate donate) {
 		return dd.odoReqInsert(donate);
@@ -53,6 +53,9 @@ public class DonateServiceImpl implements DonateService {
 	}
 	public List<Donate> doList() {
 		return dd.doList();
+	}
+	public int getTotal(Donate donate) {
+		return dd.getTotal(donate);
 	}
 
 }

@@ -2,6 +2,7 @@ package donate7.controller;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.w3c.dom.NodeList;
 import donate7.model.Dclass;
 import donate7.model.Organ;
 import donate7.model.Recruit;
+import donate7.model.Rqn;
 import donate7.model.SidoGugun;
 import donate7.model.Subject;
 import donate7.service.CommService;
@@ -69,37 +71,38 @@ public class VolController {
 	}
 	
 	@RequestMapping("myRecruit")
-	public String myRecruit(String pageNum, Recruit rc, HttpSession session, Model model){
+	public String myRecruit(Model model){
+			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
+			return "module/main";
+	}
+	
+	@RequestMapping("myRecruitList")
+	public String myRecruitList(String pageNum,Recruit rc, HttpSession session, Model model){
 		String num = pageNum;
-		Recruit rec = rc;
 		if(num == null){
 			num = "1";
-		}
-		if(rc == null){
-			rec = new Recruit();
 		}
 		int pnum = Integer.parseInt(num);
 		int o_no = 0;
 		if(session.getAttribute("no") != null){
 			o_no = Integer.parseInt(session.getAttribute("no").toString());
-			rec.setVt_o_no(o_no);
-			int total = vs.selectRcTotal(rec);
+			rc.setVt_o_no(o_no);
+			int total = vs.selectRcTotal(rc);
 			Paging paging = new Paging(pnum, total);
-			rec.setStartrow(paging.getStartRow());
-			rec.setEndrow(paging.getEndRow());
-			List<Recruit> list = vs.selectRcList(rec);
+			rc.setStartrow(paging.getStartRow());
+			rc.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRcList(rc);
 			model.addAttribute("tot", total);
 			model.addAttribute("paging", paging);
 			model.addAttribute("list", list);
-			model.addAttribute("rec", rec);
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-			model.addAttribute("mypgm", "../../vt/myRecruit.jsp");
-			return "module/main";
+			model.addAttribute("rec", rc);
+			return "vt/myRecruitList";
 		}else{
 			return "redirect:login.do";
 		}
 	}
-	
+
 	@RequestMapping("rcView")
 	public String rcView(int pageNum, int vt_no,HttpSession session,Model model){
 		int o_no = 0;
@@ -115,11 +118,11 @@ public class VolController {
 		model.addAttribute("mypgm", "../../vt/rcView.jsp");
 		return "module/main";
 	}
-	
+
 	@RequestMapping(value="rcUpdate", method=RequestMethod.GET)
 	public String rcUpdateForm(int pageNum,int vt_no, Model model){
 		Recruit rc = vs.selectRcByVt_no(vt_no);
-		List<Class> list = cs.selectClass(); 
+		List<Class> list = cs.selectClass();
 		List<Subject> slist = cs.selectSubject();
 		model.addAttribute("list", list);
 		model.addAttribute("slist", slist);
@@ -142,32 +145,33 @@ public class VolController {
 	}
 	
 	@RequestMapping("volSearch")
-	public String volSearch(String pageNum, Recruit rc, Model model){
-		String num = pageNum;
-		Recruit rec = rc;
-		if(num == null){
-			num = "1";
-		}
-		if(rc == null){
-			rec = new Recruit();
-		}
-		int pnum = Integer.parseInt(num);
-		int total = vs.selectRcTotal(rec);
-		Paging paging = new Paging( pnum, total);
-		rec.setStartrow(paging.getStartRow());
-		rec.setEndrow(paging.getEndRow());
-		List<Recruit> result = vs.selectRcList(rec);
+	public String volSearch(Model model){
 		List<SidoGugun> addr = cs.selectSido();
 		List<Class> list = cs.selectClass();
 		List<Subject> slist = cs.selectSubject();
-		model.addAttribute("paging", paging);
-		model.addAttribute("result", result);
 		model.addAttribute("list", list);
 		model.addAttribute("slist", slist);
 		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../vt/volSearch.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping("volSearchList")
+	public String volSearchList(String pageNum, Recruit rc, Model model){
+		String num = pageNum;
+		if(num == null){
+			num = "1";
+		}
+		int pnum = Integer.parseInt(num);
+		int total = vs.selectRcTotal(rc);
+		Paging paging = new Paging(pnum, total);
+		rc.setStartrow(paging.getStartRow());
+		rc.setEndrow(paging.getEndRow());
+		List<Recruit> result = vs.selectRcList(rc);
+		model.addAttribute("paging", paging);
+		model.addAttribute("result", result);
+		return "vt/volSearchList";
 	}
 	
 /*
@@ -235,9 +239,10 @@ public class VolController {
 	}*/
 	
 	@RequestMapping(value = "dclassList", method = RequestMethod.POST)
-	public String dclassList(int class_no, Model model) {
+	public String dclassList(int class_no,int dclass_no, Model model) {
 		List<Dclass> list = cs.selectDclassByClass_no(class_no);
 		model.addAttribute("list", list);
+		model.addAttribute("dclass_no", dclass_no);
 		return "vt/dclassList";
 	}
 
@@ -324,5 +329,42 @@ public class VolController {
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../calendar/View.jsp");
 		return "module/main";
+	}
+	@RequestMapping("rqn")
+	public String rqn(Rqn rqn, Model model) {
+		int result = vs.insertRqn(rqn);
+		if(result > 0){
+			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+		}else{
+			model.addAttribute("rqn", rqn);
+			return "redirect:recruit.do";
+		}		
+	}
+	@RequestMapping("rqnList")
+	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
+		String num = pageNum;
+		if(num == null){
+			num = "1";
+		}
+		int pnum = Integer.parseInt(num);
+		int m_no = 0;
+		if(session.getAttribute("no") != null){
+			m_no = Integer.parseInt(session.getAttribute("no").toString());
+			rc.setVt_m_no(m_no);
+			int total = vs.selectRcTotal(rc);
+			Paging paging = new Paging(pnum, total);
+			rc.setStartrow(paging.getStartRow());
+			rc.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRqnList(rc);
+			model.addAttribute("tot", total);
+			model.addAttribute("paging", paging);
+			model.addAttribute("list", list);
+			model.addAttribute("rec", rc);
+			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+			model.addAttribute("mypgm", "../../calendar/rqnList.jsp");
+			return "module/main";
+		}else{
+			return "redirect:login.do";
+		}
 	}
 }

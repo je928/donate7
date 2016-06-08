@@ -31,8 +31,8 @@ public class DonateDaoImpl implements DonateDao {
 		session.selectOne("donate.mdoDelete", d_no);
 		
 	}
-	public List<Donate> olist(int no) {
-		return session.selectList("donate.odoList",no);
+	public List<Donate> olist(Donate donate) {
+		return session.selectList("donate.odoList",donate);
 	}
 	public int odoReqInsert(Donate donate) {
 		int d_no = session.selectOne("donate.selectNum");
@@ -59,5 +59,8 @@ public class DonateDaoImpl implements DonateDao {
 	}
 	public List<Donate> doList() {
 		return session.selectList("donate.doList");
+	}
+	public int getTotal(Donate donate) {
+		return session.selectOne("donate.getTotal",donate);
 	}
 }
