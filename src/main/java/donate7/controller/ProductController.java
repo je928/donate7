@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Product;
 import donate7.service.ProductService;
+import donate7.util.Paging;
 
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductService ps;
+
 	
 	@RequestMapping("apUpdate")
 	public String apUpdate(int pr_no, Model model){
@@ -28,7 +30,7 @@ public class ProductController {
 		ps.apCancel(pr_no);
 		return "redirect:ad_prView.do?pr_no="+pr_no;
 	}
-	
+	 
 	@RequestMapping(value="goods", method=RequestMethod.GET)
 	public String goods(Model model){
 		List<Product> list = ps.aplist();

@@ -14,15 +14,18 @@ public interface MemberService {
 	int m_nickChk(String m_nick, Member member);
 	int o_emailChk(String o_email);
 	int o_onameChk(String o_oname, Organ organ);
-	List<Organ> selectAll();
 	List<Member> memberAll();
+	List<Organ> selectAll();
 	Member selectMember(int m_no);
 	Member selectMember_tel(int m_no);
 	int updateMember(Member member);
+	Member m_deletePwdChk(int m_no);
+	int deleteMember(int m_no);
 	Organ selectOrgan(int o_no);
 	Organ selectOrgan_addr_tel(int o_no);
 	int updateOrgan(Organ organ);
-	
+	Organ o_deletePwdChk(int o_no);
+	int deleteOrgan(int o_no);
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
 	

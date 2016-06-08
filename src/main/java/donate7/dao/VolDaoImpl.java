@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import donate7.model.Recruit;
+import donate7.model.Rqn;
 
 @Repository
 public class VolDaoImpl implements VolDao{
@@ -73,6 +74,13 @@ public class VolDaoImpl implements VolDao{
 		System.out.println(rc);
 		int result = session.selectOne("recruit.selectRcTotal",rc);
 		System.out.println("result : " + result);
+		return result;
+	}
+
+
+	@Override
+	public int insertRqn(Rqn rqn) {
+		int result = session.insert("rqn.insertRqn",rqn);
 		return result;
 	}
 

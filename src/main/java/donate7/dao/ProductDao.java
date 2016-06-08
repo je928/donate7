@@ -11,13 +11,13 @@ public interface ProductDao {
 	Product selectOne(int pr_no);
 
 
-	List<Product> mlist(int no);
+	List<Product> mlist(Product product);
 
 
-	List<Product> olist(int no);
+	List<Product> olist(Product product);
 
 
-	List<Product> prlist();
+	List<Product> prlist(Product product);
 
 	int prUpdate(Product product);
 
@@ -30,6 +30,8 @@ public interface ProductDao {
 	void apCancel(int pr_no);
 
 	List<Product> aplist();
+
+	int getTotal(Product product);
 
 
 

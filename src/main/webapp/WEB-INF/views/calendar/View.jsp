@@ -35,16 +35,16 @@
 						<b>봉사명:</b> ${rc.vt_name }
 					</div>
 					<div class="form-group">
-						<b>봉사지역 : </b>${ addr}
+						<b>봉사지역 : </b>${addr}
 					</div>
 					<div class="form-group">
 						<b>봉사 기관 : </b>${rc.o_oname}
 					</div>
 					<div class="form-group">
 						<b style="display: inline;">봉사 모집 기간 :</b> ${rc.vt_r_start_date} ~
-						${rc.vt_r_end_date}
-						<b style="display: inline; margin-left: 16.25%">봉사 활동 기간 :</b> ${rc.vt_a_start_date }
-						~ ${rc.vt_a_end_date }
+						${rc.vt_r_end_date} <b
+							style="display: inline; margin-left: 16.25%">봉사 활동 기간 :</b>
+						${rc.vt_a_start_date } ~ ${rc.vt_a_end_date }
 					</div>
 					<div class="form-group">
 						<div style="float: left; width: 50%">
@@ -64,11 +64,11 @@
 					</div>
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
-						<input type="button" class="btn btn-primary btn-md" value="참여"
-							onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}&pageNum=${pageNum}'">
-						<input type="button" class="btn btn-primary btn-md" value="뒤로"
-							onclick="location.href='timeList.do?pageNum=${pageNum}'">
-					</div>
+					<input type="button" class="btn btn-primary btn-md" value="참여"
+						onclick="location.href='rqn.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
+					<input type="button" class="btn btn-primary btn-md" value="뒤로"
+						onclick="location.href='timeList.do?pageNum=${pageNum}'">
+				</div>
 			</div>
 		</div>
 	</div>

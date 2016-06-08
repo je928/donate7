@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="warning">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="WarningResult"		type="warning">
+		<result property="wa_no" 	column="wa_no" />
+		<result property="m_no" 	column="m_no" />
+		<result property="re_no" 	column="re_no" />
+		<result property="wa_sort" 	column="wa_sort" />
+		<result property="wa_cnt" column="wa_cnt" />
+		<result property="wa_re" column="wa_re" />
+		<result property="wa_date" column="wa_date" />
+	</resultMap>
+	<select id="selectNum" resultType="int">
+		select nvl(max(wa_no),0)+1 from warning
+	</select>
+	<insert id="insert" parameterType="warning">
+		insert into warning values(#{wa_no},#{m_no},#{re_no},#{wa_sort},#{wa_cnt},#{wa_re},sysdate)		
+	</insert>	
+</mapper>

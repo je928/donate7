@@ -21,6 +21,7 @@ import org.w3c.dom.NodeList;
 import donate7.model.Dclass;
 import donate7.model.Organ;
 import donate7.model.Recruit;
+import donate7.model.Rqn;
 import donate7.model.SidoGugun;
 import donate7.model.Subject;
 import donate7.service.CommService;
@@ -316,14 +317,27 @@ public class VolController {
 			model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 			model.addAttribute("mypgm", "../../calendar/timeList.jsp");
 			return "module/main";
-		}
+	}
+
 	@RequestMapping("View")
-	public String View(int pageNum, int vt_no,HttpSession session,Model model){
+	public String View(int pageNum, int vt_no, HttpSession session, Model model) {
 		Recruit rc = vs.selectRcByVt_no(vt_no);
+		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("rc", rc);
+		model.addAttribute("addr", addr);
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../calendar/View.jsp");
 		return "module/main";
 	}
+	@RequestMapping("rqn")
+	public String rqn(Rqn rqn, Model model) {
+		int result = vs.insertRqn(rqn);
+		if(result > 0){
+			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+		}else{
+			model.addAttribute("rqn", rqn);
+			return "redirect:recruit.do";
+		}		
 	}
+}

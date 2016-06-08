@@ -64,10 +64,28 @@ public class m_mypageController {
 	}
 	
 	@RequestMapping(value = "m_deleteForm", method = RequestMethod.GET)
-	public String m_deleteForm(Model model) {
+	public String m_deleteForm(Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		Member member = ms.m_deletePwdChk(m_no);
+		String dbPass = member.getM_passwd();
+		model.addAttribute("dbPass", dbPass);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_deleteForm.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping(value="m_delete")
+	public String m_delete(Member member, Model model, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		int result = ms.deleteMember(m_no);
+		if(result > 0) {
+			session.invalidate();
+			return "redirect:main.do";
+		}else {
+			model.addAttribute("msg", "탈퇴 실패");
+			model.addAttribute("member", member);
+			return "forward:m_deleteForm.do";
+		}
 	}
 	
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)

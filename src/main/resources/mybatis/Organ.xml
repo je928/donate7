@@ -64,16 +64,24 @@
 	</select>
 	
 	<update id="updateOrgan" parameterType="organ">
-		update organ set o_passwd=#{o_passwd}, o_license=#{o_license}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, o_category=#{o_category}, o_del_yn='n' where o_no=#{o_no}
+		update organ set o_passwd=#{o_passwd}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, o_category=#{o_category}, o_del_yn='n' where o_no=#{o_no}
 	</update>
 	
-	<select id="passwdChk" parameterType="hashMap" resultType="String">
-		select o_passwd from organ where o_no=#{o_no} and o_passwd=#{o_passwd}
+	<select id="selectOk" parameterType="String" resultType="String">
+		select o_ok_xyn from organ where o_no=#{o_no}
+	</select>
+	
+	<update id="XupdateOrgan" parameterType="organ">
+		update organ set o_passwd=#{o_passwd}, o_license=#{o_license}, o_oname=#{o_oname}, o_name=#{o_name}, o_tel=#{o_tel}, o_addr=#{o_addr}, o_category=#{o_category}, o_del_yn='n', o_ok_xyn='x' where o_no=#{o_no}
+	</update>
+	
+	<select id="deletePwdChk" parameterType="Integer" resultType="String">
+		select o_passwd from organ where o_no = #{o_no}
 	</select>
 	
 	<update id="deleteOrgan" parameterType="Integer">
-		update organ set o_del_yn='y', o_out_date=sysdate where o_no=#{o_no} and o_del_yn='n'
-	</update>	
+		update organ set o_del_yn='y', o_out_date=sysdate, o_ok_xyn='x' where o_no=#{o_no} and o_del_yn='n'
+	</update>
 
 	<select id="selectO_addrByO_no" resultType="String" parameterType="int">
 		SELECT SUBSTR(O_ADDR,10) o_addr FROM ORGAN WHERE O_NO = #{o_no}

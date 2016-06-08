@@ -12,7 +12,7 @@ create table register (
 	reporter_no number not null,
 	reported_no number not null,
 	re_content varchar2(150) not null,
-	re_chk char(1) check (re_chk in ('y','n')),
+	re_chk char(1) check (re_chk in ('y','n','c')),
 	re_date date not null,
 	re_sort char(1) check (re_sort in ('c','w')),
 	re_sort_no number not null

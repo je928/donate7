@@ -19,6 +19,8 @@
 		<typeAlias alias="recruit" type="donate7.model.Recruit" />
 		<typeAlias alias="subject" type="donate7.model.Subject" />
 		<typeAlias alias="register" type="donate7.model.Register" />
+		<typeAlias alias="warning" type="donate7.model.Warning" />
+		<typeAlias alias="rqn" type="donate7.model.Rqn" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -36,5 +38,7 @@
 		<mapper resource="mybatis/Dclass.xml" />
 		<mapper resource="mybatis/Subject.xml" />
 		<mapper resource="mybatis/Register.xml" />
+		<mapper resource="mybatis/Warning.xml" />
+		<mapper resource="mybatis/Rqn.xml" />
 	</mappers>
 </configuration>

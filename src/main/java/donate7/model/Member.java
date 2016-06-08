@@ -13,7 +13,6 @@ public class Member {
 	private String m_gender;
 	private String m_tel;
 	private String m_job;
-	private int m_warning;
 	private Date m_reg_date;
 	private Date m_out_date;
 	private String m_del_yn;
@@ -93,14 +92,6 @@ public class Member {
 
 	public void setM_job(String m_job) {
 		this.m_job = m_job;
-	}
-
-	public int getM_warning() {
-		return m_warning;
-	}
-
-	public void setM_warning(int m_warning) {
-		this.m_warning = m_warning;
 	}
 
 	public Date getM_reg_date() {

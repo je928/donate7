@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import donate7.model.Member;
 import donate7.model.Organ;
 
@@ -172,6 +173,27 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return result;
 	}
+	
+	public Member m_deletePwdChk(int m_no) {
+		Member member = new Member();
+		try {
+			String passwd = session.selectOne("member.deletePwdChk", m_no);
+			member.setM_passwd(passwd);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return member;
+	}
+
+	public int deleteMember(int m_no) {
+		int result = 0;
+		try {
+			result = session.update("member.deleteMember", m_no);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 
 	public Organ selectOrgan(int o_no) {
 		return session.selectOne("organ.selectOrgan", o_no);
@@ -184,7 +206,33 @@ public class MemberDaoImpl implements MemberDao {
 	public int updateOrgan(Organ organ) {
 		int result = 0;
 		try {
-			result = session.update("organ.updateOrgan", organ);
+			String ok = session.selectOne("organ.selectOk", organ);
+			if(ok.equals("y")) {
+				result = session.update("organ.updateOrgan", organ);
+			}else if(ok.equals("n") || ok.equals("x")) {
+				result = session.update("organ.XupdateOrgan", organ);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public Organ o_deletePwdChk(int o_no) {
+		Organ organ = new Organ();
+		try {
+			String passwd = session.selectOne("organ.deletePwdChk", o_no);
+			organ.setO_passwd(passwd);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return organ;
+	}
+
+	public int deleteOrgan(int o_no) {
+		int result = 0;
+		try {
+			result = session.update("organ.deleteOrgan", o_no);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

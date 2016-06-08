@@ -11,7 +11,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-lg-9 toppad">
+			<div class="col-lg-9 toppad" style="margin-left: 12px;">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title"><b>${member.m_nick}</b>님의 상세정보</h3>
@@ -57,7 +57,19 @@
 											<td><b>${member.m_reg_date}</b></td>
 										</tr>
 										<tr>
-											<td>경고횟수</td>
+											<td><b class="orange">경고(봉사)</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="orange">경고(게시판)</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="blue">보유 캐시</b></td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<td><b class="blue">보유 포인트</b></td>
 											<td><b>0</b></td>
 										</tr>
 									</tbody>

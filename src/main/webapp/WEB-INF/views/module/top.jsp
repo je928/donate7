@@ -43,7 +43,7 @@
 							<li><a href="centerList.do">수요처 조회</a></li>
 						</ul></li>
 					<li><a href="community.do">커뮤니티</a></li>
-					<li><a href="giftList.do">기프티샵</a></li>
+					<li><a href="giftList.do">기프트샵</a></li>
 				</ul>
 				<c:set var="no" value="${sessionScope.no }"></c:set>
 				<c:if test="${empty no}">

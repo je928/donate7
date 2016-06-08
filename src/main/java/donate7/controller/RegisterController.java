@@ -1,5 +1,6 @@
 package donate7.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import donate7.model.Community;
 import donate7.model.Member;
 import donate7.model.Register;
+import donate7.model.Warning;
 import donate7.service.CommunityService;
 import donate7.service.MemberService;
 import donate7.service.RegisterService;
+import donate7.service.WarningService;
 
 @Controller
 public class RegisterController {
@@ -23,9 +26,11 @@ public class RegisterController {
 	private MemberService ms;
 	@Autowired
 	private RegisterService rs;
+	@Autowired
+	private WarningService ws;
 	@RequestMapping(value="registerPop",method=RequestMethod.GET)
 	public String registerPop(int brd_no,String chk,Model model){
-		if(chk.equals("c")){
+		if(chk.equals("w")){
 			Community comm = cs.communitySelect(brd_no);
 			Member member = ms.selectMember(comm.getNo());
 			String nick = member.getM_nick();
@@ -53,9 +58,38 @@ public class RegisterController {
 		String reported = member.getM_nick();
 		member = ms.selectMember(reg.getReporter_no());
 		String reporter = member.getM_nick();
+		
+		if(reg.getRe_sort().equals("w")){
+			Community comm = cs.communitySelect(reg.getRe_sort_no());		
+			model.addAttribute("content", comm.getBrd_content());
+		}		
 		model.addAttribute("reg", reg);
 		model.addAttribute("reported", reported);
 		model.addAttribute("reporter", reporter);
+		return "register/reg_pro";
+	}
+	@RequestMapping(value="reg_update",method=RequestMethod.GET)
+	public String reg_update(int re_no,String re_chk,Model model){
+		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+		Register reg = rs.selectOne(re_no);
+		hashMap.put("re_no",re_no);
+		hashMap.put("re_chk",re_chk);
+		int result = rs.updateChk(hashMap);
+		if(result>0){			
+			model.addAttribute("msg", "msg");
+			if(reg.getRe_sort().equals("w")){
+				cs.updateWarn(reg.getRe_sort_no());
+			}
+			if(re_chk.equals("y")){
+				Warning warning = new Warning();
+				warning.setM_no(reg.getReported_no());
+				warning.setRe_no(re_no);
+				warning.setWa_sort("b");
+				warning.setWa_cnt(1);
+				warning.setWa_re("게시판 신고");
+				ws.insert(warning);
+			}
+		}
 		return "register/reg_pro";
 	}
 	@RequestMapping(value="registerPop",method=RequestMethod.POST)

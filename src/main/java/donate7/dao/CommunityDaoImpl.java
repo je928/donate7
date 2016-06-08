@@ -90,5 +90,9 @@ public class CommunityDaoImpl implements CommunityDao {
 		}
 		return result;
 	}
+
+	public void updateWarn(int re_sort_no) {
+		session.update("community.updateWarn",re_sort_no);		
+	}
 	
 }
