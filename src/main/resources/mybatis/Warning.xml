@@ -17,5 +17,12 @@
 	</select>
 	<insert id="insert" parameterType="warning">
 		insert into warning values(#{wa_no},#{m_no},#{re_no},#{wa_sort},#{wa_cnt},#{wa_re},sysdate)		
-	</insert>	
+	</insert>
+	<select id="list" parameterType="HashMap" resultMap="WarningResult">
+		select * from (select rownum rn,a.* from (select * from warning
+		order by wa_no desc) a) where rn between #{startRow} and #{endRow} and m_no=#{m_no}
+	</select>
+	<select id="getTotal" parameterType="int" resultType="int">
+		select count(*) from warning where m_no=#{m_no}
+	</select>	
 </mapper>

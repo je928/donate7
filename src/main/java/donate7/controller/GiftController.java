@@ -52,10 +52,9 @@ public class GiftController {
 	}
 	@RequestMapping(value="giftUpload", method=RequestMethod.POST)
 	public String upload(@RequestParam("img") MultipartFile mf,
-			HttpServletRequest request,Model model,Gift gift) throws IllegalStateException, IOException{
-		String fileName = mf.getOriginalFilename();
+			HttpSession session,Model model,Gift gift) throws IllegalStateException, IOException{
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-		mf.transferTo(new File(request.getRealPath("/")+uploadName));
+		mf.transferTo(new File(session.getServletContext().getRealPath("/")+uploadName));
 		gift.setG_img(uploadName);
 		gs.insert(gift);
 		List<Gift> list = gs.list();
@@ -76,10 +75,10 @@ public class GiftController {
 		}else{	
 			Cpoint_info ci = new Cpoint_info();
 			ci.setM_no(m_no);
-			ci.setCp_sort('p');
+			ci.setCp_sort("p");
 			ci.setCp_point(-gift.getG_price());
 			ci.setCp_point_re("기프티콘 구매");
-			int result = cs.buyGift(ci);
+			int result = cs.insert(ci);
 			if(result>0){
 				Gift_Buy gb = new Gift_Buy();
 				gb.setG_no(g_no);

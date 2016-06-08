@@ -25,3 +25,6 @@ drop table warning;
 drop table register;
 
 delete from register;
+
+
+insert into warning values(11,2,6,'b',1,'게시판 신고',sysdate);

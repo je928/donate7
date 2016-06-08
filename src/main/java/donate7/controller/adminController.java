@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Member;
 import donate7.model.Organ;
+import donate7.service.CommunityPagingBean;
 import donate7.service.MemberService;
 
 @Controller
@@ -26,16 +27,54 @@ public class adminController {
 	}
 	
 	@RequestMapping(value = "a_memberAll")
-	public String a_memberAll(Model model) {
-		List<Member> memberAll = ms.memberAll();
+	public String a_memberAll(Member member, String pageNum, Model model) {
+		final int rowPerPage = 10;
+		
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = ms.memberTotal();
+		
+		member.setStartRow(startRow);
+		member.setEndRow(endRow);
+		
+		CommunityPagingBean m_pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Member> memberAll = ms.memberAll(startRow, endRow, member);
+		
 		model.addAttribute("memberAll", memberAll);
+		model.addAttribute("m_pb", m_pb);
+		
 		return "/member/admin_page/a_memberAll";
 	}
 	
 	@RequestMapping(value = "a_organAll")
-	public String a_organAll(Model model) {
-		List<Organ> organAll = ms.selectAll();
-		model.addAttribute("organAll", organAll);		
+	public String a_organAll(Organ organ, String pageNum, Model model) {
+		final int rowPerPage = 10;
+		
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = ms.memberTotal();
+		
+		organ.setStartRow(startRow);
+		organ.setEndRow(endRow);
+		
+		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Organ> organAll = ms.organAll(startRow, endRow, organ);
+		
+		model.addAttribute("organAll", organAll);
+		model.addAttribute("o_pb", o_pb);
+		
 		return "/member/admin_page/a_organAll";
 	}
 	

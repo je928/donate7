@@ -28,6 +28,7 @@
 		<result property="gugun_no" column="GUGUN_NO"/>
 		<result property="sido_name" column="SIDO_NAME"/>
 		<result property="gugun_name" column="GUGUN_NAME"/>
+		<result property="vt_m_no" column="VT_M_NO"/>
 	</resultMap>
 
 	<select id="selectRcList" resultMap="RecruitResult"
@@ -141,5 +142,8 @@
 		VT_SUBJECT = #{vt_subject}, VT_DESC = #{vt_desc} WHERE VT_NO =
 		#{vt_no}
 	</update>
-
+	<select id="selectRqnList" resultMap="RecruitResult"
+	parameterType="recruit">
+	select * from (select rownum rn, a.* from (select c.* from vt_rqn b, vt_recruit c where b.vt_no = c.vt_no and b.vt_m_no = #{vt_m_no}) a) where rn between #{startrow} and #{endrow}
+</select>
 </mapper>

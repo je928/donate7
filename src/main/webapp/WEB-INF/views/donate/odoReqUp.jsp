@@ -17,6 +17,21 @@
       }
      
    }
+	window.onload = function() {
+		CKEDITOR.replace('d_content');
+		CKEDITOR.config.height = '500px';
+	}
+
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.d_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
+
 </script>
 </head>
 <body>
@@ -61,7 +76,8 @@
 			</tr>
 		</table>
 			<div align="center">
-				<input type="submit" class="btn btn-primary btn-md" value="수정완료">
+				<button type="submit" class="btn btn-sm btn-primary">수정완료
+					<i class="glyphicon glyphicon-saved"></i></button>
 			</div>
 	</form>
 </body>

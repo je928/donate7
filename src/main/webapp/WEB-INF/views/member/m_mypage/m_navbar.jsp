@@ -17,7 +17,7 @@
 		<a href="m_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
 		<a href="msecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="ownGift.do" class="list-group-item">보유 기프티콘</a>
-		<a href="Rqn.do" class="list-group-item">내 봉사 요청/내역</a>
+		<a href="rqnList.do" class="list-group-item">내 봉사 요청/내역</a>
 		<a href="cpointList.do" class="list-group-item">캐시/포인트 내역</a>
 		<a href="warningList.do" class="list-group-item">경고 내역</a>
 		<a href="m_deleteForm.do" class="list-group-item">회원탈퇴</a>

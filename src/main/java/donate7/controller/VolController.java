@@ -341,10 +341,31 @@ public class VolController {
 			return "redirect:recruit.do";
 		}		
 	}
-/*	@RequestMapping("rqnMList")
-	public String rqnMList(int pageNum, int vt_no, Model model){
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("", );
-	}*/
-	
+	@RequestMapping("rqnList")
+	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
+		String num = pageNum;
+		if(num == null){
+			num = "1";
+		}
+		int pnum = Integer.parseInt(num);
+		int m_no = 0;
+		if(session.getAttribute("no") != null){
+			m_no = Integer.parseInt(session.getAttribute("no").toString());
+			rc.setVt_m_no(m_no);
+			int total = vs.selectRcTotal(rc);
+			Paging paging = new Paging(pnum, total);
+			rc.setStartrow(paging.getStartRow());
+			rc.setEndrow(paging.getEndRow());
+			List<Recruit> list = vs.selectRqnList(rc);
+			model.addAttribute("tot", total);
+			model.addAttribute("paging", paging);
+			model.addAttribute("list", list);
+			model.addAttribute("rec", rc);
+			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+			model.addAttribute("mypgm", "../../calendar/rqnList.jsp");
+			return "module/main";
+		}else{
+			return "redirect:login.do";
+		}
+	}
 }

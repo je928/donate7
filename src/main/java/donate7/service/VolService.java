@@ -19,4 +19,5 @@ public interface VolService {
 	List<Recruit> selectRcList(Recruit rc);
 	int selectRcTotal(Recruit rc);
 	int insertRqn(Rqn rqn);
+	List<Recruit> selectRqnList(Recruit rc);
 }

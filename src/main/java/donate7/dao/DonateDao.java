@@ -17,7 +17,7 @@ public interface DonateDao {
 
 	void mdoDelete(int d_no);
 
-	List<Donate> olist(int no);
+	List<Donate> olist(Donate donate);
 
 	int odoReqInsert(Donate donate);
 
@@ -34,5 +34,7 @@ public interface DonateDao {
 	int adDelete(int d_no);
 
 	List<Donate> doList();
+
+	int getTotal(Donate donate);
 
 }

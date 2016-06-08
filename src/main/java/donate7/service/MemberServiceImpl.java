@@ -43,14 +43,6 @@ public class MemberServiceImpl implements MemberService {
 		return md.o_onameChk(o_oname, organ);
 	}
 	
-	public List<Member> memberAll() {
-		return md.memberAll();
-	}
-	
-	public List<Organ> selectAll() {
-		return md.selectAll();
-	}
-	
 	public Member selectMember(int m_no) {
 		return md.selectMember(m_no);
 	}
@@ -71,6 +63,10 @@ public class MemberServiceImpl implements MemberService {
 		return md.deleteMember(m_no);
 	}
 	
+	public List<Organ> selectAll() {
+		return md.selectAll();
+	}
+	
 	public Organ selectOrgan(int o_no) {
 		return md.selectOrgan(o_no);
 	}
@@ -89,6 +85,22 @@ public class MemberServiceImpl implements MemberService {
 
 	public int deleteOrgan(int o_no) {
 		return md.deleteOrgan(o_no);
+	}
+	
+	public int memberTotal() {
+		return md.memberTotal();
+	}
+
+	public List<Member> memberAll(int startRow, int endRow, Member member) {
+		return md.memberAll(startRow, endRow, member);
+	}
+	
+	public int organTotal() {
+		return md.organTotal();
+	}
+
+	public List<Organ> organAll(int startRow, int endRow, Organ organ) {
+		return md.organAll(startRow, endRow, organ);
 	}
 	
 	public String selectO_addrByO_no(int o_no) {

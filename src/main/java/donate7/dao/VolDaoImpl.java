@@ -84,4 +84,11 @@ public class VolDaoImpl implements VolDao{
 		return result;
 	}
 
+
+	@Override
+	public List<Recruit> selectRqnList(Recruit rc) {
+		List<Recruit> list = session.selectList("recruit.selectRqnList", rc);
+		return list;
+	}
+
 }

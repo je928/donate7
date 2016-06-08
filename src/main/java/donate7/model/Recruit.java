@@ -30,7 +30,16 @@ public class Recruit {
 	private String sido_name;
 	private int gugun_no;
 	private String gugun_name;
+	private int vt_m_no;
 	
+	public int getVt_m_no() {
+		return vt_m_no;
+	}
+
+	public void setVt_m_no(int vt_m_no) {
+		this.vt_m_no = vt_m_no;
+	}
+
 	public int getSido_no() {
 		return sido_no;
 	}

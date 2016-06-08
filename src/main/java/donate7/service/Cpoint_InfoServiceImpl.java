@@ -1,5 +1,7 @@
 package donate7.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,17 @@ public class Cpoint_InfoServiceImpl implements Cpoint_InfoService {
 	public int sumPoint(int m_no) {
 		return cid.sumPoint(m_no);
 	}
-	public int buyGift(Cpoint_info ci) {
-		return cid.buyGift(ci);
+	public int insert(Cpoint_info ci) {
+		return cid.insert(ci);
+	}
+	public int getTotal(Cpoint_info ci) {
+		return cid.getTotal(ci);
+	}
+	public List<Cpoint_info> list(int startRow, int endRow, int m_no,String sort) {
+		return cid.list(startRow, endRow, m_no,sort);
+	}
+	public int sumCash(int m_no) {
+		return cid.sumCash(m_no);
 	}
 
 }

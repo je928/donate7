@@ -24,6 +24,10 @@ public class Organ {
 	private String o_tel1;
 	private String o_tel2;
 	private String o_tel3;
+	
+	// 조회용
+	private int startRow;
+	private int endRow;
 
 	public int getO_no() {
 		return o_no;
@@ -192,6 +196,23 @@ public class Organ {
 	public void setO_tel3(String o_tel3) {
 		this.o_tel3 = o_tel3;
 	}
+	
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
+	
 /*
 	@Override
 	public String toString() {

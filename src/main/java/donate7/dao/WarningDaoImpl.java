@@ -1,5 +1,8 @@
 package donate7.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,5 +16,15 @@ public class WarningDaoImpl implements WarningDao{
 		int wa_no = st.selectOne("warning.selectNum");
 		warning.setWa_no(wa_no);
 		return st.insert("warning.insert",warning);
+	}
+	public int getTotal(int m_no) {
+		return st.selectOne("warning.getTotal",m_no);
+	}
+	public List<Warning> list(int startRow, int endRow, int m_no) {
+		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+		hashMap.put("startRow", startRow);
+		hashMap.put("endRow", endRow);
+		hashMap.put("m_no", m_no);
+		return st.selectList("warning.list",hashMap);
 	}
 }

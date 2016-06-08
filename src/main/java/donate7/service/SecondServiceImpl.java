@@ -23,23 +23,23 @@ public class SecondServiceImpl implements SecondService{
 		return sd.insert(second);
 	}
 
-	public List<Second> mlist(int no) {
-		return sd.mlist(no);
+	public List<Second> mlist(Second second) {
+		return sd.mlist(second);
 	}
 
-	public List<Second> olist(int no) {
-		return sd.olist(no);
+	public List<Second> olist(Second second) {
+		return sd.olist(second);
 	}
 
-	public List<Second> adlist() {
-		return sd.adlist();
+	public List<Second> adlist(Second second) {
+		return sd.adlist(second);
 	}
 	public int msecondUpdate(Second second) {
 		return sd.secondUpdate(second);
 	}
 
-	public int count(int no) {
-		return sd.count(no);
+	public int count(Second second) {
+		return sd.count(second);
 	}
 
 	public void msdelete(int sh_no) {
@@ -62,6 +62,10 @@ public class SecondServiceImpl implements SecondService{
 
 	public void srCancel(int sh_no) {
 		sd.srCancel(sh_no);
+	}
+
+	public int getTotal(Second second) {
+		return sd.getTotal(second);
 	}
 
 

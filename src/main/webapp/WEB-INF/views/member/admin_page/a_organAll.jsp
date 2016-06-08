@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function locate(pageNum){
+		location.href="a_organAll.do?pageNum="+pageNum;
+	}
+</script>
 </head>
 <body>
 
@@ -59,18 +64,29 @@
 			</div>
 			<div class="panel-footer2">
 				<div class="row">
-					<div class="col col-xs-4">Page 1 of 5</div>
+					<div class="col col-xs-4">Page ${o_pb.startPage} of ${o_pb.endPage} / 총 ${o_pb.total}명</div>
 					<div class="col col-xs-8">
 						<ul class="pagination hidden-xs pull-right">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
+							<c:if test="${o_pb.startPage > o_pb.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${o_pb.nowPage-1})">«</a></li>
+							</c:if>
+						</ul>
+						<ul class="pagination hidden-xs pull-right">
+							<c:forEach var="i" begin="${o_pb.startPage}" end="${o_pb.endPage}">
+								<c:if test="${i eq o_pb.nowPage}">
+									<li><a href="#"><b class="b2">${i}</b></a></li>
+								</c:if>
+								<c:if test="${i ne o_pb.nowPage}">
+									<li><a href="javascript:locate(${i})">${i}</a></li>
+								</c:if>
+							</c:forEach>
 						</ul>
 						<ul class="pagination visible-xs pull-right">
-							<li><a href="#">«</a></li>
-							<li><a href="#">»</a></li>
+							<c:if test="${o_pb.totalPage > o_pb.endPage}">
+								<li><a href="javascript:locate(${o_pb.startPage+o_pb.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${o_pb.totalPage})">»»</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
