@@ -18,7 +18,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 col-lg-9 toppad">
+			<div class="col-lg-9 toppad" style="margin-left: 12px;">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title"><b>${organ.o_oname}</b> 기관의 상세정보</h3>

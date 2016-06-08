@@ -1,7 +1,5 @@
 package donate7.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,17 +160,6 @@ public class memberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "module/main";
-	}
-	
-	@RequestMapping(value = "a_memberAll", method = RequestMethod.GET)
-	public String a_memberAll(Model model) {
-		List<Member> memberAll = ms.memberAll();
-		List<Organ> organAll = ms.selectAll();		
-		model.addAttribute("memberAll", memberAll);
-		model.addAttribute("organAll", organAll);		
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../member/admin_page/a_memberAll.jsp");
 		return "module/main";
 	}
 		

@@ -13,12 +13,8 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-6">
-						<b class="panel-title">일반 회원 정보</b>
+						<b class="panel-title">기관 회원 정보</b>
 					</div>
-					<!-- <div class="col col-xs-6 text-right">
-						<button type="button" class="btn btn-sm btn-primary btn-create">Create
-							New</button>
-					</div> -->
 				</div>
 			</div>
 			<div class="panel-body2">
@@ -27,25 +23,25 @@
 						<tr>
 							<th>no</th>
 							<th>email</th>
-							<th>name</th>													
-							<th>nick</th>
-							<th>birthday</th>
+							<th>license</th>													
+							<th>oname</th>													
+							<th>name</th>
 							<th>tel</th>
-							<th>warning</th>													
+							<th>ok_yn</th>							
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
 					</thead>
 					<tbody>
-					<c:if test="${not empty memberAll}">
-						<c:forEach var="mem" items="${memberAll}">
+					<c:if test="${not empty organAll}">
+						<c:forEach var="org" items="${organAll}">
 						<tr>
-							<td>${mem.m_no}</td>
-							<td>${mem.m_email}</td>
-							<td>${mem.m_name}</td>
-							<td>${mem.m_nick}</td>
-							<td>${mem.m_birth}</td>
-							<td>${mem.m_tel}</td>
-							<td>0</td>
+							<td>${org.o_no}</td>
+							<td>${org.o_email}</td>
+							<td>${org.o_license}</td>							
+							<td>${org.o_oname}</td>
+							<td>${org.o_name}</td>
+							<td>${org.o_tel}</td>
+							<td>${org.o_ok_xyn}</td>
 							<td align="center">
 								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
 								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
@@ -53,7 +49,7 @@
 						</tr>
 						</c:forEach>
 					</c:if>
-					<c:if test="${empty memberAll}">
+					<c:if test="${empty organAll}">
 						<tr>
 							<td colspan="8">데이터가 없습니다.</td>
 						</tr>

@@ -14,8 +14,8 @@ public interface MemberService {
 	int m_nickChk(String m_nick, Member member);
 	int o_emailChk(String o_email);
 	int o_onameChk(String o_oname, Organ organ);
-	List<Organ> selectAll();
 	List<Member> memberAll();
+	List<Organ> selectAll();
 	Member selectMember(int m_no);
 	Member selectMember_tel(int m_no);
 	int updateMember(Member member);
