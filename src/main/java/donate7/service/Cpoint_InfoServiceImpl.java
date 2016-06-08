@@ -18,8 +18,8 @@ public class Cpoint_InfoServiceImpl implements Cpoint_InfoService {
 	public int insert(Cpoint_info ci) {
 		return cid.insert(ci);
 	}
-	public int getTotal(int m_no) {
-		return cid.getTotal(m_no);
+	public int getTotal(Cpoint_info ci) {
+		return cid.getTotal(ci);
 	}
 	public List<Cpoint_info> list(int startRow, int endRow, int m_no) {
 		return cid.list(startRow, endRow, m_no);

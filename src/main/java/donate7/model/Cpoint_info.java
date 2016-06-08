@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Cpoint_info {
 	private int cp_no;
 	private int m_no;
-	private char cp_sort;
+	private String cp_sort;
 	private Date cp_date;
 	private int cp_point;
 	private String cp_point_re;
@@ -21,11 +21,11 @@ public class Cpoint_info {
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
 	}
-	public char getCp_sort() {
+	public String getCp_sort() {
 		return cp_sort;
 	}
-	public void setCp_sort(char cp_sort) {
-		this.cp_sort = cp_sort;
+	public void setCp_sort(String sort) {
+		this.cp_sort = sort;
 	}
 	public Date getCp_date() {
 		return cp_date;
