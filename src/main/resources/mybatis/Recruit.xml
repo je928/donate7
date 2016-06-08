@@ -16,6 +16,7 @@
 		<result property="vt_a_start_date" column="VT_A_START_DATE" />
 		<result property="vt_a_end_date" column="VT_A_END_DATE" />
 		<result property="vt_class" column="VT_CLASS" />
+		<result property="vt_dclass" column="VT_DCLASS"/>
 		<result property="vt_tot" column="VT_TOT" />
 		<result property="vt_subject" column="VT_SUBJECT" />
 		<result property="vt_desc" column="VT_DESC" />
@@ -34,68 +35,93 @@
 		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM V_VOL_SEARCH
 		<where>
 			<if test="vt_o_no != 0">
-				VT_O_NO = #{vt_o_no}
+				VT_O_NO = #{vt_o_no,jdbcType=INTEGER}
 			</if>
-			
-			<if test="searchType != 'all'">
 				<if test="vt_r_start_date != null">
-					<![CDATA[ AND VT_R_START_DATE >= #{vt_r_start_date} ]]>
+					AND <![CDATA[  VT_R_START_DATE >= #{vt_r_start_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_r_end_date != null">
-					<![CDATA[ AND VT_R_END_DATE <= #{vt_r_end_date} ]]>
+					AND <![CDATA[  VT_R_END_DATE <= #{vt_r_end_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_a_start_date != null">
-					<![CDATA[ AND VT_A_START_DATE >= #{vt_a_start_date} ]]>
+					AND <![CDATA[  VT_A_START_DATE >= #{vt_a_start_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_a_end_date != null">
-					<![CDATA[ AND VT_A_END_DATE <= #{vt_a_end_date} ]]>
+					AND <![CDATA[ VT_A_END_DATE <= #{vt_a_end_date,jdbcType=DATE} ]]>
+				</if>
+			
+			<if test="vt_name != null">
+					AND VT_NAME LIKE '%'||#{vt_name,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="addr != null">
+					AND ADDR LIKE '%'||#{addr,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="vt_class != 0">
+					AND VT_CLASS = #{vt_class,jdbcType=INTEGER}
+				<if test="vt_dclass != 0">
+					AND VT_DCLASS = #{vt_dclass,jdbcType=INTEGER} 
 				</if>
 			</if>
 			
-			<if test="vt_name != null">
-					<![CDATA[ AND VT_NAME LIKE '%'||#{vt_name}||'%' ]]>
+			<if test="vt_subject != 0">
+					AND VT_SUBJECT = #{vt_subject,jdbcType=INTEGER}
+			</if>
+			<if test="vt_r_yn != 'ALL'">
+				AND VT_R_YN = #{vt_r_yn,jdbcType=VARCHAR}
 			</if>
 		</where>
 		ORDER BY VT_NO DESC) A) WHERE RN BETWEEN #{startrow} AND #{endrow}
 	</select>
 
 	<select id="selectRcTotal" parameterType="recruit" resultType="int">
-		SELECT NVL(COUNT(*),0) FROM VT_RECRUIT
+		SELECT NVL(COUNT(*),0) FROM V_VOL_SEARCH
 		<where>
 			<if test="vt_o_no != 0">
-				VT_O_NO = #{vt_o_no}
+				VT_O_NO = #{vt_o_no,jdbcType=INTEGER}
 			</if>
-			<if test="searchType != null">
 				<if test="vt_r_start_date != null">
-					AND <![CDATA[ VT_R_START_DATE >= #{vt_r_start_date} ]]>
+					AND <![CDATA[ VT_R_START_DATE >= #{vt_r_start_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_r_end_date != null">
-					AND <![CDATA[VT_R_END_DATE <= #{vt_r_end_date} ]]>
+					AND <![CDATA[VT_R_END_DATE <= #{vt_r_end_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_a_start_date != null">
-					 AND <![CDATA[VT_A_START_DATE >= #{vt_a_start_date} ]]>
+					 AND <![CDATA[VT_A_START_DATE >= #{vt_a_start_date,jdbcType=DATE} ]]>
 				</if>
 				<if test="vt_a_end_date != null">
-					 AND <![CDATA[ VT_A_END_DATE <= #{vt_a_end_date} ]]>
+					 AND <![CDATA[ VT_A_END_DATE <= #{vt_a_end_date,jdbcType=DATE} ]]>
 				</if>
-			</if> 
 			<if test="vt_name != null">
-					 AND <![CDATA[ VT_NAME LIKE '%'||#{vt_name}||'%' ]]>
+					AND VT_NAME LIKE '%'||#{vt_name,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="addr != null">
+					AND ADDR LIKE '%'||#{addr,jdbcType=VARCHAR}||'%'
+			</if>
+			<if test="vt_class != 0">
+				AND VT_CLASS = #{vt_class,jdbcType=INTEGER}
+				<if test="vt_dclass != 0">
+					AND VT_DCLASS = #{vt_dclass,jdbcType=INTEGER} 
+				</if>
+			</if>
+			<if test="vt_subject != 0">
+					AND VT_SUBJECT = #{vt_subject,jdbcType=INTEGER}
+			</if>
+			<if test="vt_r_yn != 'ALL'">
+				AND VT_R_YN = #{vt_r_yn,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
-
 	<select id="selectRcByVt_no" resultType="recruit" parameterType="int">
 		SELECT VT_NO,VT_NAME, VT_O_NO,O_ONAME,
 		VT_R_START_DATE,
 		VT_R_END_DATE,VT_R_YN,
-		VT_A_START_DATE,VT_A_END_DATE, VT_CLASS, VT_TOT,
+		VT_A_START_DATE,VT_A_END_DATE, VT_CLASS, VT_DCLASS, VT_TOT,
 		VT_SUBJECT,
 		VT_SUBJECT,VT_DESC,
 		SUB_NAME,CLASS_NAME,DCLASS_NAME FROM
 		VT_RECRUIT A, DCLASS B, CLASS C,
 		SUBJECT D, ORGAN E WHERE A.VT_CLASS =
-		B.DCLASS_NO AND B.CLASS_NO =
+		C.CLASS_NO AND A.VT_DCLASS = B.DCLASS_NO AND B.CLASS_NO =
 		C.CLASS_NO AND A.VT_SUBJECT = D.SUB_NO AND
 		A.VT_O_NO = E.O_NO AND
 		VT_NO = #{vt_no}
@@ -104,14 +130,14 @@
 	<insert id="insertRc" parameterType="recruit">
 		INSERT INTO VT_RECRUIT
 		VALUES (NEW_VT_NO,
-		#{vt_name},#{vt_o_no},SYSDATE,#{vt_r_end_date},'Y',#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_tot},#{vt_subject},#{vt_desc})
+		#{vt_name},#{vt_o_no},SYSDATE,#{vt_r_end_date},'Y',#{vt_a_start_date},#{vt_a_end_date},#{vt_class},#{vt_dclass},#{vt_tot},#{vt_subject},#{vt_desc})
 	</insert>
 
 	<update id="rcUpdate" parameterType="recruit">
 		UPDATE VT_RECRUIT SET
 		VT_NAME = #{vt_name}, VT_R_END_DATE = #{vt_r_end_date},
 		VT_A_START_DATE = #{vt_a_start_date}, VT_A_END_DATE =
-		#{vt_a_end_date}, VT_CLASS = #{vt_class}, VT_TOT = #{vt_tot},
+		#{vt_a_end_date}, VT_CLASS = #{vt_class},VT_DCLASS = #{vt_dclass}, VT_TOT = #{vt_tot},
 		VT_SUBJECT = #{vt_subject}, VT_DESC = #{vt_desc} WHERE VT_NO =
 		#{vt_no}
 	</update>

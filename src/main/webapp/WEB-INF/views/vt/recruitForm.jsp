@@ -25,7 +25,7 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var sendData = 'class_no=' + $('#cls option:selected').val();
+		var sendData = 'class_no=' + $('#vt_class option:selected').val();
 		$.post('dclassList.do', sendData, function(data) {
 			$('#res').html(data);
 		});
@@ -48,8 +48,8 @@
 			$('#vsdate').attr('max',selDate);
 		});
 
-		$('#cls').change(function() {
-			var sendData = 'class_no=' + $('#cls option:selected').val();
+		$('#vt_class').change(function() {
+			var sendData = 'class_no=' + $('#vt_class option:selected').val();
 			$.post('dclassList.do', sendData, function(data) {
 				$('#res').html(data);
 			});
@@ -88,7 +88,7 @@
 							<!-- 시작일 : <input
 								class="form-control-20" readonly="readonly" type="text"
 								name="vt_r_start_date" id="rsdate" /> -->
-							종료일 : <input class="form-control-20" type="date"
+							현재일 부터 종료일 : <input class="form-control-20" type="date"
 								name="vt_r_end_date" id="redate" required="required"/>
 						</div>
 						<div class="form-group">
@@ -102,7 +102,7 @@
 							<div style="float: left; width: 50%">
 								<b style="display: block;">활동분야:</b> <select
 									style="float: left; width: 50%" class="form-control-40"
-									name="cls" id="cls">
+									name="vt_class" id="vt_class">
 									<c:forEach var="cl" items="${list}">
 										<option value="${cl.class_no }">${cl.class_name }</option>
 									</c:forEach>

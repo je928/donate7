@@ -15,6 +15,7 @@ public class Recruit {
 	private Date vt_a_start_date;
 	private Date vt_a_end_date;
 	private int vt_class;
+	private int vt_dclass;
 	private int vt_tot;
 	private int vt_subject;
 	private String vt_desc;
@@ -206,8 +207,6 @@ public class Recruit {
 		this.vt_r_yn = vt_r_yn;
 	}
 
-	
-
 	public int getVt_class() {
 		return vt_class;
 	}
@@ -240,14 +239,24 @@ public class Recruit {
 		this.vt_desc = vt_desc;
 	}
 
+	public int getVt_dclass() {
+		return vt_dclass;
+	}
+
+	public void setVt_dclass(int vt_dclass) {
+		this.vt_dclass = vt_dclass;
+	}
+
 	@Override
 	public String toString() {
 		return "Recruit [vt_no=" + vt_no + ", vt_name=" + vt_name + ", vt_o_no=" + vt_o_no + ", o_oname=" + o_oname
-				+ ", vt_r_start_date=" + vt_r_start_date + ", vt_r_end_date=" + vt_r_end_date + ", vt_r_yn=" + vt_r_yn
-				+ ", vt_a_start_date=" + vt_a_start_date + ", vt_a_end_date=" + vt_a_end_date + ", vt_class=" + vt_class
-				+ ", vt_tot=" + vt_tot + ", vt_subject=" + vt_subject + ", vt_desc=" + vt_desc + ", count=" + count
-				+ ", class_name=" + class_name + ", dclass_name=" + dclass_name + ", sub_name=" + sub_name
-				+ ", startrow=" + startrow + ", endrow=" + endrow + ", searchType=" + searchType + "]";
+				+ ", addr=" + addr + ", cn=" + cn + ", vt_r_start_date=" + vt_r_start_date + ", vt_r_end_date="
+				+ vt_r_end_date + ", vt_r_yn=" + vt_r_yn + ", vt_a_start_date=" + vt_a_start_date + ", vt_a_end_date="
+				+ vt_a_end_date + ", vt_class=" + vt_class + ", vt_dclass=" + vt_dclass + ", vt_tot=" + vt_tot
+				+ ", vt_subject=" + vt_subject + ", vt_desc=" + vt_desc + ", count=" + count + ", class_name="
+				+ class_name + ", dclass_name=" + dclass_name + ", sub_name=" + sub_name + ", startrow=" + startrow
+				+ ", endrow=" + endrow + ", searchType=" + searchType + ", sido_no=" + sido_no + ", sido_name="
+				+ sido_name + ", gugun_no=" + gugun_no + ", gugun_name=" + gugun_name + "]";
 	}
-
+	
 }

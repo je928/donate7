@@ -50,7 +50,6 @@ public class VolDaoImpl implements VolDao{
 
 	@Override
 	public Recruit selectRcByVt_no(int vt_no) {
-		System.out.println("selectRcByVt_no : " + vt_no);
 		return session.selectOne("recruit.selectRcByVt_no",vt_no);
 	}
 
@@ -62,16 +61,17 @@ public class VolDaoImpl implements VolDao{
 
 	@Override
 	public List<Recruit> selectRcList(Recruit rc) {
-		System.out.println("selectRcList : " +  rc);
-		return session.selectList("recruit.selectRcList", rc);
+		System.out.println(rc);
+		List<Recruit> list = session.selectList("recruit.selectRcList", rc);
+		System.out.println("size : " + list.size());
+		return list;
 	}
 
 
 	@Override
 	public int selectRcTotal(Recruit rc) {
-		
+		System.out.println(rc);
 		int result = session.selectOne("recruit.selectRcTotal",rc);
-		System.out.println("selectRcTotal : " + rc);
 		System.out.println("result : " + result);
 		return result;
 	}

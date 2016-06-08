@@ -8,30 +8,84 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var sendData = 'sido_no=' + $('#sido option:selected').val();
-		$.post('gugunList.do', sendData, function(data) {
-			$('#gugun').html(data);
-		});
-		
-		sendData = 'class_no=' + $('#cls option:selected').val();
-		$.post('dclassList.do', sendData, function(data) {
-			$('#res').html(data);
-		});
+		list(1);
 		
 		$('#sido').change(function() {
 			var sendData = 'sido_no=' + $('#sido option:selected').val();
-			$.post('gugunList.do', sendData, function(data) {
-				$('#gugun').html(data);
-			});
+			if($('#sido option:selected').val() != 0){
+				$.post('gugunList.do', sendData, function(data) {
+					$('#gugun').html(data);
+				});
+			}else{
+				$('#gugun').html("");
+			}
+
 		});
 		
-		$('#cls').change(function() {
-			var sendData = 'class_no=' + $('#cls option:selected').val();
-			$.post('dclassList.do', sendData, function(data) {
-				$('#res').html(data);
-			});
+		$('#vt_class').change(function() {
+			var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=0';
+			if($('#vt_class option:selected').val() != 0){
+				$.post('dclassList.do', sendData, function(data) {
+					$('#res').html(data);
+				});
+			}else{
+				$('#res').html("");
+			}
+		});
+		
+		$('#search').click(function(){
+			list(1);
 		});
 	});
+	
+	function list(pageNum){
+		$('#vlist').html("");
+		var sido = $('#sido option:selected').text();
+		if(sido == '전체'){
+			sido = "";
+		}
+		var gugun = $('#gugun option:selected').text();
+		if(gugun =='전체'){
+			gugun = "";	
+		}
+		
+		var addr = sido + " " + gugun;
+		
+		var rsdate = $('#rsdate').val();
+		var redate = $('#redate').val();
+		var asdate = $('#asdate').val();
+		var aedate = $('#aedate').val();
+		if(rsdate == ""){
+			rsdate = "1900-01-01";
+		}
+		if(redate == ""){
+			redate = "2999-12-31";
+		}
+		if(asdate == ""){
+			asdate = "1900-01-01";
+		}
+		if(aedate == ""){
+			aedate = "2999-12-31";
+		}
+		
+		var rec_param = {
+				"addr"  : addr,
+				"vt_r_start_date" : rsdate,
+				"vt_r_end_date" : redate,
+				"vt_a_start_date" : asdate,
+				"vt_a_end_date" : aedate,
+				"vt_class" : $('#vt_class').val(),
+				"vt_dclass" : $('#vt_dclass').val() != null ? $('#vt_dclass').val() : 0 ,
+				"vt_subject" : $('#vt_subject').val(),
+				"vt_name" : $('#vt_name').val(),
+				"vt_r_yn" : $('#vt_r_yn').val(),
+				"pageNum" : pageNum
+		};
+		var sndData = $.param(rec_param);
+		$.post('volSearchList.do', sndData, function(data) {
+			$('#vlist').html(data);
+		});
+	}
 </script>
 <style type="text/css">
 .req-container {
@@ -72,7 +126,6 @@
 		<div class="col-md-offset-14 col-md-5"
 			style="margin-left: 0; margin-top: 0;">
 			<div class="form-area req-container">
-				<form role="form" action="volSearch.do" method="post">
 					<h4 style="margin-bottom: 25px; text-align: center;">통합봉사조회</h4>
 					<p class="req-form-name">검색 조건</p>
 					<div class="form-group">
@@ -105,16 +158,18 @@
 						<div style="float: left; width: 50%">
 							<b style="display: block;">활동분야:</b> <select
 								style="float: left; width: 50%" class="form-control-40"
-								name="cls" id="cls">
+								name="vt_class" id="vt_class">
+								<option value="0">전체</option>
 								<c:forEach var="cl" items="${list}">
 									<option value="${cl.class_no }">${cl.class_name }</option>
 								</c:forEach>
 							</select>
 							<span id="res"></span>
 						</div>
-						<div>
+					 	<div>
 							<b>봉사 대상자:</b> <select class="form-control-40" name="vt_subject"
 								id="vt_subject" style="display: block;">
+								<option value="0">전체</option>
 								<c:forEach var="sub" items="${slist}">
 									<option value="${sub.sub_no }">${sub.sub_name }</option>
 								</c:forEach>
@@ -122,74 +177,27 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<b>봉사 제목:</b> <input type="text" class="form-control-40" id="vt_name"
-							name="vt_name" maxlength="100" onkeyup="nameChek()" required style="display: inline;">
-						<b>모집 상태:</b> 
-						<select name="vt_r_yn" style="display: inline;">
-							<option value="Y">모집 중</option>
-							<option value="N">모집 완료</option>
-						</select>
+						<div style="float: left; width: 50%">
+							<b>봉사 제목:</b> <input type="text" class="form-control-50" id="vt_name"
+							name="vt_name" maxlength="100" required style="display: block;">
+						
+						</div>
+						<div>
+							<b>모집 상태:</b> 
+							<select id="vt_r_yn" name="vt_r_yn" style="display: block;">
+								<option value="ALL">전체</option>
+								<option value="Y">모집 중</option>
+								<option value="N">모집 완료</option>
+							</select>
+						</div>
 					</div>
 					<div class="form-group">
-						<input type="submit"
+						<button
 						class="btn btn-primary btn-md"
-						style="margin-left: 5px; vertical-align: top;" value="검색">
+						style="margin-left: 5px; vertical-align: top;" id="search">검색</button>
 					</div>
-				
-				<table class="table table-striped table-hover" >
-					<tr>
-						<th>번호</th>
-						<th>모집 상태</th>
-						<th>봉사 지역</th>
-						<th>봉사 기관</th>
-						<th>봉사 제목</th>
-						<th>활동 분야</th>
-						<th>모집인원</th>
-						<th>신청자수</th>
-					</tr>
-					<c:forEach var="result" items="${result}">
-						<tr>
-							<td>${result.vt_no }</td>
-							<td><c:if test="${result.vt_r_yn eq 'Y' }">
-								<span class="ry">모집 중</span>
-							</c:if>
-							<c:if test="${result.vt_r_yn eq 'N' }">
-								<span class="rn">모집 완료</span>
-							</c:if>
-							</td>
-							<td>${result.addr}</td>
-							<td>${result.o_oname }</td>
-							<td>${result.vt_name }</td>
-							<td>${result.cn }</td>
-							<td>${result.vt_tot }</td>
-							<td>${result.count }</td>
-						</tr>
-					</c:forEach>
-				</table>
-				<div style="margin-left: 30%" id="paging">
-			<c:if test="${paging.startPage != 1}">
-				<a href="javascript:locate(1)">&lt;&lt;맨 앞으로</a>
-			</c:if>
-			<c:if test="${paging.startPage > paging.pagePerBlock}">
-				<a href="javascript:locate(${startPage-pagePerBlock})">&lt;이전</a>
-			</c:if>
-			<c:forEach var="i" begin="${paging.startPage}"
-				end="${paging.endPage}">
-				<c:if test="${i != paging.nowPage}">
-					<a href="javascript:locate(${i})">[${i}]</a>
-				</c:if>
-				<c:if test="${i == paging.nowPage}">
-					<b class="b">[${i}]</b>
-				</c:if>
-			</c:forEach>
-			<c:if test="${paging.totalPage > paging.endPage}">
-				<a href="javascript:locate(${paging.startPage+paging.pagePerBlock})">다음&gt;</a>
-			</c:if>
-			<c:if test="${paging.endPage != paging.totalPage}">
-				<a href="javascript:locate(${paging.totalPage})">맨 뒤로&gt;&gt;</a>
-			</c:if>
-			</form>
-		</div>
+					<div id="vlist">
+					</div>
 			</div>
 		</div>
 	</div>

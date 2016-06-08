@@ -8,10 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<select class="form-control-40" name="vt_class">
+	<select class="form-control-40" name="vt_dclass" id="vt_dclass">
 	<c:if test="${not empty list }">
+		<option value="0">전체</option>
 		<c:forEach var="dc" items="${list}">
-			<option value="${dc.dclass_no}">${dc.dclass_name}</option>
+			<c:if test="${dc.dclass_no == dclass_no}">
+				<option value="${dc.dclass_no}" selected="selected">${dc.dclass_name}</option>
+			</c:if>
+			<c:if test="${dc.dclass_no != dclass_no}">
+				<option value="${dc.dclass_no}">${dc.dclass_name}</option>
+			</c:if>
 		</c:forEach>
 	</c:if>
 	</select>
