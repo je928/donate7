@@ -52,10 +52,9 @@ public class GiftController {
 	}
 	@RequestMapping(value="giftUpload", method=RequestMethod.POST)
 	public String upload(@RequestParam("img") MultipartFile mf,
-			HttpServletRequest request,Model model,Gift gift) throws IllegalStateException, IOException{
-		String fileName = mf.getOriginalFilename();
+			HttpSession session,Model model,Gift gift) throws IllegalStateException, IOException{
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
-		mf.transferTo(new File(request.getRealPath("/")+uploadName));
+		mf.transferTo(new File(session.getServletContext().getRealPath("/")+uploadName));
 		gift.setG_img(uploadName);
 		gs.insert(gift);
 		List<Gift> list = gs.list();

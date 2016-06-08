@@ -12,10 +12,6 @@
 	}
 </script>
 <style type="text/css">
-table{
-	width: 100%;
-	table-layout: fixed;
-}
 table td {
 	width: 300px;
 	white-space: nowrap;
@@ -25,7 +21,8 @@ table td {
 </style>
 </head>
 <body>
-	<table>
+	<div class="panel-body2">
+	<table class="table table-striped table-bordered table-list">
 		<caption>신고처리</caption>
 		<tr>
 			<th>신고 번호</th>
@@ -49,5 +46,6 @@ table td {
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>

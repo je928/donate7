@@ -43,12 +43,12 @@ public class MemberServiceImpl implements MemberService {
 		return md.o_onameChk(o_oname, organ);
 	}
 	
-	public List<Organ> selectAll() {
-		return md.selectAll();
-	}
-
 	public List<Member> memberAll() {
 		return md.memberAll();
+	}
+	
+	public List<Organ> selectAll() {
+		return md.selectAll();
 	}
 	
 	public Member selectMember(int m_no) {

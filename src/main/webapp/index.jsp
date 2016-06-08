@@ -6,10 +6,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<script type="text/javascript">
-		location.href = "main.do";
+		var chk = window.navigator.userAgent;
+		if(chk.indexOf('Chrome') > 0){
+			location.href = "main.do";
+		}else{
+			alert('크롬 브라우저로 실행해 주세요.');
+		}
 	</script>
-	
 </body>
 </html>

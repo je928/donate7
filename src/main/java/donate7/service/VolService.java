@@ -3,6 +3,7 @@ package donate7.service;
 import java.util.List;
 
 import donate7.model.Recruit;
+import donate7.model.Rqn;
 
 public interface VolService {
 
@@ -17,4 +18,5 @@ public interface VolService {
 	int rcUpdate(Recruit rc);
 	List<Recruit> selectRcList(Recruit rc);
 	int selectRcTotal(Recruit rc);
+	int insertRqn(Rqn rqn);
 }

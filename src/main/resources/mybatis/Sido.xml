@@ -17,5 +17,4 @@
 	<select id="selectGugunListBySido_No" parameterType="int" resultMap="SidoResult">
 		SELECT * FROM GUGUN WHERE SIDO_NO = #{sido_no}
 	</select>
-
 </mapper>

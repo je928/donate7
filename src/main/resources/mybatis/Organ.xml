@@ -84,7 +84,7 @@
 	</update>
 
 	<select id="selectO_addrByO_no" resultType="String" parameterType="int">
-		SELECT regexp_substr(O_ADDR, '[^ ]+', 1, 2)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 3)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 4)||' '||regexp_substr(O_ADDR, '[^ ]+', 1, 5) o_addr FROM ORGAN WHERE O_NO = #{o_no}
+		SELECT SUBSTR(O_ADDR,10) o_addr FROM ORGAN WHERE O_NO = #{o_no}
 	</select>
 	
 	<select id="selectAll" resultMap="OrganResult">
