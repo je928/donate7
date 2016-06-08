@@ -25,10 +25,12 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var sendData = 'class_no=' + $('#vt_class option:selected').val();
+		
+		var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=0&type=I';
 		$.post('dclassList.do', sendData, function(data) {
 			$('#res').html(data);
 		});
+		
 		$('#redate').change(function() {
 			var currentDate = new Date();
 			var strDate = $('#redate').val();
@@ -49,7 +51,7 @@
 		});
 
 		$('#vt_class').change(function() {
-			var sendData = 'class_no=' + $('#vt_class option:selected').val();
+			var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=0&type=I';
 			$.post('dclassList.do', sendData, function(data) {
 				$('#res').html(data);
 			});

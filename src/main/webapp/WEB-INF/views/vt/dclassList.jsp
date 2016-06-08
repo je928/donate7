@@ -10,7 +10,9 @@
 <body>
 	<select class="form-control-40" name="vt_dclass" id="vt_dclass">
 	<c:if test="${not empty list }">
-		<option value="0">전체</option>
+		<c:if test="${type eq 'S' }">
+			<option value="0">전체</option>
+		</c:if>
 		<c:forEach var="dc" items="${list}">
 			<c:if test="${dc.dclass_no == dclass_no}">
 				<option value="${dc.dclass_no}" selected="selected">${dc.dclass_name}</option>

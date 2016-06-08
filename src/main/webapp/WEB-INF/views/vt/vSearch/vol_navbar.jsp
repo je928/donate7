@@ -12,7 +12,7 @@
 		<a href="volSearch.do" class="list-group-item">분야별봉사조회</a>
 		<a href="volSearch.do" class="list-group-item">지역별봉사조회</a>
 		<a href="timeList.do" class="list-group-item">기간별봉사조회</a>
-		<a href="volSearch.do" class="list-group-item">수요처 조회</a>
+		<a href="centerList.do" class="list-group-item">수요처 조회</a>
 	</div>
 </body>
 </html>

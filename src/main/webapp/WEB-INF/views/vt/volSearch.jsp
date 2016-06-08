@@ -23,7 +23,7 @@
 		});
 		
 		$('#vt_class').change(function() {
-			var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=0';
+			var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=0&type=S';
 			if($('#vt_class option:selected').val() != 0){
 				$.post('dclassList.do', sendData, function(data) {
 					$('#res').html(data);

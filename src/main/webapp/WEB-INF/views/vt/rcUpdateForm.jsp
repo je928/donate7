@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function() {
-	var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}';
+	var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}&type=I';
 	$.post('dclassList.do', sendData, function(data) {
 		$('#res').html(data);
 	});
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	});
 
 	$('#vt_class').change(function() {
-		var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}';
+		var sendData = 'class_no=' + $('#vt_class option:selected').val() + '&dclass_no=${rc.vt_dclass}&type=I';
 		$.post('dclassList.do', sendData, function(data) {0
 			$('#res').html(data);
 		});

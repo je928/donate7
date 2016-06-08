@@ -239,9 +239,10 @@ public class VolController {
 	}*/
 	
 	@RequestMapping(value = "dclassList", method = RequestMethod.POST)
-	public String dclassList(int class_no,int dclass_no, Model model) {
+	public String dclassList(int class_no,int dclass_no,String type, Model model) {
 		List<Dclass> list = cs.selectDclassByClass_no(class_no);
 		model.addAttribute("list", list);
+		model.addAttribute("type", type);
 		model.addAttribute("dclass_no", dclass_no);
 		return "vt/dclassList";
 	}
@@ -340,4 +341,10 @@ public class VolController {
 			return "redirect:recruit.do";
 		}		
 	}
+/*	@RequestMapping("rqnMList")
+	public String rqnMList(int pageNum, int vt_no, Model model){
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("", );
+	}*/
+	
 }
