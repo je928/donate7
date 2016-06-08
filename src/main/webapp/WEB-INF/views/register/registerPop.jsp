@@ -9,6 +9,7 @@
 <script type="text/javascript">
 	function cl() {
 		self.close();
+		window.opener.location.reload(true);
 	}
 </script>
 </head>
