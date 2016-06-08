@@ -43,6 +43,11 @@ public class VolServiceImpl implements VolService {
 		return vd.insertRqn(rqn);
 	}
 
+	@Override
+	public List<Recruit> selectRqnList(Recruit rc) {
+		return vd.selectRqnList(rc);
+	}
+
 
 	/*@Override
 	public int volReqInsert(VolReq req) {
