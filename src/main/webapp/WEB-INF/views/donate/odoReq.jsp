@@ -6,6 +6,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		CKEDITOR.replace('d_content');
+		CKEDITOR.config.height = '500px';
+	
+	}
+
+	function checkEditorValue() {
+		var txt = CKEDITOR.instances.d_content;
+		if (txt.getData() == "") {
+			alert('내용을 입력해 주세요.');
+			txt.focus();
+			return false;
+		}
+		return true;
+	}
+	
+</script>
 </head>
 <body>
 	<form action="odoReq.do" method="post" enctype="multipart/form-data">
@@ -28,7 +48,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="90" name="d_content"
+				<td><textarea rows="6" cols="100" name="d_content"
 					required="required"></textarea></td>
 			</tr>
 			<tr>
@@ -52,8 +72,38 @@
 				id="d_account" value="계좌번호" required="required"></td>
 			</tr>
 		</table>
+		<div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>						
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<br>
 			<div align="center">
-				<input type="submit" class="btn btn-primary btn-md" value="요청하기">
+				<button type="submit" class="btn btn-primary btn-md">요청하기
+					<i class=" glyphicon glyphicon-ok"></i></button>
 			</div>
 	</form>
 </body>
