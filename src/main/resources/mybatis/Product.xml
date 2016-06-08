@@ -40,12 +40,16 @@
 			order by pr_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="mlist" resultMap="ProductResult" parameterType="product" >
-		select * from (select rownum rn,b.* from 
-		(select * from product where pr_mno<![CDATA[>]]>0 and pr_mno=#{pr_mno} order by pr_date desc) b) 
+		select * from (select rownum rn,m.* from 
+		(select * from product where pr_mno<![CDATA[>]]>0 and pr_mno=#{pr_mno}
+		 order by pr_date desc) m) 
 		where rn between #{startRow} and #{endRow}
 	</select>
-	<select id="olist" resultMap="ProductResult">
-		select * from product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno} order by pr_date desc
+	<select id="olist" resultMap="ProductResult" parameterType="product">
+		select * from(select rownum rn,b.* from 
+		(select * from product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno}
+		 order by pr_date desc) o)
+		where rn between #{startRow} and #{endRow}
 	</select>
 	<insert id="prinsert" parameterType="product">
 		insert into product values
@@ -76,9 +80,8 @@
 		select * from product where pr_approve='y' order by pr_date desc	
 	</select>
 	<select id="getTotal" parameterType="product" resultType="int">
- 		select count(*) from product 
-		<!-- <if test="keyword!=null">
-			<where> ${search} like '%'||#{keyword}||'%' </where>
-		</if> -->
+		
+ 		select count(*) from product <if test="pr_mno != 1"> where pr_mno=#{pr_mno}</if>
+	
 	</select>
 </mapper>
