@@ -63,7 +63,7 @@ public class adminController {
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = ms.memberTotal();
+		int total = ms.organTotal();
 		
 		organ.setStartRow(startRow);
 		organ.setEndRow(endRow);
@@ -71,7 +71,7 @@ public class adminController {
 		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
 		
 		List<Organ> organAll = ms.organAll(startRow, endRow, organ);
-		
+		System.out.println("o_pb.total = " + o_pb.getTotal());
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
 		

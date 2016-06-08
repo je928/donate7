@@ -68,7 +68,7 @@
 			</div>
 			<div class="panel-footer2">
 				<div class="row">
-					<div class="col col-xs-4">Page ${m_pb.startPage} of ${m_pb.endPage} / 총 ${m_pb.total}명</div>
+					<div class="col col-xs-4">Page ${m_pb.nowPage} of ${m_pb.totalPage} / 총 ${m_pb.total}명</div>
 					<div class="col col-xs-8">
 						<ul class="pagination hidden-xs pull-right">
 							<c:if test="${m_pb.startPage > m_pb.pagePerBlock}">
