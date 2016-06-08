@@ -111,35 +111,7 @@
 				id="d_account" placeholder="계좌번호" required="required"></td>
 			</tr>
 		</table>
-		<div class="panel-footer2 text-center">
-					<div class="row">
-						<div class="col">
-							<ul class="pagination">
-								<c:if test="${pg.startPage > pg.pagePerBlock}">
-								<li><a href="javascript:locate(1)">««</a></li>						
-								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
-								</c:if>
-							</ul>
-							<ul class="pagination">
-								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-									<c:if test="${i eq pg.nowPage}">
-										<li><a href="#"><b class="b2">${i}</b></a></li>
-									</c:if>
-									<c:if test="${i ne pg.nowPage}">
-										<li><a href="javascript:locate(${i})">${i}</a></li>
-									</c:if>
-								</c:forEach>
-							</ul>
-							<ul class="pagination">
-								<c:if test="${pg.totalPage > pg.endPage}">
-								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
-								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
-								</c:if>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<br>
+
 			<div align="center">
 				<button type="submit" class="btn btn-primary btn-md">요청하기
 					<i class=" glyphicon glyphicon-ok"></i></button>
