@@ -148,14 +148,6 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 	
-	public List<Member> memberAll() {
-		return session.selectList("member.selectAll");
-	}
-	
-	public List<Organ> selectAll() {
-		return session.selectList("organ.selectAll");
-	}
-
 	public Member selectMember(int m_no) {
 		return session.selectOne("member.selectMember", m_no);
 	}
@@ -237,6 +229,42 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+	
+	public int memberTotal() {
+		int total = 0;
+		try {
+			total = session.selectOne("member.memberTotal");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<Member> memberAll(int startRow, int endRow, Member member) {
+		member.setStartRow(startRow);
+		member.setEndRow(endRow);
+		return session.selectList("member.memberAll", member);
+	}
+	
+	public int organTotal() {
+		int total = 0;
+		try {
+			total = session.selectOne("organ.organTotal");
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<Organ> organAll(int startRow, int endRow, Organ organ) {
+		organ.setStartRow(startRow);
+		organ.setEndRow(endRow);
+		return session.selectList("organ.organAll", organ);
+	}
+	
+	public List<Organ> selectAll() {
+		return session.selectList("organ.selectAll");
 	}
 
 	public String selectO_addrByO_no(int o_no) {

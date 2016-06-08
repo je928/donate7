@@ -9,7 +9,7 @@
 	function locate(pageNum){
 		var searchType = document.getElementById("searchType");
 		var searchTxt = document.getElementById("searchTxt");
-		location.href="community.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
+		location.href="a_moAll.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
 	}
 </script>
 </head>

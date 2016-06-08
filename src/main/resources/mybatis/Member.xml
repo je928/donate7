@@ -77,8 +77,12 @@
 		update member set m_del_yn='y', m_out_date=sysdate where m_no=#{m_no} and m_del_yn='n'
 	</update>
 	
-	<select id="selectAll" resultMap="MemberResult">
-		select * from member where m_del_yn='n'
+	<select id="memberTotal" resultType="Integer">
+		select count(*) from member where m_del_yn='n'
+	</select>
+
+	<select id="memberAll" parameterType="member" resultMap="MemberResult">
+		select * from (select rownum rn, a.* from (select m.* from member m where m_del_yn='n' order by m_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 		
 </mapper>

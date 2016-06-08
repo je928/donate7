@@ -22,6 +22,10 @@ public class Member {
 	private String m_tel2;
 	private String m_tel3;
 	
+	// 조회용
+	private int startRow;
+	private int endRow;
+
 	public int getM_no() {
 		return m_no;
 	}
@@ -158,6 +162,21 @@ public class Member {
 		this.m_tel3 = m_tel3;
 	}
 
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
 	
 /*
 	@Override
