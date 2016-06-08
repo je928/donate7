@@ -83,7 +83,7 @@ function registerPop (brd_no) {
 						</tr>
 						</c:if>
 						<tr>
-							<td colspan="2">${community.brd_content}</td>
+							<td colspan="2" style="text-align: left;">${community.brd_content}</td>
 						</tr>
 						</c:if>
 						<c:if test="${empty community }">
