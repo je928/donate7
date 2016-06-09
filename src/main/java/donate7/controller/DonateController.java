@@ -46,4 +46,5 @@ public class DonateController {
 		model.addAttribute("pgm", "../donate/doView.jsp");
 		return "module/main";
 	}
+
 }

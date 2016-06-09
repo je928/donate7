@@ -3,6 +3,8 @@ package donate7.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import donate7.model.Community;
 import donate7.model.Member;
 import donate7.model.Register;
 import donate7.model.Warning;
+import donate7.service.CommunityPagingBean;
 import donate7.service.CommunityService;
 import donate7.service.MemberService;
 import donate7.service.RegisterService;
@@ -44,8 +47,29 @@ public class RegisterController {
 		return "register/registerPop";
 	}
 	@RequestMapping(value="registerPro",method=RequestMethod.GET)
-	public String registerPro(Model model){
-		List<Register> list = rs.list();
+	public String registerPro(HttpSession session,String pageNum,String sort,Model model){
+		int m_no = (Integer) session.getAttribute("no");		
+		final int rowPerPage = 10;
+		if(sort == null || sort.equals("")){
+			sort = "all";
+		}
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		
+		Register reg = new Register();
+		reg.setRe_chk(sort);
+		int total = rs.getTotal(reg);		
+		
+		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Register>list = rs.list(startRow, endRow, m_no, sort);
+		
+		model.addAttribute("pb", pb);
+		model.addAttribute("sort", sort);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/admin_page/a_registerPro.jsp");
@@ -86,7 +110,11 @@ public class RegisterController {
 				warning.setRe_no(re_no);
 				warning.setWa_sort("b");
 				warning.setWa_cnt(1);
-				warning.setWa_re("게시판 신고");
+				if(reg.getRe_sort().equals("c")){
+					warning.setWa_re("댓글 신고");
+				}else if(reg.getRe_sort().equals("w")){
+					warning.setWa_re("게시글 신고");
+				}
 				ws.insert(warning);
 			}
 		}

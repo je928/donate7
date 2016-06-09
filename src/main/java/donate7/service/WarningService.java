@@ -7,7 +7,7 @@ import donate7.model.Warning;
 public interface WarningService {
 	int insert(Warning warning);
 
-	List<Warning> list(int startRow, int endRow, int m_no);
+	List<Warning> list(int startRow, int endRow, int m_no, String sort);
 
-	int getTotal(int m_no);
+	int getTotal(Warning warn);
 }

@@ -22,8 +22,8 @@
 		<caption>경고 내역</caption>
 		<tr>
 			<th>경고 번호</th>
-			<th>경고 사유</th>
 			<th>경고 분류</th>
+			<th>경고 사유</th>
 			<th>경고 횟수</th>
 			<th>경고 날짜</th>
 		</tr>
@@ -31,12 +31,12 @@
 		<c:forEach var="warn" items="${list}">
 			<tr>
 				<td>${no }</td>
-				<td>${warn.wa_re }</td>
 				<td><c:if test="${warn.wa_sort =='b' }">
 					게시판 경고
 				</c:if> <c:if test="${warn.wa_sort !='b' }">
 					봉사 경고
 				</c:if></td>
+				<td>${warn.wa_re }</td>
 				<td>${warn.wa_cnt }</td>
 				<td><fmt:formatDate value="${warn.wa_date }" /></td>
 			</tr>
@@ -64,7 +64,7 @@
 							<li><a href="#"><b class="b2">${i}</b></a></li>
 						</c:if>
 						<c:if test="${i ne pb.nowPage}">
-							<li><a href="javascript:locate(${i},${sort })">${i}</a></li>
+							<li><a href="javascript:locate(${i},'${sort }')">${i}</a></li>
 						</c:if>
 					</c:forEach>
 				</ul>

@@ -15,7 +15,12 @@
 		<result property="d_account" column="d_account" />
 		<result property="d_img" column="d_img" />
 		<result property="d_approve" column="d_approve" />
-		<result property="d_start_date" column="d_start_date" />
+				<result property="o_no" column="o_no" />
+		<result property="o_email" column="o_email" />
+		<result property="o_category" column="o_category" />
+		<result property="m_no" column="m_no" />
+		<result property="m_email" column="m_email" />
+				<result property="d_start_date" column="d_start_date" />
 		<result property="d_end_date" column="d_end_date" />
 		<result property="no" 		column="no" />
 		<result property="email" 		column="email" />
@@ -89,4 +94,21 @@
 	<select id="getTotal" parameterType="donate" resultType="int">
 		select count(*) from donate <if test="d_member != 1"> where d_member=#{d_member}</if>
 	</select>
+		<select id="memTotal" resultType="int">
+		select count(*) from donate where d_member<![CDATA[>]]>0 
+	</select>
+	<select id="orTotal" resultType="int">
+		select count(*) from donate where d_member<![CDATA[<]]>0 
+	</select>
+	<select id="memAll" resultMap="DonateResult" parameterType="donate">
+		select * from(select rownum rn,m.* from 
+		(select * from donate where d_member<![CDATA[>]]>0 order by d_reg_date desc) m)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="orAll" resultMap="DonateResult" parameterType="donate">
+		select * from(select rownum rn,o.* from 
+		(select * from donate where d_member<![CDATA[<]]>0 order by d_reg_date desc) o)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
 </mapper>

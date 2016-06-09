@@ -19,24 +19,31 @@ public class WarningController {
 	@Autowired
 	private WarningService ws;
 	@RequestMapping("warningList")
-	public String warningList(HttpSession session,String pageNum,Model model){
+	public String warningList(HttpSession session,String pageNum,String sort,Model model){
 		int m_no = (Integer) session.getAttribute("no");		
 		final int rowPerPage = 10;
-		
+		if(sort == null || sort.equals("")){
+			sort = "all";
+		}
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = ws.getTotal(m_no);		
+		
+		Warning warn = new Warning();
+		warn.setM_no(m_no);
+		warn.setWa_sort(sort);
+		int total = ws.getTotal(warn);		
 		
 		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
 		
-		List<Warning> list = ws.list(startRow, endRow, m_no);
+		List<Warning> list = ws.list(startRow, endRow, m_no, sort);
 		
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
+		model.addAttribute("sort", sort);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_warningList.jsp");		
 		return "module/main";
