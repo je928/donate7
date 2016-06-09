@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${donate.d_content}</td>
+				<td style="text-align: left;">${donate.d_content}</td>
 			</tr>
 			<tr>
 				<th>기부 기간</th>				
