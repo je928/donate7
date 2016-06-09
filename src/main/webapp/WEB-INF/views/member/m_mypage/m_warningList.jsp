@@ -8,13 +8,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function locate(pageNum){
-		location.href="warningList.do?pageNum="+pageNum;
+	function locate(pageNum,sort){
+		location.href="warningList.do?pageNum="+pageNum+"&sort="+sort;
 	}
 </script>
 </head>
 <body>
 <div class="panel-body2">
+<a href="warningList.do?sort=all" class="btn btn-sm btn-info">전체</a>
+<a href="warningList.do?sort=b" class="btn btn-sm btn-info">게시판</a>
+<a href="warningList.do?sort=d" class="btn btn-sm btn-info">봉사</a>
 <table class="table table-striped table-bordered table-list">
 		<caption>경고 내역</caption>
 		<tr>
@@ -51,8 +54,8 @@
 			<div class="col">
 				<ul class="pagination">
 					<c:if test="${pb.startPage > pb.pagePerBlock}">
-					<li><a href="javascript:locate(1)">««</a></li>						
-					<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+					<li><a href="javascript:locate(1,${sort })">««</a></li>						
+					<li><a href="javascript:locate(${pb.nowPage-1},${sort })">«</a></li>
 					</c:if>
 				</ul>
 				<ul class="pagination">
@@ -61,14 +64,14 @@
 							<li><a href="#"><b class="b2">${i}</b></a></li>
 						</c:if>
 						<c:if test="${i ne pb.nowPage}">
-							<li><a href="javascript:locate(${i})">${i}</a></li>
+							<li><a href="javascript:locate(${i},${sort })">${i}</a></li>
 						</c:if>
 					</c:forEach>
 				</ul>
 				<ul class="pagination">
 					<c:if test="${pb.totalPage > pb.endPage}">
-					<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
-					<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
+					<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock},${sort })">»</a></li>
+					<li><a href="javascript:locate(${pb.totalPage},${sort })">»»</a></li>
 					</c:if>
 				</ul>
 			</div>
