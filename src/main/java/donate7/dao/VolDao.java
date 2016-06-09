@@ -20,4 +20,5 @@ public interface VolDao {
 	int selectRcTotal(Recruit rc);
 	int insertRqn(Rqn rqn);
 	List<Recruit> selectRqnList(Recruit rc);
+	int selectRqn(Rqn rqn);
 }

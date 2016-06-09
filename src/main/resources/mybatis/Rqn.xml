@@ -17,4 +17,10 @@
 		(NEW_VT_RQN_NO,
 		#{vt_no},#{vt_m_no},SYSDATE,'N')
 	</insert>
+	<select id="selectRqn" parameterType="rqn" resultType="Integer">
+	select NVL(COUNT(*),0) from vt_rqn where vt_no=#{vt_no} and vt_m_no=#{vt_m_no}
+	</select>
+	<delete id="deleteRqn" parameterType="rqn">
+	delete from vt_rqn where vt_no=#{vt_no} and vt_m_no=#{vt_m_no}
+	</delete>
 </mapper>

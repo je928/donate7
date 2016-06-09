@@ -91,4 +91,12 @@ public class VolDaoImpl implements VolDao{
 		return list;
 	}
 
+
+	@Override
+	public int selectRqn(Rqn rqn) {
+		int result = session.selectOne("rqn.selectRqn",rqn);
+		System.out.println("result  =" +result);
+		return result;
+	}
+
 }
