@@ -67,6 +67,9 @@
 								<button type="submit" class="btn btn-sm btn-danger">
 									삭제<i class="glyphicon glyphicon-ok"></i>
 								</button>
+								<button type="button" class="btn btn-sm btn-default" onclick="history.back(-1)">
+									취소<i class="glyphicon glyphicon-ok"></i>
+								</button>
 							</span>
 						</div>
 					</form>

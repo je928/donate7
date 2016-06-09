@@ -78,11 +78,11 @@
 	</update>
 	
 	<select id="memberTotal" resultType="Integer">
-		select count(*) from member where m_del_yn='n'
+		select count(*) from member where m_del_yn='n' and m_no!=1
 	</select>
 
 	<select id="memberAll" parameterType="member" resultMap="MemberResult">
-		select * from (select rownum rn, a.* from (select m.* from member m where m_del_yn='n' order by m_no desc) a) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn, a.* from (select m.* from member m where m_del_yn='n' and m_no!=1 order by m_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 		
 </mapper>

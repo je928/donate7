@@ -123,7 +123,7 @@ public class communityController {
 		int result = cs.communityInsert(community);
 		model.addAttribute("pageNum", pageNum);
 		if(result > 0) {
-			return "redirect:community.do";
+			return "redirect:view.do?brd_no="+community.getBrd_no();
 		}else {
 			model.addAttribute("msg", "입력 실패");
 			model.addAttribute("community", community);
