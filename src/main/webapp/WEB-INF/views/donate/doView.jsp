@@ -83,7 +83,8 @@
 							class="btn btn-sm btn-primary">
 							목록으로<i class="glyphicon glyphicon-menu-hamburger"></i>
 						</button>
-						<button class="btn btn-sm btn-success">
+						<button
+							class="btn btn-sm btn-success">
 							기부하기<i class="glyphicon glyphicon-heart"></i>
 						</button>
 					</div>

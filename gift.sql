@@ -22,6 +22,8 @@ create table gift_buy(
    gb_chk char(1) default 'n' check (gb_chk in ('y','n'))
 )
 
+select * from (select rownum rn,a.* from (select * from cpoint_info
+		order by cp_no desc) a) where rn between 1 and 10 and m_no=2 and cp_sort='c';
 select * from gift;
 select * from cpoint_info;
 select * from gift_buy;

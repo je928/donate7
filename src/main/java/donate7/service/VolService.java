@@ -22,5 +22,5 @@ public interface VolService {
 	int insertRqn(Rqn rqn);
 	List<Recruit> selectRqnList(Recruit rc);
 	List<Applicant> selectApplicant(int vt_no);
-
+	int selectRqn(Rqn rqn);
 }

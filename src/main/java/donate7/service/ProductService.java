@@ -30,6 +30,14 @@ public interface ProductService {
 
 	int getTotal(Product product);
 
+	List<Product> memAll(Product product);
+
+	List<Product> orAll(Product product);
+
+	int memTotal(Product product);
+
+	int orTotal(Product product);
+
 	
 
 

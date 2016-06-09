@@ -33,6 +33,14 @@ public interface ProductDao {
 
 	int getTotal(Product product);
 
+	List<Product> memAll(Product product);
+
+	List<Product> arAll(Product product);
+
+	int memTotal(Product product);
+
+	int arTotal(Product product);
+
 
 
 }

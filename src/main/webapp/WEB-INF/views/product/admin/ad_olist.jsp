@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../../module/header.jsp"%>
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+ <%@include file="../../module/header.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,23 +21,20 @@ function o() {
 	
 }
 
-function locate(pageNum){
-	location.href="ad_prList.do?pageNum="+pageNum;
+	function locate(pageNum){
+	location.href="ad_olist.do?pageNum="+pageNum;
 }
- 
 </script>
 </head>
 <body>
- 
 <div class="text-left list-group2">
 <input type="button" id="al" name="al" class="btn btn-default2" onclick="al()" value="전체">
 <input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
 <input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
 
 </div> 
-<!-- <div id="prlist" style="display: block"> -->
 	<table class="table table-striped table-hover">
-			
+			<caption>기관 요청 내역</caption>
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -47,7 +44,7 @@ function locate(pageNum){
 						<th>승인여부</th>
 					</tr>
 					<c:set var="num" value="${pg.total}" />
-					<c:forEach var="product" items="${prlist}">
+					<c:forEach var="product" items="${olist}">
 						
 						<tr>
 							<td>${num}</td>
@@ -62,7 +59,7 @@ function locate(pageNum){
 							<td>${product.pr_approve}</td>
 
 						</tr>
-						
+					
 						<c:set var="num" value="${num-1}" />
 					</c:forEach>
 				</table>
@@ -94,8 +91,8 @@ function locate(pageNum){
 						</div>
 					</div>
 				</div>
-			
-
-			
+	
+	
+	
 </body>
 </html>

@@ -9,9 +9,21 @@
 	function locate(pageNum){
 		location.href="a_memberAll.do?pageNum="+pageNum;
 	}
+	function m() {
+		location.href="a_memberAll.do";
+	}
+	
+	function o() {
+		location.href="a_organAll.do";	
+	}
 </script>
 </head>
 <body>
+
+	<div class="text-right list-group2">
+	<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
+	<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
+	</div>
 
 	<div class="col-md-12">
 		<div class="panel panel-default panel-table">
@@ -68,7 +80,7 @@
 			</div>
 			<div class="panel-footer2">
 				<div class="row">
-					<div class="col col-xs-4">Page ${m_pb.startPage} of ${m_pb.endPage} / 총 ${m_pb.total}명</div>
+					<div class="col col-xs-4">Page ${m_pb.nowPage} of ${m_pb.totalPage} / 총 ${m_pb.total}명</div>
 					<div class="col col-xs-8">
 						<ul class="pagination hidden-xs pull-right">
 							<c:if test="${m_pb.startPage > m_pb.pagePerBlock}">

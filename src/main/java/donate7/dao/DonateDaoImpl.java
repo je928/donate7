@@ -63,4 +63,16 @@ public class DonateDaoImpl implements DonateDao {
 	public int getTotal(Donate donate) {
 		return session.selectOne("donate.getTotal",donate);
 	}
+	public int memTotal(Donate donate) {
+		return session.selectOne("donate.memTotal",donate);
+	}
+	public List<Donate> memAll(Donate donate) {
+		return session.selectList("donate.memAll",donate);
+	}
+	public int orTotal(Donate donate) {
+		return session.selectOne("donate.orTotal",donate);
+	}
+	public List<Donate> orAll(Donate donate) {
+		return session.selectList("donate.orAll",donate);
+	}
 }

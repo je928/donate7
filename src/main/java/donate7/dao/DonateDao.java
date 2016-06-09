@@ -7,6 +7,7 @@ import donate7.model.Donate;
 
 public interface DonateDao {
 
+
 	int mdoReqInsert(Donate donate);
 
 	List<Donate> mlist(int no);
@@ -36,5 +37,13 @@ public interface DonateDao {
 	List<Donate> doList();
 
 	int getTotal(Donate donate);
+
+	int memTotal(Donate donate);
+
+	List<Donate> memAll(Donate donate);
+
+	int orTotal(Donate donate);
+
+	List<Donate> orAll(Donate donate);
 
 }

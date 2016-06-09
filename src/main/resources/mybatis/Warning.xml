@@ -20,9 +20,25 @@
 	</insert>
 	<select id="list" parameterType="HashMap" resultMap="WarningResult">
 		select * from (select rownum rn,a.* from (select * from warning
+		<if test='wa_sort != "all"'>
+			<if test='wa_sort == "b"'>
+				where wa_sort='b'
+			</if>
+			<if test='wa_sort == "d"'>
+				where wa_sort='d'
+			</if>	
+		</if>
 		order by wa_no desc) a) where rn between #{startRow} and #{endRow} and m_no=#{m_no}
 	</select>
-	<select id="getTotal" parameterType="int" resultType="int">
+	<select id="getTotal" parameterType="warning" resultType="int">
 		select count(*) from warning where m_no=#{m_no}
+		<if test='wa_sort != "all"'>
+			<if test='wa_sort == "b"'>
+				and wa_sort='b'
+			</if>
+			<if test='wa_sort == "d"'>
+				and wa_sort='d'
+			</if>	
+		</if>
 	</select>	
 </mapper>

@@ -19,13 +19,6 @@ public class adminController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping(value = "a_moAll", method = RequestMethod.GET)
-	public String a_moAll(Model model) {
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../member/admin_page/a_moAll.jsp");
-		return "module/main";
-	}
-	
 	@RequestMapping(value = "a_memberAll")
 	public String a_memberAll(Member member, String pageNum, Model model) {
 		final int rowPerPage = 10;
@@ -49,7 +42,9 @@ public class adminController {
 		model.addAttribute("memberAll", memberAll);
 		model.addAttribute("m_pb", m_pb);
 		
-		return "/member/admin_page/a_memberAll";
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/admin_page/a_memberAll.jsp");
+		return "module/main";
 	}
 	
 	@RequestMapping(value = "a_organAll")
@@ -63,7 +58,7 @@ public class adminController {
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = ms.memberTotal();
+		int total = ms.organTotal();
 		
 		organ.setStartRow(startRow);
 		organ.setEndRow(endRow);
@@ -71,11 +66,12 @@ public class adminController {
 		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
 		
 		List<Organ> organAll = ms.organAll(startRow, endRow, organ);
-		
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
 		
-		return "/member/admin_page/a_organAll";
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/admin_page/a_organAll.jsp");
+		return "module/main";
 	}
 	
 	@RequestMapping(value="giftUpload", method=RequestMethod.GET)

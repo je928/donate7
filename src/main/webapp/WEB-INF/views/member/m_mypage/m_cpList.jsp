@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function locate(pageNum){
-		location.href="cpointList.do?pageNum="+pageNum;
+	function locate(pageNum,sort){
+		location.href="cpointList.do?pageNum="+pageNum+"&sort="+sort;
 	}
 	function addCash() {
 		window.open("addCash.do","","width=370, height=300");
@@ -18,12 +18,12 @@
 </head>
 <body>
 <div class="panel-body2">
-<table class="table table-striped table-bordered table-list">
 <a href="cpointList.do?sort=all" class="btn btn-sm btn-info">캐시/포인트</a>
 <a href="cpointList.do?sort=c" class="btn btn-sm btn-info">캐시</a>
 <a href="cpointList.do?sort=p" class="btn btn-sm btn-info">포인트</a>
+<table class="table table-striped table-bordered table-list">
 <div style="float: right"><a href="javascript:addCash()" class="btn btn-sm btn-primary">캐시 충전</a></div>
-		<caption>캐시/포인트 내역<div style="float: right">총 포인트 : ${sumP },총 캐시 : ${sumC }</div></caption>
+		<caption>캐시/포인트 내역<div style="float: right">총 포인트 : ${sumP }, 총 캐시 : ${sumC }</div></caption>
 		<tr>
 			<th>번호</th>
 			<th>구분</th>
@@ -36,9 +36,9 @@
 			<tr>
 				<td>${no }</td>
 				<c:set var="p" value="p"/>
-				<td>포인트
+				<td>
 				<%-- <c:if test="${cp.cp_sort ne p }"> --%>
-					캐시
+					${cp.cp_sort }	
 				<%-- </c:if> --%></td>
 				<td>${cp.cp_point }</td>				
 				<td>${cp.cp_point_re }</td>
@@ -58,8 +58,8 @@
 			<div class="col">
 				<ul class="pagination">
 					<c:if test="${pb.startPage > pb.pagePerBlock}">
-					<li><a href="javascript:locate(1)">««</a></li>						
-					<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+					<li><a href="javascript:locate(1,'${sort }')">««</a></li>						
+					<li><a href="javascript:locate(${pb.nowPage-1},'${sort }')">«</a></li>
 					</c:if>
 				</ul>
 				<ul class="pagination">
@@ -68,14 +68,14 @@
 							<li><a href="#"><b class="b2">${i}</b></a></li>
 						</c:if>
 						<c:if test="${i ne pb.nowPage}">
-							<li><a href="javascript:locate(${i})">${i}</a></li>
+							<li><a href="javascript:locate(${i},'${sort }')">${i}</a></li>
 						</c:if>
 					</c:forEach>
 				</ul>
 				<ul class="pagination">
 					<c:if test="${pb.totalPage > pb.endPage}">
-					<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
-					<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
+					<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock},'${sort }')">»</a></li>
+					<li><a href="javascript:locate(${pb.totalPage},'${sort }')">»»</a></li>
 					</c:if>
 				</ul>
 			</div>

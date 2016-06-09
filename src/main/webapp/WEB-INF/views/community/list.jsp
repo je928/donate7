@@ -9,7 +9,7 @@
 	function locate(pageNum){
 		var searchType = document.getElementById("searchType");
 		var searchTxt = document.getElementById("searchTxt");
-		location.href="a_moAll.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
+		location.href="community.do?pageNum="+pageNum+"&searchType="+searchType.value+"&searchTxt="+searchTxt.value;
 	}
 </script>
 </head>
@@ -37,7 +37,7 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							Page ${pb.startPage} of ${pb.endPage}
+							Page ${pb.nowPage} of ${pb.totalPage}
 						</div>
 						<div class="col col-xs-6 text-right">
 							<a href="writeForm.do?pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성<em class="fa fa-edit"></em></a>	

@@ -53,10 +53,10 @@ public class VolServiceImpl implements VolService {
 	public List<Applicant> selectApplicant(int vt_no) {
 		return vd.selectApplicant(vt_no);
 	}
-
-
-
-
+	@Override
+	public int selectRqn(Rqn rqn) {
+		return vd.selectRqn(rqn);
+	}
 	/*@Override
 	public int volReqInsert(VolReq req) {
 		return vd.volReqInsert(req);

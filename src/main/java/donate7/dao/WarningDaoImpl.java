@@ -17,14 +17,15 @@ public class WarningDaoImpl implements WarningDao{
 		warning.setWa_no(wa_no);
 		return st.insert("warning.insert",warning);
 	}
-	public int getTotal(int m_no) {
-		return st.selectOne("warning.getTotal",m_no);
+	public int getTotal(Warning warning) {
+		return st.selectOne("warning.getTotal",warning);
 	}
-	public List<Warning> list(int startRow, int endRow, int m_no) {
+	public List<Warning> list(int startRow, int endRow, int m_no, String sort) {
 		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
 		hashMap.put("startRow", startRow);
 		hashMap.put("endRow", endRow);
 		hashMap.put("m_no", m_no);
+		hashMap.put("wa_sort", sort);
 		return st.selectList("warning.list",hashMap);
 	}
 }
