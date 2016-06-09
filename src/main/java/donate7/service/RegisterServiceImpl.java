@@ -15,14 +15,17 @@ public class RegisterServiceImpl implements RegisterService{
 	public int insert(Register register) {
 		return rd.insert(register);
 	}
-	public List<Register> list() {
-		return rd.list();
+	public List<Register> list(int startRow, int endRow, int m_no, String sort) {
+		return rd.list(startRow,endRow,m_no,sort);
 	}
 	public Register selectOne(int re_no) {
 		return rd.selectOne(re_no);
 	}
 	public int updateChk(HashMap<Object, Object> hashMap) {
 		return rd.updateChk(hashMap);
+	}
+	public int getTotal(Register reg) {
+		return rd.getTotal(reg);
 	}
 
 }
