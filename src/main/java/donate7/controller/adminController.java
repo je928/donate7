@@ -19,13 +19,6 @@ public class adminController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping(value = "a_moAll", method = RequestMethod.GET)
-	public String a_moAll(Model model) {
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../member/admin_page/a_moAll.jsp");
-		return "module/main";
-	}
-	
 	@RequestMapping(value = "a_memberAll")
 	public String a_memberAll(Member member, String pageNum, Model model) {
 		final int rowPerPage = 10;

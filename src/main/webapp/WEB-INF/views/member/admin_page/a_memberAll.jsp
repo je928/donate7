@@ -9,9 +9,21 @@
 	function locate(pageNum){
 		location.href="a_memberAll.do?pageNum="+pageNum;
 	}
+	function m() {
+		location.href="a_memberAll.do";
+	}
+	
+	function o() {
+		location.href="a_organAll.do";	
+	}
 </script>
 </head>
 <body>
+
+	<div class="text-right list-group2">
+	<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
+	<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
+	</div>
 
 	<div class="col-md-12">
 		<div class="panel panel-default panel-table">
