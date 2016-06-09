@@ -2,7 +2,7 @@ package donate7.controller;
 
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import donate7.model.Applicant;
 import donate7.model.Dclass;
 import donate7.model.Organ;
 import donate7.model.Recruit;
@@ -341,6 +342,25 @@ public class VolController {
 			return "redirect:recruit.do";
 		}		
 	}
+	
+	@RequestMapping("applicantList")
+	public String applicantList(int vt_no,int vt_tot, Model model){
+		List<Applicant> list = vs.selectApplicant(vt_no);
+		model.addAttribute("vt_tot", vt_tot);
+		model.addAttribute("list", list);
+		return "vt/applicantList";
+	}
+	
+	@RequestMapping("appSelect")
+	public String appSelect(int[] yValue,int[] xValue, Model model){
+		HashMap<String,int[]> hm = new HashMap();
+		hm.put("yValue",yValue);
+		hm.put("xValue",yValue);
+		
+		return "vt/appSelect";
+	}
+	
+	
 	@RequestMapping("rqnList")
 	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
 		String num = pageNum;

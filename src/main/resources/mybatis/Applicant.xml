@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="applicant">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="ApplicantResult" type="applicant">
+		<result property="m_no" column="M_NO"/>
+		<result property="m_name" column="M_NAME"/>
+		<result property="m_email" column="M_EMAIL"/>
+		<result property="m_age" column="M_AGE"/>
+		<result property="m_gender" column="M_GENDER"/>
+		<result property="m_tel" column="M_TEL"/>
+		<result property="m_job" column="M_JOB"/>
+		<result property="vt_no" column="VT_NO"/>
+		<result property="vt_sel_yn" column="VT_SEL_YN"/>
+		<result property="wnCount" column="WNCOUNT"/>
+		<result property="totalVolTime" column="TOTALVOLTIME"/>
+	</resultMap>
+
+	<select id="selectApplicant" resultMap="ApplicantResult" parameterType="int">
+		SELECT B.M_NO,M_NAME,M_EMAIL,CEIL((SYSDATE - M_BIRTH) / 365) M_AGE,
+		M_GENDER,M_TEL,M_JOB,A.VT_NO,VT_SEL_YN, NVL(C.WNCOUNT,0) WNCOUNT,0 TOTALVOLTIME    
+		FROM VT_RQN A, MEMBER B, (SELECT M_NO,NVL(SUM(wa_cnt),0) WNCOUNT FROM WARNING GROUP BY M_NO) C
+		WHERE A.VT_M_NO = B.M_NO
+		AND B.M_NO = C.M_NO(+)   
+		AND A.VT_NO = #{vt_no}
+	</select>
+
+</mapper>
