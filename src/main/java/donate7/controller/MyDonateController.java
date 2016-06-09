@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import donate7.model.Donate;
+import donate7.model.Product;
 import donate7.service.DonateService;
 import donate7.util.Paging;
 
@@ -31,15 +32,12 @@ public class MyDonateController {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
-		
 		donate.setD_member(no);
-		
 		int nowPage = Integer.parseInt(pageNum);
 		int total = ds.getTotal(donate);
 		Paging pg = new Paging(nowPage, total);
 		donate.setStartRow(pg.getStartRow());
 		donate.setEndRow(pg.getEndRow());
-		
 		List<Donate> list = ds.mlist(no);
 /*		int count = ds.count(donate);
 		model.addAttribute("count",count);*/
@@ -248,18 +246,71 @@ public class MyDonateController {
 	
 	//관리자
 	@RequestMapping(value="adList", method=RequestMethod.GET)
-	public String adList(Model model, HttpSession session){
+	public String adList(Donate donate,String pageNum,Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
-		Donate donate = new Donate();
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		donate.setD_member(no);
-		int count=ds.count(donate);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ds.getTotal(donate);
+		Paging pg = new Paging(nowPage, total);
+		donate.setStartRow(pg.getStartRow());
+		donate.setEndRow(pg.getEndRow());
 		List<Donate> list = ds.adlist();
-		model.addAttribute("count", count);
+
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/adList.jsp");
 		return "module/main";
 	}
+	
+	
+	@RequestMapping("adMList")
+	public String adMList(Donate donate, String pageNum, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		donate.setD_member(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ds.memTotal(donate);
+		Paging pg = new Paging(nowPage, total);
+		donate.setStartRow(pg.getStartRow());
+		donate.setEndRow(pg.getEndRow());
+		List<Donate> mlist = ds.memAll(donate);
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/adMList.jsp");
+		return "module/main";
+	
+	}
+	
+	@RequestMapping("adOList")
+	public String adOList(Donate donate, String pageNum, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		donate.setD_member(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ds.orTotal(donate);
+		Paging pg = new Paging(nowPage, total);
+		donate.setStartRow(pg.getStartRow());
+		donate.setEndRow(pg.getEndRow());
+		List<Donate> olist = ds.orAll(donate);
+		model.addAttribute("olist", olist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../donate/adOList.jsp");
+		return "module/main";
+	}
+	
 	@RequestMapping(value="adView", method=RequestMethod.GET)
 	public String adView(int d_no, Model model){
 		Donate donate = ds.selectOne(d_no);

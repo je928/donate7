@@ -57,5 +57,17 @@ public class DonateServiceImpl implements DonateService {
 	public int getTotal(Donate donate) {
 		return dd.getTotal(donate);
 	}
+	public int memTotal(Donate donate) {
+		return dd.memTotal(donate);
+	}
+	public List<Donate> memAll(Donate donate) {
+		return dd.memAll(donate);
+	}
+	public int orTotal(Donate donate) {
+		return dd.orTotal(donate);
+	}
+	public List<Donate> orAll(Donate donate) {
+		return dd.orAll(donate);
+	}
 
 }
