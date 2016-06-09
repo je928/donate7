@@ -49,7 +49,7 @@ public class adminController {
 		model.addAttribute("memberAll", memberAll);
 		model.addAttribute("m_pb", m_pb);
 		
-		return "/member/admin_page/a_memberAll";
+		return "/member/admin_page/a_memberAll.jsp?pageNum="+pageNum;
 	}
 	
 	@RequestMapping(value = "a_organAll")
@@ -71,7 +71,6 @@ public class adminController {
 		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
 		
 		List<Organ> organAll = ms.organAll(startRow, endRow, organ);
-		System.out.println("o_pb.total = " + o_pb.getTotal());
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
 		
