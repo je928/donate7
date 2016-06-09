@@ -373,7 +373,7 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
-	@RequestMapping("rqnDelete")
+	/*@RequestMapping("rqnDelete")
 	public String rqnDelte(Rqn rqn, Model model) {
 		int result = vs.deledteRqn(rqn);
 		if(result > 0){
@@ -382,5 +382,5 @@ public class VolController {
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
 		}		
-	}
+	}*/
 }
