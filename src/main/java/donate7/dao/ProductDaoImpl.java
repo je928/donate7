@@ -84,6 +84,27 @@ public class ProductDaoImpl implements ProductDao{
 	public int getTotal(Product product) {
 		return st.selectOne("product.getTotal",product);
 	}
+	
+	public int memTotal(Product product) {
+		
+		return st.selectOne("product.memTotal", product);
+	}
 
+	public int arTotal(Product product) {
+	
+		return st.selectOne("product.orTotal",product);
+	}
+
+	public List<Product> memAll(Product product) {
+		
+		return st.selectList("product.memAll",product);
+	}
+
+	public List<Product> arAll(Product product) {
+		
+		return st.selectList("product.orAll",product);
+	}
+
+	
 
 }

@@ -46,7 +46,7 @@
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="olist" resultMap="ProductResult" parameterType="product">
-		select * from(select rownum rn,b.* from 
+		select * from(select rownum rn,o.* from 
 		(select * from product where pr_mno<![CDATA[<]]>0 and pr_mno=#{pr_mno}
 		 order by pr_date desc) o)
 		where rn between #{startRow} and #{endRow}
@@ -80,8 +80,22 @@
 		select * from product where pr_approve='y' order by pr_date desc	
 	</select>
 	<select id="getTotal" parameterType="product" resultType="int">
-		
- 		select count(*) from product <if test="pr_mno != 1"> where pr_mno=#{pr_mno}</if>
-	
+		select count(*) from product <if test="pr_mno != 1"> where pr_mno=#{pr_mno}</if>
+	</select>
+	<select id="memTotal" resultType="int">
+		select count(*) from product where pr_mno<![CDATA[>]]>0 
+	</select>
+	<select id="orTotal" resultType="int">
+		select count(*) from product where pr_mno<![CDATA[<]]>0 
+	</select>
+	<select id="memAll" resultMap="ProductResult" parameterType="product">
+		select * from(select rownum rn,o.* from 
+		(select * from product where pr_mno<![CDATA[>]]>0 order by pr_date desc) o)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="orAll" resultMap="ProductResult" parameterType="product">
+		select * from(select rownum rn,o.* from 
+		(select * from product where pr_mno<![CDATA[<]]>0 order by pr_date desc) o)
+		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>
