@@ -29,7 +29,7 @@ public class Cpoint_InfoDaoImpl implements Cpoint_InfoDao{
 		hashMap.put("startRow", startRow);
 		hashMap.put("endRow", endRow);
 		hashMap.put("m_no", m_no);
-		hashMap.put("sort", sort);
+		hashMap.put("cp_sort", sort);
 		return st.selectList("cpoint_info.list",hashMap);
 	}
 	public int sumCash(int m_no) {
