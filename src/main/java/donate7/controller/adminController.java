@@ -49,7 +49,9 @@ public class adminController {
 		model.addAttribute("memberAll", memberAll);
 		model.addAttribute("m_pb", m_pb);
 		
-		return "/member/admin_page/a_memberAll.jsp?pageNum="+pageNum;
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/admin_page/a_memberAll.jsp");
+		return "module/main";
 	}
 	
 	@RequestMapping(value = "a_organAll")
@@ -74,7 +76,9 @@ public class adminController {
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
 		
-		return "/member/admin_page/a_organAll";
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/admin_page/a_organAll.jsp");
+		return "module/main";
 	}
 	
 	@RequestMapping(value="giftUpload", method=RequestMethod.GET)
