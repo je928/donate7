@@ -3,7 +3,6 @@ package donate7.model;
 import java.sql.Date;
 
 public class Member {
-
 	private int m_no;
 	private String m_email;
 	private String m_passwd;

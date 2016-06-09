@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
 
@@ -89,6 +90,17 @@ public class VolDaoImpl implements VolDao{
 	public List<Recruit> selectRqnList(Recruit rc) {
 		List<Recruit> list = session.selectList("recruit.selectRqnList", rc);
 		return list;
+	}
+
+
+	@Override
+	public List<Applicant> selectApplicant(int vt_no) {
+		return session.selectList("applicant.selectApplicant",vt_no);
+	}
+	public int selectRqn(Rqn rqn) {
+		int result = session.selectOne("rqn.selectRqn",rqn);
+		System.out.println("result  =" +result);
+		return result;
 	}
 
 }

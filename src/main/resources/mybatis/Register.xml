@@ -21,12 +21,32 @@
 		sysdate,#{re_sort},#{re_sort_no})		
 	</insert>
 	<select id="list" resultMap="RegisterResult">
-		select * from register order by re_no desc
+		select * from (select rownum rn,a.* from (select * from register
+		<if test='re_chk != "all"'>
+			<if test='re_chk == "n"'>
+				where re_chk='n'
+			</if>
+			<if test='re_chk != "n"'>
+				where re_chk='y' or re_chk='c'
+			</if>	
+		</if>
+		order by re_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="selectOne" resultType="register">
 		select * from register where re_no = #{re_no}
 	</select>
 	<update id="updateChk" parameterType="HashMap">
 		update register set re_chk=#{re_chk} where re_no=#{re_no}
-	</update>	
+	</update>
+	<select id="getTotal" resultType="int" parameterType="register">
+		select count(*) from register
+		<if test='re_chk != "all"'>
+			<if test='re_chk == "n"'>
+				where re_chk='n'
+			</if>
+			<if test='re_chk != "n"'>
+				where re_chk='y' or re_chk='c'
+			</if>	
+		</if>
+	</select>	
 </mapper>

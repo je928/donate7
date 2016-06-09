@@ -45,8 +45,6 @@ public class MyProductController {
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
 		List<Product> list = ps.mlist(product);
-		/*int count=ps.count(product);
-		model.addAttribute("count", count);*/
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
@@ -301,20 +299,62 @@ public class MyProductController {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
-	
 		product.setPr_mno(no);
 		int nowPage = Integer.parseInt(pageNum);
 		int total = ps.getTotal(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
-		List<Product> list = ps.prlist(product);
+		List<Product> prlist = ps.prlist(product);
 		
-		model.addAttribute("list", list);
+		model.addAttribute("prlist", prlist);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping("ad_mlist")
+	public String admlist(Product product, String pageNum, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+				product.setPr_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.memTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> mlist = ps.memAll(product);
+		model.addAttribute("mlist", mlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/admin/ad_mlist.jsp");
+		return "module/main";
+	
+	}
+	
+	@RequestMapping("ad_olist")
+	public String adoList(Product product, String pageNum, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		product.setPr_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ps.orTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> olist = ps.orAll(product);
+		model.addAttribute("olist", olist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/admin/ad_olist.jsp");
 		return "module/main";
 	}
 	@RequestMapping(value="ad_prView", method=RequestMethod.GET)

@@ -35,4 +35,12 @@ public interface DonateService {
 	List<Donate> doList();
 
 	int getTotal(Donate donate);
+
+	int memTotal(Donate donate);
+
+	List<Donate> memAll(Donate donate);
+
+	int orTotal(Donate donate);
+
+	List<Donate> orAll(Donate donate);
 }

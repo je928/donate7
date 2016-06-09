@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import donate7.dao.VolDao;
+import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
 @Service
@@ -48,7 +49,14 @@ public class VolServiceImpl implements VolService {
 		return vd.selectRqnList(rc);
 	}
 
-
+	@Override
+	public List<Applicant> selectApplicant(int vt_no) {
+		return vd.selectApplicant(vt_no);
+	}
+	@Override
+	public int selectRqn(Rqn rqn) {
+		return vd.selectRqn(rqn);
+	}
 	/*@Override
 	public int volReqInsert(VolReq req) {
 		return vd.volReqInsert(req);

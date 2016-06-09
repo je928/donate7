@@ -2,7 +2,7 @@ package donate7.controller;
 
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import donate7.model.Applicant;
 import donate7.model.Dclass;
 import donate7.model.Organ;
 import donate7.model.Recruit;
@@ -322,11 +323,16 @@ public class VolController {
 
 	@RequestMapping("View")
 	public String View(int pageNum, int vt_no, HttpSession session, Model model) {
+		Rqn rqn = new Rqn();
+		rqn.setVt_no(vt_no);
+		rqn.setVt_m_no((Integer)session.getAttribute("no"));
+		int result = vs.selectRqn(rqn);
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("rc", rc);
 		model.addAttribute("addr", addr);
+		model.addAttribute("result", result);
 		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
 		model.addAttribute("mypgm", "../../calendar/View.jsp");
 		return "module/main";
@@ -341,6 +347,25 @@ public class VolController {
 			return "redirect:recruit.do";
 		}		
 	}
+	
+	@RequestMapping("applicantList")
+	public String applicantList(int vt_no,int vt_tot, Model model){
+		List<Applicant> list = vs.selectApplicant(vt_no);
+		model.addAttribute("vt_tot", vt_tot);
+		model.addAttribute("list", list);
+		return "vt/applicantList";
+	}
+	
+	@RequestMapping("appSelect")
+	public String appSelect(int[] yValue,int[] xValue, Model model){
+		HashMap<String,int[]> hm = new HashMap();
+		hm.put("yValue",yValue);
+		hm.put("xValue",yValue);
+		
+		return "vt/appSelect";
+	}
+	
+	
 	@RequestMapping("rqnList")
 	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
 		String num = pageNum;
@@ -368,4 +393,14 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
+	/*@RequestMapping("rqnDelete")
+	public String rqnDelte(Rqn rqn, Model model) {
+		int result = vs.deledteRqn(rqn);
+		if(result > 0){
+			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+		}else{
+			model.addAttribute("rqn", rqn);
+			return "redirect:recruit.do";
+		}		
+	}*/
 }

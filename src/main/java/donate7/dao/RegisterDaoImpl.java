@@ -17,13 +17,21 @@ public class RegisterDaoImpl implements RegisterDao{
 		register.setRe_no(re_no);
 		return st.insert("register.insert",register);
 	}
-	public List<Register> list() {
-		return st.selectList("register.list");
+	public List<Register> list(int startRow, int endRow, int m_no, String sort) {
+		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
+		hashMap.put("startRow", startRow);
+		hashMap.put("endRow", endRow);
+		hashMap.put("m_no", m_no);
+		hashMap.put("re_chk", sort);
+		return st.selectList("register.list",hashMap);
 	}
 	public Register selectOne(int re_no) {
 		return st.selectOne("register.selectOne",re_no);
 	}
 	public int updateChk(HashMap<Object, Object> hashMap) {
 		return st.update("register.updateChk",hashMap);
+	}
+	public int getTotal(Register reg) {
+		return st.selectOne("register.getTotal",reg);
 	}
 }
