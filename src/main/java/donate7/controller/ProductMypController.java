@@ -22,7 +22,7 @@ import donate7.util.Paging;
 
 
 @Controller
-public class MyProductController {
+public class ProductMypController {
 	
 	@Autowired
 	private ProductService ps;
@@ -39,7 +39,7 @@ public class MyProductController {
 		product.setPr_mno(no);
 
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
+		int total = ps.count(product);
 		
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
@@ -73,7 +73,7 @@ public class MyProductController {
 		product.setPr_mno(no);
 		ps.insert(product);
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
+		int total = ps.count(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
@@ -123,7 +123,7 @@ public class MyProductController {
 		product.setPr_mno(no);
 		ps.prUpdate(product);
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
+		int total = ps.count(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
@@ -151,7 +151,7 @@ public class MyProductController {
 	
 		product.setPr_mno(no);
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
+		int total = ps.count(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
@@ -185,7 +185,7 @@ public class MyProductController {
 	product.setPr_mno(no);
 	ps.insert(product);
 	int nowPage = Integer.parseInt(pageNum);
-	int total = ps.getTotal(product);
+	int total = ps.count(product);
 	Paging pg = new Paging(nowPage, total);
 	product.setStartRow(pg.getStartRow());
 	product.setEndRow(pg.getEndRow());
@@ -236,7 +236,7 @@ public class MyProductController {
 		product.setPr_mno(no);
 		ps.prUpdate(product);
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
+		int total = ps.count(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
@@ -292,79 +292,6 @@ public class MyProductController {
 	}
 	*/
 	
-	//관리자
-	@RequestMapping(value="ad_prList", method=RequestMethod.GET)
-	public String adprList(Product product, String pageNum, Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
-		}
-		product.setPr_mno(no);
-		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal(product);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
-		List<Product> prlist = ps.prlist(product);
-		
-		model.addAttribute("prlist", prlist);
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");
-		return "module/main";
-	}
-	
-	@RequestMapping("ad_mlist")
-	public String admlist(Product product, String pageNum, Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
-		}
-				product.setPr_mno(no);
-		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.memTotal(product);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
-		List<Product> mlist = ps.memAll(product);
-		model.addAttribute("mlist", mlist);
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_mlist.jsp");
-		return "module/main";
-	
-	}
-	
-	@RequestMapping("ad_olist")
-	public String adoList(Product product, String pageNum, Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
-		}
-		product.setPr_mno(no);
-		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.orTotal(product);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
-		List<Product> olist = ps.orAll(product);
-		model.addAttribute("olist", olist);
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_olist.jsp");
-		return "module/main";
-	}
-	@RequestMapping(value="ad_prView", method=RequestMethod.GET)
-	public String ad_prView(int pr_no, Model model){
-		Product product = ps.selectOne(pr_no);
-		model.addAttribute("product", product);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_prView.jsp");
-		return "module/main";
-	}
 	
 
 	

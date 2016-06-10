@@ -85,7 +85,7 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectOne("product.getTotal",product);
 	}
 	
-	public int memTotal(Product product) {
+	/*public int memTotal(Product product) {
 		
 		return st.selectOne("product.memTotal", product);
 	}
@@ -103,6 +103,73 @@ public class ProductDaoImpl implements ProductDao{
 	public List<Product> arAll(Product product) {
 		
 		return st.selectList("product.orAll",product);
+	}
+
+*/
+	public int prSTotal(Product product) {
+		
+		return st.selectOne("product.prSTotal",product);
+	}
+
+
+	public List<Product> prSlist(Product product) {
+		
+		return st.selectList("product.prSlist",product);
+	}
+
+	public int prATotal(Product product) {
+		
+		return st.selectOne("product.prATotal",product);
+	}
+
+	public List<Product> prAlist(Product product) {
+		
+		return st.selectList("product.prAlist",product);
+	}
+	
+	public int memSTotal(Product product) {
+		
+		return st.selectOne("product.memSTotal", product);
+	}
+
+	
+	public List<Product> memSlist(Product product) {
+		
+		return st.selectList("product.memSlist",product);
+	}
+
+	public int memATotal(Product product) {
+	
+		return st.selectOne("product.memATotal",product);
+	}
+
+
+	public List<Product> memAlist(Product product) {
+		return st.selectList("product.memAlist",product);
+	}
+
+
+	public int orSTotal(Product product) {
+		
+		return st.selectOne("product.orSTotal",product);
+	}
+
+
+	public List<Product> orSlist(Product product) {
+		
+		return st.selectList("product.orSlist",product);
+	}
+
+
+	public int orATotal(Product product) {
+		
+		return st.selectOne("product.orATotal",product);
+	}
+
+
+	public List<Product> orAlist(Product product) {
+		
+		return st.selectList("product.orAlist",product);
 	}
 
 	

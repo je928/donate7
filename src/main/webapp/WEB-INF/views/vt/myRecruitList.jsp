@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
+<%@ include file="../session/orgChk.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function applicant(vt_no,vt_tot){
+		window.open('applicantList.do?vt_no='+vt_no+'&vt_tot=' + vt_tot,'app','width=1000,height=500');
+	}
+</script>
 </head>
 <body>
 	<table class="table table-striped table-hover" style="width: 80%">
@@ -27,7 +33,7 @@
 				<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 				<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 				<td>${rc.vt_tot }</td>
-				<td><a href="rqnList.do?vt_no=${rc.vt_no}&pageNum=${paging.nowPage}">${rc.count}</a></td>
+				<td><a href="#" onclick="applicant(${rc.vt_no},${rc.vt_tot})">${rc.count}</a></td>
 				<td><c:if test="${rc.vt_r_yn == 'Y'}">
 						<span class="ry">모집 중</span>
 					</c:if> <c:if test="${rc.vt_r_yn == 'N'}">

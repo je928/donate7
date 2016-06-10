@@ -2,6 +2,7 @@ package donate7.dao;
 
 import java.util.List;
 
+import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
 
@@ -20,5 +21,7 @@ public interface VolDao {
 	int selectRcTotal(Recruit rc);
 	int insertRqn(Rqn rqn);
 	List<Recruit> selectRqnList(Recruit rc);
+	List<Applicant> selectApplicant(int vt_no);
 	int selectRqn(Rqn rqn);
+
 }

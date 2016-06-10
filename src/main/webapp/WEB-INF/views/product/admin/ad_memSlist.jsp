@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@include file="../../module/header.jsp"%>
 <%@include file="script.jsp" %>
 <!DOCTYPE html>
@@ -9,10 +9,10 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function locate(pageNum){
-	location.href="ad_prList.do?pageNum="+pageNum;
+	location.href="ad_memSlist.do?pageNum="+pageNum;
 }
- 
 </script>
+
 </head>
 <body>
 
@@ -49,11 +49,10 @@ function locate(pageNum){
 			</ul>
 		</div>
 	</div>
-
- <div class="col-md-12" id="prlist" style="display: block"> 
+<div class="col-md-12" id="mslist" style="display: block"> 
 	<div class="row" align="center">
-	<table class="table table-striped table-hover">
-					<caption>전체리스트</caption>
+		<table class="table table-striped table-hover">
+					<caption>일반회원 미승인</caption>
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -63,8 +62,8 @@ function locate(pageNum){
 						<th>승인여부</th>
 					</tr>
 					<c:set var="num" value="${pg.total }" />
-					<c:forEach var="product" items="${prlist }">
-					
+					<c:forEach var="product" items="${mSlist }">
+						
 						<tr>
 							<td>${num}</td>
 							<c:if test="${product.pr_mno>0 }">
@@ -77,7 +76,7 @@ function locate(pageNum){
 							<td>${product.pr_date}</td>
 							<td>${product.pr_approve}</td>
 						</tr>
-					
+						
 						<c:set var="num" value="${num-1}" />
 					</c:forEach>
 				</table>
@@ -111,7 +110,7 @@ function locate(pageNum){
 					</div>
 				</div>
 				</div>
-</div>
-			
+		</div>
+
 </body>
 </html>

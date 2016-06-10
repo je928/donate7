@@ -55,7 +55,7 @@
 		<div align="center">
 		
 			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}'">승인</button>
-			<button onclick="location.href='ad_prList.do'">보류</button>
+			<button onclick="location.href='ad_prList.do'">리스트</button>
 			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}'">승인취소</button>
 
 			
