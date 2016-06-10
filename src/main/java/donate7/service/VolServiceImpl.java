@@ -93,4 +93,9 @@ public class VolServiceImpl implements VolService {
 		return vd.updateYn(hm);
 	}
 
+	@Override
+	public int deledteRqn(Rqn rqn) {
+		return vd.deleteRqn(rqn);
+	}
+
 }

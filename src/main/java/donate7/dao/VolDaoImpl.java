@@ -96,4 +96,11 @@ public class VolDaoImpl implements VolDao {
 		return session.update("applicant.updateYn", hm);
 	}
 
+	@Override
+	public int deleteRqn(Rqn rqn) {
+		int result = session.delete("rqn.deleteRqn", rqn);
+		System.out.println("result33 = "+ result);
+		return result;
+	}
+
 }
