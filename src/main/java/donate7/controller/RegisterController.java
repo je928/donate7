@@ -93,7 +93,7 @@ public class RegisterController {
 		return "register/reg_pro";
 	}
 	@RequestMapping(value="reg_update",method=RequestMethod.GET)
-	public String reg_update(int re_no,String re_chk,Model model){
+	public String reg_update(int re_no,String re_chk,Model model,int wa_cnt){
 		HashMap<Object, Object> hashMap = new HashMap<Object, Object>();
 		Register reg = rs.selectOne(re_no);
 		hashMap.put("re_no",re_no);
@@ -109,7 +109,7 @@ public class RegisterController {
 				warning.setM_no(reg.getReported_no());
 				warning.setRe_no(re_no);
 				warning.setWa_sort("b");
-				warning.setWa_cnt(1);
+				warning.setWa_cnt(wa_cnt);
 				if(reg.getRe_sort().equals("c")){
 					warning.setWa_re("댓글 신고");
 				}else if(reg.getRe_sort().equals("w")){

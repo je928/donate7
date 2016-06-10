@@ -325,7 +325,7 @@ public class VolController {
 	public String View(int pageNum, int vt_no, HttpSession session, Model model) {
 		Rqn rqn = new Rqn();
 		rqn.setVt_no(vt_no);
-		rqn.setVt_m_no((Integer)session.getAttribute("no"));
+		rqn.setVt_m_no(Integer.parseInt(session.getAttribute("no").toString()));
 		int result = vs.selectRqn(rqn);
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
@@ -341,7 +341,7 @@ public class VolController {
 	public String rqn(Rqn rqn, Model model) {
 		int result = vs.insertRqn(rqn);
 		if(result > 0){
-			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";

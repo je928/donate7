@@ -78,4 +78,31 @@ public class SecondDaoImpl implements SecondDao{
 		return st.selectOne("second.getTotal", second);
 	}
 
+	public int memTotal(Second second) {
+		
+		return st.selectOne("second.memTotal", second);
+	}
+
+	public List<Second> admlist(Second second) {
+	
+		return st.selectList("second.admlist",second);
+	}
+
+	public int arrTotal(Second second) {
+	
+		return st.selectOne("second.arrTotal", second);
+	}
+
+	public int orTotal(Second second) {
+		return st.selectOne("second.orTotal", second);
+	}
+
+	public List<Second> adolist(Second second) {
+		return st.selectList("second.adolist", second);
+	}
+
+	public int oarrTotal(Second second) {
+		return st.selectOne("second.oarrTotal", second);
+	}
+
 }

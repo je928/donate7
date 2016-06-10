@@ -45,7 +45,7 @@
 
 	}
 	function locate(pageNum){
-		location.href="adsecondList.do?pageNum="+pageNum;
+		location.href="adorList.do?pageNum="+pageNum;
 	}
 </script>
 </head>
@@ -53,7 +53,7 @@
 	<div class="btn-group">
 		<div class="btn-group">
 			<a href="#" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown"> 일반 <span class="caret"></span>
+				data-toggle="dropdown"> 기관 <span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu">
 				<li><a href="javascript:sm()">승인</a></li>
@@ -73,10 +73,10 @@
 		</div>
 	</div>
 	<!-- 일반!! -->
-	<div class="col-md-12" id="msecondList" style="display: block">
+	<div class="col-md-12" id="osecondList" style="display: block">
 		<div class="row" align="center">
 			<table class="table table-striped table-hover">
-				<caption>일반 승인여부</caption>
+				<caption>기관 승인여부</caption>
 				<tr>
 					<th width="60">번호</th>
 					<th width="60">제목</th>
@@ -86,7 +86,7 @@
 					<th width="60">승인여부</th>
 				</tr>
 				<c:set var="num" value="${pg.total }" />
-				<c:forEach var="second" items="${memlist }">
+				<c:forEach var="second" items="${orlist }">
 				
 						<tr>
 							<th>${num }</th>

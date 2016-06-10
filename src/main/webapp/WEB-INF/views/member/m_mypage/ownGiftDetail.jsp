@@ -9,7 +9,7 @@
 </head>
 <body>
 <div align="center">
-<img src="/donate7/${gift.g_img}" width="300px"><br>
+<img src="/donate7/${gift.g_img}" height="300px"><br>
 일련번호 : ${gb.gb_no}4186545335<br>
 기프티콘 이름 : ${gift.g_name }<br>
 <input type="button" value="보유 기프티콘" onclick="location.href='ownGift.do'">

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function sm() {
-		location.href="adsecondList.do";
+		location.href="admemList.do";
 		
 		msecondList.style.display = 'block';
 		asecondList.style.display = 'none';
@@ -43,9 +43,6 @@
 		msecondList.style.display = 'none';
 		asecondList.style.display = 'none';
 
-	}
-	function locate(pageNum){
-		location.href="adsecondList.do?pageNum="+pageNum;
 	}
 </script>
 </head>
