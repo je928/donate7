@@ -88,4 +88,26 @@
 	<select id = "getTotal" parameterType="second" resultType="int">
 		select count(*) from second <if test="sh_mno != 1"> where sh_mno=#{sh_mno}</if>
 	</select>
+	<select id = "memTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[>]]>0
+	</select>
+	<select id = "arrTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[>]]>0 
+	</select>
+	<select id="admlist" resultMap="SecondResult" parameterType="second">
+		select * from (select rownum rn,m.* from 
+		(select * from second where sh_mno<![CDATA[>]]>0 order by sh_reg_date desc) m) 
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id = "orTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[<]]>0
+	</select>
+	<select id = "oarrTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[<]]>0 
+	</select>
+	<select id="adolist" resultMap="SecondResult" parameterType="second">
+		select * from (select rownum rn,o.* from 
+		(select * from second where sh_mno<![CDATA[<]]>0 order by sh_reg_date desc) o) 
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>
