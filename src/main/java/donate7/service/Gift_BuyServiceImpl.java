@@ -14,11 +14,14 @@ public class Gift_BuyServiceImpl implements Gift_BuyService{
 	public int getGift(Gift_Buy gb) {
 		return gd.getGift(gb);
 	}
-	public List<Gift_Buy> ownList(int m_no) {
-		return gd.ownList(m_no);
+	public List<Gift_Buy> ownList(int startRow, int endRow, int m_no) {
+		return gd.ownList(startRow,endRow,m_no);
 	}
 	public Gift_Buy selectOne(int gb_no) {
 		return gd.selectOne(gb_no);
+	}
+	public int getTotal() {
+		return gd.getTotal();
 	}
 
 }

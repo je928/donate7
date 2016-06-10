@@ -22,6 +22,7 @@
 		<typeAlias alias="warning" type="donate7.model.Warning" />
 		<typeAlias alias="rqn" type="donate7.model.Rqn" />
 		<typeAlias alias="applicant" type="donate7.model.Applicant" />
+		<typeAlias alias="product_buy" type="donate7.model.Product_buy" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -42,5 +43,6 @@
 		<mapper resource="mybatis/Warning.xml" />
 		<mapper resource="mybatis/Rqn.xml" />
 		<mapper resource="mybatis/Applicant.xml" />
+		<mapper resource="mybatis/Product_buy.xml" />
 	</mappers>
 </configuration>

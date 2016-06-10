@@ -124,9 +124,22 @@ public class GiftController {
 		return "module/main";
 	}
 	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
-	public String ownGift(Model model, HttpSession session) {
+	public String ownGift(Model model, String pageNum, HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
-		List<Gift_Buy> list = gbs.ownList(m_no);
+		final int rowPerPage = 9;
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = gbs.getTotal();
+		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Gift_Buy> list = gbs.ownList(startRow,endRow,m_no);
+		
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/ownGift.jsp");
 		model.addAttribute("list", list);
