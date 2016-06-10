@@ -76,8 +76,19 @@
 	<update id="apCancel" parameterType="int">
 		update product set pr_approve='n' where pr_no=#{pr_no}
 	</update>
-	<select id="aplist" resultMap="ProductResult">
-		select * from product where pr_approve='y' order by pr_date desc	
+	<select id="apTotal" resultType="int" parameterType="product">
+		select nvl(count(*),0) from product where pr_approve='y'
+		<if test="pr_item != 'All'">
+			and pr_item = #{pr_item}
+		</if>
+		order by pr_date desc
+	</select>
+	<select id="aplist" resultMap="ProductResult" parameterType="product">
+		select * from (select rownum rn,a.* from (select * from product where pr_approve='y'
+		<if test="pr_item != 'All'">
+			and pr_item = #{pr_item}
+		</if>
+		order by pr_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="getTotal" parameterType="product" resultType="int">
 		select count(*) from product
