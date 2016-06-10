@@ -68,5 +68,32 @@ public class SecondServiceImpl implements SecondService{
 		return sd.getTotal(second);
 	}
 
+	public int memTotal(Second second) {
+		
+		return sd.memTotal(second);
+	}
+
+	public List<Second> admlist(Second second) {
+		
+		return sd.admlist(second);
+	}
+
+	public int arrTotal(Second second) {
+		
+		return sd.arrTotal(second);
+	}
+
+	public int orTotal(Second second) {
+		return sd.orTotal(second);
+	}
+
+	public List<Second> adolist(Second second) {
+		return sd.adolist(second);
+	}
+
+	public int oarrTotal(Second second) {
+		return sd.oarrTotal(second);
+	}
+
 
 }
