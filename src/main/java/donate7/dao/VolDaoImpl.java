@@ -82,8 +82,9 @@ public class VolDaoImpl implements VolDao {
 	public int selectRqn(Rqn rqn) {
 		int result = session.selectOne("rqn.selectRqn", rqn);
 		System.out.println("result22  =" + result);
+		return result;
 	}
-
+	
 	public List<Applicant> selectApplicant(int vt_no) {
 		return session.selectList("applicant.selectApplicant", vt_no);
 	}
