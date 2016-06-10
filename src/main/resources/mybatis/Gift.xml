@@ -16,8 +16,9 @@
 	<insert id="insertGift" parameterType="gift">
 		insert into gift values(#{g_no},#{g_name},#{g_img},#{g_price},'n')		
 	</insert>
-	<select id="list" resultMap="GiftResult">
-		select * from gift where g_delChk='n'
+	<select id="list" resultMap="GiftResult" parameterType="HashMap">
+		select * from (select rownum rn,a.* from (select * from gift where g_delChk='n'
+		order by g_no desc) a) where rn between #{startRow} and #{endRow} 
 	</select>
 	<select id="selectOne" resultType="gift" parameterType="int">
 		select * from gift where g_no=#{g_no}
@@ -25,4 +26,7 @@
 	<update id="delete" parameterType="int">
 		update gift set g_delChk='y' where g_no=#{g_no}
 	</update>
+	<select id="getTotal" resultType="int">
+		select count(*) from gift where g_delChk='n'
+	</select>
 </mapper>

@@ -33,3 +33,7 @@ update gift set g_delChk='n';
 
 drop table gift;
 drop table cpoint_info;
+
+select count(*) from gift where g_delChk='n'
+select * from (select rownum rn,a.* from (select * from gift where g_delChk='n'
+		order by g_no desc) a) where rn between 1 and 10
