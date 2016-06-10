@@ -16,7 +16,10 @@
 	}
 </script>
 <style type="text/css">
-table td {
+table{
+	table-layout: fixed;
+}
+table #td {
 	width: 300px;
 	white-space: nowrap;
 	overflow: hidden;
@@ -32,17 +35,17 @@ table td {
 	<table class="table table-striped table-bordered table-list">
 		<caption>신고처리</caption>
 		<tr>
-			<th>신고 번호</th>
+			<th style="width:80px">신고 번호</th>
 			<th>신고 사유</th>
-			<th>신고 날짜</th>
-			<th>신고 처리</th>
-			<th>자세히 보기</th>
+			<th style="width:100px">신고 날짜</th>
+			<th style="width:80px">신고 처리</th>
+			<th style="width:100px">자세히 보기</th>
 		</tr>
 		<c:set var="no" value="${pb.no}" />
 		<c:forEach var="reg" items="${list }">
 			<tr>
-				<td>${no }</td>
-				<td>${reg.re_content }</td>
+				<td >${no }</td>
+				<td id="td">${reg.re_content }</td>
 				<td><fmt:formatDate value="${reg.re_date }" /></td>
 				<td><c:if test="${reg.re_chk =='n' }">
 					처리 안 됨
