@@ -1,5 +1,6 @@
 package donate7.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -97,10 +98,18 @@ public class VolDaoImpl implements VolDao{
 	public List<Applicant> selectApplicant(int vt_no) {
 		return session.selectList("applicant.selectApplicant",vt_no);
 	}
+	
+	@Override
 	public int selectRqn(Rqn rqn) {
 		int result = session.selectOne("rqn.selectRqn",rqn);
 		System.out.println("result  =" +result);
 		return result;
+	}
+
+
+	@Override
+	public int updateYn(HashMap<String, Object> hm) {
+		return session.update("applicant.updateYn", hm);
 	}
 
 }

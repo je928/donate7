@@ -351,17 +351,25 @@ public class VolController {
 	@RequestMapping("applicantList")
 	public String applicantList(int vt_no,int vt_tot, Model model){
 		List<Applicant> list = vs.selectApplicant(vt_no);
+		model.addAttribute("vt_no", vt_no);
 		model.addAttribute("vt_tot", vt_tot);
 		model.addAttribute("list", list);
 		return "vt/applicantList";
 	}
 	
 	@RequestMapping("appSelect")
-	public String appSelect(int[] yValue,int[] xValue, Model model){
-		HashMap<String,int[]> hm = new HashMap();
-		hm.put("yValue",yValue);
-		hm.put("xValue",yValue);
-		
+	public String appSelect(int[] valueArr, int vt_no, Model model){
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("valueArr", valueArr);
+		hm.put("vt_no", vt_no);
+		int result = vs.updateYn(hm);
+		String msg = "";
+		if(result > 0){
+			msg = "봉사자 선정 완료";
+		}else{
+			msg = "봉사자 선정 실패";
+		}
+		model.addAttribute("msg", msg);
 		return "vt/appSelect";
 	}
 	

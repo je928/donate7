@@ -1,5 +1,6 @@
 package donate7.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,10 @@ public class VolServiceImpl implements VolService {
 	public List<VolReqSearch> searchList() {
 		return vd.searchList();
 	}*/
+
+	@Override
+	public int updateYn(HashMap<String, Object> hm) {
+		return vd.updateYn(hm);
+	}
 
 }

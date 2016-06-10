@@ -19,47 +19,41 @@
 		});
 		
 		$('#select').click(function(){
-			var yValue = new Array();
-			var xValue = new Array();
-			var list = $('input[name=vt_sel_yn]');
-			for(var i = 0; i < list.length;i++){
-				if(list[i].checked){
-					yValue.push(list[i].value);
+			if(confirm("현재 선택으로 결정합니까?")){
+				var valueArr = new Array();
+				var list = $('input[name=vt_sel_yn]');
+				
+				if(){
+					
 				}else{
-					xValue.push(list[i].value);
+					
 				}
+				
+				for(var i = 0; i < list.length;i++){
+					if(list[i].checked){
+						valueArr.push(list[i].value);
+					}
+				}
+				
+				jQuery.ajaxSettings.traditional = true;
+				
+				$.ajax({
+				    method      : 'GET',
+				    url         : 'appSelect.do',
+				    data        : {
+				        'valueArr' : valueArr,
+				        'vt_no' : parseInt('${vt_no}')
+				    },
+				    error       : function(request, status, error) {
+				        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+				    },
+				    success     : function(msg) {
+				        alert(msg);
+				        window.close();
+				    }
+				 
+				});
 			}
-			
-			var ystr = '';
-			var xstr = '';
-			for(var i in yValue){
-				ystr += yValue[i];
-			}
-			for(var i in xValue){
-				xstr += xValue[i];
-			}
-			
-			alert(ystr);
-			alert(xstr);
-			
-			jQuery.ajaxSettings.traditional = true;
-			
-			$.ajax({
-			    method      : 'GET',
-			    url         : 'appSelect.do',
-			    data        : {
-			        'yValue' : yValue,
-			        'xValue' : xValue
-			    },
-			    error       : function(request, status, error) {
-			        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			    },
-			    success     : function(msg) {
-			        alert(msg);         
-			    }
-			 
-			});
-			
 		});
 		
 		$('#cancel').click(function(){
