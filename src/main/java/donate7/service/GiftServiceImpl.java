@@ -14,14 +14,17 @@ public class GiftServiceImpl implements GiftService{
 	public int insert(Gift gift) {
 		return gd.insert(gift);
 	}
-	public List<Gift> list() {
-		return gd.list();
+	public List<Gift> list(int startRow, int endRow) {
+		return gd.list(startRow,endRow);
 	}
 	public Gift selectOne(int g_no) {
 		return gd.selectOne(g_no);
 	}
 	public int delete(int g_no) {
 		return gd.delete(g_no);
+	}
+	public int getTotal() {
+		return gd.getTotal();
 	}
 
 }

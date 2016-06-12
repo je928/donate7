@@ -88,26 +88,6 @@ public class m_mypageController {
 		}
 	}
 	
-	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
-	public String ownGift(Model model, HttpSession session) {
-		int m_no = (Integer)session.getAttribute("no");
-		List<Gift_Buy> list = gbs.ownList(m_no);
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../member/m_mypage/ownGift.jsp");
-		model.addAttribute("list", list);
-		model.addAttribute("gs", gs);
-		return "module/main";
-	}
 	
-	@RequestMapping(value = "ownGiftDetail", method = RequestMethod.GET)
-	public String ownGiftDetail(int gb_no,Model model,HttpSession session) {
-		Gift_Buy gb = gbs.selectOne(gb_no);
-		Gift gift = gs.selectOne(gb.getG_no());
-		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-		model.addAttribute("mypgm", "../../member/m_mypage/ownGiftDetail.jsp");
-		model.addAttribute("gb", gb);
-		model.addAttribute("gift", gift);
-		return "module/main";
-	}
 
 }

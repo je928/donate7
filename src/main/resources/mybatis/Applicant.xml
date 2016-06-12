@@ -25,5 +25,15 @@
 		AND B.M_NO = C.M_NO(+)   
 		AND A.VT_NO = #{vt_no}
 	</select>
+	<update id="updateYn" parameterType="java.util.HashMap">
+		UPDATE VT_RQN
+		SET
+		VT_SEL_YN = CASE WHEN VT_M_NO IN 
+		  <foreach collection="valueArr" item="value" open="(" close=")" separator=",">
+		  	${value}
+		  </foreach> 
+		  THEN 'Y' ELSE 'X' END
+		WHERE VT_NO = ${vt_no}
+	</update>
 
 </mapper>

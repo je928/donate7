@@ -15,7 +15,7 @@
 		<a href="registerPro.do" class="list-group-item">신고 처리</a>
 		<a href="ad_prList.do" class="list-group-item">완제품 관리</a>
 		<a href="adsecondList.do" class="list-group-item">중고기부 관리</a>
-		<a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
+		<a href="a_deliveryForm.do" class="list-group-item">배송 관리</a>
 		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
 		<a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
 	</div>

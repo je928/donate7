@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import donate7.service.CommunityPagingBean;
 import donate7.service.Cpoint_InfoService;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
@@ -32,12 +33,25 @@ public class GiftController {
 	@Autowired
 	private Gift_BuyService gbs;
 	@RequestMapping(value="giftList", method=RequestMethod.GET)
-	public String giftList(Model model){
-		List<Gift> list = gs.list();
+	public String giftList(String pageNum,Model model){
+		final int rowPerPage = 9;
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = gs.getTotal();
+		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Gift> list = gs.list(startRow, endRow);
+		
+		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
 		model.addAttribute("pgm", "../gift/giftList.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping(value="giftDetail", method=RequestMethod.GET)
 	public String giftDetail(int g_no,Model model,HttpSession session){
 		Gift gift = gs.selectOne(g_no);
@@ -57,10 +71,7 @@ public class GiftController {
 		mf.transferTo(new File(session.getServletContext().getRealPath("/")+uploadName));
 		gift.setG_img(uploadName);
 		gs.insert(gift);
-		List<Gift> list = gs.list();
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../gift/giftList.jsp");
-		return "module/main";
+		return "redirect:giftList.do";
 	}
 	@RequestMapping(value="gift_buy", method=RequestMethod.GET)
 	public String gift_buy(int g_no,Model model,HttpSession session){
@@ -104,14 +115,46 @@ public class GiftController {
 	@RequestMapping(value="gift_delete", method=RequestMethod.GET)
 	public String gift_delete(int g_no,Model model){
 		int result = gs.delete(g_no);
-		List<Gift> list = gs.list();
 		if(result>0){
-			model.addAttribute("list", list);
-			model.addAttribute("pgm", "../gift/giftList.jsp");
+			return "redirect:giftList.do";
 		}else{
 			model.addAttribute("pgm", "../gift/giftDetail.jsp");
 			model.addAttribute("msg", "기프티콘 삭제 실패");
 		}		
+		return "module/main";
+	}
+	@RequestMapping(value = "ownGift", method = RequestMethod.GET)
+	public String ownGift(Model model, String pageNum, HttpSession session) {
+		int m_no = (Integer)session.getAttribute("no");
+		final int rowPerPage = 9;
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = gbs.getTotal();
+		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		
+		List<Gift_Buy> list = gbs.ownList(startRow,endRow,m_no);
+		
+		model.addAttribute("pb", pb);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/ownGift.jsp");
+		model.addAttribute("list", list);
+		model.addAttribute("gs", gs);
+		return "module/main";
+	}
+	
+	@RequestMapping(value = "ownGiftDetail", method = RequestMethod.GET)
+	public String ownGiftDetail(int gb_no,Model model,HttpSession session) {
+		Gift_Buy gb = gbs.selectOne(gb_no);
+		Gift gift = gs.selectOne(gb.getG_no());
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../member/m_mypage/ownGiftDetail.jsp");
+		model.addAttribute("gb", gb);
+		model.addAttribute("gift", gift);
 		return "module/main";
 	}
 }

@@ -11,6 +11,9 @@
 		self.close();		
 		window.opener.location.reload(true);
 	}
+	function register() {
+		location.href="reg_update.do?re_no=${reg.re_no}&re_chk=y&wa_cnt="+frm.wa_cnt.value;
+	}
 </script>
 </head>
 <body>
@@ -19,7 +22,7 @@
 	<a href="javascript:cl()" class="btn btn-sm btn-warning">확인</a>	
 </c:if>
 <c:if test="${msg==null }">
-<form action="reg_pro.do" method="post">
+<form action="reg_pro.do" method="post" name="frm">
 신고한 사람 : <input type="text" readonly="readonly" value="${reporter }"><p>
 신고당한 사람 : <input type="text" readonly="readonly" value="${reported }"><p>
 신고 날짜 : <fmt:formatDate value="${reg.re_date }"/><p>
@@ -30,7 +33,8 @@
 신고 당한 (댓)글 내용:<textarea rows="2" cols="50" readonly="readonly">${content }</textarea><p>
 <c:if test="${reg.re_chk == 'n' }">
 	<input type="button" value="신고 보류(처리 안함)" onclick="location.href='reg_update.do?re_no=${reg.re_no}&re_chk=c'">
-	<input type="button" value="신고 처리" onclick="location.href='reg_update.do?re_no=${reg.re_no}&re_chk=y'">	
+	<input type="button" value="신고 처리" onclick="register()">
+	<input type="number" value="1" name="wa_cnt" min="1" max="5">	
 </c:if>
 <c:if test="${reg.re_chk == 'y' }">
 	신고 처리

@@ -18,5 +18,11 @@ public interface SecondService {
 	int srUpdate(int sh_no);
 	void srCancel(int sh_no);
 	int getTotal(Second second);
+	int memTotal(Second second);
+	List<Second> admlist(Second second);
+	int arrTotal(Second second);
+	int orTotal(Second second);
+	List<Second> adolist(Second second);
+	int oarrTotal(Second second);
 	
 }
