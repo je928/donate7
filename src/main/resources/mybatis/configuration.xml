@@ -14,7 +14,7 @@
 		<typeAlias alias="donate" type="donate7.model.Donate"/>
 		<typeAlias alias="product" type="donate7.model.Product"/>
 		<typeAlias alias="community" type="donate7.model.Community"/>
-		<typeAlias alias="communityReply" type="donate7.model.CommunityReply"/>		
+		<typeAlias alias="reply" type="donate7.model.CommunityReply"/>		
 		<typeAlias alias="class" type="donate7.model.Class"/>
 		<typeAlias alias="dclass" type="donate7.model.Dclass"/>
 		<typeAlias alias="recruit" type="donate7.model.Recruit" />

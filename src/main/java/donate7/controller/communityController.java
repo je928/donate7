@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import donate7.model.Community;
+import donate7.model.CommunityReply;
 import donate7.service.CommunityPagingBean;
 import donate7.service.CommunityService;
 
@@ -71,6 +72,8 @@ public class communityController {
 		}
 		cs.communityHit(brd_no);
 		Community community = cs.communitySelect(brd_no);
+		List<CommunityReply> crList = cs.selectReply(brd_no);
+		int replyCount = cs.replyCount(brd_no);
 		community.setSearchType(searchType);		
 		community.setSearchTxt(searchTxt);
 		if (community.getSearchType() != null) {
@@ -79,6 +82,8 @@ public class communityController {
 		}
 		model.addAttribute("community", community);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("crList", crList);
+		model.addAttribute("replyCount", replyCount);
 		model.addAttribute("pgm", "../community/view.jsp");
 		return "module/main";
 	}
@@ -175,6 +180,36 @@ public class communityController {
 			model.addAttribute("community", community);
 			model.addAttribute("pageNum", pageNum);
 			return "forward:deleteForm.do?brd_no="+community.getBrd_no()+"&pageNum="+pageNum;
+		}
+	}
+	
+	@RequestMapping(value="writeReply")
+	public String writeReply(CommunityReply communityReply, String pageNum, String brd_no, Model model, HttpSession session) {
+		int cr_no = cs.replyNo();
+		communityReply.setCr_no(cr_no);
+		int result = cs.insertReply(communityReply);
+		model.addAttribute("pageNum", pageNum);
+		if(result > 0) {
+			return "redirect:view.do?brd_no="+communityReply.getBrd_no();
+		}else {
+			model.addAttribute("msg", "입력 실패");
+			model.addAttribute("communityReply", communityReply);
+			return "forward:view.do?brd_no="+communityReply.getBrd_no();
+		}
+	}
+	
+	@RequestMapping(value="deleteReply")
+	public String deleteReply(CommunityReply communityReply, String cr_no, String pageNum, Model model) {
+		int crNo = Integer.parseInt(cr_no);
+		int result = cs.deleteReply(crNo);
+		if(result > 0) {
+			model.addAttribute("pageNum", pageNum);
+			return "redirect:view.do?brd_no="+communityReply.getBrd_no();
+		}else {
+			model.addAttribute("msg", "삭제 실패");
+			model.addAttribute("communityReply", communityReply);
+			model.addAttribute("pageNum", pageNum);
+			return "forward:view.do?brd_no="+communityReply.getBrd_no();
 		}
 	}
 	

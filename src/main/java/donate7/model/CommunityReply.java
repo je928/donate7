@@ -3,7 +3,7 @@ package donate7.model;
 public class CommunityReply {
 	private int cr_no;
 	private String cr_content;
-	private String cr_reg_Date;
+	private String cr_reg_date;
 	private String cr_update_date;
 	private String cr_del_yn;
 	private int brd_no;
@@ -21,11 +21,11 @@ public class CommunityReply {
 	public void setCr_content(String cr_content) {
 		this.cr_content = cr_content;
 	}
-	public String getCr_reg_Date() {
-		return cr_reg_Date;
+	public String getCr_reg_date() {
+		return cr_reg_date;
 	}
-	public void setCr_reg_Date(String cr_reg_Date) {
-		this.cr_reg_Date = cr_reg_Date;
+	public void setCr_reg_date(String cr_reg_Date) {
+		this.cr_reg_date = cr_reg_Date;
 	}
 	public String getCr_update_date() {
 		return cr_update_date;
