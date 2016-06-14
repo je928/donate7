@@ -104,5 +104,5 @@ public class SecondDaoImpl implements SecondDao{
 	public int oarrTotal(Second second) {
 		return st.selectOne("second.oarrTotal", second);
 	}
-
+	
 }

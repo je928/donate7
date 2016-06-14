@@ -93,4 +93,14 @@ public class VolServiceImpl implements VolService {
 		return vd.updateYn(hm);
 	}
 
+	@Override
+	public int selectAppCount(int vt_no) {
+		return vd.selectAppCount(vt_no);
+	}
+
+	@Override
+	public int updateSelYn(int vt_no) {
+		return vd.updateSelYn(vt_no);
+	}
+
 }

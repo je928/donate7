@@ -96,4 +96,15 @@ public class VolDaoImpl implements VolDao {
 		return session.update("applicant.updateYn", hm);
 	}
 
+	@Override
+	public int selectAppCount(int vt_no) {
+		return session.selectOne("applicant.selectAppCount", vt_no);
+	}
+
+	@Override
+	public int updateSelYn(int vt_no) {
+		return session.update("applicant.updateSelYn", vt_no);
+	}
+	
+	
 }
