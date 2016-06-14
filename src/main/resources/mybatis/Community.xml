@@ -100,4 +100,5 @@
 	<update id="updateWarn" parameterType="Integer">
 		update community set brd_del_yn='w' where brd_no=#{re_sort_no}
 	</update>
+	
 </mapper>

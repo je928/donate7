@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="replyResult" type="reply">
+		<result property="cr_no" column="cr_no" />
+		<result property="cr_content" column="cr_content" />
+		<result property="cr_reg_date" column="cr_reg_date" />
+		<result property="cr_update_date" column="cr_update_date" />
+		<result property="cr_del_yn" column="cr_del_yn" />
+		<result property="brd_no" column="brd_no" />
+		<result property="no" column="no" />
+		<result property="nick" column="nick" />
+	</resultMap>
+
+	<select id="selectReply" resultType="reply" parameterType="Integer">
+		select cr_no, cr_content, to_char(cr_reg_date, 'yyyy.mm.dd. hh24:mi') as
+		cr_reg_date, mo.no, mo.nick from communityReply c, (select m_no as no, m_nick as nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where
+		c.no = mo.no and cr_del_yn = 'n' and brd_no = #{brd_no}
+	</select>
+	
+	<select id="replyNo" resultType="Integer">
+		select nvl(max(cr_no),0)+1 from communityReply
+	</select>
+	
+	<insert id="insertReply" parameterType="reply">
+		insert into communityReply values
+		(#{cr_no},#{cr_content},sysdate,null,'n',#{brd_no},#{no})
+	</insert>
+
+	<!-- <update id="updateReply" parameterType="reply">
+		update communityReply set cr_content=#{cr_content} where cr_no=#{cr_no} and cr_del_yn='n'
+	</update> -->
+
+	<update id="deleteReply" parameterType="Integer">
+		update communityReply set cr_del_yn='y' where cr_no=#{cr_no} and cr_del_yn='n'
+	</update>
+	
+	<select id="replyCount" parameterType="Integer" resultType="Integer" >
+		select count(*) from communityReply where brd_no=#{brd_no} and cr_del_yn='n'
+	</select>
+
+</mapper>

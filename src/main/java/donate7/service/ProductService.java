@@ -26,7 +26,7 @@ public interface ProductService {
 
 	void apCancel(int pr_no);
 
-	List<Product> aplist();
+	List<Product> aplist(Product pd);
 
 	int getTotal(Product product);
 
@@ -62,8 +62,6 @@ public interface ProductService {
 
 	List<Product> orAlist(Product product);
 
-	
-
-
+	int apTotal(Product pd);
 
 }
