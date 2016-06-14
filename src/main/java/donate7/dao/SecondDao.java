@@ -15,7 +15,7 @@ public interface SecondDao {
 
 
 	List<Second> adlist(Second second);
-	int secondUpdate(Second second);
+	int secondUpdate(Second second); 
 	int count(Second second);
 	void delete(int sh_no);
 	int spUpdate(int sh_no);
