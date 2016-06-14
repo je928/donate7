@@ -75,9 +75,11 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 
-	public List<Product> aplist() {
-		
-		return st.selectList("product.aplist");
+	public List<Product> aplist(Product pd) {
+		System.out.println("pr_item : " + pd.getPr_item());
+		List<Product> list = st.selectList("product.aplist", pd);
+		System.out.println("size : " + list.size());
+		return list;
 	}
 
 
@@ -172,6 +174,10 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.orAlist",product);
 	}
 
-	
-
+	@Override
+	public int apTotal(Product pd) {
+		int result = st.selectOne("product.apTotal",pd);
+		System.out.println("result : " + result);
+		return result;
+	}
 }

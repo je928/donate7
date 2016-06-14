@@ -341,7 +341,7 @@ public class VolController {
 	public String rqn(Rqn rqn, Model model) {
 		int result = vs.insertRqn(rqn);
 		if(result > 0){
-			return "redirect:rqnList.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
@@ -404,14 +404,14 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
-	/*@RequestMapping("rqnDelete")
+	@RequestMapping("rqnDelete")
 	public String rqnDelte(Rqn rqn, Model model) {
 		int result = vs.deledteRqn(rqn);
 		if(result > 0){
-			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
 		}		
-	}*/
+	}
 }

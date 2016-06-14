@@ -27,4 +27,5 @@ public interface VolService {
 	int updateYn(HashMap<String, Object> hm);
 	int selectAppCount(int vt_no);
 	int updateSelYn(int vt_no);
+	int deledteRqn(Rqn rqn);
 }

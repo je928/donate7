@@ -29,7 +29,7 @@ public interface ProductDao {
 
 	void apCancel(int pr_no);
 
-	List<Product> aplist();
+	List<Product> aplist(Product pd);
 
 	int getTotal(Product product);
 
@@ -64,6 +64,8 @@ public interface ProductDao {
 	int orATotal(Product product);
 
 	List<Product> orAlist(Product product);
+
+	int apTotal(Product pd);
 
 
 

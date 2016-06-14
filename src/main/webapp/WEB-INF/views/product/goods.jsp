@@ -56,10 +56,13 @@ body {
 	margin: 15px 0 30px;
 	padding-left: 400px;
 }
+
+
+
 </style>
 <script type="text/javascript">
 	
-	function al() {
+	/* function al() {
 		All.style.display = 'block';
 		fashion.style.display = 'none';
 		design.style.display = 'none';
@@ -85,6 +88,28 @@ body {
 		fashion.style.display = 'none';
 		design.style.display = 'none';
 		phonecase.style.display = 'block';
+	} */
+	$(document).ready(function(){
+		list(1,'All');
+		
+		$('#fa').click(function(){
+			list(1,'Fashion');
+		});
+		$('#de').click(function(){
+			list(1,'Design');
+		});
+		$('#pc').click(function(){
+			list(1,'Phone Case');
+		});
+	});
+	
+	function list(pageNum, pr_item){
+		/* $('#list').html(''); */
+		var sndData = "pr_item="+pr_item + "&pageNum=" + pageNum;
+		$.post('goodList.do', sndData, function(data) {
+			$('#list').html('');
+			$('#list').html(data);
+		});
 	}
 </script>
 </head>
@@ -104,12 +129,17 @@ body {
 		</div>
 
 		<div class="btn-margin">
-			<input type="button" id="fa" name="fa" class="btn btn-primary" onclick="fa()" value="Fashion"> 
-			<input type="button" id="de" name="de" class="btn btn-warning" onclick="de()" value="Design">
-			<input type="button" id="pc" name="pc" class="btn btn-success" onclick="pc()" value="Phone Case">
+			<input type="button" id="fa" name="fa" class="btn btn-primary"  value="Fashion"> 
+			<input type="button" id="de" name="de" class="btn btn-warning"  value="Design">
+			<input type="button" id="pc" name="pc" class="btn btn-success"  value="Phone Case">
 		</div>
+		<div class="row pt-md" id="list" >
+			
+		</div>
+		
+		
 
-		<div id="All" style="display: block">
+		<%-- <div id="All" style="display: block">
 			<div class="row pt-md">
 				<c:forEach var="product" items="${list}">
 					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
@@ -177,7 +207,7 @@ body {
 					</div>
 				</c:if>
 			</c:forEach>
-		</div>
+		</div> --%>
 
 	</div>
 

@@ -7,100 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.re_top {
-	padding-top: 25px;
-}
 
-.re_bottom {
-	padding-bottom: 30px;
-}
-
-.a_link {
-	color: #353535;
-}
-
-.a_link:hover {
-	color: #353535;
-}
-
-/* Testimonials */
-.testimonials blockquote {
-	background: #D1CDF4 none repeat scroll 0 0;
-	border: medium none;
-	color: #666;
-	display: block;
-	font-size: 14px;
-	line-height: 20px;
-	padding: 15px;
-	position: relative;
-}
-
-.testimonials blockquote::before {
-	width: 0;
-	height: 0;
-	right: 0;
-	bottom: 0;
-	content: " ";
-	display: block;
-	position: absolute;
-	border-bottom: 20px solid #fff;
-	border-right: 0 solid transparent;
-	border-left: 15px solid transparent;
-	border-left-style: inset; /*FF fixes*/
-	border-bottom-style: inset; /*FF fixes*/
-}
-
-.testimonials blockquote::after {
-	width: 0;
-	height: 0;
-	right: 0;
-	bottom: 0;
-	content: " ";
-	display: block;
-	position: absolute;
-	border-style: solid;
-	border-width: 20px 20px 0 0;
-	border-color: #e63f0c transparent transparent transparent;
-}
-
-.testimonials .carousel-info img {
-	border: 1px solid #f5f5f5;
-	border-radius: 150px !important;
-	padding: 3px;
-	width: 75px;
-}
-
-.testimonials .carousel-info {
-	overflow: hidden;
-}
-
-.testimonials .carousel-info img {
-	margin-right: 15px;
-}
-
-.testimonials .carousel-info span {
-	display: block;
-}
-
-.testimonials span.testimonials-name {
-	color: #e6400c;
-	font-size: 16px;
-	font-weight: 900;
-}
-
-.testimonials span.testimonials-post {
-	color: #656565;
-	font-weight: 300;
-	font-size: 12px;
-}
-.replym_w {
-	margin-left: 32px;
-	width: 65%;
-}
-
-.re_header {
-	border-bottom: 1px solid #D1CDF4;
-}
 </style>
 <script type="text/javascript">
 	function registerPop(brd_no) {
@@ -119,6 +26,14 @@
 			return true;
 		}
 		return false;
+	}
+	
+	function deleteRpChk(cr_no, brd_no, pageNum) {
+		if(confirm("정말 삭제하시겠습니까?")) {
+			location.href="deleteReply.do?cr_no="+cr_no+"&brd_no="+brd_no+"&pageNum="+pageNum;
+		}else {
+			return;
+		}
 	}
 </script>
 </head>
@@ -142,8 +57,7 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							<c:if
-								test="${community.no != sessionScope.no && community.no>1 &&sessionScope.no!=null}">
+							<c:if test="${community.no != sessionScope.no && community.no>1 && sessionScope.no!=null}">
 								<a href="javascript:registerPop(${community.brd_no});" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
 							</c:if>
 						</div>
@@ -212,78 +126,40 @@
 					<div class="row">
 						<div class="replym_w">
 							<h5 class="re_header">
-							<small style="color: #747474; font-weight: 900; font-size: 22px;">0 Comments:</small>
+							<small style="color: #747474; font-weight: 900; font-size: 22px;">${replyCount} Comments:</small>
 							</h5>
 							<div class="testimonials">
+								<c:if test="${not empty crList}">
+								<c:forEach var="cr" items="${crList}">
 								<div class="active item">
 									<div class="carousel-info">
 										<div class="pull-left">
-											<span class="testimonials-name">je928</span>
-											<span class="testimonials-post">2016.06.09. 15:19</span>
+											<span class="testimonials-name">${cr.nick}</span>
+											<span class="testimonials-post">${cr.cr_reg_date}</span>
 										</div>
 										<div class="pull-right">
 											<span class="testimonials-name">　</span>
 											<span class="testimonials-menu">
+											<c:if test="${sessionScope.no!=null || community.no>1}">
 											<a class="a_link">답글</a> | 
-											<a class="a_link">수정</a> | 
-											<a class="a_link">삭제</a> | 
-											<a class="a_link">신고</a></span>
+											</c:if>
+											<c:if test="${cr.no == sessionScope.no}">
+											<!-- <a class="a_link">수정</a> -->											
+											<a class="a_link" onclick="deleteRpChk(${cr.cr_no},${community.brd_no},${pageNum})">삭제</a>
+											</c:if>
+											<c:if test="${cr.no!=sessionScope.no && community.no>1 && sessionScope.no!=null}">
+											<a class="a_link">신고</a>
+											</c:if>
+											</span>
 										</div>
 									</div>
 									<blockquote>
-										<p>Denim you probably haven't heard of. Lorem ipsum dolor
-											met consectetur adipisicing sit amet, consectetur adipisicing
-											elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor
-											met.
-										</p>
+										<p> ${cr.cr_content} </p>
 									</blockquote>
 								</div>
-								<div class="active item">
-									<div class="carousel-info">
-										<div class="pull-left">
-											<span class="testimonials-name">je928</span>
-											<span class="testimonials-post">2016.06.09. 15:19</span>
-										</div>
-										<div class="pull-right">
-											<span class="testimonials-name">　</span>
-											<span class="testimonials-menu">
-											<a class="a_link">답글</a> | 
-											<a class="a_link">수정</a> | 
-											<a class="a_link">삭제</a> | 
-											<a class="a_link">신고</a></span>
-										</div>
-									</div>
-									<blockquote>
-										<p>Denim you probably haven't heard of. Lorem ipsum dolor
-											met consectetur adipisicing sit amet, consectetur adipisicing
-											elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor
-											met.
-										</p>
-									</blockquote>
-								</div>
-								<div class="active item">
-									<div class="carousel-info">
-										<div class="pull-left">
-											<span class="testimonials-name">je928</span>
-											<span class="testimonials-post">2016.06.09. 15:19</span>
-										</div>
-										<div class="pull-right">
-											<span class="testimonials-name">　</span>
-											<span class="testimonials-menu">
-											<a class="a_link">답글</a> | 
-											<a class="a_link">수정</a> | 
-											<a class="a_link">삭제</a> | 
-											<a class="a_link">신고</a></span>
-										</div>
-									</div>
-									<blockquote>
-										<p>Denim you probably haven't heard of. Lorem ipsum dolor
-											met consectetur adipisicing sit amet, consectetur adipisicing
-											elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor
-											met.
-										</p>
-									</blockquote>
-								</div>
+								</c:forEach>
+								</c:if>
+								<c:if test="${empty crList}">
 								<div class="active item">
 									<blockquote>
 										<p>
@@ -291,6 +167,7 @@
 										</p>
 									</blockquote>
 								</div>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -301,10 +178,12 @@
 						<div class="replym_w">
 							<form action="writeReply.do" name="frm" onsubmit="return rpSubmit(${sessionScope.no})">
 							<input type="hidden" name="no" value="${sessionScope.no}">
-							<input type="hidden" name="brd_no" value="${brd_no}">
-							<input type="hidden" name="pageNum" value="${pageNum}">							
+							<input type="hidden" name="brd_no" value="${community.brd_no}">
+							<input type="hidden" name="pageNum" value="${pageNum}">
+							<c:if test="${sessionScope.no > 0}">					
 							<textarea style="resuze: none; border:solid 1px; width:88%; vertical-align:top;" rows="3" cols="80" maxlength="1000" id="cr_content" name="cr_content"></textarea>&nbsp;
 							<input type="submit" class="btn btn-sm btn-default" style="height:80px; width:80px;" value="등록">
+							</c:if>
 							</form>
 						</div>
 					</div>
