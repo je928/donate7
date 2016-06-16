@@ -37,4 +37,9 @@ public class Product_buyServiceImpl implements Product_buyService {
 	public Product_buy select(int pb_no) {
 		return pd.select(pb_no);
 	}
+
+	public int update(int pr_no, int qty) {
+		return pd.update(pr_no,qty);
+	}
+
 }

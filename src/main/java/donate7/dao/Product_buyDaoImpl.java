@@ -1,5 +1,6 @@
 package donate7.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,11 @@ public class Product_buyDaoImpl implements Product_buyDao {
 	public Product_buy select(int pb_no) {
 		return session.selectOne("product_buy.select", pb_no);
 	}
+
+	public int update(int pr_no,int qty) {
+		HashMap<String,Integer> map=new HashMap<String, Integer>();
+		map.put("pr_no", pr_no);
+		map.put("qty", qty);
+		return session.update("product_buy.update",map);
+			}
 }

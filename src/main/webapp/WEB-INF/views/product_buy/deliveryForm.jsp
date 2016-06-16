@@ -88,7 +88,7 @@
 					<img class="img-responsive" alt="" src="image/${price.pr_img }">
 					<div class="form-group">상품명:${price.pr_proname }</div>
 					<div class="form-group">가격: ${price.pr_price }</div>
-					<div class="form-group">수량:${price.pr_qty }</div>
+					<div class="form-group">총 수량:${price.pr_qty }</div>
 					<div class="form-group">보내는 사람 : ${nick}</div>
 					<div class="form-group">
 						<!--받는사람  -->
@@ -102,9 +102,7 @@
 					</div>
 					<div class="form-group">
 						<!--수량  -->
-						수량<input type="number" name="pb_buyqty" value="1" min="1"
-							onchange="hap()"> 총구매가격 <input id="hap" type="text"
-							value="">
+						수량<input type="number" name="pb_buyqty" value="1" min="1" max=${price.pr_qty }>
 					</div>
 					<div class="form-group">
 						<!--주소  -->

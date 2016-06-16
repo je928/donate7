@@ -38,13 +38,17 @@ public class Product_buyController {
 	}
 
 	@RequestMapping(value = "deliveryForm", method = RequestMethod.POST)
-	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session, Model model) {
+	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session,int pr_no,Model model) {
 		int no = (Integer) session.getAttribute("no");
 		String pb_addr = addr1 + addr2;
 		pb.setPb_mono(no);
 		pb.setPb_addr(pb_addr);
-		int insert = ds.insert(pb);
-		model.addAttribute("insert", insert);
+		ds.insert(pb);
+		int qty=pb.getPb_buyqty(); //구매수량
+		if(qty>=0){
+		int result=ds.update(pr_no,qty);
+		}
+		else model.addAttribute("msg","수량이 부족합니다");
 		return "redirect:m_delivery.do";
 	}
 

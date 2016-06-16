@@ -18,4 +18,6 @@ public interface Product_buyService {
 
 	Product_buy select(int pb_no);
 
+	int update(int pr_no, int qty);
+
 }
