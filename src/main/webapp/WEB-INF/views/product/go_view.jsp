@@ -242,7 +242,8 @@ $(function() {
 												</div>
 										</li>
 									<li class="list-group-item">기부처 : ${product.pr_donation }</li>
-									<li class="list-group-item">주문하기</li>
+									<li class="list-group-item">
+									<button onclick="location.href='delivery.do?pr_no=${product.pr_no}'">주문하기</button></li>
 									</ul>
 								</div>
 							</div>
