@@ -40,5 +40,8 @@
 				and wa_sort='d'
 			</if>	
 		</if>
+	</select>
+	<select id="selectOne" parameterType="int" resultType="warning">
+		select * from warning where wa_no=#{wa_no}
 	</select>	
 </mapper>

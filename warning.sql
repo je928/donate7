@@ -19,6 +19,8 @@ create table register (
 	re_sort_no number not null
 );
 
+insert into warning values(2,2,0,'d',1,'안옴',sysdate);	
+
 select * from warning;
 select * from register;
 select nvl(max(re_no),0)+1 from register;
