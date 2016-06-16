@@ -14,6 +14,7 @@
 		<typeAlias alias="donate" type="donate7.model.Donate"/>
 		<typeAlias alias="product" type="donate7.model.Product"/>
 		<typeAlias alias="community" type="donate7.model.Community"/>
+		<typeAlias alias="reply" type="donate7.model.CommunityReply"/>		
 		<typeAlias alias="class" type="donate7.model.Class"/>
 		<typeAlias alias="dclass" type="donate7.model.Dclass"/>
 		<typeAlias alias="recruit" type="donate7.model.Recruit" />
@@ -35,6 +36,7 @@
 		<mapper resource="mybatis/second.xml" />
 		<mapper resource="mybatis/Product.xml" />
 		<mapper resource="mybatis/Community.xml" />
+		<mapper resource="mybatis/CommunityReply.xml" />
 		<mapper resource="mybatis/Class.xml" />
 		<mapper resource="mybatis/Recruit.xml" />
 		<mapper resource="mybatis/Dclass.xml" />

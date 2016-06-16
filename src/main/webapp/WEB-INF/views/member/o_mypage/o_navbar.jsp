@@ -13,11 +13,10 @@
 		<a href="o_myinfo.do" class="list-group-item">기관정보</a>
 		<a href="o_updateForm.do" class="list-group-item">기관정보수정</a>
 		<a href="odoList.do" class="list-group-item">기부금 요청/내역</a>
-		<a href="o_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
-		<a href="osecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="recruit.do" class="list-group-item">봉사 모집</a>
 		<a href="myRecruit.do" class="list-group-item">봉사 관리</a>
-		<a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
+		<a href="o_prList.do" class="list-group-item">완제품 기부 요청/내역</a>
+		<a href="osecondList.do" class="list-group-item">중고기부 요청/내역</a>
 		<a href="o_deleteForm.do" class="list-group-item">회원탈퇴</a>
 	</div>
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import donate7.model.Community;
+import donate7.model.CommunityReply;
 
 @Repository
 public class CommunityDaoImpl implements CommunityDao {
@@ -93,6 +94,48 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	public void updateWarn(int re_sort_no) {
 		session.update("community.updateWarn",re_sort_no);		
+	}
+
+	public List<CommunityReply> selectReply(int brd_no) {
+		return session.selectList("reply.selectReply", brd_no);
+	}
+	
+	public int replyNo() {
+		return session.selectOne("reply.replyNo");
+	}
+
+	public int insertReply(CommunityReply communityReply) {
+		int result = 0;
+		try {
+			result = session.insert("reply.insertReply", communityReply);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public int replyCount(int brd_no) {
+		int total = 0;
+		try {
+			total = session.selectOne("reply.replyCount", brd_no);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public int deleteReply(int crNo) {
+		int result = 0;
+		try {
+			result = session.update("reply.deleteReply", crNo);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public CommunityReply replyOne(int cr_no) {
+		return session.selectOne("reply.replyOne", cr_no);
 	}
 	
 }

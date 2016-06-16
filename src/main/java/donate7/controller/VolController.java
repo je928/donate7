@@ -341,7 +341,7 @@ public class VolController {
 	public String rqn(Rqn rqn, Model model) {
 		int result = vs.insertRqn(rqn);
 		if(result > 0){
-			return "redirect:rqnList.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
@@ -351,8 +351,11 @@ public class VolController {
 	@RequestMapping("applicantList")
 	public String applicantList(int vt_no,int vt_tot, Model model){
 		List<Applicant> list = vs.selectApplicant(vt_no);
+		int appCount = vs.selectAppCount(vt_no);
+		
 		model.addAttribute("vt_no", vt_no);
 		model.addAttribute("vt_tot", vt_tot);
+		model.addAttribute("appCount", appCount);
 		model.addAttribute("list", list);
 		return "vt/applicantList";
 	}
@@ -365,6 +368,7 @@ public class VolController {
 		int result = vs.updateYn(hm);
 		String msg = "";
 		if(result > 0){
+			result = vs.updateSelYn(vt_no);
 			msg = "봉사자 선정 완료";
 		}else{
 			msg = "봉사자 선정 실패";
@@ -372,7 +376,6 @@ public class VolController {
 		model.addAttribute("msg", msg);
 		return "vt/appSelect";
 	}
-	
 	
 	@RequestMapping("rqnList")
 	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
@@ -401,14 +404,14 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
-	/*@RequestMapping("rqnDelete")
+	@RequestMapping("rqnDelete")
 	public String rqnDelte(Rqn rqn, Model model) {
 		int result = vs.deledteRqn(rqn);
 		if(result > 0){
-			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
 		}		
-	}*/
+	}
 }

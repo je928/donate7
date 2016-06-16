@@ -1,7 +1,5 @@
 package donate7.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import donate7.model.Gift;
-import donate7.model.Gift_Buy;
 import donate7.model.Member;
 import donate7.service.GiftService;
 import donate7.service.Gift_BuyService;
@@ -22,12 +18,6 @@ public class m_mypageController {
 	
 	@Autowired
 	private MemberService ms;
-	
-	@Autowired
-	private Gift_BuyService gbs;
-	@Autowired
-	private GiftService gs;
-
 	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model, HttpSession session) {
@@ -87,7 +77,5 @@ public class m_mypageController {
 			return "forward:m_deleteForm.do";
 		}
 	}
-	
-	
 
 }

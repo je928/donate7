@@ -25,5 +25,8 @@ public interface VolDao {
 	List<Applicant> selectApplicant(int vt_no);
 	int selectRqn(Rqn rqn);
 	int updateYn(HashMap<String, Object> hm);
+	int selectAppCount(int vt_no);
+	int updateSelYn(int vt_no);
+	int deleteRqn(Rqn rqn);
 
 }

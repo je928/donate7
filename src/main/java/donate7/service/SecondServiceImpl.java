@@ -79,7 +79,7 @@ public class SecondServiceImpl implements SecondService{
 	}
 
 	public int arrTotal(Second second) {
-		
+		 
 		return sd.arrTotal(second);
 	}
 

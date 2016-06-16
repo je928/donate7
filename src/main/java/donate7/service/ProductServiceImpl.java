@@ -62,9 +62,8 @@ public class ProductServiceImpl implements ProductService {
 		pd.apCancel(pr_no);
 	}
 
-	public List<Product> aplist() {
-		
-		return pd.aplist();
+	public List<Product> aplist(Product pd) {
+		return this.pd.aplist(pd);
 	}
 
 	
@@ -156,6 +155,11 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> orAlist(Product product) {
 		
 		return pd.orAlist(product);
+	}
+
+	@Override
+	public int apTotal(Product pd) {
+		return this.pd.apTotal(pd);
 	}
 
 }

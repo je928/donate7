@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import donate7.dao.CommunityDao;
 import donate7.model.Community;
+import donate7.model.CommunityReply;
 
 @Service
 public class CommunityServiceImpl implements CommunityService {
@@ -56,6 +57,30 @@ public class CommunityServiceImpl implements CommunityService {
 	
 	public void updateWarn(int re_sort_no) {
 		cd.updateWarn(re_sort_no);		
+	}
+
+	public List<CommunityReply> selectReply(int brd_no) {
+		return cd.selectReply(brd_no);
+	}
+	
+	public int replyNo() {
+		return cd.replyNo();
+	}
+
+	public int insertReply(CommunityReply communityReply) {
+		return cd.insertReply(communityReply);
+	}
+
+	public int replyCount(int brd_no) {
+		return cd.replyCount(brd_no);
+	}
+
+	public int deleteReply(int crNo) {
+		return cd.deleteReply(crNo);
+	}
+	
+	public CommunityReply replyOne(int cr_no) {
+		return cd.replyOne(cr_no);
 	}
 
 }

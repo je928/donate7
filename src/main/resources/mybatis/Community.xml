@@ -22,6 +22,7 @@
 	    <result property="endRow" column="endRow"/>
 	    <result property="searchType" column="searchType"/>
 	    <result property="searchTxt" column="searchTxt"/>
+	    <result property="replycount" column="replycount"/>
 	</resultMap>
 	
 	<select id="communityTotal" parameterType="community" resultType="Integer">
@@ -45,7 +46,7 @@
   	</select>
     
     <select id="communityList" parameterType="community" resultMap="CommunityResult">
-		select * from (select rownum rn,a.* from (select c.*, mo.m_nick as nick from community c, (select m_no, m_nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where c.no=mo.m_no and brd_del_yn='n'
+		select * from (select rownum rn,a.* from (select c.*, mo.m_nick as nick, (select count(*) from communityreply cr where c.brd_no=cr.brd_no and cr_del_yn='n') as replycount from community c, (select m_no, m_nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where c.no=mo.m_no and brd_del_yn='n'
 	  		<if test="searchTxt != null">
 	  			<choose>
 		  			<when test="searchType == 'all'">
@@ -100,4 +101,5 @@
 	<update id="updateWarn" parameterType="Integer">
 		update community set brd_del_yn='w' where brd_no=#{re_sort_no}
 	</update>
+	
 </mapper>

@@ -1,7 +1,9 @@
 package donate7.service;
 
 import java.util.List;
+
 import donate7.model.Community;
+import donate7.model.CommunityReply;
 
 public interface CommunityService {
 
@@ -16,4 +18,11 @@ public interface CommunityService {
 	Community deletePwdChk(int number);
 	int communityDelete(int number);
 	void updateWarn(int re_sort_no);
+	List<CommunityReply> selectReply(int brd_no);
+	int replyNo();
+	int insertReply(CommunityReply communityReply);
+	int replyCount(int brd_no);
+	int deleteReply(int crNo);
+	CommunityReply replyOne(int cr_no);
+	
 }

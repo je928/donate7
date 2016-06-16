@@ -128,7 +128,7 @@
 						<div class="form-group">
 							<b>요청 인원:</b> <select class="form-control-40" style="width: 10%"
 								name="vt_tot" id="vt_tot">
-								<c:forEach var="i" begin="0" end="50">
+								<c:forEach var="i" begin="1" end="50">
 									<option value="${i }">${i }</option>
 								</c:forEach>
 							</select>
