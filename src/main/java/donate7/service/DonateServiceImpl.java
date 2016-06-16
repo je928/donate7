@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import donate7.dao.DonateDao;
+import donate7.model.DoResult;
 import donate7.model.Donate;
 @Service
 public class DonateServiceImpl implements DonateService {
@@ -68,6 +69,14 @@ public class DonateServiceImpl implements DonateService {
 	}
 	public List<Donate> orAll(Donate donate) {
 		return dd.orAll(donate);
+	}
+	
+	
+	public int doTotal(DoResult doResult) {
+		return dd.doTotal(doResult);
+	}
+	public List<DoResult> drList() {
+		return dd.drList();
 	}
 
 }
