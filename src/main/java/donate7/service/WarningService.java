@@ -10,4 +10,6 @@ public interface WarningService {
 	List<Warning> list(int startRow, int endRow, int m_no, String sort);
 
 	int getTotal(Warning warn);
+
+	Warning selectOne(int wa_no);
 }

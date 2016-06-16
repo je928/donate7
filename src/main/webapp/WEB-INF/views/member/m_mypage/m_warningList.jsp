@@ -11,6 +11,9 @@
 	function locate(pageNum,sort){
 		location.href="warningList.do?pageNum="+pageNum+"&sort="+sort;
 	}
+	function detailWarn(wa_no) {
+		window.open("detailWarn.do?wa_no="+wa_no,"","width=370, height=400");
+	}
 </script>
 </head>
 <body>
@@ -26,6 +29,7 @@
 			<th>경고 사유</th>
 			<th>경고 횟수</th>
 			<th>경고 날짜</th>
+			<th>자세히 보기</th>
 		</tr>
 		<c:set var="no" value="${pb.no}" />
 		<c:forEach var="warn" items="${list}">
@@ -39,6 +43,8 @@
 				<td>${warn.wa_re }</td>
 				<td>${warn.wa_cnt }</td>
 				<td><fmt:formatDate value="${warn.wa_date }" /></td>
+				<td><a href="javascript:detailWarn(${warn.wa_no })"
+					class="btn btn-sm btn-primary">자세히 보기</a></td>
 			</tr>
 			<c:set var="no" value="${no - 1}"/>
 		</c:forEach>
