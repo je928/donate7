@@ -10,6 +10,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var vt_tot = '${vt_tot}';
+		var appCount = parseInt('${appCount}');
+		if(appCount == 0){
+			alert('신청자가 존재하지 않습니다.');
+			window.close();
+		}
 		$('input[name=vt_sel_yn]').click(function(){
 			var count = $('input[name=vt_sel_yn]:checked').length;
 			if(count > vt_tot){
@@ -19,47 +24,39 @@
 		});
 		
 		$('#select').click(function(){
-			var yValue = new Array();
-			var xValue = new Array();
-			var list = $('input[name=vt_sel_yn]');
-			for(var i = 0; i < list.length;i++){
-				if(list[i].checked){
-					yValue.push(list[i].value);
-				}else{
-					xValue.push(list[i].value);
+				if(confirm("현재 선택으로 결정합니까?(현재 선택 인원으로 봉사를 진행합니다.)")){
+					var valueArr = new Array();
+					var list = $('input[name=vt_sel_yn]');
+						for(var i = 0; i < list.length;i++){
+							if(list[i].checked){
+								valueArr.push(list[i].value);
+							}
+						}
+						
+						if(valueArr.length != 0){
+							jQuery.ajaxSettings.traditional = true;
+							
+							$.ajax({
+							    method      : 'GET',
+							    url         : 'appSelect.do',
+							    data        : {
+							        'valueArr' : valueArr,
+							        'vt_no' : parseInt('${vt_no}')
+							    },
+							    error       : function(request, status, error) {
+							        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+							    },
+							    success     : function(msg) {
+							        alert(msg);
+							        window.opener.location = 'myRecruit.do';
+							        window.close();
+							        
+							    }
+							});
+						}else{
+							alert('신청자가 선택되지 않았습니다.');
+						}
 				}
-			}
-			
-			var ystr = '';
-			var xstr = '';
-			for(var i in yValue){
-				ystr += yValue[i];
-			}
-			for(var i in xValue){
-				xstr += xValue[i];
-			}
-			
-			alert(ystr);
-			alert(xstr);
-			
-			jQuery.ajaxSettings.traditional = true;
-			
-			$.ajax({
-			    method      : 'GET',
-			    url         : 'appSelect.do',
-			    data        : {
-			        'yValue' : yValue,
-			        'xValue' : xValue
-			    },
-			    error       : function(request, status, error) {
-			        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			    },
-			    success     : function(msg) {
-			        alert(msg);         
-			    }
-			 
-			});
-			
 		});
 		
 		$('#cancel').click(function(){

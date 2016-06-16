@@ -95,9 +95,7 @@ public class SecondController {
 			List<Second> list = ss.mlist(second);
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
-			model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
-			model.addAttribute("mypgm", "../../second/msecond/msecondList.jsp");
-			return "module/main";
+			return "redirect:msecondList.do";
 		}
 	@RequestMapping(value ="msecondUpdate", method = RequestMethod.GET)
 	public String msecondupdateForm(int sh_no, Model model) {
@@ -186,9 +184,7 @@ public class SecondController {
 			List<Second> list = ss.olist(second);
 			model.addAttribute("list", list);
 			model.addAttribute("fileName", uploadName);
-			model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
-			model.addAttribute("mypgm", "../../second/osecond/osecondList.jsp");
-			return "module/main";
+			return "redirect:osecondList.do";
 		}
 	
 	@RequestMapping(value = "second", method = RequestMethod.GET)
@@ -259,17 +255,107 @@ public class SecondController {
 		
 		second.setSh_mno(no);
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ss.getTotal(second);
+		int total = ss.memTotal(second);
 		Paging pg = new Paging(nowPage, total);
 		second.setStartRow(pg.getStartRow());
 		second.setEndRow(pg.getEndRow());
-		List<Second> list = ss.adlist(second);
+		List<Second> memlist = ss.admlist(second);
 		
-		model.addAttribute("list", list);
+		model.addAttribute("memlist", memlist);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../second/adsecond/adsecondList.jsp");
+		return "module/main";
+	}
+	
+	
+	/*@RequestMapping(value = "admemList", method = RequestMethod.GET)
+	public String admemList(Second second, String pageNum, HttpSession session,Model model) {
+		int no = (Integer)session.getAttribute("no");
+		if(pageNum== null || pageNum.equals("")){
+			pageNum="1";
+		}
+		
+		second.setSh_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.memTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> memlist = ss.admlist(second);
+		
+		model.addAttribute("memlist", memlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/adsecond/admemList.jsp");
+		return "module/main";
+	}*/
+	@RequestMapping(value = "admemArrive", method = RequestMethod.GET)
+	public String admemArrive(Second second, String pageNum, HttpSession session,Model model) {
+		int no = (Integer)session.getAttribute("no");
+		if(pageNum== null || pageNum.equals("")){
+			pageNum="1";
+		}
+		
+		second.setSh_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.arrTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> memlist = ss.admlist(second);
+		
+		model.addAttribute("memlist", memlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/adsecond/admemArrive.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value = "adorList", method = RequestMethod.GET)
+	public String adorList(Second second, String pageNum, HttpSession session,Model model) {
+		int no = (Integer)session.getAttribute("no");
+		if(pageNum== null || pageNum.equals("")){
+			pageNum="1";
+		}
+		
+		second.setSh_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.orTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> orlist = ss.adolist(second);
+		
+		model.addAttribute("orlist", orlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/adsecond/adorList.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value = "adorArrive", method = RequestMethod.GET)
+	public String adorArrive(Second second, String pageNum, HttpSession session,Model model) {
+		int no = (Integer)session.getAttribute("no");
+		if(pageNum== null || pageNum.equals("")){
+			pageNum="1";
+		}
+		
+		second.setSh_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		int total = ss.oarrTotal(second);
+		Paging pg = new Paging(nowPage, total);
+		second.setStartRow(pg.getStartRow());
+		second.setEndRow(pg.getEndRow());
+		List<Second> orlist = ss.adolist(second);
+		
+		model.addAttribute("orlist", orlist);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../second/adsecond/adorArrive.jsp");
 		return "module/main";
 	}
 

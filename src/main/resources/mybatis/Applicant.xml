@@ -25,5 +25,24 @@
 		AND B.M_NO = C.M_NO(+)   
 		AND A.VT_NO = #{vt_no}
 	</select>
-
+	<update id="updateYn" parameterType="java.util.HashMap">
+		UPDATE VT_RQN
+		SET
+		VT_SEL_YN = CASE WHEN VT_M_NO IN 
+		  <foreach collection="valueArr" item="value" open="(" close=")" separator=",">
+		  	${value}
+		  </foreach> 
+		  THEN 'Y' ELSE 'X' END
+		WHERE VT_NO = ${vt_no}
+	</update>
+	<select id="selectAppCount" parameterType="int" resultType="int">
+		SELECT NVL(COUNT(*),0)
+		FROM VT_RQN A, MEMBER B, (SELECT M_NO,NVL(SUM(wa_cnt),0) WNCOUNT FROM WARNING GROUP BY M_NO) C
+		WHERE A.VT_M_NO = B.M_NO
+		AND B.M_NO = C.M_NO(+)   
+		AND A.VT_NO = #{vt_no}
+	</select>
+	<update id="updateSelYn" parameterType="int">
+		 UPDATE VT_RECRUIT SET VT_R_YN = 'N' WHERE VT_NO = #{vt_no}
+	</update>
 </mapper>

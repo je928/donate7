@@ -33,12 +33,20 @@
 				<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 				<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 				<td>${rc.vt_tot }</td>
-				<td><a href="#" onclick="applicant(${rc.vt_no},${rc.vt_tot})">${rc.count}</a></td>
-				<td><c:if test="${rc.vt_r_yn == 'Y'}">
+				<td>
+					<c:if test="${rc.vt_r_yn == 'Y'}">
+						<a href="#" onclick="applicant(${rc.vt_no},${rc.vt_tot})">${rc.count}</a>
+					</c:if>
+					 <c:if test="${rc.vt_r_yn == 'N'}">${rc.count}</c:if>
+				</td>
+				<td>
+					<c:if test="${rc.vt_r_yn == 'Y'}">
 						<span class="ry">모집 중</span>
-					</c:if> <c:if test="${rc.vt_r_yn == 'N'}">
+					</c:if> 
+					<c:if test="${rc.vt_r_yn == 'N'}">
 						<span class="rn">모집 완료</span>
-					</c:if></td>
+					</c:if>
+				</td>
 			</tr>
 			<c:set var="tot" value="${tot - 1 }"></c:set>
 		</c:forEach>

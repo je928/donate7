@@ -15,7 +15,7 @@ public interface SecondDao {
 
 
 	List<Second> adlist(Second second);
-	int secondUpdate(Second second);
+	int secondUpdate(Second second); 
 	int count(Second second);
 	void delete(int sh_no);
 	int spUpdate(int sh_no);
@@ -23,4 +23,12 @@ public interface SecondDao {
 	void srCancel(int sh_no);
 	int srUpdate(int sh_no);
 	int getTotal(Second second);
+	
+	int memTotal(Second second);
+	List<Second> admlist(Second second);
+	int arrTotal(Second second);
+	
+	int orTotal(Second second);
+	List<Second> adolist(Second second);
+	int oarrTotal(Second second);
 }

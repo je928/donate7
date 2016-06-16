@@ -325,7 +325,7 @@ public class VolController {
 	public String View(int pageNum, int vt_no, HttpSession session, Model model) {
 		Rqn rqn = new Rqn();
 		rqn.setVt_no(vt_no);
-		rqn.setVt_m_no((Integer)session.getAttribute("no"));
+		rqn.setVt_m_no(Integer.parseInt(session.getAttribute("no").toString()));
 		int result = vs.selectRqn(rqn);
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		String addr = ms.selectO_addrByO_no(rc.getVt_o_no());
@@ -341,7 +341,7 @@ public class VolController {
 	public String rqn(Rqn rqn, Model model) {
 		int result = vs.insertRqn(rqn);
 		if(result > 0){
-			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
@@ -351,20 +351,31 @@ public class VolController {
 	@RequestMapping("applicantList")
 	public String applicantList(int vt_no,int vt_tot, Model model){
 		List<Applicant> list = vs.selectApplicant(vt_no);
+		int appCount = vs.selectAppCount(vt_no);
+		
+		model.addAttribute("vt_no", vt_no);
 		model.addAttribute("vt_tot", vt_tot);
+		model.addAttribute("appCount", appCount);
 		model.addAttribute("list", list);
 		return "vt/applicantList";
 	}
 	
 	@RequestMapping("appSelect")
-	public String appSelect(int[] yValue,int[] xValue, Model model){
-		HashMap<String,int[]> hm = new HashMap();
-		hm.put("yValue",yValue);
-		hm.put("xValue",yValue);
-		
+	public String appSelect(int[] valueArr, int vt_no, Model model){
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("valueArr", valueArr);
+		hm.put("vt_no", vt_no);
+		int result = vs.updateYn(hm);
+		String msg = "";
+		if(result > 0){
+			result = vs.updateSelYn(vt_no);
+			msg = "봉사자 선정 완료";
+		}else{
+			msg = "봉사자 선정 실패";
+		}
+		model.addAttribute("msg", msg);
 		return "vt/appSelect";
 	}
-	
 	
 	@RequestMapping("rqnList")
 	public String rqnList(String pageNum,Recruit rc, HttpSession session, Model model){
@@ -393,14 +404,14 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
-	/*@RequestMapping("rqnDelete")
+	@RequestMapping("rqnDelete")
 	public String rqnDelte(Rqn rqn, Model model) {
 		int result = vs.deledteRqn(rqn);
 		if(result > 0){
-			return "redirect:View.do?vt_no="+rqn.getVt_m_no();
+			return "redirect:rqnList.do?vt_m_no="+rqn.getVt_m_no();
 		}else{
 			model.addAttribute("rqn", rqn);
 			return "redirect:recruit.do";
 		}		
-	}*/
+	}
 }

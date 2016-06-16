@@ -1,26 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../../module/header.jsp"%>
+<%@include file="script.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
-function al() {
-	location.href="ad_prList.do";
-	}
-function m() {
-	location.href="ad_mlist.do";
-}
-
-function o() {
-	location.href="ad_olist.do";
-	  
-	
-}
-
 function locate(pageNum){
 	location.href="ad_prList.do?pageNum="+pageNum;
 }
@@ -28,16 +15,45 @@ function locate(pageNum){
 </script>
 </head>
 <body>
- 
-<div class="text-left list-group2">
-<input type="button" id="al" name="al" class="btn btn-default2" onclick="al()" value="전체">
-<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
-<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
 
-</div> 
-<!-- <div id="prlist" style="display: block"> -->
+<div class="btn-group">
+		<div class="btn-group">
+			<a href="javascript:al()" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown"> 전체 <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="javascript:as()">승인처리중</a></li>
+				<li><a href="javascript:aa()">승인완료</a></li>
+			</ul>
+		</div>
+	</div>
+<div class="btn-group">
+		<div class="btn-group">
+			<a href="#" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown"> 일반 <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="javascript:ms()">승인처리중</a></li>
+				<li><a href="javascript:ma()">승인완료</a></li>
+			</ul>
+		</div>
+	</div>
+<div class="btn-group">
+		<div class="btn-group">
+			<a href="#" class="btn btn-default dropdown-toggle"
+				data-toggle="dropdown"> 기관 <span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="javascript:os()">승인처리중</a></li>
+				<li><a href="javascript:oa()">승인완료</a></li>
+			</ul>
+		</div>
+	</div>
+
+ <div class="col-md-12" id="prlist" style="display: block"> 
+	<div class="row" align="center">
 	<table class="table table-striped table-hover">
-			
+					<caption>전체리스트</caption>
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -46,13 +62,13 @@ function locate(pageNum){
 						<th>작성일</th>
 						<th>승인여부</th>
 					</tr>
-					<c:set var="num" value="${pg.total}" />
-					<c:forEach var="product" items="${prlist}">
-						
+					<c:set var="num" value="${pg.total }" />
+					<c:forEach var="product" items="${prlist }">
+					
 						<tr>
 							<td>${num}</td>
 							<c:if test="${product.pr_mno>0 }">
-							<td>일반</td></c:if>
+							<td>일반</td>	</c:if>
 							<c:if test="${product.pr_mno<0 }">
 							<td>기관</td></c:if>
 							<td><a href="ad_prView.do?pr_no=${product.pr_no}">
@@ -60,12 +76,12 @@ function locate(pageNum){
 							<td>${product.email}</td>
 							<td>${product.pr_date}</td>
 							<td>${product.pr_approve}</td>
-
 						</tr>
-						
+					
 						<c:set var="num" value="${num-1}" />
 					</c:forEach>
 				</table>
+		
 				<div class="panel-footer2 text-center">
 					<div class="row">
 						<div class="col">
@@ -94,8 +110,8 @@ function locate(pageNum){
 						</div>
 					</div>
 				</div>
-			
-
+				</div>
+</div>
 			
 </body>
 </html>

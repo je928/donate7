@@ -30,7 +30,7 @@
 		</div>
 	
 		<div align="center">
-			<img src="/donate7/${gift.g_img }" width="300px"><p>
+			<img src="/donate7/${gift.g_img }" height="300px"><p>
 			기프티콘 이름 : ${gift.g_name }<p>
 			기프티콘 가격 : ${gift.g_price }<p>
 			<c:if test="${no>1 }">

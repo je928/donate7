@@ -18,7 +18,8 @@ public class Community {
 	private int no;
 	private String nick;
 	private String passwd;
-	
+	private int replycount;
+
 	// 조회용
 	private int startRow;
 	private int endRow;
@@ -168,6 +169,14 @@ public class Community {
 
 	public void setSearchTxt(String searchTxt) {
 		this.searchTxt = searchTxt;
+	}
+	
+	public int getReplycount() {
+		return replycount;
+	}
+
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
 	}
 
 }

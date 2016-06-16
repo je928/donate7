@@ -62,9 +62,8 @@ public class ProductServiceImpl implements ProductService {
 		pd.apCancel(pr_no);
 	}
 
-	public List<Product> aplist() {
-		
-		return pd.aplist();
+	public List<Product> aplist(Product pd) {
+		return this.pd.aplist(pd);
 	}
 
 	
@@ -73,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 		return pd.getTotal(product);
 	}
 
-	public List<Product> memAll(Product product) {
+	/*public List<Product> memAll(Product product) {
 		
 		return pd.memAll(product);
 	}
@@ -90,6 +89,77 @@ public class ProductServiceImpl implements ProductService {
 	public int orTotal(Product product) {
 		
 		return pd.arTotal(product);
+	}
+*/
+	
+	public int prSTotal(Product product) {
+	
+		return pd.prSTotal(product);
+	}
+
+	public List<Product> prSlist(Product product) {
+		
+		return pd.prSlist(product);
+	}
+
+	public int prATotal(Product product) {
+		
+		return pd.prATotal(product);
+	}
+
+	public List<Product> prAlist(Product product) {
+		
+		return pd.prAlist(product);
+	}
+
+	public int memSTotal(Product product) {
+		
+		return pd.memSTotal(product);
+	}
+
+	public List<Product> memSlist(Product product) {
+		
+		return pd.memSlist(product);
+	}
+
+	
+	public int memATotal(Product product) {
+		
+		return pd.memATotal(product);
+	}
+
+	
+	public List<Product> memAlist(Product product) {
+		
+		return pd.memAlist(product);
+	}
+
+	public int orSTotal(Product product) {
+	
+		return pd.orSTotal(product);
+	}
+
+	
+	public List<Product> orSlist(Product product) {
+		
+		return pd.orSlist(product);
+	}
+
+	
+	public int orATotal(Product product) {
+	
+		return pd.orATotal(product);
+	}
+
+
+	public List<Product> orAlist(Product product) {
+		
+		return pd.orAlist(product);
+	}
+
+	@Override
+	public int apTotal(Product pd) {
+		return this.pd.apTotal(pd);
 	}
 
 }

@@ -68,9 +68,9 @@
 						<input type="button" class="btn btn-primary btn-md" value="참여 취소"
 							onclick="location.href='rqnDelete.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
 					</c:if>
-					<c:if test="${result < 0}">
+					<c:if test="${result <= 0}">
 						<input type="button" class="btn btn-primary btn-md" value="참여"
-							onclick="location.href='rqnList.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
+							onclick="location.href='rqn.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
 					</c:if>
 					<input type="button" class="btn btn-primary btn-md" value="뒤로"
 						onclick="location.href='timeList.do?pageNum=${pageNum}'">

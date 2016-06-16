@@ -31,15 +31,15 @@
 			order by sh_reg_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="msecondList" resultMap="SecondResult" parameterType="second">
-		select * from (select rownum rn,m.* from 
+		select * from (select rownum rn,b.* from 
 		(select * from second where sh_mno<![CDATA[>]]>0 and sh_mno=#{sh_mno}
-		 order by sh_reg_date desc) m) 
+		 order by sh_reg_date desc) b) 
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="osecondList" resultMap="SecondResult" parameterType="second">
-		select * from(select rownum rn,o.* from 
+		select * from(select rownum rn,c.* from 
 		(select * from second where sh_mno<![CDATA[<]]>0 and sh_mno=#{sh_mno}
-		 order by sh_reg_date desc) o)
+		 order by sh_reg_date desc) c)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<insert id="msecondListinsert" parameterType="second">
@@ -87,5 +87,27 @@
 	</update>
 	<select id = "getTotal" parameterType="second" resultType="int">
 		select count(*) from second <if test="sh_mno != 1"> where sh_mno=#{sh_mno}</if>
+	</select>
+	<select id = "memTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[>]]>0
+	</select>
+	<select id = "arrTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[>]]>0 
+	</select>
+	<select id="admlist" resultMap="SecondResult" parameterType="second">
+		select * from (select rownum rn,m.* from 
+		(select * from second where sh_mno<![CDATA[>]]>0 order by sh_reg_date desc) m) 
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id = "orTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[<]]>0
+	</select>
+	<select id = "oarrTotal" parameterType="second" resultType="int">
+		select count(*) from second where sh_mno<![CDATA[<]]>0 
+	</select>
+	<select id="adolist" resultMap="SecondResult" parameterType="second">
+		select * from (select rownum rn,o.* from 
+		(select * from second where sh_mno<![CDATA[<]]>0 order by sh_reg_date desc) o) 
+		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>
