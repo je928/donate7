@@ -7,9 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.min.js'></script>
-<script type='text/javascript' src='//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
 .red {
 	color: red;
@@ -41,22 +38,26 @@
 						구매 상품명:${price.pr_proname }
 						</div>
 						<div class="form-group">
-						구매 가격:	${price.pr_price }
+						구매 가격 :	${price.pr_price }
 						</div>
 						<div class="form-group">
-						구매 수량:${pb.pb_buyqty }
+						구매 수량 : ${pb.pb_buyqty }
+						</div>
+						<div class="form-group">
+						총구매 가격 : 
+						${gup*pb.pb_buyqty }
 						</div>
 					<div class="form-group">
 						보내는 사람 : ${nick}
 					</div>
 					<div class="form-group"><!--받는사람  -->
-						받는 사람 ${pb.pb_name }
+						받는 사람 : ${pb.pb_name }
 					</div>
 					<div class="form-group"><!--전화번호  -->
-						구매자 전화번호 ${pb.pb_tel }
+						전화번호 : ${pb.pb_tel }
 					</div>
 					<div class="form-group"><!--주소  -->
-						받는 주소 ${pb.pb_addr }
+						 주소 : ${pb.pb_addr }
 					</div>
 				</form>
 				<button onclick="location.href='exit.do'">확인</button>

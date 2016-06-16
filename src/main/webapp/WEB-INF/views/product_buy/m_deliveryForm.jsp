@@ -7,51 +7,55 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-.ts{
+.ts {
 	width: 300px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-table {table-layout: fixed;}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+}
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-		<div class="row">
-			<div class="col-md-9-2">
-				<table class="table table-striped table-hover">
-					<caption>배송 요청 내역</caption>
+
+	<div class="row">
+		<div class="col-md-9-2">
+			<table class="table table-striped table-hover">
+				<caption>배송 요청 내역</caption>
+				<tr>
+					<th>제품명</th>
+					<th>받는사람</th>
+					<th>수량</th>
+					<th>주소</th>
+					<th>배송상태</th>
+					<th>상세내용</th>
+				</tr>
+				<c:forEach items="${list }" var="li">
+					<c:set var="ps" value="${ds.selectOne(li.pr_no) }" />
 					<tr>
-						<th>제품</th>
-						<th>받는사람</th>
-						<th>수량</th>
-						<th>주소</th>
-						<th>전화번호</th>
-						<th>배송상태</th>
+						<td>${ps.pr_proname }</td>
+						<td>${li.pb_name }</td>
+						<td>${li.pb_buyqty }</td>
+						<td class="ts">${li.pb_addr }</td>
+						<c:if test="${li.pb_delivery =='n'}">
+							<td>배송준비중</td>
+						</c:if>
+						<c:if test="${li.pb_delivery =='y'}">
+							<td>배송중</td>
+						</c:if>
+						<c:if test="${li.pb_delivery =='o'}">
+							<td>배송완료</td>
+						</c:if>
+						<td><a
+							href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
 					</tr>
-					<c:forEach items="${list }" var="li">
-						<c:set var="ds" value="${ds.selectOne(li.pr_no) }"/>
-						<tr>
-							<td>${ds.pr_proname }</td>
-							<td>${li.pb_name }</td>
-							<td>${li.pb_buyqty }</td>
-							<td class="ts">${li.pb_addr }</td>
-							<c:if test="${li.pb_delivery =='n'}">
-								<td>배송준비중</td>
-							</c:if>
-							<c:if test="${li.pb_delivery =='y'}">
-								<td>배송중</td>
-							</c:if>
-							<c:if test="${li.pb_delivery =='o'}">
-								<td>배송완료</td>
-							</c:if>
-							<td><a href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
-						</tr>
-						
-					</c:forEach>
-				</table>
-			</div>
+				</c:forEach>
+			</table>
 		</div>
 	</div>
 </body>

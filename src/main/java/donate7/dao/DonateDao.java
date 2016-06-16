@@ -2,6 +2,7 @@ package donate7.dao;
 
 import java.util.List;
 
+import donate7.model.DoResult;
 import donate7.model.Donate;
 
 
@@ -45,5 +46,11 @@ public interface DonateDao {
 	int orTotal(Donate donate);
 
 	List<Donate> orAll(Donate donate);
+
+	
+	
+	int doTotal(DoResult doResult);
+
+	List<DoResult> drList();
 
 }

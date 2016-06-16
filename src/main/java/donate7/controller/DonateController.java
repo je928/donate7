@@ -2,19 +2,26 @@ package donate7.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import donate7.model.DoResult;
 import donate7.model.Donate;
+import donate7.service.Cpoint_InfoService;
 import donate7.service.DonateService;
+import donate7.util.Paging;
 
 @Controller
 public class DonateController {
 	@Autowired
 	private DonateService ds;
+	@Autowired
+	private Cpoint_InfoService cs;
 	
 	@RequestMapping("adUpdate")
 	public String adUpdate(int d_no, Model model) {
@@ -44,6 +51,18 @@ public class DonateController {
 		donate.setD_end_date(res2);
 		model.addAttribute("donate",donate);
 		model.addAttribute("pgm", "../donate/doView.jsp");
+		return "module/main";
+	}
+	
+	
+	//기부하기
+	@RequestMapping(value="doResult", method=RequestMethod.GET)
+	public String doResult(int d_no, HttpSession session, Model model) {
+		int no=(Integer)session.getAttribute("no");
+		int sumCash = cs.sumCash(no);
+		model.addAttribute("cash", sumCash);
+		model.addAttribute("d_no",d_no);
+		model.addAttribute("pgm", "../donate/doResult.jsp");
 		return "module/main";
 	}
 

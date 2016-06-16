@@ -7,8 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<script type='text/javascript' src='//code.jquery.com/jquery-1.10.2.min.js'></script>
-<script type='text/javascript' src='//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script type='text/javascript'
+	src='//code.jquery.com/jquery-1.10.2.min.js'></script>
+<script type='text/javascript'
+	src='//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type='text/javascript'>
 	function openDaumPostcode() {
@@ -54,7 +56,6 @@
 						document.getElementById("addr2").focus();
 					}
 				}).open();
-
 	}
 </script>
 <style>
@@ -79,42 +80,45 @@
 	<div class="container">
 		<div class="col-md-offset-13 col-md-5">
 			<div class="form-area">
-				<form role="form" action="deliveryForm.do" method="post">
+				<form role="form" name="frm" action="deliveryForm.do" method="post">
 					<input type="hidden" name="pr_no" value="${price.pr_no }">
 					<br style="clear: both">
 					<h3 style="margin-bottom: 25px; text-align: center;">Delivery
 						Form</h3>
 					<img class="img-responsive" alt="" src="image/${price.pr_img }">
-						<div class="form-group">
-						상품명:${price.pr_proname }
-						</div>
-						<div class="form-group">
-						가격:	${price.pr_price }
-						</div>
-						<div class="form-group">
-						수량:${price.pr_qty }
-						</div>
+					<div class="form-group">상품명:${price.pr_proname }</div>
+					<div class="form-group">가격: ${price.pr_price }</div>
+					<div class="form-group">수량:${price.pr_qty }</div>
+					<div class="form-group">보내는 사람 : ${nick}</div>
 					<div class="form-group">
-						보내는 사람 : ${nick}
-						
-					</div>
-					<div class="form-group"><!--받는사람  -->
+						<!--받는사람  -->
 						받는 사람 <input type="text" class="form-control" id="name"
 							name="pb_name" placeholder="Name" required>
 					</div>
-					<div class="form-group"><!--전화번호  -->
+					<div class="form-group">
+						<!--전화번호  -->
 						구매자 전화번호<input type="text" class="form-control" id="mobile"
 							name="pb_tel" placeholder="Mobile Number" required>
 					</div>
-					<div class="form-group"><!--수량  -->
-						수량<input type="number" name="pb_buyqty">
+					<div class="form-group">
+						<!--수량  -->
+						수량<input type="number" name="pb_buyqty" value="1" min="1"
+							onchange="hap()"> 총구매가격 <input id="hap" type="text"
+							value="">
 					</div>
-					<div class="form-group"><!--주소  -->
-						주소 <input type="text" name="zip1" value="" id="postcode1"title="우편번호 앞자리" class="frm_input readonly" size="3"maxlength="3">
-							- <input type="text" name="zip2" value="" id="postcode2" title="우편번호 뒷자리" class="frm_input readonly"size="3" maxlength="3">
-						<input type="button" onclick="openDaumPostcode()" value="우편번호 찾기" style="width: 100px; height: 25px; font-size: 11px; background-color: #ECECEC"><br>
-						<input type="text" name="addr1" value="" id="addr1" placeholder="주소" class="frm_input readonly" style="width:70%"><br>
- 						<input type="text" name="addr2" value="" id="addr2" placeholder="상세주소" class="frm_input" style="width:38%"><br>
+					<div class="form-group">
+						<!--주소  -->
+						주소 <input type="text" name="zip1" value="" id="postcode1"
+							title="우편번호 앞자리" class="frm_input readonly" size="3"
+							maxlength="3"> - <input type="text" name="zip2" value=""
+							id="postcode2" title="우편번호 뒷자리" class="frm_input readonly"
+							size="3" maxlength="3"> <input type="button"
+							onclick="openDaumPostcode()" value="우편번호 찾기"
+							style="width: 100px; height: 25px; font-size: 11px; background-color: #ECECEC"><br>
+						<input type="text" name="addr1" value="" id="addr1"
+							placeholder="주소" class="frm_input readonly" style="width: 70%"><br>
+						<input type="text" name="addr2" value="" id="addr2"
+							placeholder="상세주소" class="frm_input" style="width: 38%"><br>
 					</div>
 					<input type="submit" name="submit" value="Submit Form">
 				</form>
