@@ -133,5 +133,9 @@ public class CommunityDaoImpl implements CommunityDao {
 		}
 		return result;
 	}
+
+	public CommunityReply replyOne(int cr_no) {
+		return session.selectOne("reply.replyOne", cr_no);
+	}
 	
 }

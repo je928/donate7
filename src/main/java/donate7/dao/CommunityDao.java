@@ -22,5 +22,6 @@ public interface CommunityDao {
 	int insertReply(CommunityReply communityReply);
 	int replyCount(int brd_no);
 	int deleteReply(int crNo);
+	CommunityReply replyOne(int cr_no);
 	
 }

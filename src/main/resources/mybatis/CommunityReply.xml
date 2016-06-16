@@ -40,5 +40,9 @@
 	<select id="replyCount" parameterType="Integer" resultType="Integer" >
 		select count(*) from communityReply where brd_no=#{brd_no} and cr_del_yn='n'
 	</select>
+	
+	<select id="replyOne" resultType="reply" parameterType="Integer">
+		select * from communityReply where cr_no=#{cr_no}
+	</select>
 
 </mapper>
