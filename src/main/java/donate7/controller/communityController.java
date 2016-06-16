@@ -48,7 +48,6 @@ public class communityController {
 		community.setSearchTxt(searchTxt);
 		
 		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
-		
 		List<Community> list = cs.list(startRow, endRow, searchType, searchTxt, community);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
