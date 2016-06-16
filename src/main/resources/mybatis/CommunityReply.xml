@@ -45,4 +45,7 @@
 		select * from communityReply where cr_no=#{cr_no}
 	</select>
 
+	<update id="updateWarn" parameterType="Integer">
+		update communityReply set cr_del_yn='w' where cr_no=#{re_sort_no}
+	</update>
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Community;
+import donate7.model.CommunityReply;
 import donate7.model.Member;
 import donate7.model.Register;
 import donate7.model.Warning;
@@ -40,8 +41,13 @@ public class RegisterController {
 			model.addAttribute("nick",nick);
 			model.addAttribute("re_sort_no",comm.getBrd_no());
 			model.addAttribute("reported_no",comm.getNo());			
-		}else{
-			
+		}else if(chk.equals("c")){
+			CommunityReply cr = cs.replyOne(brd_no);
+			Member member= ms.selectMember(cr.getNo());
+			String nick = member.getM_nick();
+			model.addAttribute("nick",nick);
+			model.addAttribute("re_sort_no",cr.getCr_no());
+			model.addAttribute("reported_no",cr.getNo());
 		}		
 		model.addAttribute("chk",chk);
 		return "register/registerPop";
@@ -86,6 +92,11 @@ public class RegisterController {
 		if(reg.getRe_sort().equals("w")){
 			Community comm = cs.communitySelect(reg.getRe_sort_no());		
 			model.addAttribute("content", comm.getBrd_content());
+			model.addAttribute("sort", "글");
+		}else if(reg.getRe_sort().equals("c")){
+			CommunityReply cr = cs.replyOne(reg.getRe_sort_no());		
+			model.addAttribute("content", cr.getCr_content());
+			model.addAttribute("sort", "댓글");
 		}		
 		model.addAttribute("reg", reg);
 		model.addAttribute("reported", reported);
@@ -103,6 +114,9 @@ public class RegisterController {
 			model.addAttribute("msg", "msg");
 			if(reg.getRe_sort().equals("w")){
 				cs.updateWarn(reg.getRe_sort_no());
+			}
+			if(reg.getRe_sort().equals("c")){
+				cs.updateWarnR(reg.getRe_sort_no());
 			}
 			if(re_chk.equals("y")){
 				Warning warning = new Warning();

@@ -38,7 +38,7 @@ table #td {
 			<th style="width:80px">신고 번호</th>
 			<th>신고 사유</th>
 			<th style="width:100px">신고 날짜</th>
-			<th style="width:80px">신고 처리</th>
+			<th style="width:100px">신고 처리</th>
 			<th style="width:100px">자세히 보기</th>
 		</tr>
 		<c:set var="no" value="${pb.no}" />

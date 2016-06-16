@@ -10,8 +10,8 @@
 
 </style>
 <script type="text/javascript">
-	function registerPop(brd_no) {
-		window.open("registerPop.do?brd_no=" + brd_no + "&chk=w", "",
+	function registerPop(brd_no,chk) {
+		window.open("registerPop.do?brd_no=" + brd_no + "&chk="+chk, "",
 				"width=370, height=300");
 	}
 	
@@ -58,7 +58,7 @@
 					<div class="row">
 						<div class="col col-xs-6">
 							<c:if test="${community.no != sessionScope.no && community.no>1 && sessionScope.no!=null}">
-								<a href="javascript:registerPop(${community.brd_no});" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
+								<a href="javascript:registerPop(${community.brd_no},'w');" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
 							</c:if>
 						</div>
 						<div class="col col-xs-6 text-right">
@@ -148,7 +148,7 @@
 											<a class="a_link" onclick="deleteRpChk(${cr.cr_no},${community.brd_no},${pageNum})">삭제</a>
 											</c:if>
 											<c:if test="${cr.no!=sessionScope.no && community.no>1 && sessionScope.no!=null}">
-											<a class="a_link">신고</a>
+											<a href="javascript:registerPop(${cr.no},'c');" class="a_link">신고</a>
 											</c:if>
 											</span>
 										</div>
