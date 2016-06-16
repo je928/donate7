@@ -15,7 +15,6 @@ import donate7.service.Product_buyService;
 public class Product_buyController {
 	@Autowired
 	Product_buyService ds;
-
 	@RequestMapping("m_delivery")
 	public String m_deliveryForm(Model model, HttpSession session) {
 		int pb_no = (Integer) session.getAttribute("no");
@@ -39,13 +38,17 @@ public class Product_buyController {
 	}
 
 	@RequestMapping(value = "deliveryForm", method = RequestMethod.POST)
-	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session, Model model) {
+	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session,int pr_no,Model model) {
 		int no = (Integer) session.getAttribute("no");
 		String pb_addr = addr1 + addr2;
 		pb.setPb_mono(no);
 		pb.setPb_addr(pb_addr);
-		int insert = ds.insert(pb);
-		model.addAttribute("insert", insert);
+		ds.insert(pb);
+		int qty=pb.getPb_buyqty(); //구매수량
+		if(qty>=0){
+		int result=ds.update(pr_no,qty);
+		}
+		else model.addAttribute("msg","수량이 부족합니다");
 		return "redirect:m_delivery.do";
 	}
 
@@ -62,17 +65,23 @@ public class Product_buyController {
 	@RequestMapping("am_delivery")
 	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
 		Product_buy pb = ds.select(pb_no);
-		Product price = ds.selectOne(pr_no);
+		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
+		int gup = Integer.parseInt(pr.getPr_price());
+		model.addAttribute("gup",gup);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
-		model.addAttribute("price", price);
+		model.addAttribute("price", pr);
 		model.addAttribute("pgm", "../product_buy/delivery.jsp");
 		return "module/main";
 	}
 
 	@RequestMapping("exit")
-	public String exit(Model model) {
-		return "redirect:a_deliveryForm.do";
+	public String exit(Model model, HttpSession session) {
+		int num = (Integer) session.getAttribute("no");
+		if (num == 1)
+			return "redirect:a_deliveryForm.do";
+		else
+			return "redirect:m_delivery.do";
 	}
 }

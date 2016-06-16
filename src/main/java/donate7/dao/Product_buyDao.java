@@ -17,4 +17,6 @@ public interface Product_buyDao {
 	List<Product_buy> listAll();
 
 	Product_buy select(int pb_no);
+
+	int update(int pr_no, int qty);
 }

@@ -41,4 +41,7 @@
 	<select id="select" parameterType="product_buy" resultType="product_buy">
 		select * from product_buy where pb_no=#{pb_no}
 	</select>
+	<update id="update" parameterType="java.util.Map">
+		update product set pr_qty = pr_qty-#{qty} where pr_no=#{pr_no}
+	</update>
 </mapper>

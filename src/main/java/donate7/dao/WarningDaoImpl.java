@@ -28,4 +28,7 @@ public class WarningDaoImpl implements WarningDao{
 		hashMap.put("wa_sort", sort);
 		return st.selectList("warning.list",hashMap);
 	}
+	public Warning selectOne(int wa_no) {
+		return st.selectOne("warning.selectOne",wa_no);
+	}
 }

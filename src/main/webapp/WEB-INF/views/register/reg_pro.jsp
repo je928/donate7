@@ -28,13 +28,14 @@
 신고 날짜 : <fmt:formatDate value="${reg.re_date }"/><p>
 <input type="hidden" name="reported_no" value="${reg.reported_no}">
 <input type="hidden" name="reported_no" value="${reg.reporter_no}">
+신고 유형 : ${sort }<p>
 신고 사유 : <textarea name="re_content" rows="3" cols="50" readonly="readonly">
 <c:if test="${reg.re_content!=null }">${reg.re_content }</c:if></textarea><p>
 신고 당한 (댓)글 내용:<textarea rows="2" cols="50" readonly="readonly">${content }</textarea><p>
 <c:if test="${reg.re_chk == 'n' }">
 	<input type="button" value="신고 보류(처리 안함)" onclick="location.href='reg_update.do?re_no=${reg.re_no}&re_chk=c'">
 	<input type="button" value="신고 처리" onclick="register()">
-	<input type="number" value="1" name="wa_cnt" min="1" max="5">	
+	<input type="number" value="1" name="wa_cnt" min="1" max="5">*신고 줄 횟수	
 </c:if>
 <c:if test="${reg.re_chk == 'y' }">
 	신고 처리

@@ -19,9 +19,21 @@ create table register (
 	re_sort_no number not null
 );
 
+insert into warning values(2,2,0,'d',1,'안옴',sysdate);	
+
+select sum(wa_cnt) from warning where m_no=2 and wa_sort='b';
+
 select * from warning;
 select * from register;
 select nvl(max(re_no),0)+1 from register;
+
+
+
+
+
+
+
+
 
 drop table warning;
 drop table register;

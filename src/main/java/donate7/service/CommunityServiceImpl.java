@@ -83,4 +83,8 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.replyOne(cr_no);
 	}
 
+	public void updateWarnR(int re_sort_no) {
+		cd.updateWarnR(re_sort_no);
+	}
+
 }
