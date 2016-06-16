@@ -31,7 +31,7 @@
 		order by wa_no desc) a) where rn between #{startRow} and #{endRow} and m_no=#{m_no}
 	</select>
 	<select id="getTotal" parameterType="warning" resultType="int">
-		select count(*) from warning where m_no=#{m_no}
+		select sum(wa_cnt) from warning where m_no=#{m_no}
 		<if test='wa_sort != "all"'>
 			<if test='wa_sort == "b"'>
 				and wa_sort='b'
@@ -40,5 +40,8 @@
 				and wa_sort='d'
 			</if>	
 		</if>
+	</select>
+	<select id="selectOne" parameterType="int" resultType="warning">
+		select * from warning where wa_no=#{wa_no}
 	</select>	
 </mapper>

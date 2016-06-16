@@ -137,5 +137,10 @@ public class CommunityDaoImpl implements CommunityDao {
 	public CommunityReply replyOne(int cr_no) {
 		return session.selectOne("reply.replyOne", cr_no);
 	}
+
+	public void updateWarnR(int re_sort_no) {
+		session.update("reply.updateWarn",re_sort_no);
+		
+	}
 	
 }

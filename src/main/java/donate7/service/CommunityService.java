@@ -24,5 +24,6 @@ public interface CommunityService {
 	int replyCount(int brd_no);
 	int deleteReply(int crNo);
 	CommunityReply replyOne(int cr_no);
+	void updateWarnR(int re_sort_no);
 	
 }
