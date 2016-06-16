@@ -81,7 +81,13 @@ public class DonateDaoImpl implements DonateDao {
 	public int doTotal(DoResult doResult) {
 		return session.selectOne("doResult.doTotal",doResult);
 	}
-	public List<DoResult> drList() {
-		return session.selectList("doResult.drList");
+	public List<DoResult> drList(int d_no) {
+		return session.selectList("doResult.drList", d_no);
+	}
+	public int insertDonate(DoResult doResult) {
+		return session.insert("doResult.insertDonate",doResult);
+	}
+	public int insertNum() {
+		return session.selectOne("doResult.insertNum");
 	}
 }

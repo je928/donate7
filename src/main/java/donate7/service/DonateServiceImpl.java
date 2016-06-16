@@ -75,8 +75,16 @@ public class DonateServiceImpl implements DonateService {
 	public int doTotal(DoResult doResult) {
 		return dd.doTotal(doResult);
 	}
-	public List<DoResult> drList() {
-		return dd.drList();
+	public List<DoResult> drList(int d_no) {
+		return dd.drList(d_no);
+	}
+	@Override
+	public int insertDonate(DoResult doResult) {
+		return dd.insertDonate(doResult);
+	}
+	@Override
+	public int insertNum() {
+		return dd.insertNum();
 	}
 
 }

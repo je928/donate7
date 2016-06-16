@@ -8,21 +8,45 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var d_no = '${d_no}';
+		var donation = $('#donation').val();
+		list(0,d_no);
 		$('#btn').click(function(){
 			var mycash = '${cash}';
-			var donation = $('#donation').val();
 			if(donation > parseInt(mycash)){
-				if(confirm("보유금액보다 기부금액이 더 커요")){
+				if(confirm("보유금액이 부족합니다. 충전 하시겠습니까?")){
 					location.href="cpointList.do";
 				}
 			}else{
-				if(confirm("현재 금액으로 기부하시겠습니까?")){
-					
+				var donation = $('#donation').val();
+				if(donation == "" || donation == 0 || donation < 0){
+					alert("정확한 금액을 입력해주세요");
+				}else{
+					if(confirm("현재 금액으로 기부하시겠습니까?")){
+						list(donation, d_no);
+					}
 				}
 			}
 		});
 	});
+	
+	function list(d_donation, d_no){
+			var donate_param = {
+					"d_donation" : d_donation,
+					"d_no" : d_no
+			}
+			var sndData = $.param(donate_param);
+			$.post('doResultList.do', sndData, function(data) {
+				$('#dlist').html(data);
+			 });
+	}
 </script>
+<style type="text/css">
+.col22{
+width: 15%;
+margin-left: 42%;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -41,15 +65,20 @@
 
 	<div class="container">
 		<div align="center">
-			<input type="number" size="5" id="donation" step="100" min="100" value="100">원<br>
+			<input type="number" size="5" id="donation" step="100" min="100" value="100" name="d_donation">원<br>
 		</div>
-		<div class="col-md-2">
+		<br>
+		<div class="col22">
 			<button id="btn"
-				class="form-control input-sm btn btn-success disabled"
+				class="form-control input-sm btn btn-success"
 				style="height: 35px" >
 				모금함에 기부하기 <i class="glyphicon glyphicon-heart"></i>
 			</button>
 		</div>
+		<br>
+		<div id="dlist">
+		</div>
+		
 	</div>
 </body>
 </html>

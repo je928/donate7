@@ -24,6 +24,7 @@
 		<typeAlias alias="rqn" type="donate7.model.Rqn" />
 		<typeAlias alias="applicant" type="donate7.model.Applicant" />
 		<typeAlias alias="product_buy" type="donate7.model.Product_buy" />
+		<typeAlias alias="doResult" type="donate7.model.DoResult" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -46,5 +47,6 @@
 		<mapper resource="mybatis/Rqn.xml" />
 		<mapper resource="mybatis/Applicant.xml" />
 		<mapper resource="mybatis/Product_buy.xml" />
+		<mapper resource="mybatis/DoResult.xml" />
 	</mappers>
 </configuration>

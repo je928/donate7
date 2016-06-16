@@ -49,5 +49,9 @@ public interface DonateService {
 	
 	int doTotal(DoResult doResult);
 
-	List<DoResult> drList();
+	List<DoResult> drList(int d_no);
+
+	int insertDonate(DoResult doResult);
+
+	int insertNum();
 }
