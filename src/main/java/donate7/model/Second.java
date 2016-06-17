@@ -15,7 +15,50 @@ public class Second {
 	private int no;
 	private String email;
 	private String nick;
+	private int m_no;
+	private String m_email;
+	private String m_nick;
+	private int o_no;
+	private String o_email;
+	private String o_oname;
 	
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	public String getM_email() {
+		return m_email;
+	}
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
+	}
+	public String getM_nick() {
+		return m_nick;
+	}
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
+	}
+	public int getO_no() {
+		return o_no;
+	}
+	public void setO_no(int o_no) {
+		this.o_no = o_no;
+	}
+	public String getO_email() {
+		return o_email;
+	}
+	public void setO_email(String o_email) {
+		this.o_email = o_email;
+	}
+	public String getO_oname() {
+		return o_oname;
+	}
+	public void setO_oname(String o_oname) {
+		this.o_oname = o_oname;
+	}
 	private int startRow;
 	private int endRow;
 	public int getStartRow() {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import donate7.model.Product;
 import donate7.model.Recruit;
 import donate7.model.Second;
 import donate7.service.SecondService;
@@ -269,7 +270,6 @@ public class SecondController {
 		return "module/main";
 	}
 	
-	
 	/*@RequestMapping(value = "admemList", method = RequestMethod.GET)
 	public String admemList(Second second, String pageNum, HttpSession session,Model model) {
 		int no = (Integer)session.getAttribute("no");
@@ -305,7 +305,7 @@ public class SecondController {
 		Paging pg = new Paging(nowPage, total);
 		second.setStartRow(pg.getStartRow());
 		second.setEndRow(pg.getEndRow());
-		List<Second> memlist = ss.admlist(second);
+		List<Second> memlist = ss.admAlist(second);
 		
 		model.addAttribute("memlist", memlist);
 		model.addAttribute("total", total);
@@ -349,7 +349,7 @@ public class SecondController {
 		Paging pg = new Paging(nowPage, total);
 		second.setStartRow(pg.getStartRow());
 		second.setEndRow(pg.getEndRow());
-		List<Second> orlist = ss.adolist(second);
+		List<Second> orlist = ss.adoAlist(second);
 		
 		model.addAttribute("orlist", orlist);
 		model.addAttribute("total", total);

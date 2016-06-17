@@ -92,7 +92,7 @@
 							<tr>
 							<th>${num }</th>
 							<th><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
-							<th>${second.email }</th>
+							<th>${second.o_email }</th>
 							<th>${second.sh_category }</th>
 							<th>${second.sh_reg_date }</th>
 							<th>${second.sh_arrive }</th>
