@@ -111,4 +111,12 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectByO_no(o_no);
 	}
 
+	public int ok_y_update(int no) {
+		return md.ok_y_update(no);
+	}
+
+	public int ok_n_update(int no) {
+		return md.ok_n_update(no);
+	}
+
 }

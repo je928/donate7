@@ -97,7 +97,7 @@
 	<select id="admlist" resultMap="SecondResult" parameterType="second">
 		select * from(select rownum rn,m.* from 
 		(select * from second s, (select m_no, m_email from member) m where s.sh_mno=m.m_no and sh_mno<![CDATA[>]]>0 
-   		order by s.sh_reg_date desc) m)
+   		order by sh_reg_date desc) m)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id = "orTotal" parameterType="second" resultType="int">
@@ -108,14 +108,14 @@
 	</select>
 	<select id="adolist" resultMap="SecondResult" parameterType="second">
 		select * from(select rownum rn,o.* from 
-		(select * from second s,(select o_no, o_email from organ) o where s.sh_mno=o.o_no and sh_mno<![CDATA[>]]>0 
+		(select * from second s,(select o_no, o_email from organ) o where s.sh_mno=o.o_no and sh_mno<![CDATA[<]]>0 
 		order by sh_reg_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
 		<select id="admAlist" resultMap="SecondResult" parameterType="second">
 		select * from(select rownum rn,m.* from 
 		(select * from second s, (select m_no, m_email from member) m where s.sh_mno=m.m_no and sh_mno<![CDATA[>]]>0 
-   		 and s.sh_approve ='y' order by s.sh_reg_date desc) m)
+   		 and s.sh_approve ='y' order by sh_reg_date desc) m)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="adoAlist" resultMap="SecondResult" parameterType="second">
