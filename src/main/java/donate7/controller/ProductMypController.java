@@ -111,6 +111,7 @@ public class ProductMypController {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
+		
 		if(mf.getOriginalFilename().equals("")){
 			Product pr = ps.selectOne(product.getPr_no());
 			product.setPr_img(pr.getPr_img());
@@ -120,6 +121,7 @@ public class ProductMypController {
 			mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 			product.setPr_img(uploadName);
 		}
+		
 		product.setPr_mno(no);
 		ps.prUpdate(product);
 		int nowPage = Integer.parseInt(pageNum);

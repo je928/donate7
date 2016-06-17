@@ -46,9 +46,13 @@
 				<td>${product.pr_callm}</td>
 			</tr>
 		</table>
-		<div align="center">
-			<button onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
-			<button onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
+		
+		<div align="center" >
+			<c:if test="${product.pr_approve eq 'n'}">
+				<button onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
+				<button onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
+			</c:if>
+	
 			<button onclick="location.href='m_prList.do'">확인</button>
 		</div>
 

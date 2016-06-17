@@ -27,11 +27,11 @@
 		select nvl(max(pr_no),0)+1 from product
 	</select>
 	<select id="prlist" resultMap="ProductResult" parameterType="product">
-			select * from (select rownum rn,a.* from (select pr.*, a.no as no, a.email as email, a.nick as nick from product pr, 
-			(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' 
-			union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n') 
-			a where pr.pr_mno=a.no
-			order by pr_date desc) a) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn,a.* from (select pr.*, a.no as no, a.email as email, a.nick as nick from product pr, 
+		(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' 
+		union select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n')a 
+		where pr.pr_mno=a.no
+		order by pr_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="mlist" resultMap="ProductResult" parameterType="product" >
 		select * from (select rownum rn,m.* from 
@@ -64,7 +64,7 @@
 		update product set 
 			pr_proname=#{pr_proname},pr_item=#{pr_item},pr_content=#{pr_content},
 			pr_qty=#{pr_qty},pr_price=#{pr_price},pr_img=#{pr_img},pr_donation=#{pr_donation},
-			pr_callm=#{pr_callm},pr_update=sysdate where pr_no=#{pr_no}
+			pr_callm=#{pr_callm},pr_update=sysdate where pr_no=#{pr_no} 
 	</update>
 	<delete id ="prDelete" parameterType="int" >
 		delete from product where pr_no=#{pr_no}
@@ -125,22 +125,26 @@
 	</select>
 	<select id="memSlist" resultMap="ProductResult" parameterType="product">
 		select * from(select rownum rn,m.* from 
-		(select * from product where pr_mno<![CDATA[>]]>0 and pr_approve ='n' order by pr_date desc) m)
+		(select * from product p, (select m_no, m_email from member) m where p.pr_mno=m.m_no and pr_mno<![CDATA[>]]>0 
+   		 and p.pr_approve ='n' order by p.pr_date desc) m)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="memAlist" resultMap="ProductResult" parameterType="product">
 		select * from(select rownum rn,o.* from 
-		(select * from product where pr_mno<![CDATA[>]]>0 and pr_approve ='y' order by pr_date desc) o)
+		(select * from product p,(select m_no, m_email from member) m where p.pr_mno=m.m_no and pr_mno<![CDATA[>]]>0 
+		and pr_approve ='y' order by pr_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
 		<select id="orSlist" resultMap="ProductResult" parameterType="product">
 		select * from(select rownum rn,m.* from 
-		(select * from product where pr_mno<![CDATA[<]]>0 and pr_approve ='n' order by pr_date desc) m)
+		(select * from product p,(select o_no, o_email from organ) o where p.pr_mno=o.o_no and pr_mno<![CDATA[<]]>0 
+		and pr_approve ='n' order by pr_date desc) m)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="orAlist" resultMap="ProductResult" parameterType="product">
 		select * from(select rownum rn,o.* from 
-		(select * from product where pr_mno<![CDATA[<]]>0 and pr_approve ='y' order by pr_date desc) o)
+		(select * from product p, (select o_no, o_email from organ) o where p.pr_mno=o.o_no and pr_mno<![CDATA[<]]>0 
+		and pr_approve ='y' order by pr_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

@@ -74,7 +74,13 @@ function locate(pageNum){
 									${product.pr_proname }</a></td>
 							<td>${product.email}</td>
 							<td>${product.pr_date}</td>
-							<td>${product.pr_approve}</td>
+							<td><c:if test="${product.pr_approve eq 'y'}">
+									<span class="label label-success">승인완료</span>
+								</c:if> 
+								<c:if test="${product.pr_approve eq 'n'}">
+									<span class="label label-warning">승인대기</span>
+								</c:if>
+							</td>
 						</tr>
 					
 						<c:set var="num" value="${num-1}" />
