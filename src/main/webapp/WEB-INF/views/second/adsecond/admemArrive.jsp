@@ -88,7 +88,7 @@
 				</tr>
 				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${memlist }">
-					<c:if test="${second.sh_approve eq 'y' }">
+					
 							<tr>
 							<th>${num }</th>
 							<th><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
@@ -97,7 +97,7 @@
 							<th>${second.sh_reg_date }</th>
 							<th>${second.sh_arrive }</th>
 						</tr>
-						</c:if>
+						
 					
 					<c:set var="num" value="${num-1 }" />
 				</c:forEach>
