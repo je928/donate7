@@ -31,4 +31,6 @@ public interface SecondDao {
 	int orTotal(Second second);
 	List<Second> adolist(Second second);
 	int oarrTotal(Second second);
+	List<Second> admAlist(Second second);
+	List<Second> adoAlist(Second second);
 }
