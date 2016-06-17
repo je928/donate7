@@ -31,4 +31,7 @@ public class WarningDaoImpl implements WarningDao{
 	public Warning selectOne(int wa_no) {
 		return st.selectOne("warning.selectOne",wa_no);
 	}
+	public int getSum(Warning warning) {
+		return st.selectOne("warning.getSum",warning);
+	}
 }
