@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td width="30%">회원번호:</td>
+											<td width="30%">회원번호</td>
 											<td width="70%"><b>${member.m_no}</b></td>
 										</tr>
 										<tr>
@@ -40,8 +41,8 @@
 											<td><b>${member.m_nick}</b></td>
 										</tr>
 										<tr>
-											<td>생년월일</td>
-											<td><b>${member.m_birth}</b></td>
+											<td>생년월일(나이)</td>
+											<td><b>${member.m_birth} (만 ${member.age}세)</b></td>
 										</tr>
 										<tr>
 											<td>성별</td>
@@ -79,6 +80,9 @@
 								</table>
 							</div>
 						</div>
+					</div>
+					<div class="panel-footer text-center">
+						<a href="a_memberAll.do?pageNum=${pageNum}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
 					</div>
 				</div>
 			</div>

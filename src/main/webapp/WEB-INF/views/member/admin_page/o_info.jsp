@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
-<%@ include file="../../session/orgChk.jsp" %>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +32,12 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td width="30%">이메일:</td>
-											<td width="70%"><b>${organ.o_email}</b></td>
+											<td width="30%">회원번호</td>
+											<td width="70%"><b>${organ.o_no}</b></td>
+										</tr>
+										<tr>
+											<td>이메일:</td>
+											<td><b>${organ.o_email}</b></td>
 										</tr>
 										<tr>
 											<td>허가번호:</td>
@@ -71,17 +75,22 @@
 											<td><b class="red">승인 거절</b></td>
 											</c:if>
 										</tr>
+										<c:if test="${organ.o_ok_xyn eq 'x'}">
+										<tr>
+											<td> </td>
+											<td>
+											<a href="ok_y_update.do?pageNum=${pageNum}&o_no=${organ.o_no}" type="button" class="btn btn-sm btn-success">승인<i class="glyphicon glyphicon-star"></i></a>
+											<a href="ok_n_update.do?pageNum=${pageNum}&o_no=${organ.o_no}" type="button" class="btn btn-sm btn-danger">거절<i class="glyphicon glyphicon-remove"></i></a>
+											</td>
+										</tr>
+										</c:if>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-					<div class="panel-footer">
-						<a href="mail.do" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
-						<span class="pull-right">
-							<a href="o_updateForm.do" type="button" class="btn btn-sm btn-default">수정<i class="glyphicon glyphicon-edit"></i></a>
-							<a href="o_deleteForm.do" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
-						</span>
+					<div class="panel-footer text-center">
+						<a href="a_organAll.do?pageNum=${pageNum}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
 					</div>
 				</div>
 			</div>

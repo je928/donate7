@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp"%>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,11 @@
 	function locate(pageNum){
 		location.href="a_memberAll.do?pageNum="+pageNum;
 	}
-	function info(m_no){
-		location.href="m_info.do?m_no="+m_no;
+	
+	function info(pageNum,m_no){
+		location.href="m_info.do?pageNum="+pageNum+"&m_no="+m_no;
 	}
+	
 	function m() {
 		location.href="a_memberAll.do";
 	}
@@ -47,9 +50,8 @@
 						<tr>
 							<th>no</th>
 							<th>email</th>
-							<th>name</th>													
 							<th>nick</th>
-							<th>birthday</th>
+							<th>age</th>
 							<th>tel</th>
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
@@ -61,12 +63,11 @@
 						<tr>
 							<td>${no}</td>
 							<td>${mem.m_email}</td>
-							<td>${mem.m_name}</td>
 							<td>${mem.m_nick}</td>
-							<td>${mem.m_birth}</td>
+							<td>만 ${mem.age}세</td>
 							<td>${mem.m_tel}</td>
 							<td align="center">
-								<a href="javascript:info(${mem.m_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
+								<a href="javascript:info(${m_pb.nowPage},${mem.m_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
 							</td>
 						</tr>
 						<c:set var="no" value="${no-1}"></c:set>

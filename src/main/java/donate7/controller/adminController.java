@@ -58,8 +58,8 @@ public class adminController {
 		return "module/main";
 	}
 	
-	@RequestMapping(value = "m_info", method = RequestMethod.GET)
-	public String m_info(Model model, String m_no, HttpSession session) {
+	@RequestMapping(value = "m_info")
+	public String m_info(Model model, String m_no, String pageNum, HttpSession session) {
 		int no = (Integer)Integer.parseInt(m_no);
 		Member member = ms.selectMember(no);
 		Warning dr_warn = new Warning();
@@ -73,6 +73,7 @@ public class adminController {
 		int sumC = cs.sumCash(no);
 		int sumP = cs.sumPoint(no);
 		model.addAttribute(member);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("dr_total", dr_total);
 		model.addAttribute("br_total", br_total);
 		model.addAttribute("sumC", sumC);
@@ -109,14 +110,42 @@ public class adminController {
 		return "module/main";
 	}
 	
-	@RequestMapping(value = "o_info", method = RequestMethod.GET)
-	public String o_info(Model model, HttpSession session) {
-		int o_no = (Integer)session.getAttribute("no");
-		Organ organ = ms.selectOrgan(o_no);
+	@RequestMapping(value = "o_info")
+	public String o_info(Model model, String o_no, String pageNum, HttpSession session) {
+		int no = (Integer)Integer.parseInt(o_no);
+		Organ organ = ms.selectOrgan(no);
 		model.addAttribute(organ);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/admin_page/o_info.jsp");
 		return "module/main";
+	}
+	
+	@RequestMapping(value = "ok_y_update")
+	public String ok_y_update(Model model, String o_no, String pageNum, HttpSession session) {
+		int no = (Integer)Integer.parseInt(o_no);
+		int result = ms.ok_y_update(no);
+		System.out.println("result= "+ result);
+		if(result > 0) {
+			return "redirect:o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+		}else {
+			model.addAttribute("msg", "승인 실패");		
+			model.addAttribute("pageNum", pageNum);
+			return "forward:o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+		}
+	}
+	
+	@RequestMapping(value = "ok_n_update")
+	public String ok_n_update(Model model, String o_no, String pageNum, HttpSession session) {
+		int no = (Integer)Integer.parseInt(o_no);
+		int result = ms.ok_n_update(no);
+		if(result > 0) {
+			return "redirect:o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+		}else {
+			model.addAttribute("msg", "승인 실패");		
+			model.addAttribute("pageNum", pageNum);
+			return "forward:o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+		}
 	}
 	
 	@RequestMapping(value="giftUpload", method=RequestMethod.GET)

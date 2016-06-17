@@ -99,4 +99,12 @@
 		select * from organ where o_del_yn='n'
 	</select>
 	
+	<update id="ok_y_update" parameterType="Integer">
+		update organ set o_ok_xyn='y' where o_no=#{o_no} and o_del_yn='n'
+	</update>
+	
+	<update id="ok_n_update" parameterType="Integer">
+		update organ set o_ok_xyn='n' where o_no=#{o_no} and o_del_yn='n'
+	</update>
+	
 </mapper>
