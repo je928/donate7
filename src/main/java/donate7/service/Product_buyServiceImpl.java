@@ -14,10 +14,14 @@ public class Product_buyServiceImpl implements Product_buyService {
 	@Autowired
 	Product_buyDao pd;
 
-	public List<Product_buy> list(int pb_no) {
-		return pd.list(pb_no);
+	public List<Product_buy> list(int startRow, int endRow, int pb_mono, Product_buy pb) {
+		return pd.list(startRow, endRow, pb_mono, pb);
 	}
-
+	
+	public List<Product_buy> listAll(int startRow, int endRow, Product_buy pb) {
+		return pd.listAll(startRow, endRow,pb);
+	}
+	
 	public String Nick(int no) {
 		return pd.Nick(no);
 	}
@@ -30,10 +34,6 @@ public class Product_buyServiceImpl implements Product_buyService {
 		return pd.insert(pb);
 	}
 
-	public List<Product_buy> listAll() {
-		return pd.listAll();
-	}
-
 	public Product_buy select(int pb_no) {
 		return pd.select(pb_no);
 	}
@@ -41,5 +41,15 @@ public class Product_buyServiceImpl implements Product_buyService {
 	public int update(int pr_no, int qty) {
 		return pd.update(pr_no,qty);
 	}
+
+	public int mtotal(int pb_no) {
+		return pd.mtotal(pb_no);
+	}
+
+	public int atotal() {
+		return pd.atotal();
+	}
+
+	
 
 }
