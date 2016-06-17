@@ -87,27 +87,6 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectOne("product.getTotal",product);
 	}
 	
-	/*public int memTotal(Product product) {
-		
-		return st.selectOne("product.memTotal", product);
-	}
-
-	public int arTotal(Product product) {
-	
-		return st.selectOne("product.orTotal",product);
-	}
-
-	public List<Product> memAll(Product product) {
-		
-		return st.selectList("product.memAll",product);
-	}
-
-	public List<Product> arAll(Product product) {
-		
-		return st.selectList("product.orAll",product);
-	}
-
-*/
 	public int prSTotal(Product product) {
 		
 		return st.selectOne("product.prSTotal",product);
@@ -175,8 +154,8 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	@Override
-	public int apTotal(Product pd) {
-		int result = st.selectOne("product.apTotal",pd);
+	public int apTotal(Product product) {
+		int result = st.selectOne("product.apTotal",product);
 		System.out.println("result : " + result);
 		return result;
 	}

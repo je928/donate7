@@ -17,12 +17,6 @@
 		<result property="pr_callm" 		column="pr_callm" />
 		<result property="pr_date" 			column="pr_date" />
 		<result property="pr_update" 		column="pr_update" />
-		<!-- <result property="m_no" 			column="m_no" />
-		<result property="m_email" 			column="m_email" />
-		<result property="m_nick" 			column="m_nick" />
-		<result property="o_no" 			column="o_no" />
-		<result property="o_email" 			column="o_email" />
-		<result property="o_oname" 			column="o_oname" /> -->
 		<result property="no" 			column="no" />
 		<result property="email" 		column="email" />
 		<result property="nick" 		column="nick" />
@@ -51,6 +45,14 @@
 		 order by pr_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
+	<select id="aplist" resultMap="ProductResult" parameterType="product">
+		select * from (select rownum rn,a.* from (select * from product where pr_approve='y'
+		<if test="pr_item != 'All'">
+			and pr_item = #{pr_item}
+		</if>
+		order by pr_date desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	
 	<insert id="prinsert" parameterType="product">
 		insert into product values
 		(#{pr_no},#{pr_mno},#{pr_proname},#{pr_item},#{pr_content},#{pr_qty},#{pr_price},#{pr_img},#{pr_donation},'n',#{pr_callm},sysdate,null)		
@@ -83,13 +85,7 @@
 		</if>
 		order by pr_date desc
 	</select>
-	<select id="aplist" resultMap="ProductResult" parameterType="product">
-		select * from (select rownum rn,a.* from (select * from product where pr_approve='y'
-		<if test="pr_item != 'All'">
-			and pr_item = #{pr_item}
-		</if>
-		order by pr_date desc) a) where rn between #{startRow} and #{endRow}
-	</select>
+
 	<select id="getTotal" parameterType="product" resultType="int">
 		select count(*) from product
 	</select>
@@ -112,16 +108,7 @@
 	<select id="orATotal" resultType="int">
 		select count(*) from product where pr_mno<![CDATA[<]]>0 and pr_approve='y'
 	</select>
-	<!-- <select id="memAll" resultMap="ProductResult" parameterType="product">
-		select * from(select rownum rn,o.* from 
-		(select * from product where pr_mno<![CDATA[>]]>0 order by pr_date desc) o)
-		where rn between #{startRow} and #{endRow}
-	</select>
-	<select id="orAll" resultMap="ProductResult" parameterType="product">
-		select * from(select rownum rn,o.* from 
-		(select * from product where pr_mno<![CDATA[<]]>0 order by pr_date desc) o)
-		where rn between #{startRow} and #{endRow}
-	</select> -->
+	
 	<select id="prSlist" resultMap="ProductResult" parameterType="product">
 			select * from (select rownum rn,a.* from (select pr.*, a.no as no, a.email as email, a.nick as nick from product pr, 
 			(select m_no as no, m_email as email, m_nick as nick, m_del_yn as del_yn from member where m_del_yn='n' 

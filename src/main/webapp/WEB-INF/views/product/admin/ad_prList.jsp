@@ -75,7 +75,7 @@ function locate(pageNum){
 									${product.pr_proname }</a></td>
 							<td>${product.email}</td>
 							<td>${product.pr_date}</td>
-							<td>${product.pr_approve}</td>
+							<td>${product.pr_approve }</td>
 						</tr>
 					
 						<c:set var="num" value="${num-1}" />

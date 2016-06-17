@@ -14,6 +14,11 @@
 	}
 }
 </style>
+<!-- <script type="text/javascript">
+function locate(pageNum){
+	location.href="goodList.do?pageNum="+pageNum;
+}
+</script> -->
 </head>
 <body>
 	<div class="row pt-md">
@@ -32,28 +37,72 @@
 		</div>
 	</c:forEach>
 	</div>
-	<div style="margin-left: 30%" id="pg">
-		<c:if test="${pg.startPage != 1}">
-			<a href="javascript:list(1,${pr_item})">&lt;&lt;맨 앞으로</a>
-		</c:if>
-		<c:if test="${pg.startPage > pg.pagePerBlock}">
-			<a href="javascript:list(${startPage-pagePerBlock},${pr_item})">&lt;이전</a>
-		</c:if>
-		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-			<c:if test="${i != pg.nowPage},${pr_item}">
-				<a href="javascript:list(${pr_item},${i})">[${i}]</a>
-			</c:if>
-			<c:if test="${i == pg.nowPage}">
-				<b class="b">[${i}]</b>
-			</c:if>
-		</c:forEach>
-		<c:if test="${pg.totalPage > pg.endPage}">
-			<a href="javascript:list(${pg.startPage+pg.pagePerBlock},${pr_item})">다음&gt;</a>
-		</c:if>
-		<c:if test="${pg.endPage != pg.totalPage}">
-			<a href="javascript:list(${pg.totalPage},${pr_item})">맨 뒤로&gt;&gt;</a>
-		</c:if>
+	<div class="panel-footer2 text-center" id="pg">
+		<div class="row">
+			<div class="col">
+				<ul class="pagination">
+					<c:if test="${pg.startPage != 1}">
+						<li><a href="javascript:list(1,${pr_item})">&lt;&lt;««</a></li>
+					</c:if>
+					<c:if test="${pg.startPage > pg.pagePerBlock}">
+						<li><a href="javascript:list(${startPage-pagePerBlock},${pr_item})">&lt;«</a></li>
+					</c:if>
+		
+				</ul>
+				<ul class="pagination">
+					<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+						<c:if test="${i != pg.nowPage},${pr_item}">
+							<li><a href="javascript:list(${pr_item},${i})">${i}</a></li>
+						</c:if>
+						<c:if test="${i == pg.nowPage}">
+							<li><a href="#"><b class="b">${i}</b></a></li>
+						</c:if>
+					</c:forEach>
+				</ul>
+				<ul class="pagination">
+					<c:if test="${pg.totalPage > pg.endPage}">
+						<li><a href="javascript:list(${pg.startPage+pg.pagePerBlock},${pr_item})">»&gt;</a></li>
+					</c:if>
+					<c:if test="${pg.endPage != pg.totalPage}">
+						<li><a href="javascript:list(${pg.totalPage},${pr_item})">»»&gt;&gt;</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
 	</div>
+	
+	
+	<%-- <div class="panel-footer2 text-center">
+					<div class="row">
+						<div class="col">
+							<ul class="pagination">
+								<c:if test="${pg.startPage != 1}">
+									<li><a href="javascript:locate(1,${pr_item})">««</a></li>
+								</c:if>
+								<c:if test="${pg.startPage > pg.pagePerBlock}">						
+									<li><a href="javascript:locate(${pg.nowPage-1},${pr_item})">«</a></li>
+								</c:if>
+							</ul>
+							<ul class="pagination">
+								<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+									<c:if test="${i eq pg.nowPage}, ${pr_item}">
+										<li><a href="#"><b class="b2">${i}</b></a></li>
+									</c:if>
+									<c:if test="${i ne pg.nowPage}">
+										<li><a href="javascript:locate(${i},${pr_item})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+							<ul class="pagination">
+								<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a href="javascript:locate(${pg.startPage+pg.pagePerBlock},${pr_item})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage},${pr_item})">»»</a></li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div> --%>
+
 	
 </body>
 </html>

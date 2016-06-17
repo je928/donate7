@@ -38,20 +38,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping("goodList")
-	public String goodList(Product pd,String pageNum,Model model){
+	public String goodList(Product product,String pageNum,Model model){
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		
 		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.apTotal(pd);
+		int total = ps.apTotal(product);
 		Paging pg = new Paging(nowPage, total);
-		pd.setStartRow(pg.getStartRow());
-		pd.setEndRow(pg.getEndRow());
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
 		
-		List<Product> list = ps.aplist(pd);
+		List<Product> list = ps.aplist(product);
 		model.addAttribute("list", list);
-		model.addAttribute("pr_item",pd.getPr_item());
+		model.addAttribute("pr_item",product.getPr_item());
 		model.addAttribute("pg", pg);
 		return "product/goodList";
 	}

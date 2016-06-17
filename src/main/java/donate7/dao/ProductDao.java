@@ -33,14 +33,6 @@ public interface ProductDao {
 
 	int getTotal(Product product);
 
-	/*List<Product> memAll(Product product);
-
-	List<Product> arAll(Product product);
-
-	int memTotal(Product product);
-
-	int arTotal(Product product);*/
-
 	int prSTotal(Product product);
 
 	List<Product> prSlist(Product product);
@@ -65,7 +57,7 @@ public interface ProductDao {
 
 	List<Product> orAlist(Product product);
 
-	int apTotal(Product pd);
+	int apTotal(Product product);
 
 
 

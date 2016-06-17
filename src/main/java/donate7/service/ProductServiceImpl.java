@@ -72,26 +72,6 @@ public class ProductServiceImpl implements ProductService {
 		return pd.getTotal(product);
 	}
 
-	/*public List<Product> memAll(Product product) {
-		
-		return pd.memAll(product);
-	}
-
-	public List<Product> orAll(Product product) {
-	
-		return pd.arAll(product);
-	}
-
-	public int memTotal(Product product) {
-		return pd.memTotal(product);
-	}
-
-	public int orTotal(Product product) {
-		
-		return pd.arTotal(product);
-	}
-*/
-	
 	public int prSTotal(Product product) {
 	
 		return pd.prSTotal(product);
@@ -158,8 +138,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int apTotal(Product pd) {
-		return this.pd.apTotal(pd);
+	public int apTotal(Product product) {
+		return this.pd.apTotal(product);
 	}
 
 }
