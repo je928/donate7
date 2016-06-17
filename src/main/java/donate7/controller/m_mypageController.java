@@ -36,8 +36,8 @@ public class m_mypageController {
 		dr_warn.setWa_sort("d");
 		br_warn.setM_no(m_no);
 		br_warn.setWa_sort("b");
-		int dr_total = ws.getTotal(dr_warn);
-		int br_total = ws.getTotal(br_warn);
+		int dr_total = ws.getSum(dr_warn);
+		int br_total = ws.getSum(br_warn);
 		int sumC = cs.sumCash(m_no);
 		int sumP = cs.sumPoint(m_no);
 		model.addAttribute(member);

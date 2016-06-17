@@ -79,7 +79,7 @@
 								<td>${brd.brd_readcount}</td>
 							</tr>
 						</c:if>
-						<c:set var="no" value="${no - 1}"></c:set>
+						<c:set var="no" value="${no-1}"></c:set>
 						</c:forEach>
 						<c:if test="${empty list}">
 							<tr>

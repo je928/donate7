@@ -49,10 +49,11 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:set var="no" value="${o_pb.no}" />
 					<c:if test="${not empty organAll}">
 						<c:forEach var="org" items="${organAll}">
 						<tr>
-							<td>${org.o_no}</td>
+							<td>${no}</td>
 							<td>${org.o_email}</td>
 							<td>${org.o_license}</td>							
 							<td>${org.o_oname}</td>
@@ -64,6 +65,7 @@
 								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
 							</td>
 						</tr>
+						<c:set var="no" value="${no-1}"></c:set>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty organAll}">
