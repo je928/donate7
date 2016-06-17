@@ -37,9 +37,13 @@
 				<td>${no }</td>
 				<c:set var="p" value="p"/>
 				<td>
-				<%-- <c:if test="${cp.cp_sort ne p }"> --%>
-					${cp.cp_sort }	
-				<%-- </c:if> --%></td>
+				<c:if test="${cp.cp_sort ne p }">
+					캐시
+				</c:if>
+				<c:if test="${cp.cp_sort eq p }">
+					포인트	
+				</c:if>
+				</td>
 				<td>${cp.cp_point }</td>				
 				<td>${cp.cp_point_re }</td>
 				<td><fmt:formatDate value="${cp.cp_date }" /></td>
