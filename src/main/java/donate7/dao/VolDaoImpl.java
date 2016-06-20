@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
+import donate7.model.VolResult;
 
 @Repository
 public class VolDaoImpl implements VolDao {
@@ -109,5 +110,27 @@ public class VolDaoImpl implements VolDao {
 		int result = session.delete("rqn.deleteRqn", rqn);
 		System.out.println("result33 = "+ result);
 		return result;
+	}
+
+	@Override
+	public int insertVolResult(List<HashMap<String, Integer>> list) {
+		return session.insert("volResult.insertVolResult",list);
+	}
+
+	@Override
+	public int selectNewVolNo() {
+		return session.selectOne("volResult.selectNewVolNo");
+	}
+
+	@Override
+	public int resultChk(int vt_no) {
+		int result = session.selectOne("volResult.resultChk", vt_no);
+		System.out.println("chk : " + result);
+		return result;
+	}
+
+	@Override
+	public List<VolResult> selectVolResult(int vt_no) {
+		return session.selectList("volResult.selectVolResult",vt_no);
 	}
 }

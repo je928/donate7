@@ -31,5 +31,5 @@ public interface MemberDao {
 	List<Organ> selectAll();
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
-	
+	List<Member> selectVolMember(int vt_no);
 }

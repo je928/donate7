@@ -6,6 +6,7 @@ import java.util.List;
 import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
+import donate7.model.VolResult;
 
 public interface VolDao {
 
@@ -28,5 +29,8 @@ public interface VolDao {
 	int selectAppCount(int vt_no);
 	int updateSelYn(int vt_no);
 	int deleteRqn(Rqn rqn);
-
+	int insertVolResult(List<HashMap<String, Integer>> list);
+	int selectNewVolNo();
+	int resultChk(int vt_no);
+	List<VolResult> selectVolResult(int vt_no);
 }

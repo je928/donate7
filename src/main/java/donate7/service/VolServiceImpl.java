@@ -10,6 +10,7 @@ import donate7.dao.VolDao;
 import donate7.model.Applicant;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
+import donate7.model.VolResult;
 @Service
 public class VolServiceImpl implements VolService {
 	@Autowired
@@ -106,6 +107,27 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public int updateYn(HashMap<String, Object> hm) {
 		return vd.updateYn(hm);
+	}
+
+	@Override
+	public int insertVolResult(List<HashMap<String, Integer>> list) {
+		return vd.insertVolResult(list);
+	}
+
+	@Override
+	public int selectNewVolNo() {
+		return vd.selectNewVolNo();
+	}
+
+	@Override
+	public int resultChk(int vt_no) {
+		return vd.resultChk(vt_no);
+		
+	}
+
+	@Override
+	public List<VolResult> selectVolResult(int vt_no) {
+		return vd.selectVolResult(vt_no);
 	}
 
 }

@@ -67,6 +67,7 @@ public class MemberDaoImpl implements MemberDao {
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("result : " + result);
 		return result;
 	}
 
@@ -273,6 +274,11 @@ public class MemberDaoImpl implements MemberDao {
 	
 	public Organ selectByO_no(int o_no) {
 		return session.selectOne("organ.selectOrgan",o_no);
+	}
+
+	@Override
+	public List<Member> selectVolMember(int vt_no) {
+		return session.selectList("member.selectVolMember",vt_no);
 	}
 
 }

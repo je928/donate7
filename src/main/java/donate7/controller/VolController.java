@@ -2,6 +2,7 @@ package donate7.controller;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,11 +21,13 @@ import org.w3c.dom.NodeList;
 
 import donate7.model.Applicant;
 import donate7.model.Dclass;
+import donate7.model.Member;
 import donate7.model.Organ;
 import donate7.model.Recruit;
 import donate7.model.Rqn;
 import donate7.model.SidoGugun;
 import donate7.model.Subject;
+import donate7.model.VolResult;
 import donate7.service.CommService;
 import donate7.service.MemberService;
 import donate7.service.VolService;
@@ -112,6 +115,8 @@ public class VolController {
 		}
 		Recruit rc = vs.selectRcByVt_no(vt_no);
 		String addr = ms.selectO_addrByO_no(o_no);
+		int chk = vs.resultChk(vt_no);
+		model.addAttribute("chk", chk);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("rc", rc);
 		model.addAttribute("addr", addr);
@@ -173,6 +178,49 @@ public class VolController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("result", result);
 		return "vt/volSearchList";
+	}
+	@RequestMapping(value="volResult", method=RequestMethod.GET)
+	public String volResult(int vt_no, Model model){
+		model.addAttribute("vt_no", vt_no);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/volResult.jsp");
+		return "module/main";
+	}
+	
+	@RequestMapping(value="volResult", method=RequestMethod.POST)
+	public String volResultPro(int[] m_no,int[] volTime,int vt_no,Model model){
+		List<HashMap<String, Integer>> list = new ArrayList<HashMap<String,Integer>>();
+		int vt_vol_no = vs.selectNewVolNo();
+
+		for(int i = 0 ; i < m_no.length; i++){
+			HashMap<String, Integer> hm = new HashMap<String, Integer>();
+			hm.put("vt_vol_no", vt_vol_no);
+			hm.put("vt_m_no", m_no[i]);
+			hm.put("vt_time", volTime[i]);
+			hm.put("vt_no", vt_no);
+			list.add(hm);
+			vt_vol_no++;
+		}
+		int result = vs.insertVolResult(list);
+		
+		return "redirect:volResultView.do?vt_no="+vt_no;
+	}
+	@RequestMapping("volResultView")
+	public String volResultView(int vt_no, Model model){
+		List<VolResult> list = vs.selectVolResult(vt_no);
+		model.addAttribute("list", list);
+		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/volResultView.jsp");
+		return "module/main";
+	}
+	
+	
+	@RequestMapping("volResultList")
+	public String volResultList(int vt_no, Model model){
+		List<Member> list = ms.selectVolMember(vt_no);
+		model.addAttribute("list", list);
+		model.addAttribute("vt_no", vt_no);
+		return "vt/volResultList";
 	}
 	
 /*

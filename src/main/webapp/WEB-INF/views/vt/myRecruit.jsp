@@ -25,16 +25,10 @@
 	});
 	
 	
-	function list(pageNum){
-		$('#vlist').html("");
-		
+	function list(pageNum){	
 		var sdate = $('#sdate').val();
-		var edate = $('#edate').val();
-	
-		alert(sdate + ', ' + edate);
-	
+		var edate = $('#edate').val();	
 		var searchType = $('#searchType option:selected').val();
-		
 		var rsdate = "1900-01-01";
 		var redate = "2999-12-31";
 		var asdate = "1900-01-01";
@@ -54,11 +48,8 @@
 			if(edate){
 				aedate = edate;
 			}
-		}
-		alert(rsdate + ", " + redate + ", " + asdate + ", " + aedate);
-		
+		}		
 		var vt_name = $('#vt_name').val();
-		
 		var rec_param = {
 				"vt_o_no" : 0,
 				"vt_r_start_date" : rsdate,
@@ -68,10 +59,7 @@
 				"vt_a_end_date" : aedate,
 				"vt_name" : vt_name,
 				"pageNum" : pageNum
-		};
-		
-		alert($.param(rec_param));
-		
+		};		
 		var sndData = $.param(rec_param);
 		$.post('myRecruitList.do', sndData, function(data) {
 			$('#vlist').html(data);

@@ -111,4 +111,8 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectByO_no(o_no);
 	}
 
+	@Override
+	public List<Member> selectVolMember(int vt_no) {
+		return md.selectVolMember(vt_no);
+	}
 }

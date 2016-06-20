@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="volResult">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="VrResult" type="volResult">
+		<result property="m_no" column="M_NO"/>
+		<result property="m_email" column="M_EMAIL"/>
+		<result property="m_name" column="M_NAME"/>
+		<result property="m_nick" column="M_NICK"/>
+		<result property="m_birth" column="M_BIRTH"/>
+		<result property="m_gender" column="M_GENDER"/>
+		<result property="m_tel" column="M_TEL"/>
+		<result property="m_job" column="M_JOB"/>
+		<result property="vt_no" column="VT_NO"/>
+		<result property="vt_time" column="VT_TIME"/>
+	</resultMap>
+	<select id="selectNewVolNo" resultType="int">
+		SELECT NVL(MAX(VT_VOL_NO),0)+1 FROM VT_VOL
+	</select>
+	<insert id="insertVolResult" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="hm" open=" INTO VT_VOL (VT_VOL_NO, VT_M_NO, VT_NO, VT_REG_DATE, VT_TIME) VALUES (" close=")">
+			#{hm.vt_vol_no}, #{hm.vt_m_no},#{hm.vt_no},SYSDATE,#{hm.vt_time}
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	<select id="resultChk" parameterType="int" resultType="int">
+		SELECT NVL(COUNT(*),0) FROM VT_VOL WHERE VT_NO = #{vt_no}
+	</select>
+	
+	<select id="selectVolResult" parameterType="int" resultMap="VrResult">
+		SELECT M_NO, M_EMAIL, M_NAME, M_NICK, M_BIRTH, M_GENDER, M_TEL, M_JOB, VT_NO, VT_TIME
+		FROM MEMBER A, VT_VOL B
+		WHERE A.M_NO = B.VT_M_NO
+		AND VT_NO = #{vt_no}
+	</select>
+</mapper>

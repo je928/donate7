@@ -66,6 +66,18 @@
 					</div>
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
+						<c:if test="${rc.vt_r_yn == 'N'}">
+							<c:if test="${chk > 0}">
+								<input type="button" class="btn btn-primary btn-md" value="봉사 활동 결과 확인"
+								onclick="location.href='volResultView.do?vt_no=${rc.vt_no}'">
+							</c:if>
+							<c:if test="${chk == 0}">
+								<input type="button" class="btn btn-primary btn-md" value="봉사 활동 결과 입력"
+								onclick="location.href='volResult.do?vt_no=${rc.vt_no}'">
+							</c:if>
+							
+						</c:if>
+						
 						<input type="button" class="btn btn-primary btn-md" value="수정"
 							onclick="location.href='rcUpdate.do?vt_no=${rc.vt_no}&pageNum=${pageNum}'">
 						<input type="button" class="btn btn-primary btn-md" value="뒤로"

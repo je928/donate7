@@ -84,5 +84,12 @@
 	<select id="memberAll" parameterType="member" resultMap="MemberResult">
 		select * from (select rownum rn, a.* from (select m.* from member m where m_del_yn='n' and m_no!=1 order by m_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
-		
+	
+	<select id="selectVolMember" resultMap="MemberResult" parameterType="int">
+		SELECT B.* FROM VT_RQN A, MEMBER B
+		WHERE A.VT_M_NO = B.M_NO
+		AND VT_SEL_YN = 'Y'
+		AND M_DEL_YN = 'n'
+		AND VT_NO = #{vt_no}
+	</select>
 </mapper>
