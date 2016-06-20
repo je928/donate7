@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="selectMember" parameterType="Integer" resultMap="MemberResult">
-		select * from member where m_no=#{m_no} and m_del_yn='n'
+		select m.*, trunc(months_between(sysdate,m_birth)/12) as age from member m where m_no=#{m_no} and m_del_yn='n'
 	</select>
 	
 	<select id="selectMember_tel" parameterType="Integer" resultMap="MemberResult">
@@ -82,7 +82,7 @@
 	</select>
 
 	<select id="memberAll" parameterType="member" resultMap="MemberResult">
-		select * from (select rownum rn, a.* from (select m.* from member m where m_del_yn='n' and m_no!=1 order by m_no desc) a) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn, a.* from (select m.*, trunc(months_between(sysdate,m_birth)/12) as age from member m where m_del_yn='n' and m_no!=1 order by m_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="selectVolMember" resultMap="MemberResult" parameterType="int">

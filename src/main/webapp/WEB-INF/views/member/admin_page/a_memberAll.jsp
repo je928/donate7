@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp"%>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
 	function locate(pageNum){
 		location.href="a_memberAll.do?pageNum="+pageNum;
 	}
+	
+	function info(pageNum,m_no){
+		location.href="m_info.do?pageNum="+pageNum+"&m_no="+m_no;
+	}
+	
 	function m() {
 		location.href="a_memberAll.do";
 	}
@@ -44,30 +50,27 @@
 						<tr>
 							<th>no</th>
 							<th>email</th>
-							<th>name</th>													
 							<th>nick</th>
-							<th>birthday</th>
+							<th>age</th>
 							<th>tel</th>
-							<th>warning</th>													
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
 					</thead>
 					<tbody>
+					<c:set var="no" value="${m_pb.no}" />
 					<c:if test="${not empty memberAll}">
 						<c:forEach var="mem" items="${memberAll}">
 						<tr>
-							<td>${mem.m_no}</td>
+							<td>${no}</td>
 							<td>${mem.m_email}</td>
-							<td>${mem.m_name}</td>
 							<td>${mem.m_nick}</td>
-							<td>${mem.m_birth}</td>
+							<td>만 ${mem.age}세</td>
 							<td>${mem.m_tel}</td>
-							<td>0</td>
 							<td align="center">
-								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+								<a href="javascript:info(${m_pb.nowPage},${mem.m_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
 							</td>
 						</tr>
+						<c:set var="no" value="${no-1}"></c:set>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty memberAll}">

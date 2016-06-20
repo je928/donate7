@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="doResult">
+	<!-- Use type aliases to avoid typing the full classname every time. -->
+	<resultMap id="DoResult" type="doResult">
+		<result property="d_request" column="d_request" />
+		<result property="d_no" column="d_no" />
+		<result property="d_member" column="d_member" />
+		<result property="d_date" column="d_date" />
+		<result property="d_donation" column="d_donation" />
+		<result property="m_nick" column="m_nick" />
+		<result property="startRow" column="startRow" />
+		<result property="endRow" column="endRow" />
+	</resultMap>
+	<select id="doTotal" parameterType="doResult" resultType="int">
+		select count(*) from doResult <if test="d_member != 1"> where d_member=#{d_member}</if>
+	</select>
+	<select id="insertNum" resultType="int">
+		select nvl(max(d_request),0)+1 from doResult
+	</select>
+	<select id="selectOne" resultType="doResult" parameterType="int">
+		select * from doResult where d_no=#{d_no}
+	</select>
+	<select id="drList" resultMap="DoResult" parameterType="int">
+		select * from doResult d, (select m_no, m_nick from member) m where d.d_member=m.m_no and d_no = #{d_no} order by d_date desc
+	</select>
+	<insert id="insertDonate" parameterType="DoResult">
+		insert into doResult values (#{d_request},#{d_no},#{d_member},sysdate,#{d_donation})
+	</insert>
+</mapper>

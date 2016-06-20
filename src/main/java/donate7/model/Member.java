@@ -20,6 +20,7 @@ public class Member {
 	private String m_tel1;
 	private String m_tel2;
 	private String m_tel3;
+	private String age;
 	
 	// 조회용
 	private int startRow;
@@ -159,6 +160,14 @@ public class Member {
 
 	public void setM_tel3(String m_tel3) {
 		this.m_tel3 = m_tel3;
+	}
+	
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
 	}
 
 	public int getStartRow() {

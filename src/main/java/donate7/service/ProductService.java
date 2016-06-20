@@ -30,14 +30,6 @@ public interface ProductService {
 
 	int getTotal(Product product);
 
-	/*List<Product> memAll(Product product);
-
-	List<Product> orAll(Product product);
-
-	int memTotal(Product product);
-
-	int orTotal(Product product);
-*/
 	int prSTotal(Product product);
 
 	List<Product> prSlist(Product product);
@@ -62,6 +54,6 @@ public interface ProductService {
 
 	List<Product> orAlist(Product product);
 
-	int apTotal(Product pd);
+	int apTotal(Product product);
 
 }

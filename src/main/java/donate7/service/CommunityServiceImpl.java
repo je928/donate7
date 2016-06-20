@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import donate7.dao.CommunityDao;
 import donate7.model.Community;
 import donate7.model.CommunityReply;
@@ -76,6 +77,14 @@ public class CommunityServiceImpl implements CommunityService {
 
 	public int deleteReply(int crNo) {
 		return cd.deleteReply(crNo);
+	}
+	
+	public CommunityReply replyOne(int cr_no) {
+		return cd.replyOne(cr_no);
+	}
+
+	public void updateWarnR(int re_sort_no) {
+		cd.updateWarnR(re_sort_no);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import donate7.model.DoResult;
 import donate7.model.Donate;
 @Repository
 public class DonateDaoImpl implements DonateDao {
@@ -74,5 +75,19 @@ public class DonateDaoImpl implements DonateDao {
 	}
 	public List<Donate> orAll(Donate donate) {
 		return session.selectList("donate.orAll",donate);
+	}
+	
+	
+	public int doTotal(DoResult doResult) {
+		return session.selectOne("doResult.doTotal",doResult);
+	}
+	public List<DoResult> drList(int d_no) {
+		return session.selectList("doResult.drList", d_no);
+	}
+	public int insertDonate(DoResult doResult) {
+		return session.insert("doResult.insertDonate",doResult);
+	}
+	public int insertNum() {
+		return session.selectOne("doResult.insertNum");
 	}
 }

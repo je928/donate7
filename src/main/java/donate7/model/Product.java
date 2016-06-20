@@ -12,7 +12,7 @@ public class Product {
 	private String pr_price;				
 	private String pr_img;
 	private String pr_donation;		
-	private char pr_approve;
+	private String pr_approve;
 	private String pr_callm;
 	private Date pr_date;
 	private Date pr_update;
@@ -162,10 +162,10 @@ public class Product {
 	public void setPr_donation(String pr_donation) {
 		this.pr_donation = pr_donation;
 	}
-	public char getPr_approve() {
+	public String getPr_approve() {
 		return pr_approve;
 	}
-	public void setPr_approve(char pr_approve) {
+	public void setPr_approve(String pr_approve) {
 		this.pr_approve = pr_approve;
 	}
 	public String getPr_callm() {

@@ -32,4 +32,6 @@ public interface MemberService {
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);
 	List<Member> selectVolMember(int vt_no);
+	int ok_y_update(int no);
+	int ok_n_update(int no);
 }

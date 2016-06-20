@@ -95,5 +95,13 @@ public class SecondServiceImpl implements SecondService{
 		return sd.oarrTotal(second);
 	}
 
+	public List<Second> admAlist(Second second) {
+		return sd.admAlist(second);
+	}
+
+	public List<Second> adoAlist(Second second) {
+		return sd.adoAlist(second);
+	}
+
 
 }

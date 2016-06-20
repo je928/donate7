@@ -67,6 +67,9 @@
 									<img alt="" src="images/re.gif">
 								</c:if>
 									<a href="view.do?brd_no=${brd.brd_no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}"> ${brd.brd_subject} </a>
+									<c:if test="${brd.replycount > 0}">
+									[<a href="view.do?brd_no=${brd.brd_no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}">${brd.replycount}</a>]
+									</c:if>
 								<c:if test="${brd.brd_readcount > 30}">
 									<img alt="" src="images/hot.gif">
 								</c:if>
@@ -76,7 +79,7 @@
 								<td>${brd.brd_readcount}</td>
 							</tr>
 						</c:if>
-						<c:set var="no" value="${no - 1}"></c:set>
+						<c:set var="no" value="${no-1}"></c:set>
 						</c:forEach>
 						<c:if test="${empty list}">
 							<tr>

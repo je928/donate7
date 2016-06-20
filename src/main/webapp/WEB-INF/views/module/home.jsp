@@ -43,6 +43,22 @@ img {
 	-o-transition: all 0.1s ease-in-out;
 	transition: all 0.1s ease-in-out;
 }
+
+.body {
+	padding-top: 20px;
+}
+
+#myCarousel .nav a small {
+	display: block;
+}
+
+#myCarousel .nav {
+	background: #eee;
+}
+
+#myCarousel .nav a {
+	border-radius: 0px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -91,7 +107,8 @@ img {
 		};
 
 		Plugin.prototype.calculate = function(single_column_mode) {
-			var self = this, tallest = 0, row = 0, $container = $(this.element), container_width = $container.width();
+			var self = this, tallest = 0, row = 0, $container = $(this.element), container_width = $container
+					.width();
 			$article = $(this.element).children();
 
 			if (single_column_mode === true) {
@@ -110,7 +127,8 @@ img {
 
 			$article
 					.each(function(index) {
-						var current_column, left_out = 0, top = 0, $this = $(this), prevAll = $this.prevAll(), tallest = 0;
+						var current_column, left_out = 0, top = 0, $this = $(this), prevAll = $this
+								.prevAll(), tallest = 0;
 
 						if (single_column_mode === false) {
 							current_column = (index % columns);
@@ -165,7 +183,8 @@ img {
 			}
 
 			largest = Math.max.apply(Math, column_heights);
-			_container.css('height', largest + (this.options.padding_y + this.options.margin_bottom));
+			_container.css('height', largest
+					+ (this.options.padding_y + this.options.margin_bottom));
 		};
 
 		Plugin.prototype.make_layout_change = function(_self) {
@@ -179,15 +198,115 @@ img {
 		$.fn[pluginName] = function(options) {
 			return this.each(function() {
 				if (!$.data(this, 'plugin_' + pluginName)) {
-					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+					$.data(this, 'plugin_' + pluginName, new Plugin(this,
+							options));
 				}
 			});
 		}
 	})(jQuery, window, document);
+
+	$(document).ready(function() {
+		$('#myCarousel').carousel({
+			interval : 4000
+		});
+
+		var clickEvent = false;
+		$('#myCarousel').on('click', '.nav a', function() {
+			clickEvent = true;
+			$('.nav li').removeClass('active');
+			$(this).parent().addClass('active');
+		}).on('slid.bs.carousel', function(e) {
+			if (!clickEvent) {
+				var count = $('.nav').children().length - 1;
+				var current = $('.nav li.active');
+				current.removeClass('active').next().addClass('active');
+				var id = parseInt(current.data('slide-to'));
+				if (count == id) {
+					$('.nav li').first().addClass('active');
+				}
+			}
+			clickEvent = false;
+		});
+	});
 </script>
 </head>
 <body>
-	
+
+	<div class="container body">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="http://placehold.it/1200x400/cccccc/ffffff">
+					<div class="carousel-caption">
+						<h3>Headline</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
+							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+							labore et dolore magna aliquyam erat, sed diam voluptua. <a
+								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
+								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
+						</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="http://placehold.it/1200x400/999999/cccccc">
+					<div class="carousel-caption">
+						<h3>Headline</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
+							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+							labore et dolore magna aliquyam erat, sed diam voluptua. <a
+								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
+								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
+						</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="http://placehold.it/1200x400/dddddd/333333">
+					<div class="carousel-caption">
+						<h3>Headline</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
+							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+							labore et dolore magna aliquyam erat, sed diam voluptua. <a
+								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
+								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
+						</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="http://placehold.it/1200x400/999999/cccccc">
+					<div class="carousel-caption">
+						<h3>Headline</h3>
+						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+							sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+							aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
+							consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+							invidunt ut labore et dolore magna aliquyam erat, sed diam
+							voluptua.</p>
+					</div>
+				</div>
+			</div>
+
+			<ul class="nav nav-pills nav-justified">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"><a
+					href="#">About<small>Lorem ipsum dolor sit</small></a></li>
+				<li data-target="#myCarousel" data-slide-to="1"><a href="#">Projects<small>Lorem
+							ipsum dolor sit</small></a></li>
+				<li data-target="#myCarousel" data-slide-to="2"><a href="#">Portfolio<small>Lorem
+							ipsum dolor sit</small></a></li>
+				<li data-target="#myCarousel" data-slide-to="3"><a href="#">Services<small>Lorem
+							ipsum dolor sit</small></a></li>
+			</ul>
+		</div>
+	</div>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-19"></div>

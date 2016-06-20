@@ -276,9 +276,30 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("organ.selectOrgan",o_no);
 	}
 
+
 	@Override
 	public List<Member> selectVolMember(int vt_no) {
 		return session.selectList("member.selectVolMember",vt_no);
+	}
+	
+	public int ok_y_update(int no) {
+		int result = 0;
+		try {
+			result = session.update("organ.ok_y_update", no);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public int ok_n_update(int no) {
+		int result = 0;
+		try {
+			result = session.update("organ.ok_n_update", no);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 }

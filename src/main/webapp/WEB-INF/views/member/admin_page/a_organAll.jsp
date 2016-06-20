@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp"%>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,11 @@
 	function locate(pageNum){
 		location.href="a_organAll.do?pageNum="+pageNum;
 	}
+	
+	function info(pageNum,o_no){
+		location.href="o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+	}
+	
 	function m() {
 		location.href="a_memberAll.do";
 	}
@@ -40,30 +46,35 @@
 						<tr>
 							<th>no</th>
 							<th>email</th>
-							<th>license</th>													
 							<th>oname</th>													
-							<th>name</th>
 							<th>tel</th>
 							<th>ok_yn</th>							
 							<th><em class="fa fa-cog"></em></th>
 						</tr>
 					</thead>
 					<tbody>
+					<c:set var="no" value="${o_pb.no}" />
 					<c:if test="${not empty organAll}">
 						<c:forEach var="org" items="${organAll}">
 						<tr>
-							<td>${org.o_no}</td>
+							<td>${no}</td>
 							<td>${org.o_email}</td>
-							<td>${org.o_license}</td>							
 							<td>${org.o_oname}</td>
-							<td>${org.o_name}</td>
 							<td>${org.o_tel}</td>
-							<td>${org.o_ok_xyn}</td>
+							<c:if test="${org.o_ok_xyn eq 'x'}">
+							<td><b class="red">승인 처리중</b></td>
+							</c:if>
+							<c:if test="${org.o_ok_xyn eq 'y'}">
+							<td><b class="green">승인 완료</b></td>
+							</c:if>
+							<c:if test="${org.o_ok_xyn eq 'n'}">
+							<td><b class="red">승인 거절</b></td>
+							</c:if>
 							<td align="center">
-								<a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-								<a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+								<a href="javascript:info(${o_pb.nowPage},${org.o_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
 							</td>
 						</tr>
+						<c:set var="no" value="${no-1}"></c:set>
 						</c:forEach>
 					</c:if>
 					<c:if test="${empty organAll}">

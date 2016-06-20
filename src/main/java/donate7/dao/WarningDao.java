@@ -10,4 +10,8 @@ public interface WarningDao {
 	List<Warning> list(int startRow, int endRow, int m_no, String sort);
 
 	int getTotal(Warning warning);
+
+	Warning selectOne(int wa_no);
+	
+	int getSum(Warning warning);
 }

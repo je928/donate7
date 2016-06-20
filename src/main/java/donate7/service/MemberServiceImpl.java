@@ -110,9 +110,15 @@ public class MemberServiceImpl implements MemberService {
 	public Organ selectByO_no(int o_no) {
 		return md.selectByO_no(o_no);
 	}
-
 	@Override
 	public List<Member> selectVolMember(int vt_no) {
 		return md.selectVolMember(vt_no);
+	}
+	public int ok_y_update(int no) {
+		return md.ok_y_update(no);
+	}
+
+	public int ok_n_update(int no) {
+		return md.ok_n_update(no);
 	}
 }

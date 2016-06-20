@@ -1,5 +1,6 @@
 package donate7.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,15 @@ public class Product_buyDaoImpl implements Product_buyDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public List<Product_buy> list(int pb_no) {
-		List<Product_buy> list = session.selectList("product_buy.list", pb_no);
-		System.out.println(list);
-		return list;
+	public List<Product_buy> list(int startRow, int endRow, int pb_mono , Product_buy pb) {
+		pb.setStartRow(startRow);
+		pb.setEndRow(endRow);
+		pb.setPb_mono(pb_mono);
+		return session.selectList("product_buy.list",pb);
 	}
 
 	public String Nick(int no) {
-		System.out.println(no);
 		String Nick = session.selectOne("product_buy.nick", no);
-		System.out.println(Nick);
 		return Nick;
 	}
 
@@ -45,11 +45,30 @@ public class Product_buyDaoImpl implements Product_buyDao {
 		}
 	}
 
-	public List<Product_buy> listAll() {
-		return session.selectList("product_buy.listAll");
+	public List<Product_buy> listAll(int startRow, int endRow, Product_buy pb) {
+		pb.setStartRow(startRow);
+		pb.setEndRow(endRow);
+		return session.selectList("product_buy.listAll",pb);
 	}
 
 	public Product_buy select(int pb_no) {
 		return session.selectOne("product_buy.select", pb_no);
 	}
+
+	public int update(int pr_no,int qty) {
+		HashMap<String,Integer> map=new HashMap<String, Integer>();
+		map.put("pr_no", pr_no);
+		map.put("qty", qty);
+		return session.update("product_buy.update",map);
+			}
+	
+	public int mtotal(int pb_no) {
+		return 	session.selectOne("product_buy.mtotal",pb_no);
+	}
+
+	public int atotal() {
+		return session.selectOne("product_buy.atotal");
+	}
+
+
 }

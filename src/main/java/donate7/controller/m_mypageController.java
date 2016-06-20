@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Member;
-import donate7.service.GiftService;
-import donate7.service.Gift_BuyService;
+import donate7.model.Warning;
+import donate7.service.Cpoint_InfoService;
 import donate7.service.MemberService;
+import donate7.service.WarningService;
 
 @Controller
 public class m_mypageController {
@@ -19,11 +20,31 @@ public class m_mypageController {
 	@Autowired
 	private MemberService ms;
 	
+	@Autowired
+	private WarningService ws;
+	
+	@Autowired
+	private Cpoint_InfoService cs;
+	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model, HttpSession session) {
 		int m_no = (Integer)session.getAttribute("no");
 		Member member = ms.selectMember(m_no);
+		Warning dr_warn = new Warning();
+		Warning br_warn = new Warning();
+		dr_warn.setM_no(m_no);
+		dr_warn.setWa_sort("d");
+		br_warn.setM_no(m_no);
+		br_warn.setWa_sort("b");
+		int dr_total = ws.getSum(dr_warn);
+		int br_total = ws.getSum(br_warn);
+		int sumC = cs.sumCash(m_no);
+		int sumP = cs.sumPoint(m_no);
 		model.addAttribute(member);
+		model.addAttribute("dr_total", dr_total);
+		model.addAttribute("br_total", br_total);
+		model.addAttribute("sumC", sumC);
+		model.addAttribute("sumP", sumP);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");
 		return "module/main";

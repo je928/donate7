@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
-<%@ include file="../../session/memChk.jsp" %>
+<%@ include file="../../session/adminChk.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +25,12 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td width="30%">이메일:</td>
-											<td width="70%"><b>${member.m_email}</b></td>
+											<td width="30%">회원번호</td>
+											<td width="70%"><b>${member.m_no}</b></td>
+										</tr>
+										<tr>
+											<td>이메일:</td>
+											<td><b>${member.m_email}</b></td>
 										</tr>
 										<tr>
 											<td>이름:</td>
@@ -37,8 +41,8 @@
 											<td><b>${member.m_nick}</b></td>
 										</tr>
 										<tr>
-											<td>생년월일</td>
-											<td><b>${member.m_birth}</b></td>
+											<td>생년월일(나이)</td>
+											<td><b>${member.m_birth} (만 ${member.age}세)</b></td>
 										</tr>
 										<tr>
 											<td>성별</td>
@@ -77,12 +81,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel-footer">
-						<a href="mail.do" type="button" class="btn btn-sm btn-primary">관리자에게 메일 보내기<i class="glyphicon glyphicon-envelope"></i></a>
-						<span class="pull-right">
-							<a href="m_updateForm.do" type="button" class="btn btn-sm btn-default">수정<i class="fa fa-pencil"></i></a>
-							<a href="m_deleteForm.do" type="button" class="btn btn-sm btn-danger">탈퇴<i class="glyphicon glyphicon-remove"></i></a>
-						</span>
+					<div class="panel-footer text-center">
+						<a href="a_memberAll.do?pageNum=${pageNum}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
 					</div>
 				</div>
 			</div>

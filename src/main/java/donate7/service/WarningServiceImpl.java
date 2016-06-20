@@ -20,4 +20,10 @@ public class WarningServiceImpl implements WarningService{
 	public List<Warning> list(int startRow, int endRow, int m_no, String sort) {
 		return wd.list(startRow,endRow,m_no,sort);
 	}
+	public Warning selectOne(int wa_no) {
+		return wd.selectOne(wa_no);
+	}
+	public int getSum(Warning warn) {
+		return wd.getSum(warn);
+	}
 }

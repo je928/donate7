@@ -25,6 +25,7 @@
 		<typeAlias alias="applicant" type="donate7.model.Applicant" />
 		<typeAlias alias="product_buy" type="donate7.model.Product_buy" />
 		<typeAlias alias="volResult" type="donate7.model.VolResult" />
+		<typeAlias alias="doResult" type="donate7.model.DoResult" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
@@ -48,5 +49,6 @@
 		<mapper resource="mybatis/Applicant.xml" />
 		<mapper resource="mybatis/Product_buy.xml" />
 		<mapper resource="mybatis/volResult.xml" />
+		<mapper resource="mybatis/DoResult.xml" />
 	</mappers>
 </configuration>

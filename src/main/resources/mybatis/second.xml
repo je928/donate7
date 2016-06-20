@@ -92,22 +92,36 @@
 		select count(*) from second where sh_mno<![CDATA[>]]>0
 	</select>
 	<select id = "arrTotal" parameterType="second" resultType="int">
-		select count(*) from second where sh_mno<![CDATA[>]]>0 
+		select count(*) from second where sh_mno<![CDATA[>]]>0 and sh_approve='y'
 	</select>
 	<select id="admlist" resultMap="SecondResult" parameterType="second">
-		select * from (select rownum rn,m.* from 
-		(select * from second where sh_mno<![CDATA[>]]>0 order by sh_reg_date desc) m) 
+		select * from(select rownum rn,m.* from 
+		(select * from second s, (select m_no, m_email from member) m where s.sh_mno=m.m_no and sh_mno<![CDATA[>]]>0 
+   		order by sh_reg_date desc) m)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	<select id = "orTotal" parameterType="second" resultType="int">
 		select count(*) from second where sh_mno<![CDATA[<]]>0
 	</select>
 	<select id = "oarrTotal" parameterType="second" resultType="int">
-		select count(*) from second where sh_mno<![CDATA[<]]>0 
+		select count(*) from second where sh_mno<![CDATA[<]]>0 and sh_approve='y' 
 	</select>
 	<select id="adolist" resultMap="SecondResult" parameterType="second">
-		select * from (select rownum rn,o.* from 
-		(select * from second where sh_mno<![CDATA[<]]>0 order by sh_reg_date desc) o) 
+		select * from(select rownum rn,o.* from 
+		(select * from second s,(select o_no, o_email from organ) o where s.sh_mno=o.o_no and sh_mno<![CDATA[<]]>0 
+		order by sh_reg_date desc) o)
+		where rn between #{startRow} and #{endRow}
+	</select>
+		<select id="admAlist" resultMap="SecondResult" parameterType="second">
+		select * from(select rownum rn,m.* from 
+		(select * from second s, (select m_no, m_email from member) m where s.sh_mno=m.m_no and sh_mno<![CDATA[>]]>0 
+   		 and s.sh_approve ='y' order by sh_reg_date desc) m)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="adoAlist" resultMap="SecondResult" parameterType="second">
+		select * from(select rownum rn,o.* from 
+		(select * from second s, (select o_no, o_email from organ) o where s.sh_mno=o.o_no and sh_mno<![CDATA[<]]>0 
+		and sh_approve ='y' order by sh_reg_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>
