@@ -64,6 +64,11 @@
 				}).open();
 	}
 </script>
+<script type="text/javascript">
+	<c:if test="${not empty msg }">
+		alert("${msg}");
+	</c:if>
+</script>
 <style>
 .red {
 	color: red;
@@ -93,14 +98,11 @@
 					<br style="clear: both">
 					<h3 style="margin-bottom: 25px; text-align: center;">Delivery
 						Form</h3>
-					<c:if test="${not empty msg }">
-						<font color="red">${msg}</font>
-					</c:if>
+
 					<img class="img-responsive" alt="" src="image/${price.pr_img }">
 					<div class="form-group">현재 내 캐쉬: ${ci}</div>
 					<div class="form-group">상품명:${price.pr_proname }</div>
 					<div class="form-group">가격: ${price.pr_price }</div>
-					<div class="form-group">총 수량:${price.pr_qty }</div>
 					<div class="form-group">보내는 사람 : ${nick}</div>
 					<div class="form-group">
 						<!--받는사람  -->
@@ -117,7 +119,7 @@
 						구매 수량<input type="number" name="pb_buyqty" id="pb_buyqty"
 							onchange="myFunction(this.value)" value="1" min="1"
 							max=${price.pr_qty }> 구매 금액<input type="text" name="hap"
-							id="hap" value="${price.pr_price }">
+							id="hap" readonly="readonly" value="${price.pr_price }">
 					</div>
 					<div class="form-group">
 						<!--주소  -->
