@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function locate(pageNum){
+		location.href="odoList.do?pageNum="+pageNum;
+	}
+</script>
 </head>
 <body>
 	

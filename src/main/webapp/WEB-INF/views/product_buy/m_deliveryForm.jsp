@@ -60,6 +60,11 @@ table {
 							href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
 					</tr>
 				</c:forEach>
+				<c:if test="${empty list}">
+			<tr>
+				<td colspan="6">배송 내역이 없습니다.</td>
+			</tr>
+		</c:if>
 			</table>
 			 <div class="panel-footer2 text-center">
 				<div class="row">

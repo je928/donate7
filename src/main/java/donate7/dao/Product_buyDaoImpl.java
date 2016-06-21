@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import donate7.model.Cpoint_info;
 import donate7.model.Product;
 import donate7.model.Product_buy;
 
@@ -69,6 +70,5 @@ public class Product_buyDaoImpl implements Product_buyDao {
 	public int atotal() {
 		return session.selectOne("product_buy.atotal");
 	}
-
 
 }

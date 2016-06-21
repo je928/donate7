@@ -2,6 +2,7 @@ package donate7.dao;
 
 import java.util.List;
 
+import donate7.model.Cpoint_info;
 import donate7.model.Product;
 import donate7.model.Product_buy;
 
@@ -24,4 +25,5 @@ public interface Product_buyDao {
 	int mtotal(int pb_no);
 
 	int atotal();
+
 }

@@ -56,5 +56,4 @@
 	<update id="update" parameterType="java.util.Map">
 		update product set pr_qty = pr_qty-#{qty} where pr_no=#{pr_no}
 	</update>
-	
 </mapper>
