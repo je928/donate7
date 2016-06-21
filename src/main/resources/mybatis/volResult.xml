@@ -20,8 +20,8 @@
 	</select>
 	<insert id="insertVolResult" parameterType="java.util.List">
 		INSERT ALL
-		<foreach collection="list" item="hm" open=" INTO VT_VOL (VT_VOL_NO, VT_M_NO, VT_NO, VT_REG_DATE, VT_TIME) VALUES (" close=")">
-			#{hm.vt_vol_no}, #{hm.vt_m_no},#{hm.vt_no},SYSDATE,#{hm.vt_time}
+		<foreach collection="list" item="hm">
+			INTO VT_VOL (VT_VOL_NO, VT_M_NO, VT_NO, VT_REG_DATE, VT_TIME) VALUES ( #{hm.vt_vol_no}, #{hm.vt_m_no},#{hm.vt_no},SYSDATE,#{hm.vt_time})
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>

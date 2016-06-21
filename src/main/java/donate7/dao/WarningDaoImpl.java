@@ -12,6 +12,9 @@ import donate7.model.Warning;
 public class WarningDaoImpl implements WarningDao{
 	@Autowired
 	private SqlSessionTemplate st;
+	public int selecetNum(){
+		return st.selectOne("warning.selectNum");
+	}
 	public int insert(Warning warning) {
 		int wa_no = st.selectOne("warning.selectNum");
 		warning.setWa_no(wa_no);
