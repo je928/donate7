@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<input type="hidden" name="d_member" value="${doResult.d_member}">
+	<input type="hidden" name="d_member" value="${sessionScope.no }">
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>#</th>
@@ -32,5 +32,6 @@
 			</tr>	
 		</c:if>
 	</table>
+
 </body>
 </html>
