@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import donate7.dao.Product_buyDao;
+import donate7.model.Cpoint_info;
 import donate7.model.Product;
 import donate7.model.Product_buy;
 
@@ -49,7 +50,5 @@ public class Product_buyServiceImpl implements Product_buyService {
 	public int atotal() {
 		return pd.atotal();
 	}
-
-	
 
 }

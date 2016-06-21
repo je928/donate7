@@ -7,17 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import donate7.model.Cpoint_info;
 import donate7.model.Product;
 import donate7.model.Product_buy;
 import donate7.service.CommunityPagingBean;
+import donate7.service.Cpoint_InfoService;
 import donate7.service.Product_buyService;
-import donate7.util.Paging;
 
 @Controller
 public class Product_buyController {
 	@Autowired
 	Product_buyService ds;
-
+	@Autowired
+	private Cpoint_InfoService cs;
+	
 	@RequestMapping("m_delivery")
 	public String m_deliveryForm(Product_buy pb, Model model, String pageNum,HttpSession session) {
 		int pb_mono = (Integer) session.getAttribute("no");
@@ -77,6 +81,8 @@ public class Product_buyController {
 		int no = (Integer) session.getAttribute("no");
 		String NickName = ds.Nick(no);
 		Product price = ds.selectOne(pr_no);
+		int ci=cs.sumCash(no);
+		model.addAttribute("ci",ci);
 		model.addAttribute("price", price);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pgm", "../product_buy/deliveryForm.jsp");
@@ -85,8 +91,20 @@ public class Product_buyController {
 
 	@RequestMapping(value = "deliveryForm", method = RequestMethod.POST)
 	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session, int pr_no,
-			Model model) {
+			Model model,int cp_point,int hap) {
 		int no = (Integer) session.getAttribute("no");
+		if(cp_point<hap){
+			model.addAttribute("msg", "입력 실패");
+			return "forward:delivery.do?pr_no="+pr_no;
+		}
+		if(cp_point>=hap){
+			Cpoint_info ci = new Cpoint_info();
+			ci.setCp_point(-hap);
+			ci.setCp_point_re("물품 결제");
+			ci.setCp_sort("c");
+			ci.setM_no(no);
+			int result = cs.insert(ci);
+		}
 		String pb_addr = addr1 + addr2;
 		pb.setPb_mono(no);
 		pb.setPb_addr(pb_addr);
