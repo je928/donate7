@@ -94,7 +94,7 @@ public class Product_buyController {
 			Model model,int cp_point,int hap) {
 		int no = (Integer) session.getAttribute("no");
 		if(cp_point<hap){
-			model.addAttribute("msg", "입력 실패");
+			model.addAttribute("msg", "캐시가 부족합니다");
 			return "forward:delivery.do?pr_no="+pr_no;
 		}
 		if(cp_point>=hap){
