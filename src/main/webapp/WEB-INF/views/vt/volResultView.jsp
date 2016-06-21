@@ -51,7 +51,15 @@ span {
 				<td>${member.m_gender }</td>
 				<td>${member.m_tel }</td>
 				<td>${member.m_job }</td>
-				<td>${member.vt_time}</td>
+				<td>
+				
+				<c:if test="${member.vt_time == 0}">
+					<font style="color: red">불참</font>
+				</c:if>
+				<c:if test="${member.vt_time > 0}">
+					${member.vt_time}
+				</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 		</table>

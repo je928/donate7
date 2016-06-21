@@ -14,4 +14,6 @@ public interface WarningDao {
 	Warning selectOne(int wa_no);
 	
 	int getSum(Warning warning);
+	
+	int selecetNum();
 }

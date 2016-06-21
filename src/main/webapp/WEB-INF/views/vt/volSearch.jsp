@@ -39,7 +39,6 @@
 	});
 	
 	function list(pageNum){
-		$('#vlist').html("");
 		var sido = $('#sido option:selected').text();
 		if(sido == '전체'){
 			sido = "";

@@ -14,4 +14,6 @@ public interface WarningService {
 	Warning selectOne(int wa_no);
 	
 	int getSum(Warning warn);
+	
+	int selectNum();
 }

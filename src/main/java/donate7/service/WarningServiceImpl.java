@@ -26,4 +26,7 @@ public class WarningServiceImpl implements WarningService{
 	public int getSum(Warning warn) {
 		return wd.getSum(warn);
 	}
+	public int selectNum() {
+		return wd.selecetNum();
+	}
 }

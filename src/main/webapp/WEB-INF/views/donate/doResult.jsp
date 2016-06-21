@@ -9,16 +9,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var d_no = '${d_no}';
-		var donation = $('#donation').val();
+		var donation;
 		list(0,d_no);
 		$('#btn').click(function(){
 			var mycash = '${cash}';
+			donation = $('#donation').val();
 			if(donation > parseInt(mycash)){
 				if(confirm("보유금액이 부족합니다. 충전 하시겠습니까?")){
 					location.href="cpointList.do";
 				}
 			}else{
-				var donation = $('#donation').val();
+				donation = $('#donation').val();
 				if(donation == "" || donation == 0 || donation < 0){
 					alert("정확한 금액을 입력해주세요");
 				}else{
@@ -65,7 +66,7 @@ margin-left: 42%;
 
 	<div class="container">
 		<div align="center">
-			<input type="number" size="5" id="donation" step="100" min="100" value="100" name="d_donation">원<br>
+			<input type="number" size="5" id="donation" step="100" min="100" name="d_donation">원<br>
 		</div>
 		<br>
 		<div class="col22">

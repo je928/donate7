@@ -82,6 +82,12 @@ public class DonateController {
 				cp.setCp_sort("c");
 				cp.setM_no(no);
 				cs.insert(cp);
+				
+				cp.setCp_point((int)(doResult.getD_donation() * 0.05));
+				cp.setCp_point_re(doResult.getD_no() + "번 기부포인트");
+				cp.setCp_sort("p");
+				cp.setM_no(no);
+				cs.insert(cp);
 			}
 		}
 		List<DoResult> list = ds.drList(doResult.getD_no());

@@ -20,6 +20,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import donate7.model.Applicant;
+import donate7.model.Cpoint_info;
 import donate7.model.Dclass;
 import donate7.model.Member;
 import donate7.model.Organ;
@@ -28,9 +29,12 @@ import donate7.model.Rqn;
 import donate7.model.SidoGugun;
 import donate7.model.Subject;
 import donate7.model.VolResult;
+import donate7.model.Warning;
 import donate7.service.CommService;
+import donate7.service.Cpoint_InfoService;
 import donate7.service.MemberService;
 import donate7.service.VolService;
+import donate7.service.WarningService;
 import donate7.util.Paging;
 /*import net.sf.json.JSONArray;*/
 
@@ -42,6 +46,10 @@ public class VolController {
 	private CommService cs;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private WarningService ws;
+	@Autowired
+	private Cpoint_InfoService cis;
 
 	@RequestMapping(value = "recruit", method = RequestMethod.GET)
 	public String recruitForm(Recruit rc, HttpSession session, Model model) {
@@ -201,7 +209,36 @@ public class VolController {
 			list.add(hm);
 			vt_vol_no++;
 		}
+		List<Warning> wList = new ArrayList<Warning>();
+		List<Cpoint_info> cList = new ArrayList<Cpoint_info>();
+		for(HashMap<String, Integer> hm : list){
+			int wNum = ws.selectNum();
+			if(hm.get("vt_time") == 0){
+				Warning w = new Warning();
+				w.setWa_no(wNum++);
+				w.setM_no(hm.get("vt_m_no"));
+				w.setRe_no(hm.get("vt_no"));
+				w.setWa_sort("d");
+				w.setWa_cnt(1);
+				w.setWa_re(w.getRe_no() + " 불참");
+				wList.add(w);
+			}else{
+				Cpoint_info ci = new Cpoint_info();
+				ci.setM_no(hm.get("vt_m_no"));
+				ci.setCp_sort("p");
+				ci.setCp_point(hm.get("vt_time") * 50);
+				ci.setCp_point_re("봉사 참여");
+				cList.add(ci);
+			}
+		}
 		int result = vs.insertVolResult(list);
+		for(int i = 0; i < wList.size(); i++){
+			ws.insert(wList.get(i));
+		}
+		for(int i = 0; i < cList.size(); i++){
+			cis.insert(cList.get(i));
+		}
+		
 		
 		return "redirect:volResultView.do?vt_no="+vt_no;
 	}
@@ -223,69 +260,12 @@ public class VolController {
 		return "vt/volResultList";
 	}
 	
-/*
-	@RequestMapping("manageVol")
-	public String manageVol(HttpSession session, Model model) {
-
-		List<VolReq> list = vs.volListByVt_Reg_O_No(Integer.parseInt(session.getAttribute("no").toString()));
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../vt/manageVol.jsp");
-		return "module/main";
-	}
-
-	@RequestMapping("volReqView")
-	public String volReqView(int vt_No, Model model) {
-		VolReq volReq = vs.SelectByVt_No(vt_No);
-		model.addAttribute("volReq", volReq);
-		model.addAttribute("pgm", "../vt/volReqView.jsp");
-		return "module/main";
-	}
-
-	@RequestMapping(value = "reqUpdate", method = RequestMethod.GET)
-	public String reqUpdateForm(int vt_No, Model model) {
-		VolReq volReq = vs.SelectByVt_No(vt_No);
-		model.addAttribute("volReq", volReq);
-		model.addAttribute("pgm", "../vt/reqUpdate.jsp");
-		return "module/main";
-	}
-
-	@RequestMapping(value = "reqUpdate", method = RequestMethod.POST)
-	public String reqUpdate(VolReq volReq, Model model) {
-		int result = vs.updateVolReq(volReq);
-		if (result > 0) {
-			return "redirect:volReqView.do?vt_No=" + volReq.getVt_No();
-		} else {
-			model.addAttribute("volReq", volReq);
-			model.addAttribute("pgm", "../vt/reqUpdate.jsp");
-			return "module/main";
-		}
-
-	}
-
-	@RequestMapping("reqSearch")
-	public String reqList(Model model) {
-		List<SidoGugun> sList = ss.selectSido();
-		List<VolReqSearch> list = vs.searchList();
-		model.addAttribute("sList", sList);
-		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../vt/reqList.jsp");
-		return "module/main";
-	}
-*/
-	
 	@RequestMapping(value = "gugunList", method = RequestMethod.POST)
 	public String gugunList(int sido_no, Model model) {
 		List<SidoGugun> list = cs.selectGugunBySido_No(sido_no);
 		model.addAttribute("list", list);
 		return "vt/gugunList";
 	}
-/*
-	@RequestMapping("reqDetail")
-	public String reqDetail(int vt_No, Model model) {
-		VolReq volReq = vs.SelectByVt_No(vt_No);
-		model.addAttribute("volReq", volReq);
-		return "vt/reqDetail";
-	}*/
 	
 	@RequestMapping(value = "dclassList", method = RequestMethod.POST)
 	public String dclassList(int class_no,int dclass_no,String type, Model model) {
