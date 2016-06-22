@@ -15,6 +15,7 @@
 <script>
 	var x = '${price.pr_price }';
 	function myFunction(val) {
+		var y='${cnt}';
 		document.getElementById("hap").value = x * val;
 	}
 </script>
@@ -117,9 +118,9 @@
 					<div class="form-group">
 						<!--수량  -->
 						구매 수량<input type="number" name="pb_buyqty" id="pb_buyqty"
-							onchange="myFunction(this.value)" value="1" min="1"
+							onchange="myFunction(this.value)" value="${cnt}" min="1"
 							max=${price.pr_qty }> 구매 금액<input type="text" name="hap"
-							id="hap" readonly="readonly" value="${price.pr_price }">
+							id="hap" readonly="readonly" value="${cnt*price.pr_price }">
 					</div>
 					<div class="form-group">
 						<!--주소  -->
