@@ -15,7 +15,7 @@
 .btn-social {
 	color: white;
 	opacity: 0.9;
-} 
+}
 
 .btn-social:hover {
 	color: white;
@@ -167,106 +167,114 @@
 }
 </style>
 <script type="text/javascript">
-$(function() {
-    var action;
-    $(".number-spinner button").mousedown(function () {
-        btn = $(this);
-        input = btn.closest('.number-spinner').find('input');
-        btn.closest('.number-spinner').find('button').prop("disabled", false);
+	$(function() {
+		var action;
+		$(".number-spinner button").mousedown(
+				function() {
+					btn = $(this);
+					input = btn.closest('.number-spinner').find('input');
+					btn.closest('.number-spinner').find('button').prop(
+							"disabled", false);
 
-    	if (btn.attr('data-dir') == 'up') {
-            action = setInterval(function(){
-                if ( input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max')) ) {
-                    input.val(parseInt(input.val())+1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	} else {
-            action = setInterval(function(){
-                if ( input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min')) ) {
-                    input.val(parseInt(input.val())-1);
-                }else{
-                    btn.prop("disabled", true);
-                    clearInterval(action);
-                }
-            }, 50);
-    	}
-    }).mouseup(function(){
-        clearInterval(action);
-    });
+					if (btn.attr('data-dir') == 'up') {
+						action = setInterval(function() {
+							if (input.attr('max') == undefined
+									|| parseInt(input.val()) < parseInt(input
+											.attr('max'))) {
+								input.val(parseInt(input.val()) + 1);
+							} else {
+								btn.prop("disabled", true);
+								clearInterval(action);
+							}
+						}, 50);
+					} else {
+						action = setInterval(function() {
+							if (input.attr('min') == undefined
+									|| parseInt(input.val()) > parseInt(input
+											.attr('min'))) {
+								input.val(parseInt(input.val()) - 1);
+							} else {
+								btn.prop("disabled", true);
+								clearInterval(action);
+							}
+						}, 50);
+					}
+				}).mouseup(function() {
+					clearInterval(action);
+		});	
+	$(function() {
+		$('#button').click(function(){
+			location.href="delivery.do?pr_no=${product.pr_no}&cnt="+document.getElementById("cnt").value;
+		});
+	});
 });
 </script>
 </head>
 <body>
-	
-		<input type="hidden" name="pr_mno" value="${sessionScope.no}">
-		<div class="container">
-			<div class="resume">
-				<header class="page-header">
-					<h1 class="page-title">${product.pr_proname }</h1>
-				</header>
-				<div class="row">
-					<div
-						class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
-						<div class="panel panel-default">
-							<div class="panel-heading resume-heading">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="col-xs-12 col-sm-4">
-											<figure>
-												<img class="img-responsive" alt=""
-													src="image/${product.pr_img}">
-											</figure>
-										</div>
-										<div class="col-xs-12 col-sm-8">
-											<ul class="list-group">
-												<li class="list-group-item">${product.pr_proname }</li>
-												<li class="list-group-item">가격 : ${product.pr_price }</li>
-												<li class="list-group-item">기본수량 : ${product.pr_qty }</li>
-												<li class="list-group-item">
-										
+
+	<input type="hidden" name="pr_mno" value="${sessionScope.no}">
+	<div class="container">
+		<div class="resume">
+			<header class="page-header">
+				<h1 class="page-title">${product.pr_proname }</h1>
+			</header>
+			<div class="row">
+				<div
+					class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+					<div class="panel panel-default">
+						<div class="panel-heading resume-heading">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-xs-12 col-sm-4">
+										<figure>
+											<img class="img-responsive" alt=""
+												src="image/${product.pr_img}">
+										</figure>
+									</div>
+									<div class="col-xs-12 col-sm-8">
+										<ul class="list-group">
+											<li class="list-group-item">${product.pr_proname }</li>
+											<li class="list-group-item">가격 : ${product.pr_price }</li>
+											<li class="list-group-item">기본수량 : ${product.pr_qty }</li>
+											
+											<li class="list-group-item">
+
 												<div class="input-group number-spinner">
+
 													<span class="input-group-btn data-dwn">
 														<button class="btn  btn-info" data-dir="dwn">
 															<span class="glyphicon glyphicon-minus"></span>
 														</button>
-													</span> 
-														<input type="text" class="form-control text-center" value="1"> 
-														<span class="input-group-btn data-up">
+													</span>
+													<input type="text" class="form-control text-center" value="1" id="cnt" name="cnt">
+													<span class="input-group-btn data-up">
 														<button class="btn btn-default btn-info" data-dir="up">
 															<span class="glyphicon glyphicon-plus"></span>
 														</button>
 													</span>
 												</div>
-										</li>
-									<li class="list-group-item">기부처 : ${product.pr_donation }</li>
-									<li class="list-group-item">
-									<button onclick="location.href='delivery.do?pr_no=${product.pr_no}'">주문하기</button></li>
-									</ul>
+											</li>
+											<li class="list-group-item">기부처 : ${product.pr_donation }</li>
+											<li class="list-group-item">
+												<input type="submit" value="주문하기2">
+												<button id="button">주문하기</button>
+											</li>
+											
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="bs-callout bs-callout-danger">
+							<h4>상세설명</h4>
+							<p>${product.pr_content }</p>
+						</div>
 					</div>
-					<div class="bs-callout bs-callout-danger">
-						<h4>상세설명</h4>
-						<p>${product.pr_content }</p>
-
-					</div>
-
-
-
-
-
 				</div>
-
 			</div>
-		</div>
 
 		</div>
 
-		</div>
-
+	</div>
 </body>
 </html>

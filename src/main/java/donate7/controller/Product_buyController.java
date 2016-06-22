@@ -77,11 +77,12 @@ public class Product_buyController {
 	}
 
 	@RequestMapping("delivery")
-	public String delivery(Model model, HttpSession session, int pr_no) {
+	public String delivery(Model model, HttpSession session, int pr_no,String cnt) {
 		int no = (Integer) session.getAttribute("no");
 		String NickName = ds.Nick(no);
 		Product price = ds.selectOne(pr_no);
 		int ci=cs.sumCash(no);
+		model.addAttribute("cnt",cnt);
 		model.addAttribute("ci",ci);
 		model.addAttribute("price", price);
 		model.addAttribute("nick", NickName);
