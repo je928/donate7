@@ -102,12 +102,14 @@
 	</select>
 	<select id="memAll" resultMap="DonateResult" parameterType="donate">
 		select * from(select rownum rn,m.* from 
-		(select * from donate where d_member<![CDATA[>]]>0 order by d_reg_date desc) m)
+		(select * from donate d,(select m_no, m_email from member) m where d.d_member=m.m_no and 
+		d_member<![CDATA[>]]>0 order by d_reg_date desc) m)
 		where rn between #{startRow} and #{endRow}
-	</select>
+	</select>	
 	<select id="orAll" resultMap="DonateResult" parameterType="donate">
 		select * from(select rownum rn,o.* from 
-		(select * from donate where d_member<![CDATA[<]]>0 order by d_reg_date desc) o)
+		(select * from donate d,(select o_no, o_email from organ) o where d.d_member=o.o_no and 
+		d_member<![CDATA[<]]>0 order by d_reg_date desc) o)
 		where rn between #{startRow} and #{endRow}
 	</select>
 	

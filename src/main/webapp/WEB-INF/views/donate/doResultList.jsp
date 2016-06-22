@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../module/header.jsp" %>
-<%@ include file="../session/memChk.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="../module/header.jsp"%>
+<%@ include file="../session/memChk.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,21 +17,22 @@
 			<th>금액</th>
 			<th>날짜</th>
 		</tr>
+		
 		<c:if test="${not empty drList }">
-		<c:forEach var="doResult" items="${drList}">
-			<tr>
-				<td><a href="doResult.do?d_member=${d_member}"></a>${doResult.d_request}</td>
-				<td>${doResult.m_nick}</td>
-				<td>${doResult.d_donation}</td>
-				<td>${doResult.d_date}</td>
-			</tr>				
-		</c:forEach></c:if>
+			<c:forEach var="doResult" items="${drList}">
+				<tr>
+					<td>${doResult.d_request}</td>
+					<td>${doResult.m_nick}</td>
+					<td>${doResult.d_donation}</td>
+					<td>${doResult.d_date}</td>
+				</tr>
+			</c:forEach>
+		</c:if>
 		<c:if test="${empty drList}">
 			<tr>
 				<td colspan="4">기부내역이 없습니다</td>
-			</tr>	
+			</tr>
 		</c:if>
 	</table>
-
 </body>
 </html>

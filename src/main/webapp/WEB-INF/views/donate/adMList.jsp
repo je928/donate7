@@ -19,7 +19,7 @@
 	}
 
 	function locate(pageNum) {
-		location.href = "adList.do?pageNum=" + pageNum;
+		location.href = "adMList.do?pageNum=" + pageNum;
 	}
 </script>
 </head>

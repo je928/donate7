@@ -34,7 +34,7 @@
 	function list(d_donation, d_no){
 			var donate_param = {
 					"d_donation" : d_donation,
-					"d_no" : d_no
+					"d_no" : d_no,
 			}
 			var sndData = $.param(donate_param);
 			$.post('doResultList.do', sndData, function(data) {

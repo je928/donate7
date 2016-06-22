@@ -90,6 +90,7 @@ public class DonateController {
 				cs.insert(cp);
 			}
 		}
+
 		List<DoResult> list = ds.drList(doResult.getD_no());
 		model.addAttribute("drList", list);
 		return "donate/doResultList";
