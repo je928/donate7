@@ -123,6 +123,16 @@ public class CommunityDaoImpl implements CommunityDao {
 		}
 		return total;
 	}
+	
+	public int updateReply(CommunityReply communityReply) {
+		int result = 0;
+		try {
+			result = session.update("reply.updateReply", communityReply);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 
 	public int deleteReply(int crNo) {
 		int result = 0;
@@ -140,7 +150,6 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	public void updateWarnR(int re_sort_no) {
 		session.update("reply.updateWarn",re_sort_no);
-		
 	}
-	
+
 }

@@ -6,9 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-</style>
 <script type="text/javascript">
 	function registerPop(brd_no,chk) {
 		window.open("registerPop.do?brd_no=" + brd_no + "&chk="+chk, "",
@@ -17,7 +14,7 @@
 	
 	function rpSubmit(number) {
 		if(number == null || number == "" || number == "null") {
-			if(confirm("로그인이 필요합니다. 로그인 하시겠습니까?")) {
+			if(confirm("로그인 하시겠습니까?")) {
 				location.href="login.do";
 			} else {
 				return false;
@@ -35,6 +32,21 @@
 			return;
 		}
 	}
+	
+	$(document).ready(function(){
+		$(".up").hide();
+		$(".btnupup").hide();
+		$('.btnup').click(function(){
+			$(this).parent().parent().parent().nextAll(".up").toggle("slow");
+			$(this).hide();
+			$(this).next().show();
+		});
+		$('.btnupup').click(function(){
+			$(this).parent().parent().parent().nextAll(".up").toggle("slow");
+			$(this).hide();
+			$(this).prev().show();
+		});
+	});
 </script>
 </head>
 <body>
@@ -124,52 +136,69 @@
 			<div class="panel panel-default panel-table">
 				<div class="container re_top">
 					<div class="row">
-						<div class="replym_w">
-							<h5 class="re_header">
+						<h5 class="re_header">
 							<small style="color: #747474; font-weight: 900; font-size: 22px;">${replyCount} Comments:</small>
-							</h5>
+						</h5>
+						<c:if test="${not empty crList}">
+						<c:forEach var="cr" items="${crList}">
+						<div class="replym_w">
 							<div class="testimonials">
-								<c:if test="${not empty crList}">
-								<c:forEach var="cr" items="${crList}">
-								<div class="active item">
-									<div class="carousel-info">
-										<div class="pull-left">
-											<span class="testimonials-name">${cr.nick}</span>
-											<span class="testimonials-post">${cr.cr_reg_date}</span>
-										</div>
-										<div class="pull-right">
-											<span class="testimonials-name">　</span>
-											<span class="testimonials-menu">
-											<c:if test="${sessionScope.no!=null || community.no>1}">
-											<a class="a_link">답글</a> | 
-											</c:if>
-											<c:if test="${cr.no == sessionScope.no}">
-											<!-- <a class="a_link">수정</a> -->											
-											<a class="a_link" onclick="deleteRpChk(${cr.cr_no},${community.brd_no},${pageNum})">삭제</a>
-											</c:if>
-											<c:if test="${cr.no!=sessionScope.no && community.no>1 && sessionScope.no!=null}">
-											<a href="javascript:registerPop(${cr.no},'c');" class="a_link">신고</a>
-											</c:if>
-											</span>
-										</div>
+								<div class="carousel-info">
+									<div class="pull-left">
+										<span class="testimonials-name">${cr.nick}</span>
+										<span class="testimonials-post">${cr.cr_reg_date}</span>
 									</div>
+									<div class="pull-right">
+										<span class="testimonials-menu">
+										<%-- <c:if test="${sessionScope.no!=null && community.no>1}">
+										<a class="a_link btnre">답글</a>
+										<a class="red_link btnrere">답글취소</a>
+										 | 
+										</c:if> --%>
+										<c:if test="${cr.no == sessionScope.no}">
+										<a class="a_link btnup">수정</a>
+										<a class="red_link btnupup">수정취소</a>
+										 | 											
+										<a class="a_link" onclick="deleteRpChk(${cr.cr_no},${community.brd_no},${pageNum})">삭제</a>
+										</c:if>
+										<c:if test="${cr.no!=sessionScope.no && community.no>1 && sessionScope.no!=null}">
+										<a href="javascript:registerPop(${cr.no},'c');" class="a_link">신고</a>
+										</c:if>
+										</span>
+									</div>
+								</div>
+								<blockquote>
+									<p> ${cr.cr_content} </p>
+								</blockquote>
+								<div class="up">
 									<blockquote>
-										<p> ${cr.cr_content} </p>
+										<form action="updateReply.do" name="frm" onsubmit="return rpSubmit(${sessionScope.no})">
+											<input type="hidden" name="no" value="${sessionScope.no}">
+											<input type="hidden" name="cr_no" value="${cr.cr_no}">											
+											<input type="hidden" name="brd_no" value="${community.brd_no}">
+											<input type="hidden" name="pageNum" value="${pageNum}">
+										<c:if test="${sessionScope.no > 0}">
+											<textarea style="resuze: none; border:solid 1px; width:86%; vertical-align:top;" rows="3" cols="80" maxlength="1000" id="cr_content" name="cr_content">${cr.cr_content}</textarea>&nbsp;
+											<input type="submit" class="btn btn-sm btn-default" style="height:80px; width:80px;" value="수정">
+										</c:if>
+									</form>
 									</blockquote>
 								</div>
-								</c:forEach>
-								</c:if>
-								<c:if test="${empty crList}">
-								<div class="active item">
-									<blockquote>
-										<p>
-											등록된 댓글이 없습니다.
-										</p>
-									</blockquote>
-								</div>
-								</c:if>
 							</div>
 						</div>
+						</c:forEach>
+						</c:if>
+						<c:if test="${empty crList}">
+						<div class="replym_w">
+							<div class="testimonials">
+								<blockquote>
+								<p>
+									등록된 댓글이 없습니다.
+								</p>
+								</blockquote>
+							</div>
+						</div>
+						</c:if>
 					</div>
 				</div>
 				
@@ -180,8 +209,12 @@
 							<input type="hidden" name="no" value="${sessionScope.no}">
 							<input type="hidden" name="brd_no" value="${community.brd_no}">
 							<input type="hidden" name="pageNum" value="${pageNum}">
+							<c:if test="${sessionScope.no == null}">					
+							<textarea style="resuze: none; border:solid 1px; width:88%; vertical-align:top;" rows="3" cols="80" maxlength="1000" id="cr_content" name="cr_content" placeholder="로그인이 필요한 서비스입니다. 로그인 하시겠습니까?" onclick="return rpSubmit(${sessionScope.no})"></textarea>&nbsp;
+							<input type="submit" class="btn btn-sm btn-default" style="height:80px; width:80px;" value="등록">
+							</c:if>
 							<c:if test="${sessionScope.no > 0}">					
-							<textarea style="resuze: none; border:solid 1px; width:88%; vertical-align:top;" rows="3" cols="80" maxlength="1000" id="cr_content" name="cr_content"></textarea>&nbsp;
+							<textarea style="resuze: none; border:solid 1px; width:88%; vertical-align:top;" rows="3" cols="80" maxlength="1000" id="cr_content" name="cr_content" placeholder="댓글을 입력해 주세요."></textarea>&nbsp;
 							<input type="submit" class="btn btn-sm btn-default" style="height:80px; width:80px;" value="등록">
 							</c:if>
 							</form>

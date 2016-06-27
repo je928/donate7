@@ -8994,12 +8994,30 @@ h4 {
 	padding-bottom: 30px;
 }
 
+.btn-orange {
+	color: #ffffff;
+	background-color: #353535;
+	border-color: transparent;
+}
+
 .a_link {
 	color: #353535;
+	font-size: 13px;
 }
 
 .a_link:hover {
 	color: #353535;
+	font-size: 13px;
+}
+
+.red_link {
+	color: red;
+	font-size: 13px;
+}
+
+.red_link:hover {
+	color: red;
+	font-size: 13px;
 }
 
 /* Testimonials */
@@ -9009,7 +9027,6 @@ h4 {
 	color: #666;
 	display: block;
 	font-size: 14px;
-	line-height: 20px;
 	padding: 15px;
 	position: relative;
 }
@@ -9042,23 +9059,12 @@ h4 {
 	border-color: #e63f0c transparent transparent transparent;
 }
 
-.testimonials .carousel-info img {
-	border: 1px solid #f5f5f5;
-	border-radius: 150px !important;
-	padding: 3px;
-	width: 75px;
-}
-
 .testimonials .carousel-info {
 	overflow: hidden;
 }
 
-.testimonials .carousel-info img {
-	margin-right: 15px;
-}
-
 .testimonials .carousel-info span {
-	display: block;
+	display: inline;
 }
 
 .testimonials span.testimonials-name {
@@ -9073,12 +9079,19 @@ h4 {
 	font-size: 12px;
 }
 
+.testimonials span.testimonials-menu {
+	color: #353535;
+	font-size: 16px;
+}
+
 .replym_w {
 	margin-left: 32px;
 	width: 65%;
 }
 
 .re_header {
+	margin-left: 32px;
+	width: 65%;
 	border-bottom: 1px solid #D1CDF4;
 }
 

@@ -17,7 +17,7 @@
 	<select id="selectReply" resultType="reply" parameterType="Integer">
 		select cr_no, cr_content, to_char(cr_reg_date, 'yyyy.mm.dd. hh24:mi') as
 		cr_reg_date, mo.no, mo.nick from communityReply c, (select m_no as no, m_nick as nick from member where m_del_yn='n' union select o_no, o_oname from organ where o_del_yn='n') mo where
-		c.no = mo.no and cr_del_yn = 'n' and brd_no = #{brd_no}
+		c.no = mo.no and cr_del_yn = 'n' and brd_no = #{brd_no} order by cr_no
 	</select>
 	
 	<select id="replyNo" resultType="Integer">
@@ -29,9 +29,9 @@
 		(#{cr_no},#{cr_content},sysdate,null,'n',#{brd_no},#{no})
 	</insert>
 
-	<!-- <update id="updateReply" parameterType="reply">
-		update communityReply set cr_content=#{cr_content} where cr_no=#{cr_no} and cr_del_yn='n'
-	</update> -->
+	<update id="updateReply" parameterType="reply">
+		update communityReply set cr_content=#{cr_content}, cr_update_date=sysdate where cr_no=#{cr_no} and cr_del_yn='n'
+	</update>
 
 	<update id="deleteReply" parameterType="Integer">
 		update communityReply set cr_del_yn='y' where cr_no=#{cr_no} and cr_del_yn='n'
@@ -48,4 +48,5 @@
 	<update id="updateWarn" parameterType="Integer">
 		update communityReply set cr_del_yn='w' where cr_no=#{re_sort_no}
 	</update>
+	
 </mapper>
