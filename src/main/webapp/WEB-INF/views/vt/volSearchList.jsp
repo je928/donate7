@@ -29,7 +29,14 @@
 					</c:if></td>
 				<td>${result.addr}</td>
 				<td>${result.o_oname }</td>
-				<td><a href="View.do?vt_no=${result.vt_no}&pageNum=${paging.nowPage}">${result.vt_name }</a></td>
+				<td>
+				<c:if test="${sessionScope.no!=null}">
+				<a href="View.do?vt_no=${result.vt_no}&pageNum=${paging.nowPage}">${result.vt_name }</a>
+				</c:if>
+				<c:if test="${sessionScope.no==null}">
+				${result.vt_name }
+				</c:if>
+				</td>
 				<td>${result.cn }</td>
 				<td>${result.vt_tot }</td>
 				<td>${result.count }</td>

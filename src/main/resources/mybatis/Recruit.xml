@@ -144,6 +144,6 @@
 	</update>
 	<select id="selectRqnList" resultMap="RecruitResult"
 	parameterType="recruit">
-	select * from (select rownum rn, a.* from (select c.* from vt_rqn b, vt_recruit c where b.vt_no = c.vt_no and b.vt_m_no = #{vt_m_no}) a) where rn between #{startrow} and #{endrow}
+	select * from (select rownum rn, a.* from (select c.*, count from vt_rqn b, vt_recruit c, v_vol_search v where b.vt_no = c.vt_no and b.vt_no=v.vt_no and b.vt_m_no = #{vt_m_no}) a) where rn between #{startrow} and #{endrow}
 </select>
 </mapper>
