@@ -280,7 +280,8 @@ public class VolController {
 	public String centerList(Model model) {
 		List<Organ> list = ms.selectAll();
 		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../vt/centerList.jsp");
+		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/centerList.jsp");
 		return "module/main";
 	}
 
@@ -288,7 +289,8 @@ public class VolController {
 	public String centerView(int o_no, Model model) {
 		Organ organ = ms.selectByO_no(o_no);
 		model.addAttribute("organ", organ);
-		model.addAttribute("pgm", "../vt/centerView.jsp");
+		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/centerView.jsp");
 		return "module/main";
 	}
 
