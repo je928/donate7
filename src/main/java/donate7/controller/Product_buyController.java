@@ -26,7 +26,6 @@ public class Product_buyController {
 	public String m_deliveryForm(Product_buy pb, Model model, String pageNum,HttpSession session) {
 		int pb_mono = (Integer) session.getAttribute("no");
 		final int rowPerPage = 10;
-		
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
@@ -40,7 +39,6 @@ public class Product_buyController {
 		
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
 		List<Product_buy> list = ds.list(startRow, endRow, pb_mono, pb);
-		
 		model.addAttribute("pg",pg);
 		model.addAttribute("list", list);
 		model.addAttribute("ds", ds);
@@ -126,6 +124,9 @@ public class Product_buyController {
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
 		int gup = Integer.parseInt(pr.getPr_price());
+		String delivery=ds.delivery(pb_no);
+		System.out.println(delivery);
+		model.addAttribute("delivery",delivery);
 		model.addAttribute("gup", gup);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
@@ -142,4 +143,5 @@ public class Product_buyController {
 		else
 			return "redirect:m_delivery.do";
 	}
+	
 }

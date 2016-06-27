@@ -256,7 +256,6 @@
 											</li>
 											<li class="list-group-item">기부처 : ${product.pr_donation }</li>
 											<li class="list-group-item">
-												<input type="submit" value="주문하기2">
 												<button id="button">주문하기</button>
 											</li>
 											

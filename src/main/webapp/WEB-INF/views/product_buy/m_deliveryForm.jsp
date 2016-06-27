@@ -9,12 +9,17 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function locate(pageNum){
-		location.href="m_delivery.do?pageNum="+pageNum;
+		location.href="mn_delivery.do?pageNum="+pageNum;
+	}
+</script>
+<script>
+	function myFunction(val) {
+		document.getElementById("hap").value = "y";
 	}
 </script>
 <style type="text/css">
 .ts {
-	width: 300px;
+	width: 500px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -33,32 +38,48 @@ table {
 			<table class="table table-striped table-hover">
 				<caption>배송 요청 내역</caption>
 				<tr>
+					<td>
+						<button>배송대기</button>
+					</td>
+					<td>
+						<button>배송 중</button>
+					</td>
+					<td>
+						<button>배송완료</button>
+					</td>
+				</tr>
+				<tr>
 					<th>제품명</th>
 					<th>받는사람</th>
 					<th>수량</th>
 					<th>주소</th>
 					<th>배송상태</th>
 					<th>상세내용</th>
+					
 				</tr>
 				<c:forEach items="${list }" var="li">
-					<c:set var="ps" value="${ds.selectOne(li.pr_no) }" />
+					 <c:if test="${li.pb_delivery =='n'}">
+						<c:set var="ps" value="${ds.selectOne(li.pr_no) }" />
 					<tr>
 						<td>${ps.pr_proname }</td>
 						<td>${li.pb_name }</td>
 						<td>${li.pb_buyqty }</td>
-						<td class="ts">${li.pb_addr }</td>
+						<td class="ts">${li.pb_addr }</td>	
+						<td>
 						<c:if test="${li.pb_delivery =='n'}">
-							<td>배송준비중</td>
+							배송준비중
 						</c:if>
 						<c:if test="${li.pb_delivery =='y'}">
-							<td>배송중</td>
+							배송중
 						</c:if>
 						<c:if test="${li.pb_delivery =='o'}">
-							<td>배송완료</td>
-						</c:if>
+								배송완료
+						</c:if>		
+						</td>
 						<td><a
 							href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
-					</tr>
+						</tr>
+					</c:if>
 				</c:forEach>
 				<c:if test="${empty list}">
 			<tr>

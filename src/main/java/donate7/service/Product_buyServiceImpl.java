@@ -51,4 +51,8 @@ public class Product_buyServiceImpl implements Product_buyService {
 		return pd.atotal();
 	}
 
+	public String delivery(int pb_no) {
+		return pd.delivery(pb_no);
+	}
+
 }
