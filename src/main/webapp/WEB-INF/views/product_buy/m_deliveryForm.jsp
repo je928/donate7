@@ -8,13 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function locate(pageNum){
-		location.href="mn_delivery.do?pageNum="+pageNum;
-	}
-</script>
-<script>
-	function myFunction(val) {
-		document.getElementById("hap").value = "y";
+	function locate(pageNum) {
+		location.href = "m_delivery.do?pageNum=" + pageNum;
 	}
 </script>
 <style type="text/css">
@@ -38,15 +33,9 @@ table {
 			<table class="table table-striped table-hover">
 				<caption>배송 요청 내역</caption>
 				<tr>
-					<td>
-						<button>배송대기</button>
-					</td>
-					<td>
-						<button>배송 중</button>
-					</td>
-					<td>
-						<button>배송완료</button>
-					</td>
+					<td><button onclick="location.href='m_delivery.do'">배송대기</button></td>
+					<td><button onclick="location.href='m_delivery.do?nyo=y'">배송중</button></td>
+					<td><button onclick="location.href='m_delivery.do?nyo=o'">배송완료</button></td>
 				</tr>
 				<tr>
 					<th>제품명</th>
@@ -55,39 +44,36 @@ table {
 					<th>주소</th>
 					<th>배송상태</th>
 					<th>상세내용</th>
-					
+
 				</tr>
 				<c:forEach items="${list }" var="li">
-					 <c:if test="${li.pb_delivery =='n'}">
+					<c:if test="${li.pb_delivery == nyo}">
 						<c:set var="ps" value="${ds.selectOne(li.pr_no) }" />
-					<tr>
-						<td>${ps.pr_proname }</td>
-						<td>${li.pb_name }</td>
-						<td>${li.pb_buyqty }</td>
-						<td class="ts">${li.pb_addr }</td>	
-						<td>
-						<c:if test="${li.pb_delivery =='n'}">
-							배송준비중
-						</c:if>
-						<c:if test="${li.pb_delivery =='y'}">
-							배송중
-						</c:if>
-						<c:if test="${li.pb_delivery =='o'}">
+						<tr>
+							<td>${ps.pr_proname }</td>
+							<td>${li.pb_name }</td>
+							<td>${li.pb_buyqty }</td>
+							<td class="ts">${li.pb_addr }</td>
+							<td><c:if test="${li.pb_delivery =='n'}">
+								배송준비중
+							</c:if> <c:if test="${li.pb_delivery =='y'}">
+								배송중
+							</c:if> <c:if test="${li.pb_delivery =='o'}">
 								배송완료
-						</c:if>		
-						</td>
-						<td><a
-							href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
+							</c:if></td>
+
+							<td><a
+								href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>
 				<c:if test="${empty list}">
-			<tr>
-				<td colspan="6">배송 내역이 없습니다.</td>
-			</tr>
-		</c:if>
+					<tr>
+						<td colspan="6">배송 내역이 없습니다.</td>
+					</tr>
+				</c:if>
 			</table>
-			 <div class="panel-footer2 text-center">
+			<div class="panel-footer2 text-center">
 				<div class="row">
 					<div class="col">
 						<ul class="pagination">
@@ -115,7 +101,7 @@ table {
 						</ul>
 					</div>
 				</div>
-			</div> 
+			</div>
 		</div>
 	</div>
 </body>

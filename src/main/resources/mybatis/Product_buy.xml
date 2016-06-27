@@ -4,59 +4,71 @@
 <mapper namespace="product_buy">
 	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="product_buyMap" type="product_buy">
-		<result property="pb_no" 		column="pb_no" />
-		<result property="pr_no" 		column="pr_no" />
-		<result property="pb_mono" 		column="pb_mono" />
-		<result property="pb_buyqty" 	column="pb_buyqty" />
-		<result property="pb_addr" 		column="pb_addr" />
-		<result property="pb_name" 		column="pb_name" />
-		<result property="pb_tel"		column="pb_tel" />
-		<result property="pb_delivery" 	column="pb_delivery" />
-		<result property="nick" 		column="nick" />
-		<result property="email" 		column="email" />
-		<result property="no" 			column="no" />
-		<result property="startRow" 	column="startRow" />
-		<result property="endRow" 		column="endRow" />
+		<result property="pb_no" column="pb_no" />
+		<result property="pr_no" column="pr_no" />
+		<result property="pb_mono" column="pb_mono" />
+		<result property="pb_buyqty" column="pb_buyqty" />
+		<result property="pb_addr" column="pb_addr" />
+		<result property="pb_name" column="pb_name" />
+		<result property="pb_tel" column="pb_tel" />
+		<result property="pb_delivery" column="pb_delivery" />
+		<result property="nick" column="nick" />
+		<result property="email" column="email" />
+		<result property="no" column="no" />
+		<result property="startRow" column="startRow" />
+		<result property="endRow" column="endRow" />
 	</resultMap>
 	<select id="mtotal" parameterType="int" resultType="int">
-		select count(*) from product_buy where pb_mono=#{pb_mono}
+		select
+		count(*) from product_buy where pb_mono=#{pb_mono}
 	</select>
 	<select id="atotal" parameterType="int" resultType="int">
-		select count(*) from product_buy
+		select
+		count(*) from product_buy
 	</select>
 	<select id="list" parameterType="product_buy" resultMap="product_buyMap">
-		select * from (select rownum rn,a.* from (select * from product_buy where pb_mono=#{pb_mono}
-		order by pb_no desc) a) where rn between #{startRow} and #{endRow}
+		select *
+		from (select rownum rn,a.* from (select * from product_buy where
+		pb_mono=#{pb_mono}
+		order by pb_no desc) a) where rn between #{startRow}
+		and #{endRow}
 	</select>
 	<select id="listAll" resultMap="product_buyMap">
-		select * from (select rownum rn,a.* from (select * from product_buy 
+		select * from (select rownum
+		rn,a.* from (select * from product_buy
 		order by pb_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
-	
+
 	<select id="nick" parameterType="Integer" resultType="String">
 		select
 		email from (select m_no as no, m_email as email, m_nick as nick,
 		m_del_yn as del_yn from member where m_del_yn='n' union
-		select o_no, o_email, o_oname, o_del_yn from organ where o_del_yn='n')
-		where no=#{no}
+		select o_no,
+		o_email, o_oname, o_del_yn from organ where o_del_yn='n')
+		where
+		no=#{no}
 	</select>
 	<select id="selectOne" resultType="Product" parameterType="Product">
 		select * from product where pr_no=#{pr_no}
 	</select>
 	<insert id="insert" parameterType="product_buy">
-		INSERT INTO product_buy VALUES(#{pb_no},#{pr_no},#{pb_mono},#{pb_buyqty},#{pb_addr},#{pb_name},#{pb_tel},'n')
+		INSERT INTO product_buy
+		VALUES(#{pb_no},#{pr_no},#{pb_mono},#{pb_buyqty},#{pb_addr},#{pb_name},#{pb_tel},'n')
 	</insert>
 	<select id="selectNum" resultType="int">
-		select nvl(max(pb_no),0)+1 from product_buy
+		select nvl(max(pb_no),0)+1
+		from product_buy
 	</select>
-	
+
 	<select id="select" parameterType="product_buy" resultType="product_buy">
 		select * from product_buy where pb_no=#{pb_no}
 	</select>
 	<update id="update" parameterType="java.util.Map">
-		update product set pr_qty = pr_qty-#{qty} where pr_no=#{pr_no}
+		update product set pr_qty =
+		pr_qty-#{qty} where pr_no=#{pr_no}
 	</update>
 	<select id="delivery" parameterType="int" resultType="String">
-		select pb_delivery from product_buy where pb_no= #{pb_no}
+		select
+		pb_delivery from product_buy where pb_no= #{pb_no}
 	</select>
 </mapper>

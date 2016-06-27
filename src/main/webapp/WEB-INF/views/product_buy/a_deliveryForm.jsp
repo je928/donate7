@@ -47,15 +47,9 @@ table {
 				<table class="table table-striped table-hover">
 					<caption>배송 요청 내역</caption>
 				<tr>
-					<td>
-						<input type="button"  value="배송대기">
-					</td>
-					<td>
-						<input type="button" value="배송 중">
-					</td>
-					<td>
-						<input type="button" value="배송 완료">
-					</td>
+					<td><button onclick="location.href='a_deliveryForm.do'">배송대기</button></td>
+					<td><button onclick="location.href='a_deliveryForm.do?nyo=y'">배송중</button></td>
+					<td><button onclick="location.href='a_deliveryForm.do?nyo=o'">배송완료</button></td>
 				</tr>
 					<tr>
 						<th>번호</th>
@@ -67,7 +61,7 @@ table {
 						<th>자세히보기</th>
 					</tr>
 					<c:forEach items="${list }" var="li">
-					<c:if test="${li.pb_delivery=='n'}">
+					<c:if test="${li.pb_delivery== nyo}">
 						<c:set var="nick" value="${ds.Nick(li.pb_mono)}" />
 						<c:set var="no" value="${ds.selectOne(li.pr_no) }" />
 						<tr>
