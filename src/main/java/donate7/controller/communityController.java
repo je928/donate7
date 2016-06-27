@@ -197,6 +197,20 @@ public class communityController {
 		}
 	}
 	
+	@RequestMapping(value="updateReply")
+	public String update(CommunityReply communityReply, String pageNum, Model model) {
+		int result = cs.updateReply(communityReply);
+		if(result > 0) {
+			model.addAttribute("pageNum", pageNum);
+			return "redirect:view.do?brd_no="+communityReply.getBrd_no();
+		}else {
+			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("communityReply", communityReply);
+			model.addAttribute("pageNum", pageNum);
+			return "forward:view.do?brd_no="+communityReply.getBrd_no();
+		}
+	}
+	
 	@RequestMapping(value="deleteReply")
 	public String deleteReply(CommunityReply communityReply, String cr_no, String pageNum, Model model) {
 		int crNo = Integer.parseInt(cr_no);

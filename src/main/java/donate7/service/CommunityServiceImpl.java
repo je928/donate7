@@ -75,6 +75,11 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.replyCount(brd_no);
 	}
 
+	public int updateReply(CommunityReply communityReply) {
+		return cd.updateReply(communityReply);
+	}
+
+	
 	public int deleteReply(int crNo) {
 		return cd.deleteReply(crNo);
 	}
