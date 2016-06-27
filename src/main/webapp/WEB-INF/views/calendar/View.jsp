@@ -24,6 +24,7 @@
 </style>
 </head>
 <body>
+
 	<div class="container">
 		<div class="col-md-offset-14 col-md-5"
 			style="margin-left: 0; margin-top: 0;">
@@ -56,7 +57,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<b>요청 인원:</b> ${rc.vt_tot }명
+						<b>모집 인원:</b> ${rc.vt_tot }명
 					</div>
 					<div class="form-group">
 						<b style="display: block;">상세 내용:</b>
@@ -64,6 +65,7 @@
 					</div>
 				</div>
 				<div style="margin-top: 40px; text-align: center;">
+					 <c:if test="${rc.vt_r_yn == 'Y'}">
 					<c:if test="${result > 0}">
 						<input type="button" class="btn btn-primary btn-md" value="참여 취소"
 							onclick="location.href='rqnDelete.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
@@ -72,11 +74,13 @@
 						<input type="button" class="btn btn-primary btn-md" value="참여"
 							onclick="location.href='rqn.do?vt_no=${rc.vt_no}&vt_m_no=${sessionScope.no}'">
 					</c:if>
+					</c:if>
 					<input type="button" class="btn btn-primary btn-md" value="뒤로"
-						onclick="location.href='timeList.do?pageNum=${pageNum}'">
+						onclick="location.href='javascript:history.go(-1);'">
 				</div>
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>
