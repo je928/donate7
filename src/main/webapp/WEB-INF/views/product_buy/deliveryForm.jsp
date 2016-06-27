@@ -15,7 +15,6 @@
 <script>
 	var x = '${price.pr_price }';
 	function myFunction(val) {
-		var y='${cnt}';
 		document.getElementById("hap").value = x * val;
 	}
 </script>

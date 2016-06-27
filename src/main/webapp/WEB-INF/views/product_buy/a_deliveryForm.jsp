@@ -46,6 +46,17 @@ table {
 			<div class="col-md-9-2">
 				<table class="table table-striped table-hover">
 					<caption>배송 요청 내역</caption>
+				<tr>
+					<td>
+						<input type="button"  value="배송대기">
+					</td>
+					<td>
+						<input type="button" value="배송 중">
+					</td>
+					<td>
+						<input type="button" value="배송 완료">
+					</td>
+				</tr>
 					<tr>
 						<th>번호</th>
 						<th>제품</th>
@@ -56,6 +67,7 @@ table {
 						<th>자세히보기</th>
 					</tr>
 					<c:forEach items="${list }" var="li">
+					<c:if test="${li.pb_delivery=='n'}">
 						<c:set var="nick" value="${ds.Nick(li.pb_mono)}" />
 						<c:set var="no" value="${ds.selectOne(li.pr_no) }" />
 						<tr>
@@ -76,6 +88,7 @@ table {
 							<td><a
 								href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
 						</tr>
+					</c:if>
 					</c:forEach>
 					<c:if test="${empty list}">
 			<tr>
