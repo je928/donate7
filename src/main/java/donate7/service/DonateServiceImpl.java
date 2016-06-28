@@ -86,5 +86,9 @@ public class DonateServiceImpl implements DonateService {
 	public int insertNum() {
 		return dd.insertNum();
 	}
+	@Override
+	public int sumDonate(int d_no) {
+		return dd.sumDonate(d_no);
+	}
 
 }

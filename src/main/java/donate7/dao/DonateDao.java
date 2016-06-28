@@ -57,4 +57,6 @@ public interface DonateDao {
 
 	int insertNum();
 
+	int sumDonate(int d_no);
+
 }

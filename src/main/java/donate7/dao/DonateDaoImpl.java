@@ -90,4 +90,7 @@ public class DonateDaoImpl implements DonateDao {
 	public int insertNum() {
 		return session.selectOne("doResult.insertNum");
 	}
+	public int sumDonate(int d_no) {
+		return session.selectOne("doResult.sumDonate",d_no);
+	}
 }
