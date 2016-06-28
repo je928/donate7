@@ -71,9 +71,7 @@
 									[<a href="view.do?brd_no=${brd.brd_no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}">${brd.replycount}</a>]
 									</c:if>
 								<c:if test="${brd.brd_readcount > 300}">
-									
-									<span class="label label-danger">hot</span>
-									<!-- <img alt="" src="images/hot.gif"> -->
+									<span class="hot">hot</span>
 								</c:if>
 								</td>
 								<td>${brd.nick}</td>

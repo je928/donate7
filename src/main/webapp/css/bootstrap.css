@@ -9002,6 +9002,15 @@ h4 {
 	background: red;
 }
 
+.hot {
+	border-radius: 0.5em;
+	padding: 0.2em 0.5em 0.2em 0.5em;
+	font-size: 0.85em;
+	font-weight: 900;
+	color: white;
+	background: #e51c23;
+}
+
 /* ----------------------------------------------------------------------- */
 /* home.jsp */
 
