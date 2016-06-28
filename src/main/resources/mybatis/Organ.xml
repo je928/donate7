@@ -16,6 +16,7 @@
 		<result property="o_reg_date" column="o_reg_date"/>
 		<result property="o_out_date" column="o_out_date"/>
 		<result property="o_del_yn" column="o_del_yn"/>
+		<result property="o_ok_xyn" column="o_ok_xyn"/>		
 		<result property="no" column="no"/>
 		<result property="post1" column="post1"/>
 		<result property="post2" column="post2"/>
