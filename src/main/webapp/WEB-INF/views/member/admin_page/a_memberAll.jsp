@@ -20,16 +20,26 @@
 	}
 	
 	function o() {
-		location.href="a_organAll.do";	
+		location.href="a_organAll.do";
 	}
+	
+	
 </script>
 </head>
 <body>
 
 	<div class="col-md-12">
 		<div class="text-left list-group2">
-			<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
-			<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
+			<input type="button" class="btn btn-default2" onclick="m()" value="일반">
+			<div class="btn-group">
+				<a href="javascript:al()" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> 기관 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="javascript:o()">전체</a></li>				
+					<li><a href="a_organAll.do?xyn=x">승인처리중</a></li>
+					<li><a href="a_organAll.do?xyn=y">승인완료</a></li>
+					<li><a href="a_organAll.do?xyn=n">승인거절</a></li>
+				</ul>
+			</div>
 		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">

@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function locate(pageNum){
-		location.href="a_organAll.do?pageNum="+pageNum;
+	function locate(pageNum,xyn){
+		location.href="a_organAll.do?pageNum="+pageNum+"&xyn="+xyn;
 	}
 	
 	function info(pageNum,o_no){
@@ -26,12 +26,19 @@
 </head>
 <body>
 
-	<div class="text-right list-group2">
-	<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
-	<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
-	</div>
-
 	<div class="col-md-12">
+		<div class="text-left list-group2">
+			<input type="button" class="btn btn-default2" onclick="m()" value="일반">
+			<div class="btn-group">
+				<a href="javascript:o()" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> 기관 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="javascript:o()">전체</a></li>				
+					<li><a href="a_organAll.do?pageNum=1&xyn=x">승인처리중</a></li>
+					<li><a href="a_organAll.do?pageNum=1&xyn=y">승인완료</a></li>
+					<li><a href="a_organAll.do?pageNum=1&xyn=n">승인거절</a></li>
+				</ul>
+			</div>
+		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">
 				<div class="row">
@@ -62,13 +69,13 @@
 							<td>${org.o_oname}</td>
 							<td>${org.o_tel}</td>
 							<c:if test="${org.o_ok_xyn eq 'x'}">
-							<td><b class="red">승인 처리중</b></td>
+							<td><span class="ok_x">승인 처리중</span></td>
 							</c:if>
 							<c:if test="${org.o_ok_xyn eq 'y'}">
-							<td><b class="green">승인 완료</b></td>
+							<td><b class="ok_y">승인 완료</b></td>
 							</c:if>
 							<c:if test="${org.o_ok_xyn eq 'n'}">
-							<td><b class="red">승인 거절</b></td>
+							<td><b class="ok_n">승인 거절</b></td>
 							</c:if>
 							<td align="center">
 								<a href="javascript:info(${o_pb.nowPage},${org.o_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
@@ -91,8 +98,8 @@
 					<div class="col col-xs-8">
 						<ul class="pagination hidden-xs pull-right">
 							<c:if test="${o_pb.startPage > o_pb.pagePerBlock}">
-								<li><a href="javascript:locate(1)">««</a></li>						
-								<li><a href="javascript:locate(${o_pb.nowPage-1})">«</a></li>
+								<li><a href="javascript:locate(1,'${xyn}')">««</a></li>						
+								<li><a href="javascript:locate(${o_pb.nowPage-1},'${xyn}')">«</a></li>
 							</c:if>
 						</ul>
 						<ul class="pagination hidden-xs pull-right">
@@ -101,14 +108,14 @@
 									<li><a href="#"><b class="b2">${i}</b></a></li>
 								</c:if>
 								<c:if test="${i ne o_pb.nowPage}">
-									<li><a href="javascript:locate(${i})">${i}</a></li>
+									<li><a href="javascript:locate(${i},'${xyn}')">${i}</a></li>
 								</c:if>
 							</c:forEach>
 						</ul>
 						<ul class="pagination visible-xs pull-right">
 							<c:if test="${o_pb.totalPage > o_pb.endPage}">
-								<li><a href="javascript:locate(${o_pb.startPage+o_pb.pagePerBlock})">»</a></li>
-								<li><a href="javascript:locate(${o_pb.totalPage})">»»</a></li>
+								<li><a href="javascript:locate(${o_pb.startPage+o_pb.pagePerBlock},'${xyn}')">»</a></li>
+								<li><a href="javascript:locate(${o_pb.totalPage},'${xyn}')">»»</a></li>
 							</c:if>
 						</ul>
 					</div>

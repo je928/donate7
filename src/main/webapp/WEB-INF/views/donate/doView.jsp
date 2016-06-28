@@ -54,13 +54,11 @@
 							<table class="table table-user-information">
 								<tbody>
 									<tr>
-										<td>0%</td>
-									</tr>
-									<tr>
 										<td>${donate.d_start_date}~ ${donate.d_end_date}</td>
 									</tr>
 									<tr>
-										<td>원 후원</td>
+										<td><strong><fmt:formatNumber
+													value="${sumD }" groupingUsed="true" /></strong>원 후원</td>
 									</tr>
 									<tr>
 										<td><strong><fmt:formatNumber
@@ -89,10 +87,12 @@
 							class="btn btn-sm btn-primary">
 							목록으로<i class="glyphicon glyphicon-menu-hamburger"></i>
 						</button>
+						<c:if test="${sessionScope.no!=null && sessionScope.no>1}">
 						<button onclick="location.href='doResult.do?d_no=${donate.d_no}'"
 							class="btn btn-sm btn-success">
 							기부하기<i class="glyphicon glyphicon-heart"></i>
 						</button>
+						</c:if>
 					</div>
 				</div>
 			</div>

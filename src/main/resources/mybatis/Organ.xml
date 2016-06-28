@@ -16,6 +16,7 @@
 		<result property="o_reg_date" column="o_reg_date"/>
 		<result property="o_out_date" column="o_out_date"/>
 		<result property="o_del_yn" column="o_del_yn"/>
+		<result property="o_ok_xyn" column="o_ok_xyn"/>		
 		<result property="no" column="no"/>
 		<result property="post1" column="post1"/>
 		<result property="post2" column="post2"/>
@@ -83,12 +84,35 @@
 		update organ set o_del_yn='y', o_out_date=sysdate, o_ok_xyn='x' where o_no=#{o_no} and o_del_yn='n'
 	</update>
 
-	<select id="organTotal" resultType="Integer">
+	<select id="organTotal" parameterType="String"  resultType="Integer">
 		select count(*) from organ where o_del_yn='n'
+		<if test='xyn != "all"'>
+			<if test='xyn == "x"'>
+				and o_ok_xyn='x'
+			</if>
+			<if test='xyn == "y"'>
+				and o_ok_xyn='y'
+			</if>
+			<if test='xyn == "n"'>
+				and o_ok_xyn='n'
+			</if>
+		</if>
 	</select>
 
 	<select id="organAll" parameterType="organ" resultMap="OrganResult">
-		select * from (select rownum rn, a.* from (select o.* from organ o where o_del_yn='n' order by o_no) a) where rn between #{startRow} and #{endRow}
+		select * from (select rownum rn, a.* from (select o.* from organ o where o_del_yn='n'
+		<if test='xyn != "all"'>
+			<if test='xyn == "x"'>
+				and o_ok_xyn='x'
+			</if>
+			<if test='xyn == "y"'>
+				and o_ok_xyn='y'
+			</if>
+			<if test='xyn == "n"'>
+				and o_ok_xyn='n'
+			</if>
+		</if>
+		order by o_no) a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="selectO_addrByO_no" resultType="String" parameterType="int">

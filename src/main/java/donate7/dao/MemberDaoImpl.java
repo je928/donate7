@@ -248,19 +248,20 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("member.memberAll", member);
 	}
 	
-	public int organTotal() {
+	public int organTotal(Organ or) {
 		int total = 0;
 		try {
-			total = session.selectOne("organ.organTotal");
+			total = session.selectOne("organ.organTotal", or);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return total;
 	}
 
-	public List<Organ> organAll(int startRow, int endRow, Organ organ) {
+	public List<Organ> organAll(int startRow, int endRow, Organ organ, String xyn) {
 		organ.setStartRow(startRow);
 		organ.setEndRow(endRow);
+		organ.setXyn(xyn);
 		return session.selectList("organ.organAll", organ);
 	}
 	
