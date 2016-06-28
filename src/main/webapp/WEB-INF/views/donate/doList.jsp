@@ -43,6 +43,14 @@ img {
 	-o-transition: all 0.1s ease-in-out;
 	transition: all 0.1s ease-in-out;
 }
+.numm1{
+	font-size: 15px;
+	margin-left: 20px;
+}
+.numm2{
+	font-size: 13px;
+	margin-left: 20px;
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -188,6 +196,8 @@ img {
 			});
 		}
 	})(jQuery, window, document);
+	
+
 </script>
 </head>
 <body>
@@ -208,19 +218,21 @@ img {
 			<div class="row">
 				<section id="pinBoot">
 					<c:forEach var="donate" items="${list}">
+						<c:set var="sumD" value ="${ds.sumDonate(donate.d_no) }"> </c:set>
 						<article class="white-panel">
-							<strong>[ ${donate.category} ]</strong>
-							<img src="image/${donate.d_img}" >
+							<strong>[ ${donate.category} ]</strong> <img
+								src="image/${donate.d_img}">
 							<h5>
 								<a href="doView.do?d_no=${donate.d_no}">${donate.d_title}</a>
 							</h5>
-							<div class="num_area">
-								<p class="target_num">
-									<strong>
-									<fmt:formatNumber value="${donate.d_amount}" groupingUsed="true" /></strong><span>원 목표</span>
+							<div>
+								<p class="numm1">
+									<strong> <fmt:formatNumber value="${donate.d_amount}"
+											groupingUsed="true" /></strong><span>원 목표</span>
 								</p>
-								<p class="status_num">
-									<strong>0</strong><span>원 후원</span>
+								<p class="numm2">
+									<strong><fmt:formatNumber value="${sumD}"
+											groupingUsed="true" /></strong><span>원 후원</span>
 								</p>
 							</div>
 						</article>
@@ -229,5 +241,6 @@ img {
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

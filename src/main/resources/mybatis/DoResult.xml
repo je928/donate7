@@ -28,4 +28,7 @@
 	<insert id="insertDonate" parameterType="DoResult">
 		insert into doResult values (#{d_request},#{d_no},#{d_member},sysdate,#{d_donation})
 	</insert>
+	<select id="sumDonate" resultType="int" parameterType="int">
+		select nvl(sum(d_donation),0) from doResult where d_no=#{d_no}
+	</select>
 </mapper>
