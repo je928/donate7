@@ -22,7 +22,6 @@
 	function o() {
 		location.href="a_organAll.do";	
 	}
-	
 </script>
 </head>
 <body>
@@ -70,13 +69,13 @@
 							<td>${org.o_oname}</td>
 							<td>${org.o_tel}</td>
 							<c:if test="${org.o_ok_xyn eq 'x'}">
-							<td><b class="red">승인 처리중</b></td>
+							<td><span class="ok_x">승인 처리중</span></td>
 							</c:if>
 							<c:if test="${org.o_ok_xyn eq 'y'}">
-							<td><b class="green">승인 완료</b></td>
+							<td><b class="ok_y">승인 완료</b></td>
 							</c:if>
 							<c:if test="${org.o_ok_xyn eq 'n'}">
-							<td><b class="red">승인 거절</b></td>
+							<td><b class="ok_n">승인 거절</b></td>
 							</c:if>
 							<td align="center">
 								<a href="javascript:info(${o_pb.nowPage},${org.o_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
