@@ -75,8 +75,8 @@ public class Product_buyController {
 		model.addAttribute("pg", pg);
 		model.addAttribute("ds", ds);
 		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../product_buy/a_deliveryForm.jsp");
-		model.addAttribute("mypgm", "../../member/admin_page/a_memberAll.jsp");
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product_buy/a_deliveryForm.jsp");
 		return "module/main";
 	}
 

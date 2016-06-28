@@ -3,7 +3,7 @@ create table product_buy(
 	pr_no number,
 	pb_mono number,
 	pb_buyqty number,
-	pb_addr varchar2(100),
+	pb_addr varchar2(500),
 	pb_name varchar2(50),
 	pb_tel varchar2(30),
 	pb_delivery varchar2(100)
