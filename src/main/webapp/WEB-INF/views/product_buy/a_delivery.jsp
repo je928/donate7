@@ -24,7 +24,6 @@
 	margin-left: 29%;
 }
 </style>
-
 </head>
 <body>
 	<div class="container">
@@ -72,7 +71,9 @@
 						</c:if>
 					</div>
 				</form>
-				<button onclick="location.href='m_exit.do'">확인</button>
+				<button onclick="location.href='a_exit.do'">확인</button>
+				<button onclick="location.href='yupdate.do?pb_no=${pb.pb_no}'">배송 중</button>
+				<button onclick="location.href='oupdate.do?pb_no=${pb.pb_no}'">배송 완료</button>
 			</div>
 		</div>
 	</div>

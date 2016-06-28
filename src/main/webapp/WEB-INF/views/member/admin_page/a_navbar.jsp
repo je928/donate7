@@ -12,7 +12,6 @@
 		<a href="a_memberAll.do" class="list-group-item">회원 관리</a>
 		<a href="adList.do" class="list-group-item">기부금 요청내역</a>
 		<a href="ad_prList.do" class="list-group-item">완제품 관리</a>
-		<a href="a_deliveryForm.do" class="list-group-item">배송 관리</a>
 		<a href="adsecondList.do" class="list-group-item">중고기부 관리</a>
 		<a href="registerPro.do" class="list-group-item">신고 처리</a>
 		<a href="giftUpload.do" class="list-group-item">기프티콘 올리기</a>

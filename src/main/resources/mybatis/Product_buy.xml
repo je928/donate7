@@ -33,12 +33,20 @@
 		order by pb_no desc) a) where rn between #{startRow}
 		and #{endRow}
 	</select>
-	<select id="listAll" resultMap="product_buyMap">
-		select * from (select rownum
-		rn,a.* from (select * from product_buy
-		order by pb_no desc) a) where rn between #{startRow} and #{endRow}
+	<select id="listAll" parameterType="java.util.Map" resultMap="product_buyMap">
+		select * from(select rownum as rn, a.* from(select
+		pb.pb_no,pb.pr_no as
+		pr_no,pb.pb_mono,
+		pb.pb_buyqty,pb.pb_addr,pb.pb_name,pb.pb_tel,pb.pb_delivery
+		from
+		product_buy pb inner join product pd on (pd.pr_mno=#{pb_mono}) where
+		pb.pr_no=pd.pr_no
+		order by pb.pb_no desc)a)where rn between #{startRow}
+		and #{endRow}
 	</select>
-
+	<!-- select * from (select rownum rn,a.* from (select pb_no,pr_no,pb_mono,pb_buyqty,pb_addr,pb_name, 
+		pb_tel,pb_delivery from product_buy pb,product pd where pd.pr_mno=#{pr_mono} 
+		order by pb_no desc) a) where rn between #{startRow} and #{endRow} -->
 	<select id="nick" parameterType="Integer" resultType="String">
 		select
 		email from (select m_no as no, m_email as email, m_nick as nick,
@@ -64,11 +72,20 @@
 		select * from product_buy where pb_no=#{pb_no}
 	</select>
 	<update id="update" parameterType="java.util.Map">
-		update product set pr_qty =
+		update product
+		set pr_qty =
 		pr_qty-#{qty} where pr_no=#{pr_no}
 	</update>
 	<select id="delivery" parameterType="int" resultType="String">
 		select
 		pb_delivery from product_buy where pb_no= #{pb_no}
 	</select>
+	<update id="yupdate" parameterType="int">
+		update product_buy set
+		pb_delivery='y' where pb_no=#{pb_no}
+	</update>
+	<update id="yupdate" parameterType="int">
+		update product_buy set
+		pb_delivery='o' where pb_no=#{pb_no}
+	</update>
 </mapper>

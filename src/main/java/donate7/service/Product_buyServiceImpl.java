@@ -19,8 +19,8 @@ public class Product_buyServiceImpl implements Product_buyService {
 		return pd.list(startRow, endRow, pb_mono, pb);
 	}
 	
-	public List<Product_buy> listAll(int startRow, int endRow, Product_buy pb) {
-		return pd.listAll(startRow, endRow,pb);
+	public List<Product_buy> listAll(int startRow, int endRow,Product_buy pb, int pb_mono) {
+		return pd.listAll(startRow, endRow,pb,pb_mono);
 	}
 	
 	public String Nick(int no) {
@@ -54,5 +54,14 @@ public class Product_buyServiceImpl implements Product_buyService {
 	public String delivery(int pb_no) {
 		return pd.delivery(pb_no);
 	}
+
+	public int yupdate(int pb_no) {
+		return pd.yupdate(pb_no);
+	}
+
+	public int oupdate(int pb_no) {
+		return pd.oupdate(pb_no);
+	}
+
 
 }
