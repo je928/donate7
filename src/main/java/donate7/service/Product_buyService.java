@@ -26,5 +26,7 @@ public interface Product_buyService {
 
 	int atotal();
 
+	String delivery(int pb_no);
+
 
 }

@@ -12,7 +12,7 @@
 	}
 	
 	function rqn_next() {
-		location.href="rqnList_next.do";	
+		location.href="rqnList_finish.do";	
 	}
 </script>
 </head>
@@ -54,7 +54,6 @@
 			<c:set var="tot" value="${tot - 1 }"></c:set>
 		</c:forEach>
 	</table>
-	
 	<div style="margin-left: 30%" id="paging">
 		<c:if test="${paging.startPage != 1}">
 			<a href="javascript:locate(1)">&lt;&lt;맨 앞으로</a>

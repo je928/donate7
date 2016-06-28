@@ -21,69 +21,73 @@ public class Product_buyController {
 	Product_buyService ds;
 	@Autowired
 	private Cpoint_InfoService cs;
-	
+
 	@RequestMapping("m_delivery")
-	public String m_deliveryForm(Product_buy pb, Model model, String pageNum,HttpSession session) {
+	public String m_deliveryForm(Product_buy pb, Model model, String pageNum, HttpSession session,String nyo) {
 		int pb_mono = (Integer) session.getAttribute("no");
 		final int rowPerPage = 10;
-		
-		if(pageNum == null || pageNum.equals("")) {
+		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total=ds.mtotal(pb_mono);
-		
+		int total = ds.mtotal(pb_mono);
 		pb.setStartRow(startRow);
 		pb.setEndRow(endRow);
-		
+		if(nyo==null|| nyo.equals("")){
+			nyo="n";
+		}
+		pb.setPb_delivery(nyo);
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
 		List<Product_buy> list = ds.list(startRow, endRow, pb_mono, pb);
-		
-		model.addAttribute("pg",pg);
+		model.addAttribute("nyo",nyo);
+		model.addAttribute("pg", pg);
 		model.addAttribute("list", list);
 		model.addAttribute("ds", ds);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product_buy/m_deliveryForm.jsp");
 		return "module/main";
 	}
-	
+
 	@RequestMapping("a_deliveryForm")
-	public String a_deliveryForm(Model model, Product_buy pb,String pageNum) {
+	public String a_deliveryForm(Model model, Product_buy pb, String pageNum,String nyo) {
 		final int rowPerPage = 10;
-		
-		if(pageNum == null || pageNum.equals("")) {
+
+		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total=ds.atotal();
-		
+		int total = ds.atotal();
+
 		pb.setStartRow(startRow);
 		pb.setEndRow(endRow);
-		
+		if(nyo==null|| nyo.equals("")){
+			nyo="n";
+		}
+		pb.setPb_delivery(nyo);
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
-		
-		List<Product_buy> list = ds.listAll(startRow,endRow,pb);
-		
-		model.addAttribute("pg",pg);
+
+		List<Product_buy> list = ds.listAll(startRow, endRow, pb);
+		model.addAttribute("nyo",nyo);
+		model.addAttribute("pg", pg);
 		model.addAttribute("ds", ds);
 		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../product_buy/a_deliveryForm.jsp");
-		model.addAttribute("mypgm", "../../member/admin_page/a_memberAll.jsp");
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product_buy/a_deliveryForm.jsp");
 		return "module/main";
 	}
 
 	@RequestMapping("delivery")
-	public String delivery(Model model, HttpSession session, int pr_no,String cnt) {
+	public String delivery(Model model, HttpSession session, int pr_no, String cnt) {
 		int no = (Integer) session.getAttribute("no");
 		String NickName = ds.Nick(no);
 		Product price = ds.selectOne(pr_no);
-		int ci=cs.sumCash(no);
-		model.addAttribute("cnt",cnt);
-		model.addAttribute("ci",ci);
+		int ci = cs.sumCash(no);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("ci", ci);
 		model.addAttribute("price", price);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pgm", "../product_buy/deliveryForm.jsp");
@@ -91,14 +95,14 @@ public class Product_buyController {
 	}
 
 	@RequestMapping(value = "deliveryForm", method = RequestMethod.POST)
-	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session, int pr_no,
-			Model model,int cp_point,int hap) {
+	public String deliveryForm(Product_buy pb, String addr1, String addr2, HttpSession session, int pr_no, Model model,
+			int cp_point, int hap) {
 		int no = (Integer) session.getAttribute("no");
-		if(cp_point<hap){
+		if (cp_point < hap) {
 			model.addAttribute("msg", "캐시가 부족합니다");
-			return "forward:delivery.do?pr_no="+pr_no;
+			return "forward:delivery.do?pr_no=" + pr_no;
 		}
-		if(cp_point>=hap){
+		if (cp_point >= hap) {
 			Cpoint_info ci = new Cpoint_info();
 			ci.setCp_point(-hap);
 			ci.setCp_point_re("물품 결제");
@@ -126,6 +130,9 @@ public class Product_buyController {
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
 		int gup = Integer.parseInt(pr.getPr_price());
+		String delivery = ds.delivery(pb_no);
+		System.out.println(delivery);
+		model.addAttribute("delivery", delivery);
 		model.addAttribute("gup", gup);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
@@ -142,4 +149,5 @@ public class Product_buyController {
 		else
 			return "redirect:m_delivery.do";
 	}
+
 }

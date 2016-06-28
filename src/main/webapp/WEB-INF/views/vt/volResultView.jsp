@@ -25,46 +25,42 @@ span {
 </style>
 </head>
 <body>
+
 	<div class="container">
-		<div class="col-md-offset-14"
-			style="margin-left: 0; margin-top: 0; margin-right: 0;">
-		<table class="table table-striped table-hover" style="width: 80%">
-			
-		</table>	
-		<table class="table table-striped table-hover" style="width: 80%">
-		<tr>
-			<th>이름</th>
-			<th>이메일</th>
-			<th>닉네임</th>
-			<th>생년월일</th>
-			<th>성별</th>
-			<th>전화번호</th>
-			<th>직업</th>
-			<th>봉사시간</th>
-		</tr>
-		<c:forEach var="member" items="${list}">
+		<div class="col-md-offset-14" style="margin-left: 0; margin-top: 0; margin-right: 0;">
+			<table class="table table-striped table-hover" style="width: 80%">
 			<tr>
-				<td>${member.m_name}</td>
-				<td>${member.m_email }</td>
-				<td>${member.m_nick }</td>
-				<td>${member.m_birth }</td>
-				<td>${member.m_gender }</td>
-				<td>${member.m_tel }</td>
-				<td>${member.m_job }</td>
-				<td>
-				
-				<c:if test="${member.vt_time == 0}">
-					<font style="color: red">불참</font>
-				</c:if>
-				<c:if test="${member.vt_time > 0}">
-					${member.vt_time}
-				</c:if>
-				</td>
+				<th>이름</th>
+				<th>이메일</th>
+				<th>닉네임</th>
+				<th>생년월일</th>
+				<th>성별</th>
+				<th>전화번호</th>
+				<th>직업</th>
+				<th>봉사시간</th>
 			</tr>
-		</c:forEach>
-		</table>
-		
+			<c:forEach var="member" items="${list}">
+				<tr>
+					<td>${member.m_name}</td>
+					<td>${member.m_email }</td>
+					<td>${member.m_nick }</td>
+					<td>${member.m_birth }</td>
+					<td>${member.m_gender }</td>
+					<td>${member.m_tel }</td>
+					<td>${member.m_job }</td>
+					<td>
+					<c:if test="${member.vt_time == 0}">
+						<font style="color: red">불참</font>
+					</c:if>
+					<c:if test="${member.vt_time > 0}">
+						${member.vt_time}
+					</c:if>
+					</td>
+				</tr>
+			</c:forEach>
+			</table>
 		</div>
 	</div>
+	
 </body>
 </html>

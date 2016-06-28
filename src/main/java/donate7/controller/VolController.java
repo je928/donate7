@@ -238,10 +238,9 @@ public class VolController {
 		for(int i = 0; i < cList.size(); i++){
 			cis.insert(cList.get(i));
 		}
-		
-		
 		return "redirect:volResultView.do?vt_no="+vt_no;
 	}
+	
 	@RequestMapping("volResultView")
 	public String volResultView(int vt_no, Model model){
 		List<VolResult> list = vs.selectVolResult(vt_no);
@@ -250,7 +249,6 @@ public class VolController {
 		model.addAttribute("mypgm", "../../vt/volResultView.jsp");
 		return "module/main";
 	}
-	
 	
 	@RequestMapping("volResultList")
 	public String volResultList(int vt_no, Model model){
@@ -280,7 +278,8 @@ public class VolController {
 	public String centerList(Model model) {
 		List<Organ> list = ms.selectAll();
 		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../vt/centerList.jsp");
+		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/centerList.jsp");
 		return "module/main";
 	}
 
@@ -288,7 +287,8 @@ public class VolController {
 	public String centerView(int o_no, Model model) {
 		Organ organ = ms.selectByO_no(o_no);
 		model.addAttribute("organ", organ);
-		model.addAttribute("pgm", "../vt/centerView.jsp");
+		model.addAttribute("pgm", "../vt/vSearch/vol_tamp.jsp");
+		model.addAttribute("mypgm", "../../vt/centerView.jsp");
 		return "module/main";
 	}
 
@@ -365,6 +365,7 @@ public class VolController {
 		model.addAttribute("mypgm", "../../calendar/View.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping("rqn")
 	public String rqn(Rqn rqn, Model model) {
 		int result = vs.insertRqn(rqn);
@@ -432,6 +433,7 @@ public class VolController {
 			return "redirect:login.do";
 		}
 	}
+	
 	@RequestMapping("rqnDelete")
 	public String rqnDelte(Rqn rqn, Model model) {
 		int result = vs.deledteRqn(rqn);

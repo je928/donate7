@@ -71,4 +71,10 @@ public class Product_buyDaoImpl implements Product_buyDao {
 		return session.selectOne("product_buy.atotal");
 	}
 
+	public String delivery(int pb_no) {
+		System.out.println(pb_no);
+		String result=session.selectOne("product_buy.delivery",pb_no);
+		return result;
+	}
+
 }

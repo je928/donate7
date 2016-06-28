@@ -26,12 +26,11 @@
 </head>
 <body>
 
-	<div class="text-right list-group2">
-	<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
-	<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
-	</div>
-
 	<div class="col-md-12">
+		<div class="text-left list-group2">
+			<input type="button" id="m" name="m" class="btn btn-default2" onclick="m()" value="일반">
+			<input type="button" id="o" name="o" class="btn btn-default2" onclick="o()" value="기관">
+		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">
 				<div class="row">

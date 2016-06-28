@@ -59,6 +59,17 @@
 					<div class="form-group"><!--주소  -->
 						 주소 : ${pb.pb_addr }
 					</div>
+					<div>
+						<c:if test="${delivery =='n'}">
+							배송상태 : 배송준비중
+						</c:if>
+						<c:if test="${delivery =='y'}" >
+							배송상태 : 배송중
+						</c:if>
+						<c:if test="${delivery =='o'}">
+							배송상태 : 배송완료
+						</c:if>
+					</div>
 				</form>
 				<button onclick="location.href='exit.do'">확인</button>
 			</div>
