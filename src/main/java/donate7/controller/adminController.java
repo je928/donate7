@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Member;
 import donate7.model.Organ;
+import donate7.model.Register;
 import donate7.model.Warning;
 import donate7.service.CommunityPagingBean;
 import donate7.service.Cpoint_InfoService;
@@ -84,27 +85,32 @@ public class adminController {
 	}
 	
 	@RequestMapping(value = "a_organAll")
-	public String a_organAll(Organ organ, String pageNum, Model model) {
+	public String a_organAll(Organ organ, String pageNum, String xyn, Model model) {
 		final int rowPerPage = 10;
 		
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
+		if(xyn == null || xyn.equals("")){
+			xyn = "all";
+		}
 		
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = ms.organTotal();
+		Organ or = new Organ();
+		or.setXyn(xyn);
+		int total = ms.organTotal(or);
 		
 		organ.setStartRow(startRow);
 		organ.setEndRow(endRow);
 		
 		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
 		
-		List<Organ> organAll = ms.organAll(startRow, endRow, organ);
+		List<Organ> organAll = ms.organAll(startRow, endRow, organ, xyn);
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
-		
+		model.addAttribute("xyn", xyn);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/admin_page/a_organAll.jsp");
 		return "module/main";

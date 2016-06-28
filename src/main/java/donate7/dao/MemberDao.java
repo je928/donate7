@@ -26,8 +26,8 @@ public interface MemberDao {
 	int deleteOrgan(int o_no);
 	int memberTotal();
 	List<Member> memberAll(int startRow, int endRow, Member member);
-	int organTotal();
-	List<Organ> organAll(int startRow, int endRow, Organ organ);
+	int organTotal(Organ or);
+	List<Organ> organAll(int startRow, int endRow, Organ organ, String xyn);
 	List<Organ> selectAll();
 	String selectO_addrByO_no(int o_no);
 	Organ selectByO_no(int o_no);

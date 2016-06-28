@@ -28,10 +28,9 @@ public class Organ {
 	// 조회용
 	private int startRow;
 	private int endRow;
-
-	public int getO_no() {
-		return o_no;
-	}
+	
+	// 검색용
+	private String xyn;
 
 	public void setO_no(int o_no) {
 		this.o_no = o_no;
@@ -211,6 +210,18 @@ public class Organ {
 
 	public void setEndRow(int endRow) {
 		this.endRow = endRow;
+	}
+	
+	public String getXyn() {
+		return xyn;
+	}
+
+	public void setXyn(String xyn) {
+		this.xyn = xyn;
+	}
+
+	public int getO_no() {
+		return o_no;
 	}
 	
 /*
