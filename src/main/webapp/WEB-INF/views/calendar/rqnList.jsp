@@ -12,7 +12,7 @@
 	}
 	
 	function rqn_next() {
-		location.href="rqnList_next.do";	
+		location.href="rqnList_finish.do";	
 	}
 </script>
 </head>

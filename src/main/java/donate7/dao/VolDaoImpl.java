@@ -133,4 +133,10 @@ public class VolDaoImpl implements VolDao {
 	public List<VolResult> selectVolResult(int vt_no) {
 		return session.selectList("volResult.selectVolResult",vt_no);
 	}
+
+	@Override
+	public List<Recruit> selectRcListfinish(Recruit rc) {
+		List<Recruit> list = session.selectList("recruit.selectRqnListfinish", rc);
+		return list;
+	}
 }

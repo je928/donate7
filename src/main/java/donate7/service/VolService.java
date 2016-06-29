@@ -33,4 +33,5 @@ public interface VolService {
 	int selectNewVolNo();
 	int resultChk(int vt_no);
 	List<VolResult> selectVolResult(int vt_no);
+	List<Recruit> selectRqnListfinish(Recruit rc);
 }

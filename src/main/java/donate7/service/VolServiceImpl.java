@@ -130,4 +130,9 @@ public class VolServiceImpl implements VolService {
 		return vd.selectVolResult(vt_no);
 	}
 
+	@Override
+	public List<Recruit> selectRqnListfinish(Recruit rc) {
+		return vd.selectRcListfinish(rc);
+	}
+
 }
