@@ -23,7 +23,7 @@ public class Product_buyController {
 	private Cpoint_InfoService cs;
 
 	@RequestMapping("m_delivery")
-	public String m_deliveryForm(Product_buy pb, Model model, String pageNum, HttpSession session,String nyo) {
+	public String m_deliveryForm(Product_buy pb, Model model, String pageNum, HttpSession session) {
 		int pb_mono = (Integer) session.getAttribute("no");
 		final int rowPerPage = 10;
 		if (pageNum == null || pageNum.equals("")) {
@@ -35,13 +35,8 @@ public class Product_buyController {
 		int total = ds.mtotal(pb_mono);
 		pb.setStartRow(startRow);
 		pb.setEndRow(endRow);
-		if(nyo==null|| nyo.equals("")){
-			nyo="n";
-		}
-		pb.setPb_delivery(nyo);
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
 		List<Product_buy> list = ds.list(startRow, endRow, pb_mono, pb);
-		model.addAttribute("nyo",nyo);
 		model.addAttribute("pg", pg);
 		model.addAttribute("list", list);
 		model.addAttribute("ds", ds);
@@ -51,9 +46,9 @@ public class Product_buyController {
 	}
 
 	@RequestMapping("a_deliveryForm")
-	public String a_deliveryForm(Model model, Product_buy pb, String pageNum,String nyo) {
+	public String a_deliveryForm(Model model, Product_buy pb, String pageNum,String nyo,HttpSession session,Product pd) {
 		final int rowPerPage = 10;
-
+		int pb_mono=(Integer) session.getAttribute("no");
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
@@ -61,7 +56,6 @@ public class Product_buyController {
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int total = ds.atotal();
-
 		pb.setStartRow(startRow);
 		pb.setEndRow(endRow);
 		if(nyo==null|| nyo.equals("")){
@@ -70,12 +64,12 @@ public class Product_buyController {
 		pb.setPb_delivery(nyo);
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
 
-		List<Product_buy> list = ds.listAll(startRow, endRow, pb);
+		List<Product_buy> list = ds.listAll(startRow,endRow,pb , pb_mono);
 		model.addAttribute("nyo",nyo);
 		model.addAttribute("pg", pg);
 		model.addAttribute("ds", ds);
 		model.addAttribute("list", list);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product_buy/a_deliveryForm.jsp");
 		return "module/main";
 	}
@@ -125,13 +119,12 @@ public class Product_buyController {
 	}
 
 	@RequestMapping("am_delivery")
-	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
+	public String am_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
 		Product_buy pb = ds.select(pb_no);
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
 		int gup = Integer.parseInt(pr.getPr_price());
-		String delivery = ds.delivery(pb_no);
-		System.out.println(delivery);
+		String delivery = ds.delivery(pr_no);
 		model.addAttribute("delivery", delivery);
 		model.addAttribute("gup", gup);
 		model.addAttribute("nick", NickName);
@@ -140,14 +133,39 @@ public class Product_buyController {
 		model.addAttribute("pgm", "../product_buy/delivery.jsp");
 		return "module/main";
 	}
-
-	@RequestMapping("exit")
-	public String exit(Model model, HttpSession session) {
-		int num = (Integer) session.getAttribute("no");
-		if (num == 1)
-			return "redirect:a_deliveryForm.do";
-		else
-			return "redirect:m_delivery.do";
+	@RequestMapping("a_delivery")
+	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
+		Product_buy pb = ds.select(pb_no);
+		Product pr = ds.selectOne(pr_no);
+		String NickName = ds.Nick(pb_mono);
+		int gup = Integer.parseInt(pr.getPr_price());
+		String delivery = ds.delivery(pr_no);
+		System.out.println(delivery);
+		model.addAttribute("delivery", delivery);
+		model.addAttribute("gup", gup);
+		model.addAttribute("nick", NickName);
+		model.addAttribute("pb", pb);
+		model.addAttribute("price", pr);
+		model.addAttribute("pgm", "../product_buy/a_delivery.jsp");
+		return "module/main";
 	}
 
+	@RequestMapping("a_exit")
+	public String exit(Model model, HttpSession session) {
+			return "redirect:a_deliveryForm.do";
+	}
+	@RequestMapping("m_exit")
+	public String exit2(Model model, HttpSession session) {
+			return "redirect:m_delivery.do";
+	}
+	@RequestMapping("yupdate")
+	public String yupdate(int pb_no){
+		int update=ds.yupdate(pb_no);
+		return "redirect:a_deliveryForm.do";
+	}
+	@RequestMapping("oupdate")
+	public String oupdate(int pb_no){
+		int update=ds.oupdate(pb_no);
+		return "redirect:a_deliveryForm.do";
+	}
 }

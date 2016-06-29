@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
-<%@ include file="../session/adminChk.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +8,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function locate(pageNum) {
-		location.href = "a_deliveryForm.do?pageNum=" + pageNum;
+		var yo='${nyo}';
+		location.href = "a_deliveryForm.do?pageNum=" + pageNum + "&nyo="+yo;
 	}
 </script>
 <style type="text/css">
@@ -67,16 +67,16 @@ table {
 								<td>${li.pb_buyqty }</td>
 								<td class="ts">${li.pb_addr }</td>
 								<c:if test="${li.pb_delivery =='n'}">
-									<td>배송준비중</td>
+									<td>배송 대기</td>
 								</c:if>
 								<c:if test="${li.pb_delivery =='y'}">
-									<td>배송중</td>
+									<td>배송 중</td>
 								</c:if>
 								<c:if test="${li.pb_delivery =='o'}">
-									<td>배송완료</td>
+									<td>배송 완료</td>
 								</c:if>
 								<td><a
-									href="am_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
+									href="a_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
 							</tr>
 						</c:if>
 					</c:forEach>
