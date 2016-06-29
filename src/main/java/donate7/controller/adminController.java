@@ -107,7 +107,7 @@ public class adminController {
 		
 		CommunityPagingBean o_pb = new CommunityPagingBean(nowPage, total);
 		
-		List<Organ> organAll = ms.organAll(startRow, endRow, organ, xyn);
+		List<Organ> organAll = ms.organAll(organ, xyn);
 		model.addAttribute("organAll", organAll);
 		model.addAttribute("o_pb", o_pb);
 		model.addAttribute("xyn", xyn);

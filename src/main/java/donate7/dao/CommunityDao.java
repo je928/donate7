@@ -6,7 +6,7 @@ import donate7.model.CommunityReply;
 
 public interface CommunityDao {
 
-	List<Community> list(int startRow, int endRow, String searchType, String searchTxt, Community community);
+	List<Community> list(Community community);
 	int getTotal(String searchType, String searchTxt, Community community);
 	void communityHit(int brd_no);
 	Community communitySelect(int brd_no);

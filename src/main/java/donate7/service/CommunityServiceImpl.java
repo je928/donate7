@@ -15,8 +15,8 @@ public class CommunityServiceImpl implements CommunityService {
 	@Autowired
 	private CommunityDao cd;
 	
-	public List<Community> list(int startRow, int endRow, String searchType, String searchTxt, Community community) {
-		return cd.list(startRow, endRow, searchType, searchTxt, community);
+	public List<Community> list(Community community) {
+		return cd.list(community);
 	}
 
 	public int getTotal(String searchType, String searchTxt, Community community) {

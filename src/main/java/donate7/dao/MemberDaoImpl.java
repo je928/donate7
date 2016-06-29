@@ -258,9 +258,7 @@ public class MemberDaoImpl implements MemberDao {
 		return total;
 	}
 
-	public List<Organ> organAll(int startRow, int endRow, Organ organ, String xyn) {
-		organ.setStartRow(startRow);
-		organ.setEndRow(endRow);
+	public List<Organ> organAll(Organ organ, String xyn) {
 		organ.setXyn(xyn);
 		return session.selectList("organ.organAll", organ);
 	}

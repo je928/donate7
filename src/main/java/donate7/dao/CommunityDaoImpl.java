@@ -15,11 +15,7 @@ public class CommunityDaoImpl implements CommunityDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	public List<Community> list(int startRow, int endRow, String searchType, String searchTxt, Community community) {
-		community.setStartRow(startRow);
-		community.setEndRow(endRow);
-		community.setSearchType(searchType);
-		community.setSearchTxt(searchTxt);
+	public List<Community> list(Community community) {
 		return session.selectList("community.communityList", community);
 	}	
 

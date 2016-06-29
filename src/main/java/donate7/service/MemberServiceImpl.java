@@ -99,8 +99,8 @@ public class MemberServiceImpl implements MemberService {
 		return md.organTotal(or);
 	}
 
-	public List<Organ> organAll(int startRow, int endRow, Organ organ, String xyn) {
-		return md.organAll(startRow, endRow, organ, xyn);
+	public List<Organ> organAll(Organ organ, String xyn) {
+		return md.organAll(organ, xyn);
 	}
 	
 	public String selectO_addrByO_no(int o_no) {
