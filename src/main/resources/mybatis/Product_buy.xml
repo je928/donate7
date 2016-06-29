@@ -84,7 +84,7 @@
 		update product_buy set
 		pb_delivery='y' where pb_no=#{pb_no}
 	</update>
-	<update id="yupdate" parameterType="int">
+	<update id="oupdate" parameterType="int">
 		update product_buy set
 		pb_delivery='o' where pb_no=#{pb_no}
 	</update>
