@@ -75,11 +75,6 @@ public class Product_buyDaoImpl implements Product_buyDao {
 		return session.selectOne("product_buy.atotal");
 	}
 
-	public String delivery(int pb_no) {
-		String result=session.selectOne("product_buy.delivery",pb_no);
-		return result;
-	}
-
 	public int yupdate(int pb_no) {
 		return session.update("product_buy.yupdate",pb_no);
 	}
