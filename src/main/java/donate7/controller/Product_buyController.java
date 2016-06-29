@@ -119,13 +119,12 @@ public class Product_buyController {
 	}
 
 	@RequestMapping("am_delivery")
-	public String am_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
+	public String am_delivery(Model model, int pb_no, int pr_no, int pb_mono,String pb_delivery) {
 		Product_buy pb = ds.select(pb_no);
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
 		int gup = Integer.parseInt(pr.getPr_price());
-		String delivery = ds.delivery(pr_no);
-		model.addAttribute("delivery", delivery);
+		model.addAttribute("delivery", pb_delivery);
 		model.addAttribute("gup", gup);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
@@ -134,14 +133,12 @@ public class Product_buyController {
 		return "module/main";
 	}
 	@RequestMapping("a_delivery")
-	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono) {
+	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono,String pb_delivery) {
 		Product_buy pb = ds.select(pb_no);
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
 		int gup = Integer.parseInt(pr.getPr_price());
-		String delivery = ds.delivery(pr_no);
-		System.out.println(delivery);
-		model.addAttribute("delivery", delivery);
+		model.addAttribute("delivery",pb_delivery);
 		model.addAttribute("gup", gup);
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);

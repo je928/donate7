@@ -26,8 +26,6 @@ public interface Product_buyDao {
 
 	int atotal();
 
-	String delivery(int pb_no);
-
 	int yupdate(int pb_no);
 
 	int oupdate(int pb_no);

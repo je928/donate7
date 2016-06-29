@@ -24,7 +24,6 @@
 	margin-left: 29%;
 }
 </style>
-
 </head>
 <body>
 	<div class="container">

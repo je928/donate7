@@ -76,7 +76,7 @@ table {
 									<td>배송 완료</td>
 								</c:if>
 								<td><a
-									href="a_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}">자세히보기</a></td>
+									href="a_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}&pb_delivery=${li.pb_delivery}">자세히보기</a></td>
 							</tr>
 						</c:if>
 					</c:forEach>
