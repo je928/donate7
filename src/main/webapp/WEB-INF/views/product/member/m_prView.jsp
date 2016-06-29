@@ -25,7 +25,10 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td>${product.pr_item}</td>
+				<td><c:if test = "${product.pr_item eq 'f'}">Fashion</c:if>
+					<c:if test = "${product.pr_item eq 'd'}">Design</c:if>
+					<c:if test = "${product.pr_item eq 'p'}">Phone Case</c:if>
+				</td>
 			</tr>
 			<tr>
 				<th>기부처</th>

@@ -59,12 +59,12 @@
 				<th>종류</th>
 				<td>
 				
-					<input type="radio" name="pr_item" required="required" value="Fashion"
-						<c:if test="${product.pr_item eq 'Fashion' }" >checked</c:if> >Fashion &nbsp;
-					<input type="radio" name="pr_item" required="required" value="Design"
-						<c:if test="${product.pr_item eq 'Design' }" >checked</c:if> >Design &nbsp;
-					<input type="radio" name="pr_item" required="required" value="Smart Phone"
-						<c:if test="${product.pr_item eq 'Phone Case' }" >checked</c:if> >Phone Case &nbsp;
+					<input type="radio" name="pr_item" required="required" value="f"
+						<c:if test="${product.pr_item eq 'f' }" >checked</c:if> >Fashion &nbsp;
+					<input type="radio" name="pr_item" required="required" value="d"
+						<c:if test="${product.pr_item eq 'd' }" >checked</c:if> >Design &nbsp;
+					<input type="radio" name="pr_item" required="required" value="p"
+						<c:if test="${product.pr_item eq 'p' }" >checked</c:if> >Phone Case &nbsp;
 					
 					
 				</td>

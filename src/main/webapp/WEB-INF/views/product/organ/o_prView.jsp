@@ -25,7 +25,10 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td>${product.pr_item}</td>
+				<td><c:if test = "${product.pr_item eq 'f'}">Fashion</c:if>
+					<c:if test = "${product.pr_item eq 'd'}">Design</c:if>
+					<c:if test = "${product.pr_item eq 'p'}">Phone Case</c:if>
+				</td>
 			</tr>
 			<tr>
 				<th>기부처</th>
@@ -49,8 +52,8 @@
 		</table>
 		<div align="center" >
 			<c:if test="${product.pr_approve eq 'n'}">
-				<button onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
-				<button onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
+				<button onclick="location.href='o_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
+				<button onclick="location.href='o_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
 			</c:if>
 	
 			<button onclick="location.href='m_prList.do'">확인</button>

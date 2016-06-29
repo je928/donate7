@@ -78,13 +78,13 @@
 	<update id="apCancel" parameterType="int">
 		update product set pr_approve='n' where pr_no=#{pr_no}
 	</update>
-	<select id="apTotal" resultType="int" parameterType="product">
+<!-- 	<select id="apTotal" resultType="int" parameterType="product">
 		select nvl(count(*),0) from product where pr_approve='y'
 		<if test="pr_item != 'All'">
 			and pr_item = #{pr_item}
 		</if>
 		order by pr_date desc
-	</select>
+	</select> -->
 
 	<select id="getTotal" parameterType="product" resultType="int">
 		select count(*) from product
@@ -146,5 +146,41 @@
 		(select * from product p, (select o_no, o_email from organ) o where p.pr_mno=o.o_no and pr_mno<![CDATA[<]]>0 
 		and pr_approve ='y' order by pr_date desc) o)
 		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<select id="goTotal" parameterType="product" resultType="Integer">
+		<!-- select nvl(count(*),0) from product where pr_approve='y' -->
+		
+		select count(*) from product where pr_approve='y'
+				
+		<if test='fdp != "all"'>
+			<if test='fdp == "f"'>
+				and pr_item='f'
+			</if>
+			<if test='fdp == "d"'>
+				and pr_item='d'
+			</if>
+			<if test='fdp == "p"'>
+				and pr_item='p'
+			</if>
+			
+		</if>
+		
+	</select>
+
+	<select id="golist" parameterType="product" resultMap="ProductResult">
+		select * from (select rownum rn, a.* from (select o.* from product o where pr_approve='y'
+		<if test='fdp != "all"'>
+			<if test='fdp == "f"'>
+				and pr_item='f'
+			</if>
+			<if test='fdp == "d"'>
+				and pr_item='d'
+			</if>
+			<if test='fdp == "p"'>
+				and pr_item='p'
+			</if>
+		</if> 
+		order by pr_date) a) where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

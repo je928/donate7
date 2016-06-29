@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@include file="../../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="goods">
-	<input type="hidden" name="pr_mno" value="${sessionScope.no}">
+	<form action="goods">
+		<input type="hidden" name="pr_mno" value="${sessionScope.no}">
 		<table class="table table-striped table-hover">
 			<caption>판매요청</caption>
 			<tr>
@@ -34,9 +34,8 @@
 			</tr>
 			<tr>
 				<th>사진</th>
-				<td align="center">
-					<img src="image/${product.pr_img}" width="300px">
-				</td>
+				<td align="center"><img src="image/${product.pr_img}"
+					width="300px"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
@@ -48,19 +47,28 @@
 			</tr>
 			<tr>
 				<th>승인여부</th>
-				<td>${product.pr_approve}</td>
+				<td><c:if test="${product.pr_approve eq 'y'}">
+						<span class="label label-success">승인완료</span>
+					</c:if> 
+					<c:if test="${product.pr_approve eq 'n'}">
+						<span class="label label-warning">승인대기</span>
+					</c:if>
+				</td>
 			</tr>
 		</table>
 	</form>
-		<div align="center">
-		
+	<div align="center">
+		<c:if test="${product.pr_approve eq 'n'}">
 			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}'">승인</button>
+		</c:if>
+		<c:if test="${product.pr_approve eq 'y'}">
 			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}'">승인취소</button>
-			<button onclick="location.href='ad_prList.do'">리스트</button>
-			
+		</c:if>
+		<button onclick="location.href='ad_prList.do'">리스트</button>
 
-			
-		</div>
+
+
+	</div>
 
 </body>
 </html>

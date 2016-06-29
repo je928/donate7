@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Product;
+import donate7.model.Product_buy;
+import donate7.service.CommunityPagingBean;
 import donate7.service.ProductService;
 import donate7.util.Paging;
 
@@ -31,13 +33,13 @@ public class ProductController {
 		return "redirect:ad_prView.do?pr_no="+pr_no;
 	}
 	 
-	@RequestMapping(value="goods", method=RequestMethod.GET)
+/*	@RequestMapping(value="goods", method=RequestMethod.GET)
 	public String goods(Model model){
 		model.addAttribute("pgm", "../product/goods.jsp");
 		return "module/main";
 	}
-	
-	@RequestMapping("goodList")
+	*/
+	/*@RequestMapping("goodList")
 	public String goodList(Product product,String pageNum,Model model){
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
@@ -54,7 +56,7 @@ public class ProductController {
 		model.addAttribute("pr_item",product.getPr_item());
 		model.addAttribute("pg", pg);
 		return "product/goodList";
-	}
+	}*/
 	
 	
 	/*@RequestMapping(value="ad_prList", method=RequestMethod.GET)
@@ -85,4 +87,30 @@ public class ProductController {
 		model.addAttribute("pgm", "../product/go_view.jsp");
 		return "module/main";
 	}
+	
+	@RequestMapping("goods")
+	public String a_deliveryForm(Model model, Product product, String pageNum, String fdp) {
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		if(fdp==null|| fdp.equals("")){
+			fdp="all";
+		}
+		int nowPage = Integer.parseInt(pageNum);
+		Product pr = new Product();	
+		pr.setFdp(fdp);
+		int total = ps.goTotal(pr);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> golist = ps.golist(product, fdp);
+		
+		model.addAttribute("golist", golist);
+		model.addAttribute("pg", pg);
+		model.addAttribute("fdp", fdp);
+		model.addAttribute("pgm", "../product/goods.jsp");
+		
+		return "module/main";
+	}
+
 }

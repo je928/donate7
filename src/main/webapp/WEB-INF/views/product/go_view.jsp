@@ -7,9 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.page-header {
-	text-align: center;
-}
 
 /*social buttons*/
 .btn-social {
@@ -214,11 +211,26 @@
 
 	<input type="hidden" name="pr_mno" value="${sessionScope.no}">
 	<div class="container">
-		<div class="resume">
-			<header class="page-header">
-				<h1 class="page-title">${product.pr_proname }</h1>
-			</header>
+		 <div class="resume">
 			<div class="row">
+			<div class="col-lg-12 col-md-offset-17">
+				<h3 class="page-header">
+					Market  
+					<%-- <small>
+						<c:if test = "${product.pr_item eq 'f'}">Fashion</c:if>
+						<c:if test = "${product.pr_item eq 'd'}">Design</c:if>
+						<c:if test = "${product.pr_item eq 'p'}">Phone Case</c:if>
+					</small> --%>
+				</h3>
+				<ol class="breadcrumb">
+					<li><a href="goods.do">Market</a></li>
+					<li class="active">						
+						<c:if test = "${product.pr_item eq 'f'}">Fashion</c:if>
+						<c:if test = "${product.pr_item eq 'd'}">Design</c:if>
+						<c:if test = "${product.pr_item eq 'p'}">Phone Case</c:if>
+					</li>
+				</ol>
+			</div>
 				<div
 					class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
 					<div class="panel panel-default">
@@ -274,6 +286,6 @@
 
 		</div>
 
-	</div>
+	</div> 
 </body>
 </html>

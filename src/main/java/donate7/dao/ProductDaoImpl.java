@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import donate7.model.Organ;
 import donate7.model.Product;
 @Repository
 public class ProductDaoImpl implements ProductDao{
@@ -76,9 +77,7 @@ public class ProductDaoImpl implements ProductDao{
 	}
 
 	public List<Product> aplist(Product pd) {
-		System.out.println("pr_item : " + pd.getPr_item());
 		List<Product> list = st.selectList("product.aplist", pd);
-		System.out.println("size : " + list.size());
 		return list;
 	}
 
@@ -153,10 +152,25 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.orAlist",product);
 	}
 
-	@Override
+	
 	public int apTotal(Product product) {
 		int result = st.selectOne("product.apTotal",product);
-		System.out.println("result : " + result);
 		return result;
 	}
+	
+	public int goTotal(Product pr) {
+		int total = 0;
+		try {
+			total = st.selectOne("product.goTotal", pr);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<Product> golist(Product product, String fdp) {
+		product.setFdp(fdp);
+		return st.selectList("product.golist", product);
+	}
+
 }

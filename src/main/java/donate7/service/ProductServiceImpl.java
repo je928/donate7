@@ -137,9 +137,18 @@ public class ProductServiceImpl implements ProductService {
 		return pd.orAlist(product);
 	}
 
-	@Override
 	public int apTotal(Product product) {
-		return this.pd.apTotal(product);
+		return pd.apTotal(product);
+	}
+
+	public int goTotal(Product pr) {
+		
+		return pd.goTotal(pr);
+	}
+
+	public List<Product> golist(Product product, String fdp) {
+	
+		return pd.golist(product, fdp);
 	}
 
 }

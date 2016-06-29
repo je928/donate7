@@ -29,6 +29,14 @@ public class Product {
 	private int startRow;
 	private int endRow;
 	
+	private String fdp;
+	
+	public String getFdp() {
+		return fdp;
+	}
+	public void setFdp(String fdp) {
+		this.fdp = fdp;
+	}
 	public int getStartRow() {
 		return startRow;
 	}

@@ -14,19 +14,19 @@
 	}
 }
 </style>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 function locate(pageNum){
-	location.href="goodList.do?pageNum="+pageNum;
+	location.href="goods.do?pageNum="+pageNum;
 }
-</script> -->
+</script>
 </head>
 <body>
 	<div class="row pt-md">
 	<c:forEach var="product" items="${list}">
 		<div class="col-lg-3-1 col-md-2 col-sm-2 col-xs-12 profile">
 
-			<a href="go_view.do?pr_no=${product.pr_no}"> <img
-				src="image/${product.pr_img}" class="img-responsive" class="img-box">
+			<a href="go_view.do?pr_no=${product.pr_no}"> 
+				<img src="image/${product.pr_img}" class="img-responsive" class="img-box">
 			</a>
 
 			<h1>
@@ -37,7 +37,66 @@ function locate(pageNum){
 		</div>
 	</c:forEach>
 	</div>
-	<div class="panel-footer2 text-center" id="pg">
+ 	
+				<div class="panel-footer2 text-center">
+				<div class="row">
+					<div class="col">
+						<ul class="pagination">
+							<c:if test="${pg.startPage > pg.pagePerBlock}">
+								<li><a href="javascript:locate(1)">««</a></li>
+								<li><a href="javascript:locate(${pg.nowPage-1})">«</a></li>
+							</c:if>
+						</ul>
+						<ul class="pagination">
+							<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+								<c:if test="${i eq pg.nowPage}">
+									<li><a href="#"><b class="b2">${i}</b></a></li>
+								</c:if>
+								<c:if test="${i ne pg.nowPage}">
+									<li><a href="javascript:locate(${i})">${i}</a></li>
+								</c:if>
+							</c:forEach>
+						</ul>
+						<ul class="pagination">
+							<c:if test="${pg.totalPage > pg.endPage}">
+								<li><a
+									href="javascript:locate(${pg.startPage+pg.pagePerBlock})">»</a></li>
+								<li><a href="javascript:locate(${pg.totalPage})">»»</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+			</div>
+	
+<%-- 	
+	
+	 <div class="panel-footer2 text-center" id="pg">
+	
+		<c:if test="${pg.startPage != 1}">
+			<a href="javascript:list(1)">&lt;&lt;맨 앞으로</a>
+		</c:if>
+		<c:if test="${pg.startPage > pg.pagePerBlock}">
+			<a href="javascript:list(${startPage-pagePerBlock})">&lt;이전</a>
+		</c:if>
+		<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+			<c:if test="${i != pg.nowPage}">
+				<a href="javascript:list(${i})">${i}</a>
+			</c:if>
+			<c:if test="${i == pg.nowPage}">
+				<b class="b">${i}</b>
+			</c:if>
+		</c:forEach>
+		<c:if test="${pg.totalPage > pg.endPage}">
+			<a href="javascript:list(${pg.startPage+pg.pagePerBlock})">다음&gt;</a>
+		</c:if>
+		<c:if test="${pg.endPage != pg.totalPage}">
+			<a href="javascript:list(${pg.totalPage})">맨 뒤로&gt;&gt;</a>
+		</c:if>
+	</div> --%>
+	
+	
+	
+<%-- 	<div class="panel-footer2 text-center" id="pg">
 		<div class="row">
 			<div class="col">
 				<ul class="pagination">
@@ -69,7 +128,7 @@ function locate(pageNum){
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	
 	
 	<%-- <div class="panel-footer2 text-center">

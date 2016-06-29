@@ -59,6 +59,10 @@ public interface ProductDao {
 
 	int apTotal(Product product);
 
+	int goTotal(Product pr);
+
+	List<Product> golist(Product product, String fdp);
+
 
 
 }

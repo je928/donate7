@@ -46,9 +46,9 @@
 			</tr>
 			<tr>
 				<th>종류</th>
-				<td><input type="radio" name="pr_item" required="required" value="Fashion">Fashion &nbsp;
-					<input type="radio" name="pr_item" required="required" value="Design">Design	&nbsp;
-					<input type="radio" name="pr_item" required="required" value="Phone Case" >Phone Case &nbsp;
+				<td><input type="radio" name="pr_item" required="required" value="f">Fashion &nbsp;
+					<input type="radio" name="pr_item" required="required" value="d">Design	&nbsp;
+					<input type="radio" name="pr_item" required="required" value="p" >Phone Case &nbsp;
 				</td>
 			</tr>
 			<tr>
