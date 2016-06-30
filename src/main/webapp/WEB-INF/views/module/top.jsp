@@ -34,8 +34,6 @@
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="download">
 							<li><a href="volSearch.do">통합 봉사 조회</a></li>
-							<li><a href="volSearch.do">지역별 봉사 조회</a></li>
-							<li><a href="volSearch.do">분야별 봉사 조회</a></li>
 							<li><a href="timeList.do">기간별 봉사 조회</a></li>
 							<li><a href="centerList.do">수요처 조회</a></li>
 						</ul></li>

@@ -31,8 +31,6 @@ function initMap() {
 	   mapTypeId: google.maps.MapTypeId.ROADMAP   
 	  });
   SetMarker();
-  alert(latlng.lat);
-	alert(latlng.lng);
 }
 
 function SetMarker(){
