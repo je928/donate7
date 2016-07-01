@@ -52,19 +52,21 @@ public class Product_buyController {
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
-		int nowPage = Integer.parseInt(pageNum);
-		int startRow = (nowPage - 1) * rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
-		int total = ds.atotal();
-		pb.setStartRow(startRow);
-		pb.setEndRow(endRow);
 		if(nyo==null|| nyo.equals("")){
 			nyo="n";
 		}
 		pb.setPb_delivery(nyo);
+		pb.setPb_mono(pb_mono);
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int total = ds.atotal(pb);
+		pb.setStartRow(startRow);
+		pb.setEndRow(endRow);
+		
 		CommunityPagingBean pg = new CommunityPagingBean(nowPage, total);
 
-		List<Product_buy> list = ds.listAll(startRow,endRow,pb , pb_mono);
+		List<Product_buy> list = ds.listAll(pb,pb_mono);
 		model.addAttribute("nyo",nyo);
 		model.addAttribute("pg", pg);
 		model.addAttribute("ds", ds);

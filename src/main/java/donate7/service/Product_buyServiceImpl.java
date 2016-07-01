@@ -19,8 +19,8 @@ public class Product_buyServiceImpl implements Product_buyService {
 		return pd.list(startRow, endRow, pb_mono, pb);
 	}
 	
-	public List<Product_buy> listAll(int startRow, int endRow,Product_buy pb, int pb_mono) {
-		return pd.listAll(startRow, endRow,pb,pb_mono);
+	public List<Product_buy> listAll(Product_buy pb, int pb_mono) {
+		return pd.listAll(pb,pb_mono);
 	}
 	
 	public String Nick(int no) {
@@ -47,8 +47,8 @@ public class Product_buyServiceImpl implements Product_buyService {
 		return pd.mtotal(pb_no);
 	}
 
-	public int atotal() {
-		return pd.atotal();
+	public int atotal(Product_buy pb) {
+		return pd.atotal(pb);
 	}
 
 	public int yupdate(int pb_no) {
@@ -58,6 +58,8 @@ public class Product_buyServiceImpl implements Product_buyService {
 	public int oupdate(int pb_no) {
 		return pd.oupdate(pb_no);
 	}
+
+
 
 
 }

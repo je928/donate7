@@ -45,16 +45,12 @@ public class Product_buyDaoImpl implements Product_buyDao {
 			return result;
 		}
 	}
-	@Override
-	public List<Product_buy> listAll(int startRow, int endRow,Product_buy pb, int pb_mono) {
-		pb.setStartRow(startRow);
-		pb.setEndRow(endRow);
-		HashMap<String,Integer> map=new HashMap<String, Integer>();
-		map.put("startRow", pb.getStartRow());
-		map.put("endRow", pb.getEndRow());
-		map.put("pb_mono", pb_mono);
-		return session.selectList("product_buy.listAll",map);
+
+	public List<Product_buy> listAll(Product_buy pb, int pb_mono) {
+		pb.setPb_mono(pb_mono);
+		return session.selectList("product_buy.listAll",pb);
 	}
+
 
 	public Product_buy select(int pb_no) {
 		return session.selectOne("product_buy.select", pb_no);
@@ -71,8 +67,8 @@ public class Product_buyDaoImpl implements Product_buyDao {
 		return 	session.selectOne("product_buy.mtotal",pb_no);
 	}
 
-	public int atotal() {
-		return session.selectOne("product_buy.atotal");
+	public int atotal(Product_buy pb) {
+		return session.selectOne("product_buy.atotal",pb);
 	}
 
 	public int yupdate(int pb_no) {
@@ -82,6 +78,7 @@ public class Product_buyDaoImpl implements Product_buyDao {
 	public int oupdate(int pb_no) {
 		return session.update("product_buy.oupdate",pb_no);
 	}
+
 
 
 }

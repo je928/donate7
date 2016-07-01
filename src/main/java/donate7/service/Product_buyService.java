@@ -16,7 +16,7 @@ public interface Product_buyService {
 
 	int insert(Product_buy pb);
 
-	List<Product_buy> listAll(int startRow, int endRow, Product_buy pb, int pb_mono);
+	List<Product_buy> listAll(Product_buy pb, int pb_mono);
 
 	Product_buy select(int pb_no);
 
@@ -24,7 +24,7 @@ public interface Product_buyService {
 
 	int mtotal(int pb_no);
 
-	int atotal();
+	int atotal(Product_buy pb);
 
 	int yupdate(int pb_no);
 

@@ -22,9 +22,21 @@
 		select
 		count(*) from product_buy where pb_mono=#{pb_mono}
 	</select>
-	<select id="atotal" parameterType="int" resultType="int">
+	<select id="atotal" parameterType="product_buy" resultType="int">
 		select
-		count(*) from product_buy
+		count(*) from product_buy  
+		<!--where pb_mono=#{pb_mono}-->
+		<if test='pb_delivery != "nyo"'>
+			<if test='pb_delivery == "n"'>
+				where pb_delivery='n'
+			</if>
+			<if test='pb_delivery == "y"'>
+				where pb_delivery='y'
+			</if>
+			<if test='pb_delivery == "o"'>
+				where pb_delivery='o'
+			</if>
+		</if>  
 	</select>
 	<select id="list" parameterType="product_buy" resultMap="product_buyMap">
 		select *
@@ -33,7 +45,7 @@
 		order by pb_no desc) a) where rn between #{startRow}
 		and #{endRow}
 	</select>
-	<select id="listAll" parameterType="java.util.Map" resultMap="product_buyMap">
+	<select id="listAll" parameterType="product_buy" resultMap="product_buyMap">
 		select * from(select rownum as rn, a.* from(select
 		pb.pb_no,pb.pr_no as
 		pr_no,pb.pb_mono,
@@ -41,6 +53,17 @@
 		from
 		product_buy pb inner join product pd on (pd.pr_mno=#{pb_mono}) where
 		pb.pr_no=pd.pr_no
+		<if test='pb_delivery != "nyo"'>
+			<if test='pb_delivery == "n"'>
+				and pb_delivery='n'
+			</if>
+			<if test='pb_delivery == "y"'>
+				and pb_delivery='y'
+			</if>
+			<if test='pb_delivery == "o"'>
+				and pb_delivery='o'
+			</if>
+		</if> 
 		order by pb.pb_no desc)a)where rn between #{startRow}
 		and #{endRow}
 	</select>
