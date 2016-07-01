@@ -31,7 +31,25 @@ public class Recruit {
 	private int gugun_no;
 	private String gugun_name;
 	private int vt_m_no;
+	private String vt_time;
+	private String vtryn;
 	
+	public String getVtryn() {
+		return vtryn;
+	}
+
+	public void setVtryn(String vtryn) {
+		this.vtryn = vtryn;
+	}
+
+	public String getVt_time() {
+		return vt_time;
+	}
+
+	public void setVt_time(String vt_time) {
+		this.vt_time = vt_time;
+	}
+
 	public int getVt_m_no() {
 		return vt_m_no;
 	}

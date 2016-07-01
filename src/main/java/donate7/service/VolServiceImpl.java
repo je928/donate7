@@ -47,6 +47,11 @@ public class VolServiceImpl implements VolService {
 	}
 
 	@Override
+	public int selectRqnTotal(Recruit rc) {
+		return vd.selectRqnTotal(rc);
+	}
+	
+	@Override
 	public List<Recruit> selectRqnList(Recruit rc) {
 		return vd.selectRqnList(rc);
 	}
@@ -128,11 +133,6 @@ public class VolServiceImpl implements VolService {
 	@Override
 	public List<VolResult> selectVolResult(int vt_no) {
 		return vd.selectVolResult(vt_no);
-	}
-
-	@Override
-	public List<Recruit> selectRqnListfinish(Recruit rc) {
-		return vd.selectRcListfinish(rc);
 	}
 
 }

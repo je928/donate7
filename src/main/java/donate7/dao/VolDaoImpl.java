@@ -73,6 +73,11 @@ public class VolDaoImpl implements VolDao {
 		int result = session.insert("rqn.insertRqn", rqn);
 		return result;
 	}
+	
+	public int selectRqnTotal(Recruit rc) {
+		int total = session.selectOne("recruit.selectRqnTotal", rc);
+		return total;
+	}
 
 	@Override
 	public List<Recruit> selectRqnList(Recruit rc) {
@@ -134,9 +139,4 @@ public class VolDaoImpl implements VolDao {
 		return session.selectList("volResult.selectVolResult",vt_no);
 	}
 
-	@Override
-	public List<Recruit> selectRcListfinish(Recruit rc) {
-		List<Recruit> list = session.selectList("recruit.selectRqnListfinish", rc);
-		return list;
-	}
 }
