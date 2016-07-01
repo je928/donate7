@@ -22,6 +22,7 @@ public interface VolDao {
 	List<Recruit> selectRcList(Recruit rc);
 	int selectRcTotal(Recruit rc);
 	int insertRqn(Rqn rqn);
+	int selectRqnTotal(Recruit rc);
 	List<Recruit> selectRqnList(Recruit rc);
 	List<Applicant> selectApplicant(int vt_no);
 	int selectRqn(Rqn rqn);
@@ -33,5 +34,5 @@ public interface VolDao {
 	int selectNewVolNo();
 	int resultChk(int vt_no);
 	List<VolResult> selectVolResult(int vt_no);
-	List<Recruit> selectRcListfinish(Recruit rc);
+	
 }

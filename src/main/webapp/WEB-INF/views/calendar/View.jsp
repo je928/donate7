@@ -76,7 +76,7 @@
 					</c:if>
 					</c:if>
 					<input type="button" class="btn btn-primary btn-md" value="뒤로"
-						onclick="location.href='javascript:history.go(-1);'">
+						onclick="location.href='rqnList.do?pageNum=${pageNum}'">
 				</div>
 			</div>
 		</div>

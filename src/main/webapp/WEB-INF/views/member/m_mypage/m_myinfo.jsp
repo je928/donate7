@@ -57,6 +57,10 @@
 											<td><b>${member.m_reg_date}</b></td>
 										</tr>
 										<tr>
+											<td>총 봉사시간</td>
+											<td><b>0</b></td>
+										</tr>
+										<tr>
 											<td><b class="orange">경고(봉사)</b></td>
 											<td><b>${dr_total}</b></td>
 										</tr>
