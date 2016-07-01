@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../module/header.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,9 +202,11 @@
 		});	
 	$(function() {
 		$('#button').click(function(){
+			
 			location.href="delivery.do?pr_no=${product.pr_no}&cnt="+document.getElementById("cnt").value;
 		});
 	});
+
 });
 </script>
 </head>
@@ -267,8 +270,16 @@
 												</div>
 											</li>
 											<li class="list-group-item">기부처 : ${product.pr_donation }</li>
+								
 											<li class="list-group-item">
-												<button id="button">주문하기</button>
+											<c:if test="${sessionScope.no==null}">
+												
+												<button onclick="location.href='login.do?pr_no=${product.pr_no}'" >
+												주문하기</button>
+											</c:if>
+											<c:if test="${sessionScope.no!=null && sessionScope.no>1}">
+												<button id="button"  >주문하기</button>
+											</c:if>
 											</li>
 											
 										</ul>
