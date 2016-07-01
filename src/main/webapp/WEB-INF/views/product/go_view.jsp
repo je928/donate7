@@ -200,10 +200,20 @@
 				}).mouseup(function() {
 					clearInterval(action);
 		});	
+		
 	$(function() {
 		$('#button').click(function(){
 			
 			location.href="delivery.do?pr_no=${product.pr_no}&cnt="+document.getElementById("cnt").value;
+		});
+	});
+	
+	$(function() {
+		$('#nullbutton').click(function(){
+			if(confirm("로그인 하시겠습니까?")) {
+				location.href="login.do";
+			} else {
+			}
 		});
 	});
 
@@ -270,12 +280,9 @@
 												</div>
 											</li>
 											<li class="list-group-item">기부처 : ${product.pr_donation }</li>
-								
 											<li class="list-group-item">
 											<c:if test="${sessionScope.no==null}">
-												
-												<button onclick="location.href='login.do?pr_no=${product.pr_no}'" >
-												주문하기</button>
+												<button id="nullbutton">주문하기</button>
 											</c:if>
 											<c:if test="${sessionScope.no!=null && sessionScope.no>1}">
 												<button id="button"  >주문하기</button>
