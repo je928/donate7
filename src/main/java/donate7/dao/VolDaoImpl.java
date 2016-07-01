@@ -139,4 +139,10 @@ public class VolDaoImpl implements VolDao {
 		return session.selectList("volResult.selectVolResult",vt_no);
 	}
 
+	@Override
+	public int Vt_TimeTotal(int vt_no) {
+		int total = session.selectOne("volResult.Vt_TimeTotal", vt_no);
+		return total;
+	}
+
 }

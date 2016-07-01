@@ -117,11 +117,12 @@ public class adminController {
 	}
 	
 	@RequestMapping(value = "o_info")
-	public String o_info(Model model, String o_no, String pageNum, HttpSession session) {
+	public String o_info(Model model, String o_no, String xyn, String pageNum, HttpSession session) {
 		int no = (Integer)Integer.parseInt(o_no);
 		Organ organ = ms.selectOrgan(no);
 		model.addAttribute(organ);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("xyn", xyn);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/admin_page/o_info.jsp");
 		return "module/main";

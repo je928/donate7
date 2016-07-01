@@ -90,7 +90,7 @@
 						</div>
 					</div>
 					<div class="panel-footer text-center">
-						<a href="a_organAll.do?pageNum=${pageNum}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
+						<a href="a_organAll.do?pageNum=${pageNum}&xyn=${xyn}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
 					</div>
 				</div>
 			</div>

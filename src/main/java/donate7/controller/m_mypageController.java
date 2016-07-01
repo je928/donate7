@@ -12,6 +12,7 @@ import donate7.model.Member;
 import donate7.model.Warning;
 import donate7.service.Cpoint_InfoService;
 import donate7.service.MemberService;
+import donate7.service.VolService;
 import donate7.service.WarningService;
 
 @Controller
@@ -25,6 +26,9 @@ public class m_mypageController {
 	
 	@Autowired
 	private Cpoint_InfoService cs;
+	
+	@Autowired
+	private VolService vs;
 	
 	@RequestMapping(value = "m_myinfo", method = RequestMethod.GET)
 	public String m_myinfo(Model model, HttpSession session) {
@@ -45,6 +49,7 @@ public class m_mypageController {
 		model.addAttribute("br_total", br_total);
 		model.addAttribute("sumC", sumC);
 		model.addAttribute("sumP", sumP);
+		model.addAttribute("vs", vs);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");
 		return "module/main";

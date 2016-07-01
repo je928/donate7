@@ -57,8 +57,9 @@
 											<td><b>${member.m_reg_date}</b></td>
 										</tr>
 										<tr>
+											<c:set var="vt_time" value="${vs.Vt_TimeTotal(member.m_no) }"> </c:set>
 											<td>총 봉사시간</td>
-											<td><b>0</b></td>
+											<td><b>${vt_time}</b></td>
 										</tr>
 										<tr>
 											<td><b class="orange">경고(봉사)</b></td>

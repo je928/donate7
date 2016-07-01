@@ -135,4 +135,9 @@ public class VolServiceImpl implements VolService {
 		return vd.selectVolResult(vt_no);
 	}
 
+	@Override
+	public int Vt_TimeTotal(int vt_no) {
+		return vd.Vt_TimeTotal(vt_no);
+	}
+
 }

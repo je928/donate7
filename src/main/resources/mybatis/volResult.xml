@@ -15,9 +15,11 @@
 		<result property="vt_no" column="VT_NO"/>
 		<result property="vt_time" column="VT_TIME"/>
 	</resultMap>
+	
 	<select id="selectNewVolNo" resultType="int">
 		SELECT NVL(MAX(VT_VOL_NO),0)+1 FROM VT_VOL
 	</select>
+	
 	<insert id="insertVolResult" parameterType="java.util.List">
 		INSERT ALL
 		<foreach collection="list" item="hm">
@@ -25,6 +27,7 @@
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
+	
 	<select id="resultChk" parameterType="int" resultType="int">
 		SELECT NVL(COUNT(*),0) FROM VT_VOL WHERE VT_NO = #{vt_no}
 	</select>
@@ -34,5 +37,9 @@
 		FROM MEMBER A, VT_VOL B
 		WHERE A.M_NO = B.VT_M_NO
 		AND VT_NO = #{vt_no}
+	</select>
+	
+	<select id="Vt_TimeTotal" parameterType="int" resultType="int">
+		select nvl(sum(vt_time),0) as vt_time from vt_vol where vt_m_no = #{m_no}
 	</select>
 </mapper>
