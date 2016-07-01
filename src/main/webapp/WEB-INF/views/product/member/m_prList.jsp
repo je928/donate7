@@ -30,10 +30,10 @@
 							${pr.pr_proname }</a></td>
 					<td>${pr.pr_date}</td>
 					<td><c:if test="${pr.pr_approve eq 'y'}">
-							<span class="label label-success">승인완료</span>
+							<span class="ok_y">승인완료</span>
 						</c:if> 
 						<c:if test="${pr.pr_approve eq 'n'}">
-							<span class="label label-warning">승인대기</span>
+							<span class="ok_x">승인대기</span>
 						</c:if>
 					</td>
 				</tr>

@@ -78,12 +78,12 @@
 			<table class="table table-striped table-hover">
 				<caption>일반 승인여부</caption>
 				<tr>
-					<th width="60">번호</th>
-					<th width="60">제목</th>
-					<th width="60">작성자</th>
-					<th width="60">상품종류</th>
-					<th width="60">등록일</th>
-					<th width="60">승인여부</th>
+					<th >번호</th>
+					<th >제목</th>
+					<th >작성자</th>
+					<th >상품종류</th>
+					<th >등록일</th>
+					<th >승인여부</th>
 				</tr>
 				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${memlist }">
@@ -94,7 +94,14 @@
 							<th>${second.m_email }</th>
 							<th>${second.sh_category }</th>
 							<th>${second.sh_reg_date }</th>
-							<th>${second.sh_approve }</th>
+							<td><c:if test="${second.sh_approve  eq 'y'}">
+									<span class="ok_y">승인완료</span>
+								</c:if> 
+								<c:if test="${second.sh_approve  eq 'n'}">
+									<span class="ok_x">승인대기</span>
+								</c:if>
+							</td>		
+							
 						</tr>
 					
 					<c:set var="num" value="${num-1 }" />
