@@ -9,7 +9,7 @@
 <body>
 	<div class="list-group">
 		<a href="volSearch.do" class="list-group-item">통합봉사조회</a>
-		<a href="timeList.do" class="list-group-item">기간별봉사조회</a>
+		<!-- <a href="timeList.do" class="list-group-item">기간별봉사조회</a> -->
 		<a href="centerList.do" class="list-group-item">수요처 조회</a>
 	</div>
 </body>

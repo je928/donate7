@@ -36,16 +36,16 @@
 						Form</h3>
 					<img class="img-responsive" alt="" src="image/${price.pr_img }">
 						<div class="form-group">
-						구매 상품명:${price.pr_proname }
+						상품명:${price.pr_proname }
 						</div>
 						<div class="form-group">
-						구매 가격 :	${price.pr_price }
+						제품 가격 : ${price.pr_price }
 						</div>
 						<div class="form-group">
 						구매 수량 : ${pb.pb_buyqty }
 						</div>
 						<div class="form-group">
-						총구매 가격 : 
+						구매 가격 : 
 						${gup*pb.pb_buyqty }
 						</div>
 					<div class="form-group">
@@ -72,7 +72,7 @@
 						</c:if>
 					</div>
 				</form>
-				<button onclick="location.href='m_exit.do'">확인</button>
+				<button onclick="location.href='m_deliveryForm.do'">확인</button>
 			</div>
 		</div>
 	</div>

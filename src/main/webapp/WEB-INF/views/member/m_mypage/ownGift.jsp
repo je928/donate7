@@ -13,53 +13,67 @@
 </script>
 </head>
 <body>
-<h3>목록</h3>
-<c:set var="i" value="1"/>
-<table class="table table-striped table-bordered table-list">
-<c:forEach var="list" items="${list }">
-<c:if test="${i%3==1 }">
-	<tr>
-</c:if>
 
-<td>
-<c:set var="gift" value="${gs.selectOne(list.g_no) }"/>
-<a href="ownGiftDetail.do?gb_no=${list.gb_no }"><img src="/donate7/${gift.g_img}" height="150px"></a><br>
-기프티콘 이름 : ${gift.g_name }
-</td>
-
-<c:if test="${i%3==4 }">
-	</tr>
-</c:if>	
-<c:set var="i" value="${i+1 }"/>
-</c:forEach>
-</table>
-<div class="panel-footer2 text-center">
-		<div class="row">
-			<div class="col">
-				<ul class="pagination">
-					<c:if test="${pb.startPage > pb.pagePerBlock}">
-					<li><a href="javascript:locate(1)">««</a></li>						
-					<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+	<div class="col-md-12">
+		<div class="panel panel-default panel-table">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-6">
+						<b class="panel-title">보유 기프티콘</b>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body2">
+				<c:set var="i" value="1"/>
+				<table class="table table-striped table-bordered table-list">
+					<c:forEach var="list" items="${list }">
+					<c:if test="${i%3==1 }">
+						<tr>
 					</c:if>
-				</ul>
-				<ul class="pagination">
-					<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
-						<c:if test="${i eq pb.nowPage}">
-							<li><a href="#"><b class="b2">${i}</b></a></li>
-						</c:if>
-						<c:if test="${i ne pb.nowPage}">
-							<li><a href="javascript:locate(${i})">${i}</a></li>
-						</c:if>
+					<td>
+					<c:set var="gift" value="${gs.selectOne(list.g_no) }"/>
+					<a href="ownGiftDetail.do?gb_no=${list.gb_no}&pageNum=${pageNum}"><img src="/donate7/${gift.g_img}" height="150px"></a><br>
+					<a href="ownGiftDetail.do?gb_no=${list.gb_no}&pageNum=${pageNum}">${gift.g_name }</a>
+					<br>
+					구매 날짜 : 2016. 7. 1
+					</td>
+					<c:if test="${i%3==4 }">
+						</tr>
+					</c:if>	
+					<c:set var="i" value="${i+1 }"/>
 					</c:forEach>
-				</ul>
-				<ul class="pagination">
-					<c:if test="${pb.totalPage > pb.endPage}">
-					<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
-					<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
-					</c:if>
-				</ul>
+				</table>
+			</div>
+			<div class="panel-footer2 text-center">
+				<div class="row">
+					<div class="col">
+						<ul class="pagination">
+							<c:if test="${pb.startPage > pb.pagePerBlock}">
+							<li><a href="javascript:locate(1)">««</a></li>						
+							<li><a href="javascript:locate(${pb.nowPage-1})">«</a></li>
+							</c:if>
+						</ul>
+						<ul class="pagination">
+							<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}">
+								<c:if test="${i eq pb.nowPage}">
+									<li><a href="#"><b class="b2">${i}</b></a></li>
+								</c:if>
+								<c:if test="${i ne pb.nowPage}">
+									<li><a href="javascript:locate(${i})">${i}</a></li>
+								</c:if>
+							</c:forEach>
+						</ul>
+						<ul class="pagination">
+							<c:if test="${pb.totalPage > pb.endPage}">
+							<li><a href="javascript:locate(${pb.startPage+pb.pagePerBlock})">»</a></li>
+							<li><a href="javascript:locate(${pb.totalPage})">»»</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

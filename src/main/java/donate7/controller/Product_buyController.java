@@ -22,7 +22,7 @@ public class Product_buyController {
 	@Autowired
 	private Cpoint_InfoService cs;
 
-	@RequestMapping("m_delivery")
+	@RequestMapping("m_deliveryForm")
 	public String m_deliveryForm(Product_buy pb, Model model, String pageNum, HttpSession session) {
 		int pb_mono = (Integer) session.getAttribute("no");
 		final int rowPerPage = 10;
@@ -113,15 +113,15 @@ public class Product_buyController {
 		int qty = pb.getPb_buyqty(); // 구매수량
 		if (qty >= 0) {
 			int result = ds.update(pr_no, qty);
-			return "redirect:m_delivery.do";
+			return "redirect:m_deliveryForm.do";
 		} else {
 			model.addAttribute("msg", "수량이 너무 많습니다");
 			return "redirect:deliveryForm.do";
 		}
 	}
 
-	@RequestMapping("am_delivery")
-	public String am_delivery(Model model, int pb_no, int pr_no, int pb_mono,String pb_delivery) {
+	@RequestMapping("m_delivery")
+	public String m_delivery(Model model, int pb_no, int pr_no, int pb_mono,String pb_delivery) {
 		Product_buy pb = ds.select(pb_no);
 		Product pr = ds.selectOne(pr_no);
 		String NickName = ds.Nick(pb_mono);
@@ -131,9 +131,11 @@ public class Product_buyController {
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
 		model.addAttribute("price", pr);
-		model.addAttribute("pgm", "../product_buy/delivery.jsp");
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product_buy/delivery.jsp");
 		return "module/main";
 	}
+	
 	@RequestMapping("a_delivery")
 	public String a_delivery(Model model, int pb_no, int pr_no, int pb_mono,String pb_delivery) {
 		Product_buy pb = ds.select(pb_no);
@@ -145,26 +147,9 @@ public class Product_buyController {
 		model.addAttribute("nick", NickName);
 		model.addAttribute("pb", pb);
 		model.addAttribute("price", pr);
-		model.addAttribute("pgm", "../product_buy/a_delivery.jsp");
+		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
+		model.addAttribute("mypgm", "../../product_buy/a_delivery.jsp");
 		return "module/main";
 	}
 
-	@RequestMapping("a_exit")
-	public String exit(Model model, HttpSession session) {
-			return "redirect:a_deliveryForm.do";
-	}
-	@RequestMapping("m_exit")
-	public String exit2(Model model, HttpSession session) {
-			return "redirect:m_delivery.do";
-	}
-	@RequestMapping("yupdate")
-	public String yupdate(int pb_no){
-		int update=ds.yupdate(pb_no);
-		return "redirect:a_deliveryForm.do";
-	}
-	@RequestMapping("oupdate")
-	public String oupdate(int pb_no){
-		int update=ds.oupdate(pb_no);
-		return "redirect:a_deliveryForm.do";
-	}
 }

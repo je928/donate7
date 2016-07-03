@@ -58,7 +58,7 @@
 										</tr>
 										<tr>
 											<td>가입일</td>
-											<td><b>${member.m_reg_date}</b></td>
+											<td><b><fmt:formatDate value="${member.m_reg_date}" /></b></td>
 										</tr>
 										<tr>
 											<td><b class="orange">경고(봉사)</b></td>

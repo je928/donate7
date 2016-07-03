@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import donate7.service.CommunityPagingBean;
-import donate7.service.Cpoint_InfoService;
-import donate7.service.GiftService;
-import donate7.service.Gift_BuyService;
 import donate7.model.Cpoint_info;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
+import donate7.service.CommunityPagingBean;
+import donate7.service.Cpoint_InfoService;
+import donate7.service.GiftPagingBean;
+import donate7.service.GiftService;
+import donate7.service.Gift_BuyService;
 
 @Controller
 public class GiftController {	
@@ -134,12 +133,13 @@ public class GiftController {
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int total = gbs.getTotal();
-		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		GiftPagingBean pb = new GiftPagingBean(nowPage, total);
 		
 		List<Gift_Buy> list = gbs.ownList(startRow,endRow,m_no);
 		
 		model.addAttribute("pb", pb);
 		model.addAttribute("list", list);
+		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/ownGift.jsp");
 		model.addAttribute("list", list);
@@ -148,13 +148,14 @@ public class GiftController {
 	}
 	
 	@RequestMapping(value = "ownGiftDetail", method = RequestMethod.GET)
-	public String ownGiftDetail(int gb_no,Model model,HttpSession session) {
+	public String ownGiftDetail(int gb_no, Model model, String pageNum, HttpSession session) {
 		Gift_Buy gb = gbs.selectOne(gb_no);
 		Gift gift = gs.selectOne(gb.getG_no());
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/ownGiftDetail.jsp");
 		model.addAttribute("gb", gb);
 		model.addAttribute("gift", gift);
+		model.addAttribute("pageNum", pageNum);	
 		return "module/main";
 	}
 }
