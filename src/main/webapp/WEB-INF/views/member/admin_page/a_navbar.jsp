@@ -138,7 +138,7 @@
 					<li><a href="a_memberAll.do">회원 관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
 					<li><a href="adList.do">기부<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-leaf"></span></a></li>
 					<li><a href="pr_all.do">완제품<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a></li>
-					<li><a href="adsecondList.do">중고품<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-barcode"></span></a></li></li>
+					<li><a href="admemList.do">중고품<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-barcode"></span></a></li></li>
 					<li><a href="registerPro.do">신고 처리<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-minus"></span></a></li>
 					<li><a href="giftUpload.do">기프티콘 관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-gift"></span></a></li>
 				</ul>
