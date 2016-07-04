@@ -14,7 +14,7 @@
 		<result property="endRow" column="endRow" />
 	</resultMap>
 	<select id="doTotal" parameterType="doResult" resultType="int">
-		select count(*) from doResult <if test="d_member != 1"> where d_member=#{d_member}</if>
+		select count(*) from doResult d, (select m_no, m_nick from member) m where d.d_member=m.m_no and d_no = #{d_no}
 	</select>
 	<select id="insertNum" resultType="int">
 		select nvl(max(d_request),0)+1 from doResult

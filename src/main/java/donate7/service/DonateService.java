@@ -44,8 +44,6 @@ public interface DonateService {
 	int orTotal(Donate donate);
 
 	List<Donate> orAll(Donate donate);
-
-	
 	
 	int doTotal(DoResult doResult);
 
