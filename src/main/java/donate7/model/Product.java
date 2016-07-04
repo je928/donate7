@@ -31,6 +31,28 @@ public class Product {
 	
 	private String fdp;
 	
+	private String mymn;
+	private String oyon;
+	private String yn;
+	public String getYn() {
+		return yn;
+	}
+	public void setYn(String yn) {
+		this.yn = yn;
+	}
+	public String getMymn() {
+		return mymn;
+	}
+	public void setMymn(String mymn) {
+		this.mymn = mymn;
+	}
+	public String getOyon() {
+		return oyon;
+	}
+	public void setOyon(String oyon) {
+		this.oyon = oyon;
+	}
+	
 	public String getFdp() {
 		return fdp;
 	}

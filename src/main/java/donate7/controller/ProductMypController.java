@@ -47,6 +47,7 @@ public class ProductMypController {
 		List<Product> list = ps.mlist(product);
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/member/m_prList.jsp");
@@ -163,6 +164,7 @@ public class ProductMypController {
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm","../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/organ/o_prList.jsp");
 		return "module/main";

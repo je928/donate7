@@ -41,7 +41,8 @@
 					<c:forEach var="pr" items="${list}">
 					<tr>
 						<td>${num}</td>
-						<td><a href="m_prView.do?pr_no=${pr.pr_no}">${pr.pr_proname }</a></td>
+						<td><a href="m_prView.do?pr_no=${pr.pr_no}&pageNum=${pageNum}">
+						${pr.pr_proname }</a></td>
 						<td>${pr.pr_qty}</td>
 						<td>${pr.pr_price}</td>
 						<td><fmt:formatDate value="${pr.pr_date}" /></td>

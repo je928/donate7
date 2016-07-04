@@ -64,7 +64,7 @@
 		<c:if test="${product.pr_approve eq 'y'}">
 			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}'">승인취소</button>
 		</c:if>
-		<button onclick="location.href='ad_prList.do'">리스트</button>
+		<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
 
 
 

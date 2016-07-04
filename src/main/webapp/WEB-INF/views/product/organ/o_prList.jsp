@@ -12,8 +12,10 @@
 		<table class="table table-striped table-hover">
 		<caption>제품 판매 요청</caption>
 				<tr>
-					<th>번호</th>
-					<th>제목</th>
+					<th>글번호</th>
+					<th>제품명</th>
+					<th>수량</th>
+					<th>제품가격</th>
 					<th>작성일</th>
 					<th>승인여부</th>
 				</tr>
@@ -21,8 +23,10 @@
 					<c:forEach var="pr" items="${list}">
 						<tr>
 							<td>${num}</td>
-							<td><a href="o_prView.do?pr_no=${pr.pr_no}">
+							<td><a href="o_prView.do?pr_no=${pr.pr_no}&pageNum=${pageNum}">
 								${pr.pr_proname }</a></td>
+							<td>${pr.pr_qty}</td>
+							<td>${pr.pr_price}</td>
 							<td>${pr.pr_date}</td>
 							<td><c:if test="${pr.pr_approve eq 'y'}">
 									<span class="ok_y">승인완료</span>

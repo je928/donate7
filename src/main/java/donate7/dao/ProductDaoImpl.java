@@ -41,8 +41,8 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.olist",product);
 	}
 
-	public List<Product> prlist(Product product) {
-		
+	public List<Product> prlist(Product product, String yn) {
+		product.setYn(yn);
 		return st.selectList("product.prlist",product);
 	}
 
@@ -83,31 +83,38 @@ public class ProductDaoImpl implements ProductDao{
 
 
 	public int getTotal(Product product) {
-		return st.selectOne("product.getTotal",product);
+		int total = 0;
+		try {
+			total = st.selectOne("product.getTotal", product);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
 	}
 	
-	public int prSTotal(Product product) {
+	
+/*	public int prSTotal(Product product) {
 		
 		return st.selectOne("product.prSTotal",product);
-	}
+	}*/
 
 
-	public List<Product> prSlist(Product product) {
+/*	public List<Product> prSlist(Product product) {
 		
 		return st.selectList("product.prSlist",product);
-	}
+	}*/
 
-	public int prATotal(Product product) {
+	/*public int prATotal(Product product) {
 		
 		return st.selectOne("product.prATotal",product);
-	}
+	}*/
 
-	public List<Product> prAlist(Product product) {
+/*	public List<Product> prAlist(Product product) {
 		
 		return st.selectList("product.prAlist",product);
-	}
+	}*/
 	
-	public int memSTotal(Product product) {
+	/*public int memSTotal(Product product) {
 		
 		return st.selectOne("product.memSTotal", product);
 	}
@@ -152,7 +159,7 @@ public class ProductDaoImpl implements ProductDao{
 		return st.selectList("product.orAlist",product);
 	}
 
-	
+	*/
 	public int apTotal(Product product) {
 		int result = st.selectOne("product.apTotal",product);
 		return result;
@@ -172,5 +179,39 @@ public class ProductDaoImpl implements ProductDao{
 		product.setFdp(fdp);
 		return st.selectList("product.golist", product);
 	}
+
+
+	public int memTotal(Product product) {
+		int total = 0;
+		try {
+			total = st.selectOne("product.memTotal", product);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<Product> memAll(Product product, String mymn) {
+		product.setMymn(mymn);
+		return st.selectList("product.memAll",product);
+	}
+
+	
+	public int orTotal(Product product) {
+		int total = 0;
+		try {
+			total = st.selectOne("product.orTotal", product);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<Product> orAll(Product product, String oyon) {
+		product.setOyon(oyon);
+		return st.selectList("product.orAll",product);
+	}
+
+
 
 }
