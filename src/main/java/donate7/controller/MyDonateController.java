@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import donate7.model.Donate;
-import donate7.model.Product;
 import donate7.service.DonateService;
 import donate7.util.Paging;
 
@@ -153,6 +152,7 @@ public class MyDonateController {
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
+		model.addAttribute("ds", ds);
 		model.addAttribute("pgm", "../member/o_mypage/o_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/odoList.jsp");
 		return "module/main";

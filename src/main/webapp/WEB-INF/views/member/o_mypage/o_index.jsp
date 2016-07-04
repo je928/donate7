@@ -189,7 +189,7 @@ padding-left:90px;
 								</h4>
 							</div>
 							<div class="timeline-body">
-								<p>봉사 내역을 확인할 수 있습니다.</p>
+								<p>봉사를 모집하고 관리할 수 있습니다.</p>
 							</div>
 						</div>
 					</li>

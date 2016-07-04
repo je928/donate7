@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
 <%@ include file="../../session/orgChk.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -155,7 +155,14 @@
 							<li><a href="odoList.do">기부 요청 내역</a></li>
 						</ul>
 					</li>
-					<li><a href="rqnList.do">봉사<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-heart"></span></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">봉사<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-heart"></span></a>
+						<ul class="dropdown-menu forAnimate" role="menu">
+							<li><a href="recruit.do">봉사 모집</a></li>
+							<li class="divider"></li>
+							<li><a href="myRecruit.do">봉사 관리</a></li>
+						</ul>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">마켓<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a>
 						<ul class="dropdown-menu forAnimate" role="menu">
@@ -163,9 +170,9 @@
 							<li class="divider"></li>
 							<li><a href="o_prList.do">완제품 판매 요청 내역</a></li>
 							<li class="divider"></li>
-							<li><a href="a_deliveryForm.do">판매 내역(배송 관리)</a></li>
+							<li><a href="#">판매 내역(배송 관리)</a></li>
 							<li class="divider"></li>
-							<li><a href="o_deliveryForm.do">구매 내역</a></li>
+							<li><a href="#">구매 내역</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
