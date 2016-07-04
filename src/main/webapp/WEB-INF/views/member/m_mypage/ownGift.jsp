@@ -42,6 +42,11 @@
 					</c:if>	
 					<c:set var="i" value="${i+1 }"/>
 					</c:forEach>
+					<c:if test="${empty list}">
+						<tr>
+							<td colspan="5">구매하신 기프티콘이 없습니다.</td>
+						</tr>
+					</c:if>
 				</table>
 			</div>
 			<div class="panel-footer2 text-center">

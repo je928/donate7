@@ -15,11 +15,6 @@
 <body>
 
 	<div class="col-md-12">
-		<div class="list-group2">
-			<!-- <a href="#.do?#=all" class="btn btn-sm btn-info">전체</a>&nbsp;
-			<a href="#.do?#=#" class="btn btn-sm btn-info">승인 대기</a>&nbsp;
-			<a href="#.do?#=#" class="btn btn-sm btn-info">승인 완료</a>&nbsp; -->
-		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">
 				<div class="row">

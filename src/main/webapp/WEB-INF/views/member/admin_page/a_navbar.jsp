@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../module/header.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -122,6 +122,7 @@
 		<a href="registerPro.do" class="list-group-item">신고 처리</a>
 		<a href="giftUpload.do" class="list-group-item">기프티콘 올리기</a>
 	</div> -->
+	
 		<nav class="navbar navbar-default sidebar" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -136,18 +137,10 @@
 				<ul class="nav navbar-nav">
 					<li><a href="a_memberAll.do">회원 관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
 					<li><a href="adList.do">기부<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-leaf"></span></a></li>
-					<li><a href="rqnList.do">봉사<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-heart"></span></a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">마켓<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a>
-						<ul class="dropdown-menu forAnimate" role="menu">
-							<li><a href="ad_prList.do">완제품 판매 요청</a></li>
-							<li class="divider"></li>
-							<li><a href="a_deliveryForm.do">판매 내역(배송 관리)</a></li>
-						</ul>
-					</li>
+					<li><a href="pr_all.do">완제품<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart"></span></a></li>
 					<li><a href="adsecondList.do">중고품<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-barcode"></span></a></li></li>
-					<li><a href="registerPro.do">신고 처리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-barcode"></span></a></li>
-					<li><a href="giftUpload.do">기프티콘 관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-barcode"></span></a></li>
+					<li><a href="registerPro.do">신고 처리<span style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-minus"></span></a></li>
+					<li><a href="giftUpload.do">기프티콘 관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-gift"></span></a></li>
 				</ul>
 			</div>
 		</div>

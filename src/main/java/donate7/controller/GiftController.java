@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import donate7.model.Cpoint_info;
 import donate7.model.Gift;
 import donate7.model.Gift_Buy;
-import donate7.service.CommunityPagingBean;
 import donate7.service.Cpoint_InfoService;
 import donate7.service.GiftPagingBean;
 import donate7.service.GiftService;
@@ -41,7 +40,7 @@ public class GiftController {
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int total = gs.getTotal();
-		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
+		GiftPagingBean pb = new GiftPagingBean(nowPage, total);
 		
 		List<Gift> list = gs.list(startRow, endRow);
 		

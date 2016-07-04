@@ -15,7 +15,6 @@ import donate7.model.DoResult;
 import donate7.model.Donate;
 import donate7.service.Cpoint_InfoService;
 import donate7.service.DonateService;
-import donate7.util.Paging;
 
 @Controller
 public class DonateController {

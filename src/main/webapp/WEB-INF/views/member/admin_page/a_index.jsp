@@ -179,19 +179,6 @@ padding-left:90px;
 							</div>
 						</div>
 					</li>
-					<li class="timeline-inverted">
-						<div class="timeline-badge danger"><i class="glyphicon glyphicon-heart"></i></div>
-						<div class="timeline-panel">
-							<div class="timeline-heading">
-								<h4 class="timeline-title text-left" style="font-size: 20px; font-weight: 900;">봉사
-								<i class="glyphicon glyphicon-chevron-down" style="float: right"></i>
-								</h4>
-							</div>
-							<div class="timeline-body">
-								<p>봉사 내역을 확인할 수 있습니다.</p>
-							</div>
-						</div>
-					</li>
 					<li>
 						<div class="timeline-badge info"><i class="glyphicon glyphicon-shopping-cart"></i></div>
 						<div class="timeline-panel">
@@ -219,7 +206,7 @@ padding-left:90px;
 						</div>
 					</li>
 					<li class="timeline-inverted">
-						<div class="timeline-badge warning"><i class="glyphicon glyphicon-barcode"></i></div>
+						<div class="timeline-badge primary"><i class="fa fa-minus"></i></div>
 						<div class="timeline-panel">
 							<div class="timeline-heading">
 								<h4 class="timeline-title text-left" style="font-size: 20px; font-weight: 900;">신고
@@ -227,12 +214,12 @@ padding-left:90px;
 								</h4>
 							</div>
 							<div class="timeline-body">
-								<p>신고 내역을 확인할 수 있습니다.</p>
+								<p>신고 내역을 확인하고 처리를 할 수 있습니다.</p>
 							</div>
 						</div>
 					</li>
 					<li class="timeline-inverted">
-						<div class="timeline-badge warning"><i class="glyphicon glyphicon-barcode"></i></div>
+						<div class="timeline-badge danger"><i class="glyphicon glyphicon-gift"></i></div>
 						<div class="timeline-panel">
 							<div class="timeline-heading">
 								<h4 class="timeline-title text-left" style="font-size: 20px; font-weight: 900;">기프티콘
@@ -240,7 +227,7 @@ padding-left:90px;
 								</h4>
 							</div>
 							<div class="timeline-body">
-								<p>기프티콘 업로드를 할 수 있습니다.</p>
+								<p>기프티콘을 업로드 할 수 있습니다.</p>
 							</div>
 						</div>
 					</li>
