@@ -164,9 +164,9 @@
 						<ul class="dropdown-menu forAnimate" role="menu">
 							<li><a href="mdoReq.do">기부 요청</a></li>
 							<li class="divider"></li>
-							<li><a href="mReqList.do">기부 요청 내역</a></li>
+							<li><a href="mdoList.do">기부 요청 내역</a></li>
 							<li class="divider"></li>
-							<li><a href="mdoList.do">기부 내역</a></li>
+							<li><a href="#">기부 내역</a></li>
 						</ul>
 					</li>
 					<li><a href="rqnList.do">봉사<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-heart"></span></a></li>
