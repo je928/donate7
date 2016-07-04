@@ -59,13 +59,24 @@
 	</form>
 	<div align="center">
 		<c:if test="${product.pr_approve eq 'n'}">
-			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}'">승인</button>
+			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}&chk=a'">승인</button>
 		</c:if>
 		<c:if test="${product.pr_approve eq 'y'}">
-			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}'">승인취소</button>
+			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}&chk=a'">승인취소</button>
 		</c:if>
-		<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
-
+		<c:if test="${chk != null }">
+			<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
+		</c:if>
+		<c:if test ="${yn !=null }">
+			<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
+		</c:if>
+		
+		<c:if test ="${mymn !=null }">
+			<button onclick="location.href='pr_memAll.do?pageNum=${pageNum}&mymn=${mymn }'">리스트</button>
+		</c:if>
+		<c:if test ="${oyon !=null }">
+			<button onclick="location.href='pr_orAll.do?pageNum=${pageNum}&oyon=${oyon }'">리스트</button>
+		</c:if>
 
 
 	</div>

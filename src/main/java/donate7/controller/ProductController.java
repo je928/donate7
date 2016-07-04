@@ -19,13 +19,15 @@ public class ProductController {
 
 	
 	@RequestMapping("apUpdate")
-	public String apUpdate(int pr_no, Model model){
+	public String apUpdate(int pr_no, Model model, String chk){
 		ps.apUpdate(pr_no);
+		model.addAttribute("chk", chk);
 		return "redirect:ad_prView.do?pr_no="+pr_no;
 	}
 	@RequestMapping("apCancel")
-	public String apCancel(int pr_no, Model model){
+	public String apCancel(int pr_no, Model model, String chk){
 		ps.apCancel(pr_no);
+		model.addAttribute("chk", chk);
 		return "redirect:ad_prView.do?pr_no="+pr_no;
 	}
 	 

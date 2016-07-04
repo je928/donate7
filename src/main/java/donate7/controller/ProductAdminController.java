@@ -234,9 +234,13 @@ public class ProductAdminController {
 	
 	
 	@RequestMapping(value="ad_prView", method=RequestMethod.GET)
-	public String ad_prView(int pr_no, Model model){
+	public String ad_prView(int pr_no,String yn, String mymn,String oyon,String chk, Model model){
 		Product product = ps.selectOne(pr_no);
 		model.addAttribute("product", product);
+		model.addAttribute("yn", yn);
+		model.addAttribute("mymn", mymn);
+		model.addAttribute("oyon", oyon);
+		model.addAttribute("chk", chk);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_prView.jsp");
 		return "module/main";
