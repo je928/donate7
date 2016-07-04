@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../module/header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -276,19 +276,17 @@ img {
 			</div>
 		</div>
 
-		<div class="btn-margin">
+		<div class="panel panel-default panel-table">
+			<div class="panel-heading text-center" style="margin-bottom: 20px;">
 			<input type="button" id="f" class="btn btn-primary"
-				onclick="location.href='goods.do?pageNum=1&fdp=f'" value="Fashion">
+				onclick="location.href='goods.do?pageNum=1&fdp=f'" value="Fashion">&nbsp;
 			<input type="button" id="d" class="btn btn-warning"
-				onclick="location.href='goods.do?pageNum=1&fdp=d'" value="Design">
+				onclick="location.href='goods.do?pageNum=1&fdp=d'" value="Design">&nbsp; 
 			<input type="button" id="p" class="btn btn-success"
 				onclick="location.href='goods.do?pageNum=1&fdp=p'"
 				value="Phone Case">
-		</div>
-		<div class="panel panel-default panel-table">
-			<div class="panel-heading"></div>
+			</div>
 			<div class="panel-body2">
-
 				<section id="pinBoot"> <c:forEach var="go"
 					items="${golist}">
 					<article class="white-panel"> <a

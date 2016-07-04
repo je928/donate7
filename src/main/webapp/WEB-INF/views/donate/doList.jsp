@@ -223,15 +223,13 @@ img {
 		</div>
 		
 		<div class="col-md-12">
-			<div class="list-group2 text-center">
-				<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=all'" value="전체"> &nbsp;
-				<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=p'" value="사람"> &nbsp;
-				<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=a'" value="동물"> &nbsp;
-				<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=e'" value="환경"> &nbsp;
-				<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=etc'" value="기타">
-			</div>
 			<div class="panel panel-default panel-table">
-				<div class="panel-heading">
+				<div class="panel-heading text-center" style="margin-bottom: 20px;">
+					<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=all'" value="전체">&nbsp;
+					<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=p'" value="사람">&nbsp;
+					<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=a'" value="동물">&nbsp;
+					<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=e'" value="환경">&nbsp;
+					<input type="button" class="btn btn-success" onclick="location.href='doList.do?pageNum=1&ctg=etc'" value="기타">
 				</div>
 				<div class="panel-body2">
 					<section id="pinBoot">
