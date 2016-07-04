@@ -43,7 +43,35 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<div style="margin-left: 30%" id="paging">
+	<div class="text-center" id="paging">
+		<div class="row">
+			<div class="col">
+				<ul class="pagination">
+					<c:if test="${paging.startPage > paging.pagePerBlock}">
+						<li><a href="javascript:list(1)">««</a></li>						
+						<li><a href="javascript:list(${paging.nowPage-1})">«</a></li>
+					</c:if>
+				</ul>
+				<ul class="pagination">
+					<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
+						<c:if test="${i eq paging.nowPage}">
+							<li><a href="#"><b class="b2">${i}</b></a></li>
+						</c:if>
+						<c:if test="${i ne paging.nowPage}">
+							<li><a href="javascript:list(${i})">${i}</a></li>
+						</c:if>
+					</c:forEach>
+				</ul>
+				<ul class="pagination">
+					<c:if test="${paging.totalPage > paging.endPage}">
+						<li><a href="javascript:list(${paging.startPage+paging.pagePerBlock})">»</a></li>
+						<li><a href="javascript:list(${paging.totalPage})">»»</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<%-- <div style="margin-left: 30%" id="paging">
 		<c:if test="${paging.startPage != 1}">
 			<a href="javascript:list(1)">&lt;&lt;맨 앞으로</a>
 		</c:if>
@@ -64,6 +92,7 @@
 		<c:if test="${paging.endPage != paging.totalPage}">
 			<a href="javascript:list(${paging.totalPage})">맨 뒤로&gt;&gt;</a>
 		</c:if>
-	</div>
+	</div> --%>
+	
 </body>
 </html>
