@@ -52,8 +52,8 @@ public class DonateServiceImpl implements DonateService {
 	public int adDelete(int d_no) {
 		return dd.adDelete(d_no);
 	}
-	public List<Donate> doList() {
-		return dd.doList();
+	public List<Donate> doList(Donate donate) {
+		return dd.doList(donate);
 	}
 	public int getTotal(Donate donate) {
 		return dd.getTotal(donate);

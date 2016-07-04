@@ -15,6 +15,7 @@ import donate7.model.DoResult;
 import donate7.model.Donate;
 import donate7.service.Cpoint_InfoService;
 import donate7.service.DonateService;
+import donate7.service.GiftPagingBean;
 
 @Controller
 public class DonateController {
@@ -34,10 +35,33 @@ public class DonateController {
 		return "redirect:adView.do?d_no="+d_no;
 	}
 	@RequestMapping(value="doList")
-	public String doList(Model model){
-		List<Donate> list = ds.doList();
+	public String doList(Donate donate, String pageNum, String ctg, Model model){
+		final int rowPerPage = 9;
+		
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		if(ctg == null || ctg.equals("")){
+			ctg = "all";
+		}
+		
+		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		donate.setCtg(ctg);
+		int total = ds.getTotal(donate);
+		
+		donate.setStartRow(startRow);
+		donate.setEndRow(endRow);
+		
+		GiftPagingBean gp = new GiftPagingBean(nowPage, total); 
+		
+		List<Donate> list = ds.doList(donate);
 		model.addAttribute("list", list);
 		model.addAttribute("ds", ds);
+		model.addAttribute("gp", gp);
+		model.addAttribute("ctg", ctg);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../donate/doList.jsp");
 		return "module/main";
 	}

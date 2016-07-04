@@ -25,10 +25,17 @@ public class Donate {
 	private String email;
 	private String nick;
 	private String category;
+	private String ctg;
 	
 	private int startRow;
 	private int endRow;
 	
+	public String getCtg() {
+		return ctg;
+	}
+	public void setCtg(String ctg) {
+		this.ctg = ctg;
+	}
 	public int getStartRow() {
 		return startRow;
 	}

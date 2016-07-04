@@ -85,14 +85,46 @@
 		<update id="adDelete" parameterType="int">
 		update donate set d_approve='n' where d_no=#{d_no}
 	</update>
-	<select id="doList" resultMap="DonateResult">
-		select d.*, a.no as no, a.email as email, a.nick as nick, a.job as category from donate d, 
+	<select id="doList" parameterType="donate" resultMap="DonateResult">
+		select * from (select rownum rn, a.* from (select d.*, m.no as no, m.email as email, m.nick as nick, m.job as category from donate d, 
 			(select m_no as no, m_email as email, m_nick as nick, m_job as job, m_del_yn as del_yn from member where m_del_yn='n' 
 			union select o_no, o_email, o_oname, o_category, o_del_yn from organ where o_del_yn='n') 
-			a where d.d_member=a.no and d_approve='y' order by d_reg_date desc
+			m where d.d_member=m.no and d_approve='y'
+      <if test='ctg != "all"'>
+			<if test='ctg == "p"'>
+				and m.job='사람'
+			</if>
+			<if test='ctg == "e"'>
+				and m.job='환경'
+			</if>
+			<if test='ctg == "a"'>
+				and m.job='동물'
+			</if>
+			<if test='ctg == "etc"'>
+				and (m.job='자영업' or m.job='학생' or m.job='회사원' or m.job='무직' or m.job='기타')
+			</if>
+		</if>
+      order by d_reg_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="getTotal" parameterType="donate" resultType="int">
-		select count(*) from donate <if test="d_member != 1"> where d_member=#{d_member}</if>
+		select count(*) from donate d, 
+			(select m_no as no, m_email as email, m_nick as nick, m_job as job, m_del_yn as del_yn from member where m_del_yn='n' 
+			union select o_no, o_email, o_oname, o_category, o_del_yn from organ where o_del_yn='n') 
+			m where d.d_member=m.no and d_approve='y'
+		<if test='ctg != "all"'>
+			<if test='ctg == "p"'>
+				and m.job='사람'
+			</if>
+			<if test='ctg == "e"'>
+				and m.job='환경'
+			</if>
+			<if test='ctg == "a"'>
+				and m.job='동물'
+			</if>
+			<if test='ctg == "etc"'>
+				and (m.job='자영업' or m.job='학생' or m.job='회사원' or m.job='무직' or m.job='기타')
+			</if>
+		</if>
 	</select>
 		<select id="memTotal" resultType="int">
 		select count(*) from donate where d_member<![CDATA[>]]>0 
