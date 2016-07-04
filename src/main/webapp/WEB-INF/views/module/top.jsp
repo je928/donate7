@@ -21,15 +21,16 @@
 			<div class="navbar-collapse collapse" id="navbar-main">
 				<ul class="nav navbar-nav">
 					<li><a href="doList.do">기부</a></li>
-					<li class="dropdown">
+					<li><a href="volSearch.do">봉사</a></li>
+					<!-- <li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href=".do" id="download">봉사
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="download">
 							<li><a href="volSearch.do">통합 봉사 조회</a></li>
-							<!-- <li><a href="timeList.do">기간별 봉사 조회</a></li> -->
+							<li><a href="timeList.do">기간별 봉사 조회</a></li>
 							<li><a href="centerList.do">수요처 조회</a></li>
 						</ul>
-					</li>
+					</li> -->
 					<li><a href="goods.do">마켓</a></li>
 					<li><a href="community.do">커뮤니티</a></li>
 					<li><a href="giftList.do">기프트샵</a></li>
