@@ -248,13 +248,13 @@ img {
 
 			<ul class="nav nav-pills nav-justified">
 				<li data-target="#myCarousel" data-slide-to="0" class="active">
-					<a href="#">기부<small>donate</small></a>
+					<a href="doList.do">기부<small>donate</small></a>
 				</li>
 				<li data-target="#myCarousel" data-slide-to="1">
-					<a href="#">봉사<small>volunteer</small></a>
+					<a href="volSearch.do">봉사<small>volunteer</small></a>
 				</li>
 				<li data-target="#myCarousel" data-slide-to="2">
-					<a href="#">마켓<small>market</small></a>
+					<a href="goods.do">마켓<small>market</small></a>
 				</li>
 			</ul>
 		</div>
