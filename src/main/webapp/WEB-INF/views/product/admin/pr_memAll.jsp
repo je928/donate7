@@ -56,7 +56,7 @@ function locate(pageNum,mymn){
 <!--  <div class="col-md-12" id="prlist" style="display: block">  -->
 	<div class="row" align="center">
 	<table class="table table-striped table-hover">
-					<caption>전체리스트</caption>
+					<caption>일반회원리스트</caption>
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -74,9 +74,9 @@ function locate(pageNum,mymn){
 							<td>일반</td>	</c:if>
 							<c:if test="${product.pr_mno<0 }">
 							<td>기관</td></c:if>
-							<td><a href="ad_prView.do?pr_no=${product.pr_no}&pageNum=${pageNum}">
+							<td><a href="ad_prView.do?pr_no=${product.pr_no}&pageNum=${pageNum}&mymn=${mymn}">
 									${product.pr_proname }</a></td>
-							<td>${product.email}</td>
+							<td>${product.m_email}</td>
 							<td>${product.pr_date}</td>
 							
 							<td><c:if test="${product.pr_approve eq 'y'}">

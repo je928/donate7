@@ -8,18 +8,13 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function locate(pageNum) {
-		location.href = "mReqList.do?pageNum=" + pageNum;
+		location.href = "mdoList.do?pageNum=" + pageNum;
 	}
 </script>
 </head>
 <body>
 
 	<div class="col-md-12">
-		<div class="list-group2">
-			<!-- <a href="#.do?#=all" class="btn btn-sm btn-info">전체</a>&nbsp;
-			<a href="#.do?#=#" class="btn btn-sm btn-info">승인 대기</a>&nbsp;
-			<a href="#.do?#=#" class="btn btn-sm btn-info">승인 완료</a>&nbsp; -->
-		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">
 				<div class="row">
@@ -34,7 +29,7 @@
 						<tr>
 							<th>글번호</th>
 							<th>제목</th>
-							<th>희망금액</th>
+							<th>후원금액</th>
 							<th>작성일</th>
 							<th>승인여부</th>
 						</tr>
@@ -43,10 +38,11 @@
 					<c:set var="num" value="${pg.total }" />
 					<c:if test="${not empty list }">
 					<c:forEach var="donate" items="${list }">
+					<c:set var="sumD" value ="${ds.sumDonate(donate.d_no) }"> </c:set>
 					<tr>
 						<td>${num}</td>
 						<td><a href="mdoReqV.do?d_no=${donate.d_no }">${donate.d_title }</a></td>
-						<td><strong><fmt:formatNumber value="${donate.amount}" groupingUsed="true" />원</strong></td>
+						<td><strong><fmt:formatNumber value="${sumD}" groupingUsed="true" />원</strong></td>
 						<td><fmt:formatDate value="${donate.d_reg_date }" /></td>
 						<td>
 						<c:if test="${donate.d_approve eq 'y'}">
@@ -62,7 +58,7 @@
 					</c:if>
 					<c:if test="${empty list }">
 					<tr>
-						<td colspan="5">요청하신 글이 없습니다</td>
+						<td colspan="4">요청하신 글이 없습니다</td>
 					</tr>
 					</c:if>
 					</tbody>

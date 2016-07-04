@@ -73,7 +73,7 @@ function locate(pageNum,yn){
 							<td>일반</td>	</c:if>
 							<c:if test="${product.pr_mno<0 }">
 							<td>기관</td></c:if>
-							<td><a href="ad_prView.do?pr_no=${product.pr_no} &pageNum=${pageNum}">
+							<td><a href="ad_prView.do?pr_no=${product.pr_no} &pageNum=${pageNum}&yn=${yn}">
 									${product.pr_proname }</a></td>
 							<td>${product.email}</td>
 							<td>${product.pr_date}</td>
