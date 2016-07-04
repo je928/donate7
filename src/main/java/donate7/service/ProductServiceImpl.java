@@ -33,9 +33,9 @@ public class ProductServiceImpl implements ProductService {
 		return pd.olist(product);
 	}
 
-	public List<Product> prlist(Product product) {
+	public List<Product> prlist(Product product, String yn) {
 	
-		return pd.prlist(product);
+		return pd.prlist(product, yn);
 	}
 
 	public int prUpdate(Product product) {
@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 		return pd.getTotal(product);
 	}
 
-	public int prSTotal(Product product) {
+/*	public int prSTotal(Product product) {
 	
 		return pd.prSTotal(product);
 	}
@@ -90,9 +90,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> prAlist(Product product) {
 		
 		return pd.prAlist(product);
-	}
+	}*/
 
-	public int memSTotal(Product product) {
+	/*public int memSTotal(Product product) {
 		
 		return pd.memSTotal(product);
 	}
@@ -136,7 +136,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		return pd.orAlist(product);
 	}
-
+*/
 	public int apTotal(Product product) {
 		return pd.apTotal(product);
 	}
@@ -149,6 +149,26 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> golist(Product product, String fdp) {
 	
 		return pd.golist(product, fdp);
+	}
+
+
+	public int memTotal(Product product) {
+		
+		return pd.memTotal(product);
+	}
+
+	public List<Product> memAll(Product product, String mymn) {
+		return pd.memAll(product,mymn);
+	}
+
+	@Override
+	public int orTotal(Product product) {
+		return  pd.orTotal(product);
+	}
+
+	public List<Product> orAll(Product product, String oyon) {
+		
+		return pd.orAll(product,oyon);
 	}
 
 }

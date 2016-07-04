@@ -19,29 +19,90 @@ public class ProductAdminController {
 	@Autowired
 	private ProductService ps;
 	
-	@RequestMapping(value="ad_prList", method=RequestMethod.GET)
-	public String adprList(Product product, String pageNum, Model model, HttpSession session){
+	@RequestMapping(value="pr_all")
+	public String pall(Product product, String pageNum, String yn, Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
+		if(yn == null || yn.equals("")){
+			yn = "all";
+		}
 		product.setPr_mno(no);
 		int nowPage = Integer.parseInt(pageNum);
+		product.setYn(yn);
 		int total = ps.getTotal(product);
 		Paging pg = new Paging(nowPage, total);
 		product.setStartRow(pg.getStartRow());
 		product.setEndRow(pg.getEndRow());
-		List<Product> prlist = ps.prlist(product);
 		
-		model.addAttribute("prlist", prlist);
+		List<Product> plist = ps.prlist(product,yn);
+		
+		model.addAttribute("plist", plist);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("yn", yn);
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_prList.jsp");
+		model.addAttribute("mypgm", "../../product/admin/pr_all.jsp");
+		return "module/main";
+	}
+	@RequestMapping(value="pr_memAll")
+	public String memAll(Product product, String pageNum, String mymn, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		if(mymn == null || mymn.equals("")){
+			mymn = "all";
+		}
+		product.setPr_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		product.setMymn(mymn);
+		int total = ps.memTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> mAll = ps.memAll(product,mymn);
+		model.addAttribute("mAll", mAll);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("mymn", mymn);		
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/admin/pr_memAll.jsp");
+		return "module/main";
+	
+	}
+	
+	@RequestMapping(value="pr_orAll")
+	public String orAll(Product product, String pageNum, String oyon, Model model, HttpSession session){
+		int no=(Integer)session.getAttribute("no");
+		if(pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		if(oyon == null || oyon.equals("")){
+			oyon = "all";
+		}
+		product.setPr_mno(no);
+		int nowPage = Integer.parseInt(pageNum);
+		product.setOyon(oyon);
+		int total = ps.orTotal(product);
+		Paging pg = new Paging(nowPage, total);
+		product.setStartRow(pg.getStartRow());
+		product.setEndRow(pg.getEndRow());
+		List<Product> oAll = ps.orAll(product,oyon);
+		model.addAttribute("oAll", oAll);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("oyon", oyon);
+		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
+		model.addAttribute("mypgm", "../../product/admin/pr_orAll.jsp");
 		return "module/main";
 	}
 	
-	@RequestMapping(value="ad_prSlist", method=RequestMethod.GET)
+	/*@RequestMapping(value="ad_prSlist", method=RequestMethod.GET)
 	public String adprSlist(Product product, String pageNum, Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
 		if(pageNum == null || pageNum.equals("")) {
@@ -82,8 +143,8 @@ public class ProductAdminController {
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_prAlist.jsp");
 		return "module/main";
-	}
-	@RequestMapping(value="ad_memSlist", method=RequestMethod.GET)
+	}*/
+	/*@RequestMapping(value="ad_memSlist", method=RequestMethod.GET)
 	public String admemSlist(Product product, String pageNum, Model model, HttpSession session){
 		int no=(Integer)session.getAttribute("no");
 		if(pageNum == null || pageNum.equals("")) {
@@ -166,53 +227,11 @@ public class ProductAdminController {
 		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
 		model.addAttribute("mypgm", "../../product/admin/ad_orAlist.jsp");
 		return "module/main";
-	}
+	}*/
 	
-	/*
 	
-	@RequestMapping("ad_mlist")
-	public String admlist(Product product, String pageNum, Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
-		}
-				product.setPr_mno(no);
-		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.memTotal(product);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
-		List<Product> mlist = ps.memAll(product);
-		model.addAttribute("mlist", mlist);
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_mlist.jsp");
-		return "module/main";
 	
-	}
 	
-	@RequestMapping("ad_olist")
-	public String adoList(Product product, String pageNum, Model model, HttpSession session){
-		int no=(Integer)session.getAttribute("no");
-		if(pageNum == null || pageNum.equals("")) {
-			pageNum = "1";
-		}
-		product.setPr_mno(no);
-		int nowPage = Integer.parseInt(pageNum);
-		int total = ps.orTotal(product);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
-		List<Product> olist = ps.orAll(product);
-		model.addAttribute("olist", olist);
-		model.addAttribute("total", total);
-		model.addAttribute("pg", pg);
-		model.addAttribute("pgm", "../member/admin_page/a_tamp.jsp");
-		model.addAttribute("mypgm", "../../product/admin/ad_olist.jsp");
-		return "module/main";
-	}
-	*/
 	
 	@RequestMapping(value="ad_prView", method=RequestMethod.GET)
 	public String ad_prView(int pr_no, Model model){
