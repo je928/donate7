@@ -19,7 +19,7 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-6">
-						<b class="panel-title">중고품 기부 내역</b>
+						<b class="panel-title">중고품 기부 요청 내역</b>
 					</div>
 				</div>
 			</div>
