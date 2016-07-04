@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Product;
+import donate7.service.ProductPagingBean;
 import donate7.service.ProductService;
-import donate7.util.Paging;
 
 @Controller
 public class ProductController {
@@ -89,6 +89,7 @@ public class ProductController {
 	
 	@RequestMapping("goods")
 	public String a_deliveryForm(Model model, Product product, String pageNum, String fdp) {
+		final int rowPerPage = 15;
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
@@ -96,12 +97,15 @@ public class ProductController {
 			fdp="all";
 		}
 		int nowPage = Integer.parseInt(pageNum);
+		int startRow = (nowPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
 		Product pr = new Product();	
 		pr.setFdp(fdp);
 		int total = ps.goTotal(pr);
-		Paging pg = new Paging(nowPage, total);
-		product.setStartRow(pg.getStartRow());
-		product.setEndRow(pg.getEndRow());
+		
+		product.setStartRow(startRow);
+		product.setEndRow(endRow);
+		ProductPagingBean pg = new ProductPagingBean(nowPage, total);
 		List<Product> golist = ps.golist(product, fdp);
 		
 		model.addAttribute("golist", golist);
