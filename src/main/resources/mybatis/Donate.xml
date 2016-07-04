@@ -92,7 +92,7 @@
 			a where d.d_member=a.no and d_approve='y' order by d_reg_date desc
 	</select>
 	<select id="getTotal" parameterType="donate" resultType="int">
-		select count(*) from donate <if test="d_member != 1"> where d_member=#{d_member}</if>
+		select count(*) from donate
 	</select>
 		<select id="memTotal" resultType="int">
 		select count(*) from donate where d_member<![CDATA[>]]>0 

@@ -39,8 +39,6 @@ public class MyDonateController {
 		donate.setStartRow(pg.getStartRow());
 		donate.setEndRow(pg.getEndRow());
 		List<Donate> list = ds.mlist(no);
-/*		int count = ds.count(donate);
-		model.addAttribute("count",count);*/
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
 		model.addAttribute("pg", pg);
