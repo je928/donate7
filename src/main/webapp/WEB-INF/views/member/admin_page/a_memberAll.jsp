@@ -57,12 +57,12 @@
 				<table class="table table-striped table-bordered table-list">
 					<thead>
 						<tr>
-							<th>no</th>
-							<th>email</th>
-							<th>nick</th>
-							<th>age</th>
-							<th>tel</th>
-							<th><em class="fa fa-cog"></em></th>
+							<th>번호</th>
+							<th>이메일</th>
+							<th>닉네임</th>
+							<th>나이</th>
+							<th>전화번호</th>
+							<th>자세히 보기</th>
 						</tr>
 					</thead>
 					<tbody>

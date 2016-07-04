@@ -66,55 +66,66 @@
 </style>
 </head>
 <body>
-	<form action="mdoReq.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="d_member" value="${sessionScope.no }">
-		<table class="table table-striped table-hover">
-			<tr>
-				<th>제목</th>
-				<td><input type="text" name="d_title" id="d_title" class="form-control-95"
-					required="required"></td>
-			</tr>
-			<tr>
-				<th>메인 사진</th>
-				<c:if test="${not empty msg }">
-					<font color="red"> ${msg } </font>
-				</c:if>
-				<c:if test="${not empty fileName }">
-					<img src="image/${fileName }">
-				</c:if>
-				<td><input type="file" name="img" required="required"></td>
-			</tr>
-			<tr>
-				<th>사진첨부 및 내용</th>
-				<td><textarea rows="10" cols="80" name="d_content"
-						required="required"></textarea></td>
-			</tr>
-			<tr>
-				<th>기부 기간</th>
-				<td><input type="date" name="d_start_date" id="d_start_date">
-					~ <input type="date" name="d_end_date" id="d_end_date"></td>
-			</tr>
-			<tr>
-				<th>기부금 사용계획</th>
-				<td><textarea rows="10" cols="90" name="d_plan"
-						required="required"></textarea></td>
-			</tr>
-			<tr>
-				<th>희망금액</th>
-				<td><input type="number" name="d_amount" required="required">원</td>
-			</tr>
-			<tr>
-				<th>계좌번호</th>
-				<td><input type="text" name="d_bank" id="d_bank" placeholder="은행" class="form-control-b"
-					required="required"> <input type="text" name="d_account" class="form-control-ac"
-					id="d_account" placeholder="계좌번호" required="required"></td>
-			</tr>
-		</table>
 
-		<div align="center">
-				<button type="submit" class="btn btn-primary btn-md">요청하기
-					<i class=" glyphicon glyphicon-ok"></i></button>
+	<div class="col-md-12">
+		<div class="panel panel-default panel-table">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-6">
+						<b class="panel-title">기부 요청</b>
+					</div>
+				</div>
+			</div>
+			<form action="mdoReq.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="d_member" value="${sessionScope.no }">
+				<div class="panel-body2">
+					<table class="table table-striped table-bordered table-list">
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<td><input type="text" name="d_title" id="d_title" class="form-control-95" required="required"></td>
+							</tr>
+							<tr>
+								<th>메인 사진</th>
+								<c:if test="${not empty fileName }">
+									<img src="image/${fileName }">
+								</c:if>
+								<td><input type="file" name="img" required="required"></td>
+							</tr>
+							<tr>
+								<th>사진첨부 및 내용</th>
+								<td><textarea rows="10" cols="80" name="d_content" required="required"></textarea></td>
+							</tr>
+							<tr>
+								<th>기부 기간</th>
+								<td><input type="date" name="d_start_date" id="d_start_date" class="form-control-20">
+									~ <input type="date" name="d_end_date" id="d_end_date" class="form-control-20"></td>
+							</tr>
+							<tr>
+								<th>기부금 사용계획</th>
+								<td><textarea rows="10" cols="90" name="d_plan" required="required"></textarea></td>
+							</tr>
+							<tr>
+								<th>희망금액</th>
+								<td><input type="number" name="d_amount" required="required">원</td>
+							</tr>
+							<tr>
+								<th>계좌번호</th>
+								<td>
+									<input type="text" name="d_bank" id="d_bank" placeholder="은행" class="form-control-b" required="required">
+									<input type="text" name="d_account" class="form-control-ac" id="d_account" placeholder="계좌번호" required="required">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-footer text-center">
+					<button type="submit" class="btn btn-sm btn-success">요청하기
+						<i class="glyphicon glyphicon-envelope"></i></button>
+				</div>
+			</form>
 		</div>
-	</form>
+	</div>
+
 </body>
 </html>

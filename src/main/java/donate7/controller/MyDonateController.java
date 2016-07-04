@@ -41,6 +41,7 @@ public class MyDonateController {
 		List<Donate> list = ds.mlist(no);
 		model.addAttribute("list", list);
 		model.addAttribute("total", total);
+		model.addAttribute("ds", ds);
 		model.addAttribute("pg", pg);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../donate/mdoList.jsp");

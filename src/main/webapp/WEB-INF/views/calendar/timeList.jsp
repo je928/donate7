@@ -118,8 +118,7 @@ span {
 						<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 						<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 						<td>${rc.vt_tot }</td>
-						<th>${rc.count}
-						</td>
+						<th>${rc.count}</th>
 						<td><c:if test="${rc.vt_r_yn == 'Y'}">
 								<span class="ry">모집 중</span>
 							</c:if> <c:if test="${rc.vt_r_yn == 'N'}">

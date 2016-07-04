@@ -64,6 +64,10 @@
 											<td><b>${organ.o_category}</b></td>
 										</tr>
 										<tr>
+											<td>가입일</td>
+											<td><b><fmt:formatDate value="${organ.o_reg_date}" /></b></td>
+										</tr>
+										<tr>
 											<td>승인유무</td>
 											<c:if test="${organ.o_ok_xyn eq 'x'}">
 											<td><span class="ok_x">승인 처리중</span></td>
@@ -90,7 +94,7 @@
 						</div>
 					</div>
 					<div class="panel-footer text-center">
-						<a href="a_organAll.do?pageNum=${pageNum}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
+						<a href="a_organAll.do?pageNum=${pageNum}&xyn=${xyn}" type="button" class="btn btn-sm btn-default">목록<i class="fa fa-list-ul"></i></a>
 					</div>
 				</div>
 			</div>

@@ -2,8 +2,6 @@ package donate7.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Product;
-import donate7.model.Product_buy;
-import donate7.service.CommunityPagingBean;
 import donate7.service.ProductService;
 import donate7.util.Paging;
 
@@ -81,9 +77,10 @@ public class ProductController {
 		return "module/main";
 	}*/
 	@RequestMapping(value="go_view", method=RequestMethod.GET)
-	public String goview(int pr_no, Model model){
+	public String goview(int pr_no, String pageNum, Model model){
 		Product product = ps.selectOne(pr_no);
 		model.addAttribute("product", product);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../product/go_view.jsp");
 		return "module/main";
 	}
@@ -108,6 +105,7 @@ public class ProductController {
 		model.addAttribute("golist", golist);
 		model.addAttribute("pg", pg);
 		model.addAttribute("fdp", fdp);
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../product/goods.jsp");
 		
 		return "module/main";

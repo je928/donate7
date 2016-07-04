@@ -95,12 +95,12 @@ body {
 			<c:forEach var="go" items="${golist}">
 
 				<div class="col-lg-3-1 col-md-2 col-sm-2 col-xs-12 profile">
-					<a href="go_view.do?pr_no=${go.pr_no}"> 
+					<a href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}"> 
 					<img src="image/${go.pr_img}" class="img-responsive" class="img-box" style="width: 300px; height: 230px;">
 					</a>
 
 					<h1>
-						<a href="go_view.do?pr_no=${go.pr_no}">
+						<a href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}">
 							${go.pr_proname}</a>
 					</h1>
 					<h2>${go.pr_price}원</h2>

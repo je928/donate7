@@ -76,7 +76,7 @@
 					</c:if>
 					</c:if>
 					<input type="button" class="btn btn-primary btn-md" value="뒤로"
-						onclick="location.href='rqnList.do?pageNum=${pageNum}'">
+						onclick="location.href='rqnList.do?pageNum=${pageNum}&vtryn=${vtryn}'">
 				</div>
 			</div>
 		</div>

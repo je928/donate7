@@ -230,79 +230,32 @@ img {
 	});
 </script>
 </head>
-<body>
+<body style="background-color: white;">
 
 	<div class="container body">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="http://placehold.it/1200x400/cccccc/ffffff">
-					<div class="carousel-caption">
-						<h3>Headline</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
-							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat, sed diam voluptua. <a
-								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
-								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
-						</p>
-					</div>
+					<img src="images/donate.png">
 				</div>
 				<div class="item">
-					<img src="http://placehold.it/1200x400/999999/cccccc">
-					<div class="carousel-caption">
-						<h3>Headline</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
-							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat, sed diam voluptua. <a
-								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
-								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
-						</p>
-					</div>
+					<img src="images/volunteer.png">
 				</div>
 				<div class="item">
-					<img src="http://placehold.it/1200x400/dddddd/333333">
-					<div class="carousel-caption">
-						<h3>Headline</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-							erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur
-							sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-							labore et dolore magna aliquyam erat, sed diam voluptua. <a
-								href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank"
-								class="label label-danger">Bootstrap 3 - Carousel Collection</a>
-						</p>
-					</div>
-				</div>
-				<div class="item">
-					<img src="http://placehold.it/1200x400/999999/cccccc">
-					<div class="carousel-caption">
-						<h3>Headline</h3>
-						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-							sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-							aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet,
-							consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-							invidunt ut labore et dolore magna aliquyam erat, sed diam
-							voluptua.</p>
-					</div>
+					<img src="images/market.png">
 				</div>
 			</div>
 
 			<ul class="nav nav-pills nav-justified">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"><a
-					href="#">About<small>Lorem ipsum dolor sit</small></a></li>
-				<li data-target="#myCarousel" data-slide-to="1"><a href="#">Projects<small>Lorem
-							ipsum dolor sit</small></a></li>
-				<li data-target="#myCarousel" data-slide-to="2"><a href="#">Portfolio<small>Lorem
-							ipsum dolor sit</small></a></li>
-				<li data-target="#myCarousel" data-slide-to="3"><a href="#">Services<small>Lorem
-							ipsum dolor sit</small></a></li>
+				<li data-target="#myCarousel" data-slide-to="0" class="active">
+					<a href="#">기부<small>donate</small></a>
+				</li>
+				<li data-target="#myCarousel" data-slide-to="1">
+					<a href="#">봉사<small>volunteer</small></a>
+				</li>
+				<li data-target="#myCarousel" data-slide-to="2">
+					<a href="#">마켓<small>market</small></a>
+				</li>
 			</ul>
 		</div>
 	</div>

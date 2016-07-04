@@ -25,14 +25,22 @@
 	
 	<div class="col-md-12">
 		<div class="text-left list-group2">
-			<input type="button" class="btn btn-default2" onclick="vtry()" value="봉사 신청 목록">
-			<input type="button" class="btn btn-default2" onclick="vtrn()" value="봉사 완료 목록">
+			<input type="button" class="btn btn-sm btn-default2" onclick="vtry()" value="봉사 신청 목록">&nbsp;
+			<input type="button" class="btn btn-sm btn-default2" onclick="vtrn()" value="봉사 완료 목록">
 		</div>
 		<div class="panel panel-default panel-table">
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col col-xs-6">
-						<b class="panel-title">총 봉사시간 : 0</b>
+						<b class="panel-title">봉사 내역</b>
+					</div>
+					<div class="col col-xs-6 text-right">
+						<c:set var="vt_time" value="${vs.Vt_TimeTotal(m_no) }"> </c:set>
+						<c:if test="${vtryn == 'Y'}">
+						</c:if>
+						<c:if test="${vtryn == 'N'}">
+						<b class="green">총 봉사시간 : </b><b>${vt_time}</b>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -55,7 +63,7 @@
 						<c:forEach var="rc" items="${list}">
 						<tr>
 							<td>${rc.vt_no}</td>
-							<td><a href="View.do?vt_no=${rc.vt_no}&pageNum=${paging.nowPage}">${rc.vt_name}</a></td>
+							<td><a href="View.do?vt_no=${rc.vt_no}&pageNum=${paging.nowPage}&vtryn=${vtryn}">${rc.vt_name}</a></td>
 							<td>${rc.vt_r_start_date }~${rc.vt_r_end_date }</td>
 							<td>${rc.vt_a_start_date }~${rc.vt_a_end_date }</td>
 							<td>${rc.vt_tot }</td>

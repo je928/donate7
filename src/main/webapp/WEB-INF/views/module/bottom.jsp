@@ -8,14 +8,11 @@
 </head>
 <body>
 	
+	<hr style="border-color: #D5D5D5;">
 	<div class="container">
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p><h6><b class="b">Copyright &copy;</b> Donate7 WebSite 2016</h6>
-				</div>
-			</div>
-		</footer>
+		<div class="col-lg-12 text-left" style="height: 200px;">
+			<p><h6><b class="b">Copyright &copy;</b> Donate7 Corp. All Rights Reserved.</h6>
+		</div>
 	</div>
 
 </body>

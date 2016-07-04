@@ -79,23 +79,29 @@
 			<table class="table table-striped table-hover">
 				<caption>기관 도착여부</caption>
 				<tr>
-					<th width="60">번호</th>
-					<th width="60">제목</th>
-					<th width="60">작성자</th>
-					<th width="60">상품종류</th>
-					<th width="60">등록일</th>
-					<th width="60">도착여부</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>상품종류</th>
+					<th>등록일</th>
+					<th>도착여부</th>
 				</tr>
 				<c:set var="num" value="${pg.total }" />
 				<c:forEach var="second" items="${orlist }">
 					<c:if test="${second.sh_approve eq 'y' }">
 							<tr>
-							<th>${num }</th>
-							<th><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></th>
-							<th>${second.o_email }</th>
-							<th>${second.sh_category }</th>
-							<th>${second.sh_reg_date }</th>
-							<th>${second.sh_arrive }</th>
+							<td>${num }</td>
+							<td><a href="adsecondView2.do?sh_no=${second.sh_no }">${second.sh_title }</a></td>
+							<td>${second.o_email }</td>
+							<td>${second.sh_category }</td>
+							<td>${second.sh_reg_date }</td>
+							<td><c:if test="${second.sh_arrive eq 'y'}">
+									<span class="ok_y">도착확인</span>
+								</c:if> 
+								<c:if test="${second.sh_arrive eq 'n'}">
+									<span class="ok_x">확인중</span>
+								</c:if>
+							</td>
 						</tr>
 						</c:if>
 					

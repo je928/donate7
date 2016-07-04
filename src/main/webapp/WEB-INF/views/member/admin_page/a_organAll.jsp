@@ -11,8 +11,8 @@
 		location.href="a_organAll.do?pageNum="+pageNum+"&xyn="+xyn;
 	}
 	
-	function info(pageNum,o_no){
-		location.href="o_info.do?pageNum="+pageNum+"&o_no="+o_no;
+	function info(pageNum,o_no,xyn){
+		location.href="o_info.do?pageNum="+pageNum+"&o_no="+o_no+"&xyn="+xyn;
 	}
 	
 	function m() {
@@ -78,7 +78,7 @@
 							<td><b class="ok_n">승인 거절</b></td>
 							</c:if>
 							<td align="center">
-								<a href="javascript:info(${o_pb.nowPage},${org.o_no})" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
+								<a href="javascript:info(${o_pb.nowPage},${org.o_no},'${org.o_ok_xyn}')" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a>
 							</td>
 						</tr>
 						<c:set var="no" value="${no-1}"></c:set>

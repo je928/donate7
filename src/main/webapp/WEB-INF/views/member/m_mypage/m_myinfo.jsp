@@ -54,11 +54,16 @@
 										</tr>
 										<tr>
 											<td>가입일</td>
-											<td><b>${member.m_reg_date}</b></td>
+											<td><b><fmt:formatDate value="${member.m_reg_date}" /></b></td>
 										</tr>
 										<tr>
-											<td>총 봉사시간</td>
+											<td><b class="green">총 기부금액</b></td>
 											<td><b>0</b></td>
+										</tr>
+										<tr>
+											<c:set var="vt_time" value="${vs.Vt_TimeTotal(member.m_no) }"> </c:set>
+											<td><b class="green">총 봉사시간</b></td>
+											<td><b>${vt_time}</b></td>
 										</tr>
 										<tr>
 											<td><b class="orange">경고(봉사)</b></td>
