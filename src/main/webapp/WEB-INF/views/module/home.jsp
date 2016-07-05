@@ -248,19 +248,19 @@ img {
 
 			<ul class="nav nav-pills nav-justified">
 				<li data-target="#myCarousel" data-slide-to="0" class="active">
-					<a href="doList.do">기부<small>donate</small></a>
+					<a href="#">기부<small>donate</small></a>
 				</li>
 				<li data-target="#myCarousel" data-slide-to="1">
-					<a href="volSearch.do">봉사<small>volunteer</small></a>
+					<a href="#">봉사<small>volunteer</small></a>
 				</li>
 				<li data-target="#myCarousel" data-slide-to="2">
-					<a href="goods.do">마켓<small>market</small></a>
+					<a href="#">마켓<small>market</small></a>
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div class="container">
+	<!-- <div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-19"></div>
 		</div>
@@ -348,6 +348,65 @@ img {
 				</section>
 			</div>
 		</div>
+	</div> -->
+	
+	<div class="container">
+		<table align="center">
+			<tr>
+				<td>
+					<table class="table text-center">
+						<caption>
+							<h3 class="modal-header" style="font-size: 18px;">#기부</h3>
+						</caption>
+						<tr>
+							<th width="80%">제목</th>
+							<th width="20%">글쓴이</th>
+						</tr>
+						<c:forEach var="list1" items="${list1 }">
+						<c:if test="${ not empty list1}">
+								<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+									<td class="text-left">
+										<a href="../meetBoard/view.do?brd_no=${brd.brd_no}">${list1.d_title}</a>
+									</td>
+									<td>${list1.nick}</td>
+							</tr>
+						</c:if>
+						</c:forEach>
+						<c:if test="${empty list1}">
+							<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+								<td colspan="2">데이터가 없습니다</td>
+							</tr>
+						</c:if>
+					</table>
+				</td>
+				<td>
+					<table class="table text-center">
+						<caption>
+							<h3 class="modal-header" style="font-size: 18px;">#봉사</h3>
+						</caption>
+						<tr>
+							<th width="80%">제목</th>
+							<th width="20%">글쓴이</th>
+						</tr>
+						<c:forEach var="list2" items="${list2 }">
+						<c:if test="${ not empty list2}">
+								<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+									<td class="text-left">
+										<a href="../meetBoard/view.do?brd_no=${brd.brd_no}">${list2.vt_name}</a>
+									</td>
+									<td>${list2.o_oname}</td>
+							</tr>
+						</c:if>
+						</c:forEach>
+						<c:if test="${empty list2}">
+							<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+								<td colspan="2">데이터가 없습니다</td>
+							</tr>
+						</c:if>
+					</table>
+				</td>
+			</tr>
+		</table>
 	</div>
 
 </body>
