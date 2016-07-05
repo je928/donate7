@@ -5,9 +5,7 @@ import java.util.List;
 import donate7.model.DoResult;
 import donate7.model.Donate;
 
-
 public interface DonateDao {
-
 
 	int mdoReqInsert(Donate donate);
 
@@ -47,8 +45,6 @@ public interface DonateDao {
 
 	List<Donate> orAll(Donate donate);
 
-	
-	
 	int doTotal(DoResult doResult);
 
 	List<DoResult> drList(int d_no);
@@ -58,5 +54,7 @@ public interface DonateDao {
 	int insertNum();
 
 	int sumDonate(int d_no);
+
+	int sumNoDonate(int no);
 
 }

@@ -57,8 +57,9 @@
 											<td><b><fmt:formatDate value="${member.m_reg_date}" /></b></td>
 										</tr>
 										<tr>
+										<c:set var="TotalDonate" value="${ds.sumNoDonate(member.m_no) }"> </c:set>
 											<td><b class="green">총 기부금액</b></td>
-											<td><b>0</b></td>
+											<td><b>${TotalDonate}</b></td>
 										</tr>
 										<tr>
 											<c:set var="vt_time" value="${vs.Vt_TimeTotal(member.m_no) }"> </c:set>

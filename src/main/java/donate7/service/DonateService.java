@@ -54,4 +54,7 @@ public interface DonateService {
 	int insertNum();
 
 	int sumDonate(int d_no);
+	
+	int sumNoDonate(int no);
+	
 }

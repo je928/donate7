@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import donate7.model.Member;
 import donate7.model.Warning;
 import donate7.service.Cpoint_InfoService;
+import donate7.service.DonateService;
 import donate7.service.MemberService;
 import donate7.service.VolService;
 import donate7.service.WarningService;
@@ -26,6 +27,9 @@ public class m_mypageController {
 	
 	@Autowired
 	private Cpoint_InfoService cs;
+	
+	@Autowired
+	private DonateService ds;
 	
 	@Autowired
 	private VolService vs;
@@ -44,11 +48,13 @@ public class m_mypageController {
 		int br_total = ws.getSum(br_warn);
 		int sumC = cs.sumCash(m_no);
 		int sumP = cs.sumPoint(m_no);
+		
 		model.addAttribute(member);
 		model.addAttribute("dr_total", dr_total);
 		model.addAttribute("br_total", br_total);
 		model.addAttribute("sumC", sumC);
 		model.addAttribute("sumP", sumP);
+		model.addAttribute("ds", ds);
 		model.addAttribute("vs", vs);
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/m_myinfo.jsp");

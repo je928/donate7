@@ -31,4 +31,8 @@
 	<select id="sumDonate" resultType="int" parameterType="int">
 		select nvl(sum(d_donation),0) from doResult where d_no=#{d_no}
 	</select>
+	<select id="sumNoDonate" resultType="int" parameterType="int">
+		select nvl(sum(d_donation),0) from doResult where d_member=#{m_no}
+	</select>
+	
 </mapper>
