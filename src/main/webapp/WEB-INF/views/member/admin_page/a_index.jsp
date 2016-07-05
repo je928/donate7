@@ -148,7 +148,7 @@ padding-left:90px;
 }
 </style>
 </head>
-<body>
+<body style="background-color: #DAD9FF;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9 toppad" style="margin-left: 12px;">

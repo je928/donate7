@@ -14,7 +14,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-color: #DAD9FF;">
 
 	<div class="container">
 		<div class="row">

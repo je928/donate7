@@ -112,7 +112,7 @@
   
 </style>
 </head>
-<body>
+<body style="background-color: #DAD9FF;">
 	
 <!-- 	<div class="list-group">
 		<a href="a_memberAll.do" class="list-group-item">회원 관리</a>

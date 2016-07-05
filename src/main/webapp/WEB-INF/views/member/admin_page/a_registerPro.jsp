@@ -27,7 +27,8 @@ table #td {
 }
 </style>
 </head>
-<body>
+<body style="background-color: #DAD9FF;">
+
 	<div class="panel-body2">
 	<a href="registerPro.do?sort=all" class="btn btn-sm btn-info">전체</a>
 	<a href="registerPro.do?sort=y" class="btn btn-sm btn-info">처리 한거</a>

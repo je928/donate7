@@ -26,7 +26,7 @@
 	
 </script>
 </head>
-<body>
+<body style="background-color: #DAD9FF;">
 
 	<div class="col-md-12">
 		<div class="text-left list-group2">
