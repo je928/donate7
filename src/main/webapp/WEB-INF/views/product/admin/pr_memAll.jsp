@@ -17,46 +17,49 @@ function locate(pageNum,mymn){
 </script>
 </head>
 <body>
-
-<div class="btn-group">
-		<div class="btn-group">
-			<a href="#" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown"> 전체 <span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="pr_all.do?pageNum=1&yn=n">승인대기</a></li>
-				<li><a href="pr_all.do?pageNum=1&yn=y">승인완료</a></li>
-		
-			</ul>
+	<div class="col-md-12">
+		<div class="text-left list-group2">
+			<div class="btn-group">
+				<a href="#" class="btn btn-default dropdown-toggle"
+					data-toggle="dropdown"> 전체 <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="pr_all.do?pageNum=1&yn=n">승인대기</a></li>
+					<li><a href="pr_all.do?pageNum=1&yn=y">승인완료</a></li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<div class="btn-group">
+					<a href="#" class="btn btn-default dropdown-toggle"
+						data-toggle="dropdown"> 일반 <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="pr_memAll.do?pageNum=1&mymn=mn">승인대기</a></li>
+						<li><a href="pr_memAll.do?pageNum=1&mymn=my">승인완료</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="btn-group">
+				<div class="btn-group">
+					<a href="#" class="btn btn-default dropdown-toggle"
+						data-toggle="dropdown"> 기관 <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="pr_orAll.do?pageNum=1&mymn=mn">승인대기</a></li>
+						<li><a href="pr_orAll.do?pageNum=1&mymn=mn">승인완료</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-<div class="btn-group">
-		<div class="btn-group">
-			<a href="#" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown"> 일반 <span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="pr_memAll.do?pageNum=1&mymn=mn">승인대기</a></li>
-				<li><a href="pr_memAll.do?pageNum=1&mymn=my">승인완료</a></li>
-			</ul>
-		</div>
-	</div>
-<div class="btn-group">
-		<div class="btn-group">
-			<a href="#" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown"> 기관 <span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu">
-				<li><a href="pr_orAll.do?pageNum=1&oyon=on">승인대기</a></li>
-				<li><a href="pr_orAll.do?pageNum=1&oyon=oy">승인완료</a></li>
-			</ul>
-		</div>
-	</div>
-
-<!--  <div class="col-md-12" id="prlist" style="display: block">  -->
-	<div class="row" align="center">
-	<table class="table table-striped table-hover">
-					<caption>일반회원리스트</caption>
+		<div class="panel panel-default panel-table">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col col-xs-6">
+						<b class="panel-title">일반회원 요청내역</b>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body2">
+				<table class="table table-striped table-bordered table-list">
 					<tr>
 						<th>번호</th>
 						<th>구분</th>
@@ -67,7 +70,6 @@ function locate(pageNum,mymn){
 					</tr>
 					<c:set var="num" value="${pg.total }" />
 					<c:forEach var="product" items="${mAll }">
-					
 						<tr>
 							<td>${num}</td>
 							<c:if test="${product.pr_mno>0 }">
@@ -91,7 +93,7 @@ function locate(pageNum,mymn){
 						<c:set var="num" value="${num-1}" />
 					</c:forEach>
 				</table>
-		
+				</div>
 				<div class="panel-footer2 text-center">
 					<div class="row">
 						<div class="col">
@@ -120,7 +122,8 @@ function locate(pageNum,mymn){
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
+		</div>
 
 			
 </body>

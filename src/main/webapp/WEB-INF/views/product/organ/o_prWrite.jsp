@@ -70,7 +70,7 @@
 		</table>
 		<div class="panel-footer text-center">
 					<button type="submit" class="btn btn-sm btn-default">요청하기
-						<i class="glyphicon glyphicon-envelope"></i></button>&nbsp;
+						<i class="glyphicon glyphicon-envelope "></i></button>&nbsp;
 					<button onclick="location.href='o_prList.do'" class="btn btn-sm btn-default">요청내역 보기
 						<i class="glyphicon glyphicon-list-alt"></i></button>
 		</div>

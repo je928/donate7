@@ -52,11 +52,15 @@
 		
 		<div align="center" >
 			<c:if test="${product.pr_approve eq 'n'}">
-				<button onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정</button>
-				<button onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제</button>
+				<button class="btn btn-sm btn-primary" onclick="location.href='m_prUpdate.do?pr_no=${product.pr_no}'">수정
+				<i class="fa fa-pencil"></i></button>
+				
+				<button class="btn btn-sm btn-primary" onclick="location.href='m_prDelete.do?pr_no=${product.pr_no}'">삭제
+				<i class="glyphicon glyphicon-remove"></i></button>
 			</c:if>
 	
-			<button onclick="location.href='m_prList.do'">확인</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='m_prList.do'">목록
+			<i class="glyphicon glyphicon-menu-hamburger"></i></button>	
 		</div>
 
 </body>
