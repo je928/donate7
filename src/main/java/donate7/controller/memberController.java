@@ -36,11 +36,11 @@ public class memberController {
 			if(result2 > 0) {
 				session.setAttribute("no", result2);
 				System.out.println("m_no = " + result2);
-				return "module/main";
+				return "redirect:main.do";
 			}else if(result2 < 0) {
 				session.setAttribute("no", result2);
 				System.out.println("o_no = " + result2);
-				return "module/main";
+				return "redirect:main.do";
 			}
 		}
 		model.addAttribute("pgm", "../member/login.jsp");
@@ -160,7 +160,7 @@ public class memberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "module/main";
+		return "redirect:main.do";
 	}
 		
 }

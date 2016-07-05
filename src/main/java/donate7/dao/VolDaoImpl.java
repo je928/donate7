@@ -145,4 +145,10 @@ public class VolDaoImpl implements VolDao {
 		return total;
 	}
 
+	@Override
+	public List<Recruit> mainList(Recruit rc) {
+		List<Recruit> list = session.selectList("recruit.mainList", rc);
+		return list;
+	}
+
 }

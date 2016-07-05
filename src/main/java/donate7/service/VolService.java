@@ -35,5 +35,6 @@ public interface VolService {
 	int resultChk(int vt_no);
 	List<VolResult> selectVolResult(int vt_no);
 	int Vt_TimeTotal(int vt_no);
+	List<Recruit> mainList(Recruit rc);
 	
 }

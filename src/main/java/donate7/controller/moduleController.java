@@ -38,12 +38,6 @@ public class moduleController {
 	
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String main(Model model, String pgm) {
-		model.addAttribute("pgm", pgm);
-		return "module/main";
-	}
-	
-	@RequestMapping(value = "home")
-	public String home(Model model, String pgm) {
 		Donate donate = new Donate();
 		donate.setCtg("all");
 		donate.setStartRow(1);
@@ -54,7 +48,7 @@ public class moduleController {
 		Recruit recruit = new Recruit();
 		recruit.setStartrow(1);
 		recruit.setEndrow(5);
-		List<Recruit> list2 = vs.selectRcList(recruit);
+		List<Recruit> list2 = vs.mainList(recruit);
 		
 		Product product = new Product();
 		product.setStartRow(1);
@@ -64,6 +58,12 @@ public class moduleController {
 		model.addAttribute("list1", list1);
 		model.addAttribute("list2", list2);
 		model.addAttribute("list3", list3);
+		model.addAttribute("pgm", pgm);
+		return "module/main";
+	}
+	
+	@RequestMapping(value = "home")
+	public String home(Model model, String pgm) {
 		model.addAttribute("pgm", pgm);
 		return "module/main";
 	}

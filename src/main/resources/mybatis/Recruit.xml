@@ -164,4 +164,8 @@
 		) a) where rn between #{startrow} and #{endrow}
 	</select>
 	
+	<select id="mainList" resultMap="RecruitResult" parameterType="recruit">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM V_VOL_SEARCH ORDER BY VT_NO DESC) A) WHERE RN BETWEEN #{startrow} and #{endrow}
+	</select>
+	
 </mapper>

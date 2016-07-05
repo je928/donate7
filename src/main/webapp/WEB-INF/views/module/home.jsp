@@ -351,63 +351,67 @@ img {
 	</div> -->
 	
 	<div class="container">
-		<table align="center">
-			<tr>
-				<td>
-					<table class="table text-center">
-						<caption>
-							<h3 class="modal-header" style="font-size: 18px;">#기부</h3>
-						</caption>
-						<tr>
-							<th width="80%">제목</th>
-							<th width="20%">글쓴이</th>
-						</tr>
-						<c:forEach var="list1" items="${list1 }">
-						<c:if test="${ not empty list1}">
+		<div class="row">
+			<table align="center">
+				<tr>
+					<td width="500px;">
+						<table class="table text-center">
+							<caption>
+								<h3 class="modal-header" style="font-size: 15px; font-weight: 900; color: #2eaa08;">기부 <i class="glyphicon glyphicon-leaf"></i></h3>
+							</caption>
+							<tr>
+								<th width="80%">제목</th>
+								<th width="20%">글쓴이</th>
+							</tr>
+							<c:if test="${not empty list1}">
+							<c:forEach var="list1" items="${list1 }">
+									<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+										<td class="text-left">
+										
+											<a href="doView.do?pageNum=1&d_no=${list1.d_no}">${list1.d_title}</a>
+										</td>
+										<td>${list1.nick}</td>
+								</tr>
+							</c:forEach>
+							</c:if>
+							<c:if test="${empty list1}">
 								<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
-									<td class="text-left">
-										<a href="../meetBoard/view.do?brd_no=${brd.brd_no}">${list1.d_title}</a>
-									</td>
-									<td>${list1.nick}</td>
+									<td colspan="2">데이터가 없습니다</td>
+								</tr>
+							</c:if>
+						</table>
+					</td>
+					<td width="50px;"></td>
+					<td width="500px;">
+						<table class="table text-center">
+							<caption>
+								<h3 class="modal-header" style="font-size: 15px; font-weight: 900; color: #2eaa08;">봉사 <i class="glyphicon glyphicon-leaf"></i></h3>
+							</caption>
+							<tr>
+								<th width="80%">제목</th>
+								<th width="20%">글쓴이</th>
 							</tr>
-						</c:if>
-						</c:forEach>
-						<c:if test="${empty list1}">
-							<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
-								<td colspan="2">데이터가 없습니다</td>
-							</tr>
-						</c:if>
-					</table>
-				</td>
-				<td>
-					<table class="table text-center">
-						<caption>
-							<h3 class="modal-header" style="font-size: 18px;">#봉사</h3>
-						</caption>
-						<tr>
-							<th width="80%">제목</th>
-							<th width="20%">글쓴이</th>
-						</tr>
-						<c:forEach var="list2" items="${list2 }">
-						<c:if test="${ not empty list2}">
+							<c:if test="${not empty list2}">
+							<c:forEach var="list2" items="${list2 }">
+									<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
+										<td class="text-left">
+											<a href="View.do?pageNum=1&vt_no=${list2.vt_no}">${list2.vt_name}</a>
+										</td>
+										<td>${list2.o_oname}</td>
+								</tr>
+							</c:forEach>
+							</c:if>
+							<c:if test="${empty list2}">
 								<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
-									<td class="text-left">
-										<a href="../meetBoard/view.do?brd_no=${brd.brd_no}">${list2.vt_name}</a>
-									</td>
-									<td>${list2.o_oname}</td>
-							</tr>
-						</c:if>
-						</c:forEach>
-						<c:if test="${empty list2}">
-							<tr height="30" onMouseOver="this.style.backgroundColor='#E7E7E7'" onmouseout="this.style.backgroundColor=''">
-								<td colspan="2">데이터가 없습니다</td>
-							</tr>
-						</c:if>
-					</table>
-				</td>
-			</tr>
-		</table>
+									<td colspan="2">데이터가 없습니다</td>
+								</tr>
+							</c:if>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-
+	
 </body>
 </html>

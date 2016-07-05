@@ -140,4 +140,9 @@ public class VolServiceImpl implements VolService {
 		return vd.Vt_TimeTotal(vt_no);
 	}
 
+	@Override
+	public List<Recruit> mainList(Recruit rc) {
+		return vd.mainList(rc);
+	}
+
 }
