@@ -88,8 +88,10 @@
 		</table>
 		
 		<div align="center">
-			<input type="submit" value="수정완료">
-			<input type="reset" value="취소">
+			<button type="submit" class="btn btn-sm btn-primary">수정완료
+				<i class="glyphicon glyphicon-saved"></i></button>
+			<button class="btn btn-sm btn-primary" type="reset">취소
+				<i class="glyphicon glyphicon-remove"></i></button>
 		</div>
 	</form>
 </body>

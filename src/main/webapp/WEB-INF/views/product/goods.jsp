@@ -167,54 +167,6 @@ $(document).ready(function() {
 	}
 }
 
-body {
-	font-family: 'Quicksand', sans-serif;
-}
-
-.profile {
-	margin-top: 25px;
-	text-align: center;
-}
-
-.profile h1 {
-	font-weight: normal;
-	font-size: 16px;
-	margin: 10px 0 0 0;
-}
-
-.profile h2 {
-	font-size: 14px;
-	font-weight: lighter;
-	margin-top: 5px;
-}
-
-.profile .img-box {
-	opacity: 1;
-	display: white;
-	position: relative;
-}
-
-.profile .img-box:after {
-	content: "";
-	opacity: 0;
-	background-color: rgba(0, 0, 0, 0.75);
-	position: absolute;
-	right: 0;
-	left: 0;
-	top: 0;
-	bottom: 0;
-}
-
-.profile .img-box:after, .img-box ul, .img-box ul li {
-	-webkit-transition: all 0.5s ease-in-out 0s;
-	-moz-transition: all 0.5s ease-in-out 0s;
-	transition: all 0.5s ease-in-out 0s;
-}
-
-.btn-margin {
-	margin: 15px 0 30px;
-	padding-left: 400px;
-}
 
 #pinBoot {
 	position: relative;
@@ -222,7 +174,7 @@ body {
 	width: 95%;
 	margin-left: 20px;
 	margin-bottom: 7px;
-}
+} 
 
 img {
 	width: 100%;
@@ -236,14 +188,6 @@ img {
 	padding: 10px;
 }
 
-.white-panel h1 {
-	font-size: 1em;
-}
-
-.white-panel h1 a {
-	color: #A92733;
-}
-
 .white-panel:hover {
 	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 	margin-top: -5px;
@@ -253,14 +197,13 @@ img {
 	transition: all 0.1s ease-in-out;
 }
 
-.numm1 {
-	font-size: 15px;
-	margin-left: 20px;
+.name{
+	font-size: 18px;
+	font-family: Estrangelo Edessa;
+	
 }
-
-.numm2 {
-	font-size: 13px;
-	margin-left: 20px;
+.price{
+	font-size: 16px;
 }
 </style>
 </head>
@@ -287,20 +230,19 @@ img {
 				value="Phone Case">
 			</div>
 			<div class="panel-body2">
-				<section id="pinBoot"> <c:forEach var="go"
-					items="${golist}">
-					<article class="white-panel"> <a
-						href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}"> <img
-						src="image/${go.pr_img}" style="width: 300px; height: 230px;">
-					</a>
-					<h1 style="font-size: 18px">
-						<a href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}">
-							${go.pr_proname}</a>
-					</h1>
-					<div>
-						<h1 style="font-size: 16px">${go.pr_price}원</h1>
-
-					</div>
+				<section id="pinBoot"> 
+					<c:forEach var="go"	items="${golist}">
+					<article class="white-panel"> 
+						<a href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}"> <img
+							src="image/${go.pr_img}" style="width: 300px; height: 230px;">
+						</a>
+						<h1 class="name">
+							<a href="go_view.do?pr_no=${go.pr_no}&pageNum=${pageNum}">
+								${go.pr_proname}</a>
+						</h1>
+						<div>
+							<h2 class="price">${go.pr_price}원</h2>
+						</div>
 
 					</article>
 				</c:forEach> 

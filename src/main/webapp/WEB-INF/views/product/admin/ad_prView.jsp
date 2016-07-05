@@ -57,25 +57,31 @@
 			</tr>
 		</table>
 	</form>
-	<div align="center">
+	<div class="panel-footer text-center">
 		<c:if test="${product.pr_approve eq 'n'}">
-			<button onclick="location.href='apUpdate.do?pr_no=${product.pr_no}&chk=a'">승인</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='apUpdate.do?pr_no=${product.pr_no}&chk=a'">승인
+			<i class="fa fa-pencil"></i></button>
 		</c:if>
 		<c:if test="${product.pr_approve eq 'y'}">
-			<button onclick="location.href='apCancel.do?pr_no=${product.pr_no}&chk=a'">승인취소</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='apCancel.do?pr_no=${product.pr_no}&chk=a'">승인취소
+			<i class="glyphicon glyphicon-remove"></i></button>
 		</c:if>
 		<c:if test="${chk != null }">
-			<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트
+			<i class="glyphicon glyphicon-menu-hamburger"></i></button>		
 		</c:if>
 		<c:if test ="${yn !=null }">
-			<button onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트</button>
+			<button class="btn btn-sm btn-primary"  onclick="location.href='pr_all.do?pageNum=${pageNum}&yn=${yn }'">리스트
+			<i class="glyphicon glyphicon-menu-hamburger"></i></button>		
 		</c:if>
 		
 		<c:if test ="${mymn !=null }">
-			<button onclick="location.href='pr_memAll.do?pageNum=${pageNum}&mymn=${mymn }'">리스트</button>
+			<button class="btn btn-sm btn-primary"  onclick="location.href='pr_memAll.do?pageNum=${pageNum}&mymn=${mymn }'">리스트
+				<i class="glyphicon glyphicon-menu-hamburger"></i></button>		
 		</c:if>
 		<c:if test ="${oyon !=null }">
-			<button onclick="location.href='pr_orAll.do?pageNum=${pageNum}&oyon=${oyon }'">리스트</button>
+			<button class="btn btn-sm btn-primary"  onclick="location.href='pr_orAll.do?pageNum=${pageNum}&oyon=${oyon }'">리스트
+				<i class="glyphicon glyphicon-menu-hamburger"></i></button>		
 		</c:if>
 
 
