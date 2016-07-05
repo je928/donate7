@@ -360,8 +360,8 @@ img {
 								<h3 class="modal-header" style="font-size: 15px; font-weight: 900; color: #2eaa08;">기부 <i class="glyphicon glyphicon-leaf"></i></h3>
 							</caption>
 							<tr>
-								<th width="80%">제목</th>
-								<th width="20%">글쓴이</th>
+								<th width="70%">제목</th>
+								<th width="30%">글쓴이</th>
 							</tr>
 							<c:if test="${not empty list1}">
 							<c:forEach var="list1" items="${list1 }">
@@ -388,8 +388,8 @@ img {
 								<h3 class="modal-header" style="font-size: 15px; font-weight: 900; color: #2eaa08;">봉사 <i class="glyphicon glyphicon-leaf"></i></h3>
 							</caption>
 							<tr>
-								<th width="80%">제목</th>
-								<th width="20%">글쓴이</th>
+								<th width="70%">제목</th>
+								<th width="30%">글쓴이</th>
 							</tr>
 							<c:if test="${not empty list2}">
 							<c:forEach var="list2" items="${list2 }">

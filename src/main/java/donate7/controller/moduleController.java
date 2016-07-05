@@ -43,7 +43,6 @@ public class moduleController {
 		donate.setStartRow(1);
 		donate.setEndRow(5);
 		List<Donate> list1 = ds.doList(donate);
-		System.out.println("list1 = "+list1);
 		
 		Recruit recruit = new Recruit();
 		recruit.setStartrow(1);

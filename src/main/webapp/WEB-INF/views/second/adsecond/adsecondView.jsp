@@ -42,7 +42,7 @@
 				<button onclick="location.href='adorList.do'">리스트</button>
 			</c:if>	
 			<c:if test="${second.sh_mno>0 }">
-				<button onclick="location.href='admemList.do'">리스트</button>
+				<button onclick="location.href='adsecondList.do'">리스트</button>
 			</c:if>
 			</div>
 			

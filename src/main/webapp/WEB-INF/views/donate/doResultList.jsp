@@ -17,7 +17,6 @@
 	<input type="hidden" name="d_member" value="${sessionScope.no }">
 	<table class="table table-striped table-hover">
 		<tr>
-			<th>#</th>
 			<th>기부자</th>
 			<th>금액</th>
 			<th>응원메세지</th>
@@ -29,7 +28,6 @@
 		<c:if test="${not empty drList }">
 			<c:forEach var="doResult" items="${drList}">
 				<tr>
-					<td>${num}</td>
 					<td>${doResult.m_nick}</td>
 					<td>${doResult.d_donation}</td>
 					<td>당신을 응원합니다.</td>
@@ -59,7 +57,7 @@
 							<li><a href="#"><b class="b2">${i}</b></a></li>
 						</c:if>
 						<c:if test="${i ne pg.nowPage}">
-							<li><a href="javascript:locate(${i})">${i}</a></li>
+							<li><a href="javascript:locate(${i})">${1}</a></li>
 						</c:if>
 					</c:forEach>
 				</ul>

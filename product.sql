@@ -14,17 +14,4 @@ create table product (
 	pr_update date
 );                
 
-
-create table pr_buy (	
-	pb_no number primary key,				-- ���Ż��¹�ȣ
-	pb_prno number not null,				-- �Ǹ�����(�Ǹ��� �г���, ��ǰ ����)
-	pb_date date default sysdate,
-	pb_mno number not null,					-- ������
-	pb_buyqty number not null,				-- ���ż���
-	pb_addr	varchar2(100) not null,			-- �ּ�
-	pb_delivery	varchar2(100) not null		-- ��ۻ���
-		
-);
-
-drop table pr_product;
-drop table pr_buy;
+drop table product;

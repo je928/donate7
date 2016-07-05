@@ -198,7 +198,7 @@ img {
 }
 
 .name{
-	font-size: 18px;
+	font-size: 17px;
 	font-family: Estrangelo Edessa;
 	
 }
