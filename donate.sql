@@ -20,7 +20,6 @@ create table doResult (
 	d_member number not null,
 	d_date date default sysdate,
 	d_donation number not null
-	
 );
 
 
