@@ -27,13 +27,13 @@
 </style>
 </head>
 <body>
+
 	<div class="container">
-		<div class="col-md-offset-13 col-md-5">
+		<div class="col-md-5" style="margin-left: 200px;">
 			<div class="form-area">
 				<form role="form" >
 					<br style="clear: both">
-					<h3 style="margin-bottom: 25px; text-align: center;">Delivery
-						Form</h3>
+					<h3 style="margin-bottom: 25px; text-align: center;">Delivery details</h3>
 					<img class="img-responsive" alt="" src="image/${price.pr_img }">
 						<div class="form-group">
 						상품명:${price.pr_proname }

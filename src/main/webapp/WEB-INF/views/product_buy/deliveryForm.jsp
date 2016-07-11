@@ -135,7 +135,7 @@
 						<input type="text" name="addr2" value="" id="addr2"
 							placeholder="상세주소" class="frm_input" style="width: 38%"><br>
 					</div>
-					<input type="submit" name="submit" value="Submit Form">
+					<input type="submit" name="submit" value="주문하기">
 				</form>
 			</div>
 		</div>
