@@ -10,14 +10,14 @@
 <body>
 	<table class="table table-striped table-hover">
 		<tr>
-			<th>번호</th>
-			<th>모집 상태</th>
+			<th width="50px">번호</th>
+			<th width="100px">모집 상태</th>
 			<th>봉사 지역</th>
-			<th>봉사 기관</th>
+			<th width="120px">봉사 기관</th>
 			<th>봉사 제목</th>
 			<th>활동 분야</th>
-			<th>모집인원</th>
-			<th>신청자수</th>
+			<th width="50px">모집인원</th>
+			<th width="50px">신청자수</th>
 		</tr>
 		<c:forEach var="result" items="${result}">
 			<tr>

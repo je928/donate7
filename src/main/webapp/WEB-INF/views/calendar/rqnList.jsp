@@ -48,13 +48,13 @@
 				<table class="table table-striped table-bordered table-list">
 					<thead>
 						<tr>
-							<th>모집번호</th>
-							<th>봉사명</th>
+							<th width="50px">모집번호</th>
+							<th width="343px">봉사명</th>
 							<th>모집기간</th>
 							<th>봉사기간</th>
-							<th>모집인원</th>
-							<th>신청인원</th>
-							<th>모집여부</th>
+							<th width="50px">모집인원</th>
+							<th width="50px">신청인원</th>
+							<th width="100px">모집여부</th>
 						</tr>
 					</thead>
 					<tbody>

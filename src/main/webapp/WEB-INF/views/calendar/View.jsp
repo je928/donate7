@@ -25,13 +25,13 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container" style="margin-left: 74px;">
 		<div class="col-md-offset-14 col-md-5"
 			style="margin-left: 0; margin-top: 0;">
 			<div class="form-area req-container">
 				<h4 style="margin-bottom: 25px; text-align: center;"></h4>
 				<div class="form-area req-form-area">
-					<p class="req-form-name">봉사 상세</p>
+					<p class="req-form-name">봉사 상세&nbsp;<i class="glyphicon glyphicon-chevron-down"></i></p>
 					<div class="form-group">
 						<b>봉사명:</b> ${rc.vt_name }
 					</div>

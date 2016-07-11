@@ -97,7 +97,7 @@
 </script>
 <style type="text/css">
 .req-container {
-	width: 900px;
+	width: 1100px;
 }
 
 .req-form-area {
@@ -130,7 +130,7 @@
 </head>
 <body>
 
-	<div class="form-area req-container" style="margin-left: 110px;">
+	<div class="form-area req-container" style="margin-left: 5px;">
 		<h4 style="margin-top: 25px; margin-bottom: 25px; text-align: center;">통합봉사조회</h4>
 		<p class="req-form-name">
 			검색 조건&nbsp;<i class="glyphicon glyphicon-chevron-down"></i>
