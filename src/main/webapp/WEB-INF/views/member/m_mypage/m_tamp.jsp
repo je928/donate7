@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-17">
 				<h3 class="page-header">MYPAGE
-					<small>${member.m_nick}님</small>
+					<small>일반회원</small>
 				</h3>
 				<ol class="breadcrumb">
 					<li>

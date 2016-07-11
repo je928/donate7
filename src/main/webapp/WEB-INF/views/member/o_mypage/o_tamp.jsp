@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-offset-17">
 				<h3 class="page-header">MYPAGE
-					<small>${organ.o_oname}님</small>
+					<small>기관</small>
 				</h3>
 				<ol class="breadcrumb">
 					<li>

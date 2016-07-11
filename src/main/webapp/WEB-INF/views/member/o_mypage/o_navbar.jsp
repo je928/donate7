@@ -169,10 +169,10 @@
 							<li><a href="o_prWrite.do">완제품 판매 요청</a></li>
 							<li class="divider"></li>
 							<li><a href="o_prList.do">완제품 판매 요청 내역</a></li>
-							<li class="divider"></li>
+							<!-- <li class="divider"></li>
 							<li><a href="#">판매 내역(배송 관리)</a></li>
 							<li class="divider"></li>
-							<li><a href="#">구매 내역</a></li>
+							<li><a href="#">구매 내역</a></li> -->
 						</ul>
 					</li>
 					<li class="dropdown">

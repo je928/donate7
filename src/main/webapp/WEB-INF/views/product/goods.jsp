@@ -229,7 +229,7 @@ img {
 				onclick="location.href='goods.do?pageNum=1&fdp=p'"
 				value="Phone Case">
 			</div>
-			<div class="panel-body2">
+			<div class="panel-body2" style="margin-left: 27px;">
 				<section id="pinBoot"> 
 					<c:forEach var="go"	items="${golist}">
 					<article class="white-panel"> 

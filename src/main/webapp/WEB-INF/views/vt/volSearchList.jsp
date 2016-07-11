@@ -31,7 +31,7 @@
 				<td>${result.o_oname }</td>
 				<td>
 				<c:if test="${sessionScope.no!=null}">
-				<a href="View.do?vt_no=${result.vt_no}&pageNum=${paging.nowPage}">${result.vt_name }</a>
+				<a href="vtView.do?vt_no=${result.vt_no}&pageNum=${paging.nowPage}">${result.vt_name }</a>
 				</c:if>
 				<c:if test="${sessionScope.no==null}">
 				${result.vt_name }

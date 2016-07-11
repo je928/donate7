@@ -41,7 +41,7 @@
 						<tr>
 					</c:if>
 						<td>
-						<img src="/donate7/${gift.g_img }" height="150px"><br>
+						<a href="giftDetail.do?g_no=${gift.g_no }"><img src="/donate7/${gift.g_img }" height="150px"></a><br>
 						<a href="giftDetail.do?g_no=${gift.g_no }"> 기프티콘 이름 :${gift.g_name }</a><br>
 						기프티콘 가격 : ${gift.g_price }<br>
 						</td>

@@ -58,7 +58,7 @@
 					</c:if>
 					<c:if test="${empty list }">
 					<tr>
-						<td colspan="4">요청하신 글이 없습니다</td>
+						<td colspan="5">요청하신 글이 없습니다</td>
 					</tr>
 					</c:if>
 					</tbody>
