@@ -137,12 +137,11 @@ public class GiftController {
 		List<Gift_Buy> list = gbs.ownList(startRow,endRow,m_no);
 		
 		model.addAttribute("pb", pb);
+		model.addAttribute("gs", gs);
 		model.addAttribute("list", list);
 		model.addAttribute("pageNum", pageNum);		
 		model.addAttribute("pgm", "../member/m_mypage/m_tamp.jsp");
 		model.addAttribute("mypgm", "../../member/m_mypage/ownGift.jsp");
-		model.addAttribute("list", list);
-		model.addAttribute("gs", gs);
 		return "module/main";
 	}
 	

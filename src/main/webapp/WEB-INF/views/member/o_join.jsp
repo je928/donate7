@@ -215,7 +215,7 @@
 		
 		if(frm.addrChk.value == "false") {
 			$('#addr_chk').html("<font class='red'>우편번호찾기로 주소를 입력해주세요.</font>");
-			frm.o_addr2.value = "";
+			frm.addr2.value = "";
 			return false;
 		}
 		return true;
