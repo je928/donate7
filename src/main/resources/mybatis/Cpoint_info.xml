@@ -18,16 +18,16 @@
 		insert into cpoint_info values(#{cp_no},#{m_no},#{cp_sort},sysdate,#{cp_point},#{cp_point_re})		
 	</insert>
 	<select id="list" resultMap="Cpoint_infoResult">
-		select * from (select rownum rn,a.* from (select * from cpoint_info
+		select * from (select rownum rn,a.* from (select * from cpoint_info where m_no=#{m_no}
 		<if test='cp_sort != "all"'>
 			<if test='cp_sort == "c"'>
-				where cp_sort='c'
+				and cp_sort='c'
 			</if>
 			<if test='cp_sort == "p"'>
-				where cp_sort='p'
+				and cp_sort='p'
 			</if>	
 		</if>
-		order by cp_no desc) a) where rn between #{startRow} and #{endRow} and m_no=#{m_no}		
+		order by cp_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<select id="sumPoint" resultType="int" parameterType="int">
 		select nvl(sum(cp_point),0) from cpoint_info where m_no=#{m_no} and cp_sort='p'

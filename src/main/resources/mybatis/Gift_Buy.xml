@@ -22,7 +22,7 @@
 	<select id="selectOne" resultType="gift_buy" parameterType="int">
 		select * from gift_buy where gb_no=#{gb_no} and gb_chk='n'
 	</select>
-	<select id="getTotal" resultType="int">
-		select count(*) from gift_buy
+	<select id="getTotal" resultType="int" parameterType="int">
+		select count(*) from gift_buy where m_no=#{m_no}
 	</select>
 </mapper>

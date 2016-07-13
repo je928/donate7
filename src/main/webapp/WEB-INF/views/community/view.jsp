@@ -69,7 +69,7 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col col-xs-6">
-							<c:if test="${community.no != sessionScope.no && community.no>1 && sessionScope.no!=null}">
+							<c:if test="${community.no != sessionScope.no && sessionScope.no>1 && sessionScope.no!=null}">
 								<a href="javascript:registerPop(${community.brd_no},'w');" class="btn btn-sm btn-warning">신고<em class="fa fa-minus"></em></a>
 							</c:if>
 						</div>

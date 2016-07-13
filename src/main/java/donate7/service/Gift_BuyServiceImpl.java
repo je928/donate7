@@ -20,8 +20,8 @@ public class Gift_BuyServiceImpl implements Gift_BuyService{
 	public Gift_Buy selectOne(int gb_no) {
 		return gd.selectOne(gb_no);
 	}
-	public int getTotal() {
-		return gd.getTotal();
+	public int getTotal(int m_no) {
+		return gd.getTotal(m_no);
 	}
 
 }

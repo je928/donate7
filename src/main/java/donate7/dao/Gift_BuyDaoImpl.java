@@ -27,8 +27,8 @@ public class Gift_BuyDaoImpl implements Gift_BuyDao{
 	public Gift_Buy selectOne(int gb_no) {
 		return st.selectOne("gift_buy.selectOne",gb_no);
 	}
-	public int getTotal() {
-		return st.selectOne("gift_buy.getTotal");
+	public int getTotal(int m_no) {
+		return st.selectOne("gift_buy.getTotal", m_no);
 	}
 
 }

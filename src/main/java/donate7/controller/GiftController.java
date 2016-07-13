@@ -131,7 +131,7 @@ public class GiftController {
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = gbs.getTotal();
+		int total = gbs.getTotal(m_no);
 		GiftPagingBean pb = new GiftPagingBean(nowPage, total);
 		
 		List<Gift_Buy> list = gbs.ownList(startRow,endRow,m_no);

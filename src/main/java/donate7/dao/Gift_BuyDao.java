@@ -11,5 +11,5 @@ public interface Gift_BuyDao {
 
 	Gift_Buy selectOne(int gb_no);
 
-	int getTotal();
+	int getTotal(int m_no);
 }
