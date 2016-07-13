@@ -35,7 +35,12 @@
 					<a href="ownGiftDetail.do?gb_no=${list.gb_no}&pageNum=${pageNum}"><img src="/donate7/${gift.g_img}" height="150px"></a><br>
 					<a href="ownGiftDetail.do?gb_no=${list.gb_no}&pageNum=${pageNum}">${gift.g_name }</a>
 					<br>
-					구매 날짜 : 2016. 7. 1
+					<c:if test="${list.gb_chk == 'n'}">
+					<b class="chk_n">사용 안함</b>
+					</c:if>
+					<c:if test="${list.gb_chk == 'y'}">
+					<b class="chk_y">사용 완료</b>
+					</c:if>
 					</td>
 					<c:if test="${i%3==4 }">
 						</tr>

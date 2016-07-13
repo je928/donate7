@@ -36,7 +36,12 @@
 							</div>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
-									<b>구매 날짜 : </b>2016. 7. 1
+									<c:if test="${gb.gb_chk == 'n'}">
+									<b class="chk_n">사용 안함</b>
+									</c:if>
+									<c:if test="${gb.gb_chk == 'y'}">
+									<b class="chk_y">사용 완료</b>
+									</c:if>
 								</div>
 							</div>
 							<div class="panel-footer text-center">
