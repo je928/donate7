@@ -18,26 +18,27 @@
 		<result property="startRow" column="startRow" />
 		<result property="endRow" column="endRow" />
 	</resultMap>
+	
 	<select id="mtotal" parameterType="int" resultType="int">
 		select
 		count(*) from product_buy where pb_mono=#{pb_mono}
 	</select>
+	
 	<select id="atotal" parameterType="product_buy" resultType="int">
-		select
-		count(*) from product_buy  
-		<!--where pb_mono=#{pb_mono}-->
+		select count(*) from product_buy where pb_mono=#{pb_mono}
 		<if test='pb_delivery != "nyo"'>
 			<if test='pb_delivery == "n"'>
-				where pb_delivery='n'
+				and pb_delivery='n'
 			</if>
 			<if test='pb_delivery == "y"'>
-				where pb_delivery='y'
+				and pb_delivery='y'
 			</if>
 			<if test='pb_delivery == "o"'>
-				where pb_delivery='o'
+				and pb_delivery='o'
 			</if>
 		</if>  
 	</select>
+	
 	<select id="list" parameterType="product_buy" resultMap="product_buyMap">
 		select *
 		from (select rownum rn,a.* from (select * from product_buy where
@@ -51,7 +52,7 @@
 		pr_no,pb.pb_mono,
 		pb.pb_buyqty,pb.pb_addr,pb.pb_name,pb.pb_tel,pb.pb_delivery
 		from
-		product_buy pb inner join product pd on (pd.pr_mno=#{pb_mono}) where
+		product_buy pb inner join product pd on (pb.pb_mono=#{pb_mono}) where
 		pb.pr_no=pd.pr_no
 		<if test='pb_delivery != "nyo"'>
 			<if test='pb_delivery == "n"'>
@@ -64,8 +65,7 @@
 				and pb_delivery='o'
 			</if>
 		</if> 
-		order by pb.pb_no desc)a)where rn between #{startRow}
-		and #{endRow}
+		order by pb.pb_no desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<!-- select * from (select rownum rn,a.* from (select pb_no,pr_no,pb_mono,pb_buyqty,pb_addr,pb_name, 
 		pb_tel,pb_delivery from product_buy pb,product pd where pd.pr_mno=#{pr_mono} 
@@ -104,11 +104,9 @@
 		pb_delivery from product_buy where pb_no= #{pb_no}
 	</select>
 	<update id="yupdate" parameterType="int">
-		update product_buy set
-		pb_delivery='y' where pb_no=#{pb_no}
+		update product_buy set pb_delivery='y' where pb_no=#{pb_no}
 	</update>
 	<update id="oupdate" parameterType="int">
-		update product_buy set
-		pb_delivery='o' where pb_no=#{pb_no}
+		update product_buy set pb_delivery='o' where pb_no=#{pb_no}
 	</update>
 </mapper>

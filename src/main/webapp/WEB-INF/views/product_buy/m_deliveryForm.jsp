@@ -54,7 +54,7 @@
 							<span class="ok_x">배송중</span>
 						</c:if>
 						<c:if test="${li.pb_delivery =='o'}">
-							<span class="ok_Y">배송완료</span>
+							<span class="ok_y">배송완료</span>
 						</c:if>
 						</td>
 						<td><a href="m_delivery.do?pb_no=${li.pb_no }&pr_no=${li.pr_no }&pb_mono=${li.pb_mono}&pb_delivery=${li.pb_delivery}" class="btn btn-default"><em class="glyphicon glyphicon-eye-open"></em></a></td>

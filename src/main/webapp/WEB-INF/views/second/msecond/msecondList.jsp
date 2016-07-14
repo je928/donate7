@@ -106,7 +106,7 @@
 	<br>
 	<div align="center">
 		<button class="btn btn-sm btn-default" onclick="location.href='msecondForm.do'">
-			기부글쓰기<i class="glyphicon glyphicon-envelope"></i>
+			중고품 기부 요청<i class="glyphicon glyphicon-envelope"></i>
 		</button>
 	</div>
 

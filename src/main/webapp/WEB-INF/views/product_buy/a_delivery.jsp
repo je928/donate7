@@ -71,8 +71,13 @@
 					</div>
 				</form>
 				<button onclick="location.href='a_deliveryForm.do'">확인</button>
-				<button onclick="location.href='a_deliveryForm.do?pb_no=${pb.pb_no}'">배송 중</button>
-				<button onclick="location.href='a_deliveryForm?pb_no=${pb.pb_no}'">배송 완료</button>
+				<c:if test="${delivery == 'y'}" >
+				<button onclick="location.href='a_nyo_o.do?pb_no=${pb.pb_no}'">배송 완료</button>
+				</c:if>
+				<c:if test="${delivery != 'y' && delivery != 'o'}">
+				<button onclick="location.href='a_nyo_y.do?pb_no=${pb.pb_no}'">배송 중</button>
+				<button onclick="location.href='a_nyo_o.do?pb_no=${pb.pb_no}'">배송 완료</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
