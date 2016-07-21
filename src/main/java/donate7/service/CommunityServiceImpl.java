@@ -19,8 +19,8 @@ public class CommunityServiceImpl implements CommunityService {
 		return cd.list(community);
 	}
 
-	public int getTotal(String searchType, String searchTxt, Community community) {
-		return cd.getTotal(searchType, searchTxt, community);
+	public int getTotal(Community community) {
+		return cd.getTotal(community);
 	}	
 
 	public void communityHit(int brd_no) {

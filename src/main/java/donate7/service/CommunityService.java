@@ -8,7 +8,7 @@ import donate7.model.CommunityReply;
 public interface CommunityService {
 
 	List<Community> list(Community community);
-	int getTotal(String searchType, String searchTxt, Community community);
+	int getTotal(Community community);
 	void communityHit(int brd_no);
 	Community communitySelect(int brd_no);
 	int insertNo();

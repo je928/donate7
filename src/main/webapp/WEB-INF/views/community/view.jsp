@@ -162,7 +162,7 @@
 										<a class="a_link" onclick="deleteRpChk(${cr.cr_no},${community.brd_no},${pageNum})">삭제</a>
 										</c:if>
 										<c:if test="${cr.no!=sessionScope.no && community.no>1 && sessionScope.no!=null}">
-										<a href="javascript:registerPop(${cr.no},'c');" class="a_link">신고</a>
+										<a href="javascript:registerPop(${cr.cr_no},'c');" class="a_link">신고</a>
 										</c:if>
 										</span>
 									</div>

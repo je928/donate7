@@ -95,7 +95,11 @@
 	</select>
 	
 	<update id="communityDelete" parameterType="Integer">
-		update community set brd_del_yn='y' where brd_no=#{brd_no}
+		update community set brd_del_yn='y' where brd_no=#{brd_no} and brd_del_yn='n'
+	</update>
+	
+	<update id="communityReplyDelete" parameterType="Integer">
+		update communityReply set cr_del_yn='y' where brd_no=#{brd_no} and cr_del_yn='n'
 	</update>
 	
 	<update id="updateWarn" parameterType="Integer">

@@ -40,12 +40,13 @@ public class communityController {
 		int nowPage = Integer.parseInt(pageNum);
 		int startRow = (nowPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
-		int total = cs.getTotal(searchType, searchTxt, community);
 		
 		community.setStartRow(startRow);
 		community.setEndRow(endRow);
 		community.setSearchType(searchType);		
 		community.setSearchTxt(searchTxt);
+		
+		int total = cs.getTotal(community);
 		
 		CommunityPagingBean pb = new CommunityPagingBean(nowPage, total);
 		List<Community> list = cs.list(community);

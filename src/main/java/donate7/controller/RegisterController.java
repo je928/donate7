@@ -33,7 +33,7 @@ public class RegisterController {
 	@Autowired
 	private WarningService ws;
 	@RequestMapping(value="registerPop",method=RequestMethod.GET)
-	public String registerPop(int brd_no,String chk,Model model){
+	public String registerPop(int brd_no, String chk,Model model){
 		if(chk.equals("w")){
 			Community comm = cs.communitySelect(brd_no);
 			Member member = ms.selectMember(comm.getNo());

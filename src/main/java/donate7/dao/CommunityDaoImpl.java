@@ -19,11 +19,9 @@ public class CommunityDaoImpl implements CommunityDao {
 		return session.selectList("community.communityList", community);
 	}	
 
-	public int getTotal(String searchType, String searchTxt, Community community) {
+	public int getTotal(Community community) {
 		int total = 0;
 		try {
-			community.setSearchType(searchType);
-			community.setSearchTxt(searchTxt);
 			total = session.selectOne("community.communityTotal", community);
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -80,12 +78,16 @@ public class CommunityDaoImpl implements CommunityDao {
 
 	public int communityDelete(int number) {
 		int result = 0;
+		int result2 = 0;
 		try {
 			result = session.update("community.communityDelete", number);
+			if(result > 0) {
+				result2 = session.update("community.communityReplyDelete", number);
+			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return result;
+		return result2;
 	}
 
 	public void updateWarn(int re_sort_no) {
