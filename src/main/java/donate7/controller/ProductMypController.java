@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import donate7.model.Product;
 import donate7.service.ProductService;
 import donate7.util.Paging;
@@ -27,7 +26,6 @@ public class ProductMypController {
 	@Autowired
 	private ProductService ps;
 	//일반
-	
 	
 	@RequestMapping(value = "m_prList", method = RequestMethod.GET)
 	public String mproList(Product product, String pageNum, Model model, HttpSession session) {
@@ -67,7 +65,6 @@ public class ProductMypController {
 		if(pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
-		String fileName = mf.getOriginalFilename();
 		String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 		mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 		product.setPr_img(uploadName);
@@ -117,7 +114,6 @@ public class ProductMypController {
 			Product pr = ps.selectOne(product.getPr_no());
 			product.setPr_img(pr.getPr_img());
 		}else{
-			String fileName = mf.getOriginalFilename();
 			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 			mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 			product.setPr_img(uploadName);
@@ -232,7 +228,6 @@ public class ProductMypController {
 			Product pr = ps.selectOne(product.getPr_no());
 			product.setPr_img(pr.getPr_img());
 		}else{
-			String fileName = mf.getOriginalFilename();
 			String uploadName = System.currentTimeMillis()+mf.getOriginalFilename();
 			mf.transferTo(new File(session.getServletContext().getRealPath("/image/")+uploadName));
 			product.setPr_img(uploadName);

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import donate7.model.Cpoint_info;
-import donate7.model.Warning;
 import donate7.service.CommunityPagingBean;
 import donate7.service.Cpoint_InfoService;
 

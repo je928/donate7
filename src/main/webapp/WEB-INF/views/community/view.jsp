@@ -37,7 +37,7 @@
 		$(".up").hide();
 		$(".btnupup").hide();
 		$('.btnup').click(function(){
-			$('#upfrm').each(function(){
+			$('form').each(function(){
 			     this.reset();
 			});
 			$(this).parent().parent().parent().nextAll(".up").toggle("slow");
