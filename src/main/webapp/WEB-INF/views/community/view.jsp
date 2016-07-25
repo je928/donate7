@@ -37,6 +37,9 @@
 		$(".up").hide();
 		$(".btnupup").hide();
 		$('.btnup').click(function(){
+			$('#upfrm').each(function(){
+			     this.reset();
+			});
 			$(this).parent().parent().parent().nextAll(".up").toggle("slow");
 			$(this).hide();
 			$(this).next().show();
@@ -172,7 +175,7 @@
 								</blockquote>
 								<div class="up">
 									<blockquote>
-										<form action="updateReply.do" name="frm" onsubmit="return rpSubmit(${sessionScope.no})">
+										<form action="updateReply.do" id="upfrm" name="upfrm" onsubmit="return rpSubmit(${sessionScope.no})">
 											<input type="hidden" name="no" value="${sessionScope.no}">
 											<input type="hidden" name="cr_no" value="${cr.cr_no}">											
 											<input type="hidden" name="brd_no" value="${community.brd_no}">
