@@ -63,7 +63,7 @@
 								<td>${no }</td>
 								<td class="text-left">
 								<c:if test="${brd.re_step>0}">
-									<img alt="" src="images/level.gif" height="10" width="${brd.re_step*10}">
+									<img alt="" src="images/level.gif" height="10" width="${brd.re_level*10}">
 									<img alt="" src="images/re.gif">
 								</c:if>
 									<a href="view.do?brd_no=${brd.brd_no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}"> ${brd.brd_subject} </a>
