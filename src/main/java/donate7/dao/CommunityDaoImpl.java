@@ -80,9 +80,11 @@ public class CommunityDaoImpl implements CommunityDao {
 		int result = 0;
 		int result2 = 0;
 		try {
-			result = session.update("community.communityDelete", number);
+			result = session.update("community.communityReplyDelete", number);
 			if(result > 0) {
-				result2 = session.update("community.communityReplyDelete", number);
+				result2 = session.update("community.communityDelete", number);
+			}else {
+				result2 = session.update("community.communityDelete", number);
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
