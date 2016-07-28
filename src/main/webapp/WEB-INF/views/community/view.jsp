@@ -37,9 +37,12 @@
 		$(".up").hide();
 		$(".btnupup").hide();
 		$('.btnup').click(function(){
-			$('form').each(function(){
-			     this.reset();
+			$("form").each(function() {
+				this.reset();
 			});
+			$(".up").hide();
+			$('.btnup').show();
+			$(".btnupup").hide();
 			$(this).parent().parent().parent().nextAll(".up").toggle("slow");
 			$(this).hide();
 			$(this).next().show();
